@@ -37,7 +37,7 @@ public class Ranking extends NamedEntity{
 	
 	//
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tournament", referencedColumnName = "tournament")
+    @JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 	//
 	
