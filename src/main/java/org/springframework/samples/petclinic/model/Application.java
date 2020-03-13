@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "applications")
-public class Application extends NamedEntity {
+public class Application extends BaseEntity {
 
 	// Attributes -------------------------------------------------------------
 	

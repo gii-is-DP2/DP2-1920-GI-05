@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name = "reports")
 @Getter
 @Setter
-public class Report extends NamedEntity {
+public class Report extends BaseEntity {
 
 	@Min(0)
 	@Max(100)
