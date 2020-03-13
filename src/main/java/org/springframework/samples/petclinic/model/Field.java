@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "fields")
-public class Field extends BaseEntity {
+public class Field extends NamedEntity {
 
 	// Attributes -------------------------------------------------------------
 
