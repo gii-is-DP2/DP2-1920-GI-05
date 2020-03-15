@@ -14,12 +14,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.NotNull;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "tournaments")
 public class Tournament extends NamedEntity {
 
@@ -54,11 +54,11 @@ public class Tournament extends NamedEntity {
 	@JoinColumn(name = "jugde_id")
 	private Jugde jugde;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "petType_id")
 	private PetType petType;
 
