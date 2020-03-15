@@ -63,7 +63,7 @@ public class TournamentController {
 
 			this.tournamentService.saveTournament(tournament);
 
-			return "redirect:/tournament" + tournament.getId();
+			return "redirect:/";
 		}
 	}
 
