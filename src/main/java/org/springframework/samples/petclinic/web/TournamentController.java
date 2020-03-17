@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -63,8 +64,24 @@ public class TournamentController {
 
 			this.tournamentService.saveTournament(tournament);
 
-			return "redirect:/";
+			return "welcome";
 		}
+	}
+	
+	@GetMapping(value = { "/tournament/all" })
+	public String showAllTournaments(Map<String, Object> model) {
+				
+		Collection<Tournament> allTournaments = this.tournamentService.findAllTournament();
+		model.put("tournaments", allTournaments);
+		return "tournament/list";
+	}
+	
+	@GetMapping(value = { "/tournament/active" })
+	public String showActiveTournaments(Map<String, Object> model) {
+				
+		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
+		model.put("tournaments", activeTournaments);
+		return "tournament/list";
 	}
 
 }
