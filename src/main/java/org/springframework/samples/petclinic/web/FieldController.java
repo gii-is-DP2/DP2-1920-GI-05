@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/fields/{fieldId}")
+//@RequestMapping("/fields/{fieldId}")
 public class FieldController {
 
 	private static final String VIEWS_FIELDS_CREATE_OR_UPDATE_FORM = "fields/createOrUpdateFieldForm";
@@ -53,7 +53,7 @@ public class FieldController {
 		this.fieldService = fieldService;
 	}
     
-	@GetMapping(value = "/fields/list")
+	@GetMapping(value = "/fields")
 	public String showFields(Map<String, Object> model) {
 		model.put("fields", this.fieldService.findAllFields());
 		return "fields/list";

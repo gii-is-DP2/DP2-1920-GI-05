@@ -21,10 +21,7 @@
         <c:forEach items="${selections}" var="field">
             <tr>
                 <td>
-                    <spring:url value="/fields/{fieldId}" var="fieldUrl">
-                        <spring:param name="fieldId" value="${field.id}"/>
-                    </spring:url>
-                    <a href="${fn:escapeXml(fieldUrl)}"><c:out value="${field.name}"/></a>
+                    <c:out value="${field.name}"/>
                 </td>
                 <td>
                     <img SRC="${field.photoURL}" width="250" height="250">

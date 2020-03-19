@@ -27,13 +27,13 @@
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span>Home</span>
 				</petclinic:menuItem>
-				
-				<petclinic:menuItem active="${name eq 'fields'}" url="/fields/list"
-					title="Fields">
+				<sec:authorize access="hasAuthority('admin')">
+				<petclinic:menuItem active="${name eq 'fields'}" url="/fields"
+					title="Fields" >
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Fields</span>
 				</petclinic:menuItem>
-
+				</sec:authorize>
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
