@@ -18,13 +18,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${selections}" var="field">
+        <c:forEach items="${fields}" var="field">
             <tr>
                 <td>
                     <c:out value="${field.name}"/>
                 </td>
                 <td>
-                    <img SRC="${field.photoURL}" width="250" height="250">
+                    <img SRC="${field.photoURL}" width="200" height="200">
                 </td>
                 <td>
                     <c:out value="${field.lenght}"/>
@@ -36,4 +36,7 @@
         </c:forEach>
         </tbody>
     </table>
+     <sec:authorize access="hasAuthority('admin')">
+		<a class="btn btn-default" href='<spring:url value="/fields/new" htmlEscape="true"/>'>Add Field</a>
+	</sec:authorize>
 </petclinic:layout>

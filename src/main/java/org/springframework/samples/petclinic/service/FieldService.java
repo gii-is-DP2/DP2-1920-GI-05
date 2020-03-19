@@ -23,4 +23,9 @@ public class FieldService {
     public Collection<Field> findAllFields() throws DataAccessException {
         return fieldRepository.findAllFields();
     }
+    
+    @Transactional
+	public void saveField(Field field) throws DataAccessException {
+		fieldRepository.save(field);
+	}
 }
