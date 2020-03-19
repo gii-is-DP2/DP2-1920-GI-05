@@ -43,7 +43,7 @@ public class TournamentController {
 	}
 	
 	@ModelAttribute("fields")
-	public Collection<Field> populatefieldss() {
+	public Collection<Field> populatefields() {
 		return this.fieldService.findAllFields();
 	}
 

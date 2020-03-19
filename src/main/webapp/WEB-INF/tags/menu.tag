@@ -27,6 +27,12 @@
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span>Home</span>
 				</petclinic:menuItem>
+				
+				<petclinic:menuItem active="${name eq 'fields'}" url="/fields/list"
+					title="Fields">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Fields</span>
+				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
