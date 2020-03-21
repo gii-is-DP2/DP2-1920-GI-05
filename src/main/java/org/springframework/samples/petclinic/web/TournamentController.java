@@ -17,7 +17,9 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -52,6 +54,11 @@ public class TournamentController {
 	public Collection<PetType> populatePetTypes() {
 		return this.petService.findPetTypes();
 	}
+	
+	@InitBinder("tournament")
+	public void initPetBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new TournamentValidator());
+	}
 
 	@GetMapping(value = "/tournament/new")
 	public String initCreationForm(ModelMap model) {
@@ -70,7 +77,7 @@ public class TournamentController {
 
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
-			return "tournament/form";
+			return "tournaments/form";
 		} else {
 			System.out.println(tournament);
 
@@ -85,7 +92,7 @@ public class TournamentController {
 				
 		Collection<Tournament> allTournaments = this.tournamentService.findAllTournament();
 		model.put("tournaments", allTournaments);
-		return "tournament/list";
+		return "tournaments/list";
 	}
 	
 	@GetMapping(value = { "/tournament/active" })
@@ -93,7 +100,7 @@ public class TournamentController {
 				
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
 		model.put("tournaments", activeTournaments);
-		return "tournament/list";
+		return "tournaments/list";
 	}
 
 }
