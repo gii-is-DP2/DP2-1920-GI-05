@@ -83,7 +83,7 @@ public class TournamentController {
 
 			this.tournamentService.saveTournament(tournament);
 
-			return "welcome";
+			return "tournaments/list";
 		}
 	}
 	
