@@ -24,7 +24,7 @@
             <div class="form-group has-feedback">
                
                 <petclinic:inputField label="Name" name="name"/>   
-                <petclinic:inputField label="Location" name="location"/>           
+                <petclinic:inputField label="Location" name="location"/>      
                 <petclinic:selectField label="Category" name="category"  names="${categories}" size="${categories.size()}"/>
                 <petclinic:selectField label="PetType" name="petType"  names="${types}" size="${types.size()}"/>
                 <petclinic:inputField label="Apply Date" name="applyDate"/>
