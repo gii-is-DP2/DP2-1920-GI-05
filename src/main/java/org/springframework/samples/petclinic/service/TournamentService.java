@@ -22,6 +22,11 @@ public class TournamentService {
 	public void saveTournament(Tournament tournament) throws DataAccessException {
 		tournamentRepository.save(tournament);
 	}
+
+	@Transactional(readOnly = true)
+	public Tournament findTournamentById(int id) throws DataAccessException {
+		return tournamentRepository.findById(id);
+	}
 	
 	
 	
