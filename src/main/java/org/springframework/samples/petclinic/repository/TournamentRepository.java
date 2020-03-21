@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -11,6 +12,10 @@ public interface TournamentRepository {
     void save(Tournament tournament) throws DataAccessException;
     
     Tournament findById(int id) throws DataAccessException;
+
+	Collection<Tournament> findAllTournament() throws DataAccessException;
+
+	Collection<Tournament> findActiveTournaments() throws DataAccessException;
     
     
 	

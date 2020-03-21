@@ -23,9 +23,9 @@ public class Field extends NamedEntity {
 	private String photoURL;
 
 	@Digits(fraction = 0, integer = 5)
-	private String height;
+	private String lenght;
 
 	@Digits(fraction = 0, integer = 5)
-	private String width;
+	private String breadth;
 
 }
