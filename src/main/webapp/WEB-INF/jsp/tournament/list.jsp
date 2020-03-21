@@ -11,7 +11,11 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Applications available until</th>
+				<th>Pet type</th>	
+				<th>Category </th>				
+				<th>Applications date</th>
+				<th>Start date</th>	
+				<th>End Date</th>									
 				<th>Prize</th>				
 			</tr>
 		</thead>
@@ -19,7 +23,11 @@
 			<c:forEach items="${tournaments}" var="tournament">
 				<tr>
 					<td><c:out value="${tournament.name}" /></td>
+					<td><c:out value="${tournament.petType.name}" /></td>	
+					<td><c:out value="${tournament.category.name}" /></td>									
 					<td><petclinic:localDate date="${tournament.applyDate}" pattern="yyyy-MM-dd"/></td>
+					<td><petclinic:localDate date="${tournament.startDate}" pattern="yyyy-MM-dd"/></td>
+					<td><petclinic:localDate date="${tournament.endDate}" pattern="yyyy-MM-dd"/></td>					
 					<td><c:out value="${tournament.prize.amount} ${tournament.prize.currency}" /></td>
 				</tr>
 			</c:forEach>

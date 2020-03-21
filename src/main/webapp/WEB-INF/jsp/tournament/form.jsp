@@ -25,11 +25,13 @@
                
                 <petclinic:inputField label="Name" name="name"/>   
                 <petclinic:inputField label="Location" name="location"/>           
-                <petclinic:selectField  name="category" label="Category" names="${categories}" size="5"/>
-                 <petclinic:selectField  name="petType" label="PetType" names="${types}" size="5"/>
+                <petclinic:selectField label="Category" name="category"  names="${categories}" size="${categories.size()}"/>
+                <petclinic:selectField label="PetType" name="petType"  names="${types}" size="${types.size()}"/>
                 <petclinic:inputField label="Apply Date" name="applyDate"/>
                 <petclinic:inputField label="Start Date" name="startDate"/>
                 <petclinic:inputField label="End Date" name="endDate"/>
+               	<petclinic:inputField  label="Prize amount" name="prize.amount"/>
+               	<petclinic:inputField  label="Prize currency" name="prize.currency"/>
               
                       
             </div>
