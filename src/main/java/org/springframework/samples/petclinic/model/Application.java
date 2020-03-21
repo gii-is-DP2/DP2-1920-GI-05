@@ -10,13 +10,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "applications")
 public class Application extends BaseEntity {
 
@@ -26,16 +25,21 @@ public class Application extends BaseEntity {
 	@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
 	private String status;
 
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate moment;
 
 	@CreditCardNumber
 	private String creditCard;
 
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "owner_id")
+	private Owner owner;
+
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 

@@ -26,6 +26,11 @@ public class TournamentService {
 	}
 
 	@Transactional(readOnly = true)
+	public Tournament findTournamentById(int id) throws DataAccessException {
+		return tournamentRepository.findById(id);
+	}
+	
+	
 	public Collection<Tournament> findAllTournament() throws DataAccessException {
 		return tournamentRepository.findAllTournament();
 	}
@@ -33,5 +38,6 @@ public class TournamentService {
 	public Collection<Tournament> findActiveTournaments() throws DataAccessException {
 		return tournamentRepository.findActiveTournaments();
 	}
+
 
 }

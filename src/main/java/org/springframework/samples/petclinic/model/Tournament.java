@@ -15,8 +15,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.sun.istack.NotNull;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Data

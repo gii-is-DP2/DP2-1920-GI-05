@@ -34,6 +34,16 @@
 					<span>Fields</span>
 				</petclinic:menuItem>
 				</sec:authorize>
+
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'applications'}" url="/owners/1/applications"
+					title="Applications" >
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Applications</span>
+				</petclinic:menuItem>
+				</sec:authorize>
+
+
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

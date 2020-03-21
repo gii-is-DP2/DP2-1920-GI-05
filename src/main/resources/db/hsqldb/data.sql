@@ -54,6 +54,12 @@ INSERT INTO CATEGORIES(id,name) VALUES (1,'Patinaje artistico');
 INSERT INTO CATEGORIES(id,name) VALUES (2,'Hello Kittie');
 INSERT INTO CATEGORIES(id,name) VALUES (3,'Mickey Mouse');
 
+INSERT INTO applications VALUES (1,'PENDING', '2020-07-25', '352571631239294', 1, 1, null);
+INSERT INTO applications VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 1, 1, null);
+INSERT INTO applications VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2, 2, null);
+INSERT INTO applications VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, null);
+INSERT INTO applications VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, null);
+
 INSERT INTO TOURNAMENTS VALUES (1, 'Torneo Winbendoll 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
 INSERT INTO TOURNAMENTS VALUES (2, 'Torneo Winbendoll 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
 INSERT INTO TOURNAMENTS VALUES (3, 'Torneo Winbendoll 5', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, null, 1 );
