@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -38,9 +37,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
 				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")	
-				.antMatchers("/tournament/**").hasAnyAuthority("admin")
+				.antMatchers("/tournament/new").hasAnyAuthority("admin")
+				.antMatchers("/tournament/all").hasAnyAuthority("admin")
+				.antMatchers("/tournament/active").authenticated()
+
 				.antMatchers("/category/**").hasAnyAuthority("admin")
+
 				.antMatchers("/vets/**").authenticated()
+				.antMatchers("/fields/**").hasAnyAuthority("admin")
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
