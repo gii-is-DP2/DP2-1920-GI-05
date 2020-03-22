@@ -39,7 +39,7 @@ public class Application extends BaseEntity {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 
