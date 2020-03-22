@@ -33,6 +33,11 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Fields</span>
 				</petclinic:menuItem>
+				<petclinic:menuItem active="${name eq 'categories'}" url="/categories"
+					title="Categories" >
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Categories</span>
+				</petclinic:menuItem>
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('owner')">
@@ -58,7 +63,7 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">   <strong>Authenticated</strong> <span
+						data-toggle="dropdown"> ï¿½ <strong>Authenticated</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -69,7 +74,7 @@
 
 				<sec:authorize access="hasAuthority('admin')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">   <strong>Admin</strong> <span
+						data-toggle="dropdown"> ï¿½ <strong>Admin</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -83,7 +88,7 @@
 				
 				<sec:authorize access="hasAuthority('owner')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">   <strong>Owner</strong> <span
+						data-toggle="dropdown"> ï¿½ <strong>Owner</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -93,7 +98,7 @@
 				
 				<sec:authorize access="hasAuthority('jugde')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">   <strong>Jugde</strong> <span
+						data-toggle="dropdown"> ï¿½ <strong>Jugde</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -103,7 +108,7 @@
 				
 				<sec:authorize access="hasAuthority('guide')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">   <strong>Guide</strong> <span
+						data-toggle="dropdown"> ï¿½ <strong>Guide</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">

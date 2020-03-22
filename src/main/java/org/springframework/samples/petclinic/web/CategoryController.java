@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.samples.petclinic.model.Category;
@@ -27,6 +30,15 @@ public class CategoryController {
 	@InitBinder("category")
 	public void initPetBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new CategoryValidator());
+	}
+
+	// CRUD: List
+	
+	@GetMapping(value = {"/categories"})
+	public String CategoriesList(ModelMap model) {
+		List<Category> categories = this.categoryService.findAllCategories().stream().collect(Collectors.toList());
+		model.put("categories", categories);
+		return "categories/list";
 	}
 
 	@GetMapping(value = "/categories/new")

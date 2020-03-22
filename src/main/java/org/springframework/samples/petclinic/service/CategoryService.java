@@ -1,20 +1,15 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
-import java.util.Set;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
-import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.repository.CategoryRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 @Service
 public class CategoryService {
