@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${vets.vetList}" var="vet">
+        <c:forEach items="${tournaments}" var="tournament">
             <tr>
                 <td>
                     <c:out value="${vet.firstName} ${vet.lastName}"/>
