@@ -11,6 +11,7 @@ import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.repository.CategoryRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -30,20 +31,21 @@ public class CategoryService {
 		return categoryRepository.findAllCategories();
 	}
 
+	
+	/*
 	@Transactional
 	public void saveCategory(@Valid Category category) throws DataAccessException {
 		categoryRepository.save(category);
 
-	}
-
-	@Transactional(rollbackFor = DuplicateCategoryNameException.class)
+	}*/
+	
+	@Transactional(rollbackFor = DuplicatedPetNameException.class)
 	public void saveCategory(Category category) throws DataAccessException, DuplicateCategoryNameException {
-		Category otherCategory = getCategorywithIdDifferent(category.getName(), category.getId());
-		if (StringUtils.hasLength(category.getName())
-				&& (otherCategory != null && otherCategory.getId() != category.getId())) {
-			throw new DuplicateCategoryNameException();
-		} else
-			categoryRepository.save(category);
+			//Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
+            if (!categoryRepository.findByName(category.getName()).isEmpty()){            	
+            	throw new DuplicateCategoryNameException();
+            }else
+                categoryRepository.save(category);                
 	}
 
 }

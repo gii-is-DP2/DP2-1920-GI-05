@@ -72,18 +72,11 @@ public class TournamentController {
 
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
-			return "tournament/form";
+			return "tournaments/form";
 		} else {
+			System.out.println(tournament);
 
-			try {
-
-				this.tournamentService.saveTournament(tournament);
-
-			} catch (WrongDateException ex) {
-
-				result.rejectValue("endDate", "", "some Dates are wrong");
-				return "tournament/new";
-			}
+			this.tournamentService.saveTournament(tournament);
 
 			return "welcome";
 		}

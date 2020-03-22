@@ -8,8 +8,8 @@
 <petclinic:layout pageName="createTournament">
 
 	<h2>
-		<c:if test="${tournament['new']}">New </c:if>
-		Tournament
+		<c:if test="${category['new']}">New </c:if>
+		Category
 	</h2>
 	<form:form modelAttribute="category" class="form-horizontal">
 		<input type="hidden" name="id" value="${category.id}" />
