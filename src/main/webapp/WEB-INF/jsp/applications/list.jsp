@@ -15,7 +15,6 @@
             <th>Status</th>
             <th>Moment</th>
             <th>Credit Card</th>
-            <th>Owner</th>
             <th>Pet</th>
             <th>Tournament</th>
             
@@ -34,11 +33,11 @@
                     <c:out value="${application.creditCard} "/>
                 </td>
                 <td>
-                    <c:out value="${pet.id} "/>
+                    <c:out value="${application.pet} "/>
                 </td>
                 <td>
-                    <c:out value="${tournament.id} "/>
-                </td>     
+                    <c:out value="${application.tournament.name} "/>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
