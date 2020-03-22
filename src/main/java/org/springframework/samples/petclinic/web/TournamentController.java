@@ -14,6 +14,8 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -72,9 +74,16 @@ public class TournamentController {
 			model.put("tournament", tournament);
 			return "tournament/form";
 		} else {
-			System.out.println(tournament);
 
-			this.tournamentService.saveTournament(tournament);
+			try {
+
+				this.tournamentService.saveTournament(tournament);
+
+			} catch (WrongDateException ex) {
+
+				result.rejectValue("endDate", "", "some Dates are wrong");
+				return "tournament/new";
+			}
 
 			return "welcome";
 		}

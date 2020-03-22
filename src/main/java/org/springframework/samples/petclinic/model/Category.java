@@ -15,11 +15,13 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import lombok.Data;
-
 
 /**
  * @author Juergen Hoeller Can be Cat, Dog, Hamster...
