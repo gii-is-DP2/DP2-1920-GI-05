@@ -44,7 +44,7 @@ public class FieldController {
 		this.fieldService = fieldService;
 	}
 
-	@GetMapping(value = "/fields")
+	@GetMapping(value = "/fields/all")
 	public String showFields(Map<String, Object> model) {
 		model.put("fields", this.fieldService.findAllFields());
 		return "fields/list";

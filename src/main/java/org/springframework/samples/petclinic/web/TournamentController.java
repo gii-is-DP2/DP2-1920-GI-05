@@ -62,7 +62,7 @@ public class TournamentController {
 		dataBinder.setValidator(new TournamentValidator());
 	}
 
-	@GetMapping(value = "/tournament/new")
+	@GetMapping(value = "/tournaments/new")
 	public String initCreationForm(ModelMap model) {
 		Tournament tournament = new Tournament();
 		// Collection<Category> category = this.categoryService.findAllCategories();
@@ -74,7 +74,7 @@ public class TournamentController {
 		return "tournament/form";
 	}
 
-	@PostMapping(value = "/tournament/new")
+	@PostMapping(value = "/tournaments/new")
 	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
@@ -89,7 +89,7 @@ public class TournamentController {
 		}
 	}
 	
-	@GetMapping(value = { "/tournament/all" })
+	@GetMapping(value = { "/tournaments/all" })
 	public String showAllTournaments(Map<String, Object> model) {
 				
 		Collection<Tournament> allTournaments = this.tournamentService.findAllTournament();
@@ -97,7 +97,7 @@ public class TournamentController {
 		return "tournaments/list";
 	}
 	
-	@GetMapping(value = { "/tournament/active" })
+	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
 				
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
