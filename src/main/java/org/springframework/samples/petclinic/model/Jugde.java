@@ -31,7 +31,7 @@ import javax.persistence.Table;
  * @author Michael Isvy
  */
 @Entity
-@Table(name = "guides")
+@Table(name = "jugdes")
 public class Jugde extends Person {
 
 

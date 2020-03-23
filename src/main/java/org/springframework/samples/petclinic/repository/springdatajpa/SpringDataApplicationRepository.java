@@ -12,7 +12,7 @@ import org.springframework.samples.petclinic.repository.ApplicationRepository;
 public interface SpringDataApplicationRepository extends ApplicationRepository, Repository<Application, Integer> {
 
 	
-	@Query("SELECT a FROM Application")
+	@Query("SELECT a FROM Application a")
 	List<Application> findAllApplications() throws DataAccessException;
 	
 }

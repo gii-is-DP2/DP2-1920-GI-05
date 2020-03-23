@@ -32,7 +32,7 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 
 @Controller
-@RequestMapping("/owners/{ownerId}")
+@RequestMapping("/application")
 public class ApplicationController {
 
 	private final ApplicationService applicationService;
@@ -89,7 +89,7 @@ public class ApplicationController {
 	}
 	
 	//user_story_8
-	@GetMapping(value = {"/applications"})
+	@GetMapping(value = {"/application/list"})
 	public String ApplicationList(ModelMap model) {
 		List<Application> applications = this.applicationService.findAllApplications().stream().collect(Collectors.toList());
 		model.put("application", applications);
