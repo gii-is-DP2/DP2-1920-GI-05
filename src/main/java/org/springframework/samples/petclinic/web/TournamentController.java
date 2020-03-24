@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.PetType;
@@ -14,6 +15,8 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Controller;
@@ -75,15 +78,22 @@ public class TournamentController {
 	}
 
 	@PostMapping(value = "/tournaments/new")
-	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) {
+	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) throws DataAccessException, DuplicateTournamentNameException {
 
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
 			return "tournaments/form";
 		} else {
-			System.out.println(tournament);
+			
+			try {
 
-			this.tournamentService.saveTournament(tournament);
+				this.tournamentService.saveTournament(tournament);
+			} catch (DuplicateTournamentNameException ex) {
+				result.rejectValue("name", "duplicate", "already exists");
+				return "tournaments/form";
+			}
+
+			
 
 			return "welcome";
 		}

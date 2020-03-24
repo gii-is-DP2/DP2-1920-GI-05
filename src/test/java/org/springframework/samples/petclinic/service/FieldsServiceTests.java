@@ -37,6 +37,7 @@ import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
@@ -88,7 +89,7 @@ class FieldsServiceTests {
 	}
 
 	@Test
-	void shouldFindNewFields() {
+	void shouldFindNewFields() throws DataAccessException, DuplicateFieldNameException {
 		
 		Field field = new Field();
 		field.setBreadth("500");

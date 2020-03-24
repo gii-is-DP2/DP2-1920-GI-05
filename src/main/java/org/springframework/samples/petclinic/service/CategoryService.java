@@ -32,7 +32,7 @@ public class CategoryService {
 		return categoryRepository.findById(id);
 	}
 	
-	@Transactional(rollbackFor = DuplicatedPetNameException.class)
+	@Transactional(rollbackFor = DuplicateCategoryNameException.class)
 	public void saveCategory(Category category) throws DataAccessException, DuplicateCategoryNameException {
 			//Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
             if (!categoryRepository.findByName(category.getName()).isEmpty()){            	
