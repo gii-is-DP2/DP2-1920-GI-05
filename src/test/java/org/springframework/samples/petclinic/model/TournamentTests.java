@@ -59,8 +59,7 @@ public class TournamentTests {
 		Tournament tournament = new Tournament();
 
 		tournament.setApplyDate(LocalDate.of(2000, 10, 12));	
-	
-		
+			
 		tournament.setCategory(category);
 		tournament.setEndDate(LocalDate.of(2000, 12, 12));		
 		//tournament.setField();

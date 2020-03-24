@@ -28,7 +28,7 @@
     </table>
     
         <sec:authorize access="hasAuthority('admin')">
-		<a class="btn btn-default" href='<spring:url value="categories/new" htmlEscape="true"/>'>Add category</a>
+		<a class="btn btn-default" href='<spring:url value="/categories/new" htmlEscape="true"/>'>Add category</a>
 	</sec:authorize>
 
 </petclinic:layout>

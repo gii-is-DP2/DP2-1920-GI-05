@@ -32,7 +32,7 @@
 				<petclinic:menuItem active="${name eq 'applications'}" url="/owners/1/applications"
 					title="Applications" >
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Applications</span>
+					<span>My Applications</span>
 				</petclinic:menuItem>
 				</sec:authorize>
 
@@ -51,7 +51,7 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Authenticated</strong> <span
+						data-toggle="dropdown"><strong>Authenticated</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -62,7 +62,7 @@
 
 				<sec:authorize access="hasAuthority('admin')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">  <strong>Admin</strong> <span
+						data-toggle="dropdown"><strong>Admin</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -89,7 +89,7 @@
 				
 				<sec:authorize access="hasAuthority('jugde')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Jugde</strong> <span
+						data-toggle="dropdown"><strong>Jugde</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -99,7 +99,7 @@
 				
 				<sec:authorize access="hasAuthority('guide')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Guide</strong> <span
+						data-toggle="dropdown"><strong>Guide</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">

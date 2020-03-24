@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,19 +84,38 @@ class CategoryServiceTests {
                 
 
 	@Test
-	void shouldFindAllTournaments() {
+	void shouldFindAllCategories() {
 		Collection<Category> categories = this.categoryService.findAllCategories();
 		assertThat(categories.size()).isEqualTo(3);
 	}
 
 	@Test
-	void shouldNotFindAllTournaments() throws DataAccessException, DuplicateCategoryNameException {
+	void shouldInsertdNewCategories() throws DataAccessException, DuplicateCategoryNameException {
 		Category c = new Category();
 		c.setName("Frisbee");
 		this.categoryService.saveCategory(c);
 		Collection<Category> categories = this.categoryService.findAllCategories();
 		assertThat(categories.size()).isEqualTo(4);
 	}
+	
+	@Test
+	@Transactional
+	public void shouldThrowExceptionInsertingPetsWithTheSameName() {		
+		Category category = new Category();
+		category.setName("Speed");
+		try {
+			categoryService.saveCategory(category);		
+		} catch (DuplicateCategoryNameException e) {
+			// The pet already exists!
+			e.printStackTrace();
+		}
+		
+		Category anotherCategoryWithTheSameName = new Category();	
+		anotherCategoryWithTheSameName.setName("Obstacles");
+		Assertions.assertThrows(DuplicateCategoryNameException.class, () ->{categoryService.saveCategory(anotherCategoryWithTheSameName);});		
+	}
+	
+	
 
 	
 

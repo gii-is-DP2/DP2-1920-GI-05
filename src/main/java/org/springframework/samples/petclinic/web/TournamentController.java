@@ -71,7 +71,7 @@ public class TournamentController {
 		
 		// Collection<Field> field = this.fieldService.findAllFields();
 		// model.put("field", field);
-		return "tournament/form";
+		return "tournaments/form";
 	}
 
 	@PostMapping(value = "/tournaments/new")

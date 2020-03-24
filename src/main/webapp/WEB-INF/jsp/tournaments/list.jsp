@@ -37,7 +37,7 @@
 	</table>
 	
 	        <sec:authorize access="hasAuthority('admin')">
-		<a class="btn btn-default" href='<spring:url value="tournaments/new" htmlEscape="true"/>'>Add tournament</a>
+		<a class="btn btn-default" href='<spring:url value="/tournaments/new" htmlEscape="true"/>'>Add tournament</a>
 	</sec:authorize>
 	
 	
