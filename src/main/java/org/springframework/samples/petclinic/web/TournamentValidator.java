@@ -17,8 +17,7 @@ public class TournamentValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		Tournament tournament = (Tournament) obj;
-		Money money = (Money) obj;
+		Tournament tournament = (Tournament) obj;		
 		String name = tournament.getName();
 		// name validation
 		if (!StringUtils.hasLength(name) || name.length() > 50 || name.length() < 3) {
@@ -56,11 +55,11 @@ public class TournamentValidator implements Validator {
 			errors.rejectValue("endDate", REQUIRED, REQUIRED);
 		}
 
-		if (money.getAmount() == null) {
+		if (tournament.getPrize().getAmount() == null) {
 			errors.rejectValue("amount", REQUIRED, REQUIRED);
 		}
 
-		if (money.getCurrency() == null) {
+		if (tournament.getPrize().getCurrency() == null) {
 			errors.rejectValue("currency", REQUIRED, REQUIRED);
 		}
 
