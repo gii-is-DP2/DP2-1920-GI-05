@@ -50,9 +50,9 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO CATEGORIES(id,name) VALUES (1,'Patinaje artistico');
-INSERT INTO CATEGORIES(id,name) VALUES (2,'Hello Kittie');
-INSERT INTO CATEGORIES(id,name) VALUES (3,'Mickey Mouse');
+INSERT INTO CATEGORIES(id,name) VALUES (1,'Dog Puller');
+INSERT INTO CATEGORIES(id,name) VALUES (2,'Speed');
+INSERT INTO CATEGORIES(id,name) VALUES (3,'Obstacles');
 
 INSERT INTO TOURNAMENTS VALUES (1, 'Winbendoll tournament 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
 INSERT INTO TOURNAMENTS VALUES (2, 'Winbendoll tournament 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
@@ -64,3 +64,6 @@ INSERT INTO applications VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 
 INSERT INTO applications VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2, 2, 1);
 INSERT INTO applications VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, 2);
 INSERT INTO applications VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, 1);
+
+INSERT INTO FIELDS(id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', '100', '300');
+

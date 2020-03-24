@@ -66,7 +66,7 @@ public class CategoryController {
                 return "categories/form";
             }
 
-			return "welcome";
+			return "redirect:/categories/all";
 		}
 	}
 

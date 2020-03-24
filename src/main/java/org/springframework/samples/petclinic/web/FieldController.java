@@ -64,7 +64,7 @@ public class FieldController {
 			return VIEWS_FIELDS_CREATE_OR_UPDATE_FORM;
 		} else {
 			this.fieldService.saveField(field);
-			return "redirect:/fields/";
+			return "redirect:/fields/all";
 		}
 	}
 
