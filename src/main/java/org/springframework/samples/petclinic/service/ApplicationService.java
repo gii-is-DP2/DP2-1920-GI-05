@@ -33,5 +33,10 @@ public class ApplicationService {
 	public Collection<Application> findApplicationsByOwnerId(int ownerId) {
 		return applicationRepository.findApplicationsByOwnerId(ownerId);
 	}
+	
+	@Transactional(readOnly = true)
+	public Collection<Application> findAllApplications() throws DataAccessException {
+		return applicationRepository.findAllApplications();
+	}
 
 }

@@ -86,5 +86,14 @@ public class ApplicationController {
 		model.put("applications", applications);
 		return "applications/list";
 	}
-
+	
+	//user_story_8
+	@GetMapping(value = {"/application/list"})
+	public String ApplicationList(ModelMap model) {
+		List<Application> applications = this.applicationService.findAllApplications().stream().collect(Collectors.toList());
+		model.put("application", applications);
+		return "applications/list";
+	}
+	
+	
 }
