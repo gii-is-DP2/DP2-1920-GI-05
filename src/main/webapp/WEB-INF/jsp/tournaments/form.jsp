@@ -38,12 +38,12 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                    
-                    <button class="btn btn-default" type="submit">Añadir Peticion</button>
+                    <button class="btn btn-default" type="submit">Add tournament</button>
                         
                 </div>
             </div>
         </form:form>
-        <c:if test="${!peticion['new']}">
+        <c:if test="${!tournament['new']}">
         </c:if>
     </jsp:body>
 </petclinic:layout>

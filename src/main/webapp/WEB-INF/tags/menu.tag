@@ -27,27 +27,6 @@
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 					<span>Home</span>
 				</petclinic:menuItem>
-				<sec:authorize access="hasAuthority('admin')">
-				<petclinic:menuItem active="${name eq 'fields'}" url="/fields"
-					title="Fields" >
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Fields</span>
-				</petclinic:menuItem>
-				<petclinic:menuItem active="${name eq 'categories'}" url="/categories"
-					title="Categories" >
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Categories</span>
-				</petclinic:menuItem>
-				</sec:authorize>
-
-				<sec:authorize access="hasAuthority('owner')">
-				<petclinic:menuItem active="${name eq 'applications'}" url="/owners/1/applications"
-					title="Applications" >
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Applications</span>
-				</petclinic:menuItem>
-				</sec:authorize>
-
 
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
@@ -63,57 +42,57 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Authenticated</strong> <span
-							class="glyphicon glyphicon-chevron-down"></span>
-					</a>
+						data-toggle="dropdown"><strong>Authenticated</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/tournament/active" />">Torneos
-									activos</a></li>
+							<li><a href="<c:url value="/tournaments/active" />">Active
+									tournaments </a></li>
 						</ul></li>
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('admin')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Admin</strong> <span
-							class="glyphicon glyphicon-chevron-down"></span>
-					</a>
+						data-toggle="dropdown"><strong>Admin</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/tournament/all" />">Todos
-									los torneos</a></li>
+							<li><a href="<c:url value="/tournaments/all" />">All
+									tournaments</a></li>
 
-							<li><a href="<c:url value="/tournament/new" />">Crear
-									nuevo torneo</a></li>
+							<li><a href="<c:url value="/categories/all" />"> All
+									categories</a></li>
+
+							<li><a href="<c:url value="/fields/all" />"> All fields</a></li>
+
 						</ul></li>
 				</sec:authorize>
-				
+
 				<sec:authorize access="hasAuthority('owner')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Owner</strong> <span
+						data-toggle="dropdown"> <strong>Owner</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/applications/${owner.id}/list" />">My applications
+									</a></li>
+						</ul></li>
+				</sec:authorize>
+
+				<sec:authorize access="hasAuthority('jugde')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Jugde</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
 
 						</ul></li>
 				</sec:authorize>
-				
-				<sec:authorize access="hasAuthority('jugde')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Jugde</strong> <span
-							class="glyphicon glyphicon-chevron-down"></span>
-					</a>
-						<ul class="dropdown-menu">
 
-					</ul></li>
-				</sec:authorize>
-				
 				<sec:authorize access="hasAuthority('guide')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> � <strong>Guide</strong> <span
-							class="glyphicon glyphicon-chevron-down"></span>
-					</a>
+						data-toggle="dropdown"><strong>Guide</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
 
-					</ul></li>
+						</ul></li>
 				</sec:authorize>
 			</ul>
 

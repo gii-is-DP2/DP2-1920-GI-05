@@ -9,6 +9,7 @@ import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.repository.TournamentRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,9 +25,13 @@ public class TournamentService {
 		this.tournamentRepository = tournamentRepository;
 	}
 
-	@Transactional
-	public void saveTournament(Tournament tournament) throws DataAccessException {
+	@Transactional(rollbackFor = DuplicateTournamentNameException.class)	
+	public void saveTournament(Tournament tournament) throws DataAccessException, DuplicateTournamentNameException{
+        if (!tournamentRepository.findByName(tournament.getName()).isEmpty()){            	
+        	throw new DuplicateTournamentNameException();
+        }else
 		tournamentRepository.save(tournament);
+        
 	}
 
 	@Transactional(readOnly = true)

@@ -16,6 +16,8 @@ public interface TournamentRepository {
 	Collection<Tournament> findAllTournament() throws DataAccessException;
 
 	Collection<Tournament> findActiveTournaments() throws DataAccessException;
+	
+	List<Tournament> findByName(String name) throws DataAccessException;
     
     
 	
