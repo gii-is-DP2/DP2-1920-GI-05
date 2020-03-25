@@ -34,7 +34,7 @@ public class CategoryController {
 
 	// CRUD: List
 	
-	@GetMapping(value = {"/categories"})
+	@GetMapping(value = {"/categories/all"})
 	public String CategoriesList(ModelMap model) {
 		List<Category> categories = this.categoryService.findAllCategories().stream().collect(Collectors.toList());
 		model.put("categories", categories);
@@ -66,7 +66,7 @@ public class CategoryController {
                 return "categories/form";
             }
 
-			return "welcome";
+			return "redirect:/categories/all";
 		}
 	}
 

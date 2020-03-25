@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.repository.CategoryRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
@@ -25,16 +26,13 @@ public class CategoryService {
 	public Collection<Category> findAllCategories() throws DataAccessException {
 		return categoryRepository.findAllCategories();
 	}
-
 	
-	/*
-	@Transactional
-	public void saveCategory(@Valid Category category) throws DataAccessException {
-		categoryRepository.save(category);
-
-	}*/
+	@Transactional(readOnly = true)
+	public Category findCategoryById(int id) throws DataAccessException {
+		return categoryRepository.findById(id);
+	}
 	
-	@Transactional(rollbackFor = DuplicatedPetNameException.class)
+	@Transactional(rollbackFor = DuplicateCategoryNameException.class)
 	public void saveCategory(Category category) throws DataAccessException, DuplicateCategoryNameException {
 			//Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
             if (!categoryRepository.findByName(category.getName()).isEmpty()){            	

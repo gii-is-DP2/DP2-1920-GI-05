@@ -37,9 +37,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
 				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")	
-				.antMatchers("/tournament/new").hasAnyAuthority("admin")
-				.antMatchers("/tournament/all").hasAnyAuthority("admin")
-				.antMatchers("/tournament/active").authenticated()
+				.antMatchers("/tournaments/new").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/all").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/active").authenticated()
 
 				.antMatchers("/categories/**").hasAnyAuthority("admin")
 				
@@ -47,6 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 				.antMatchers("/vets/**").authenticated()
 				.antMatchers("/fields/**").hasAnyAuthority("admin")
+				.antMatchers("/applications/{ownerId}/list").hasAnyAuthority("owner")
+				.antMatchers("/applications/all").hasAnyAuthority("owner")
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()

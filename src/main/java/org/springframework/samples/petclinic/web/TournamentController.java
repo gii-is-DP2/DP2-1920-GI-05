@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.PetType;
@@ -14,12 +15,16 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -54,8 +59,13 @@ public class TournamentController {
 	public Collection<PetType> populatePetTypes() {
 		return this.petService.findPetTypes();
 	}
+	
+	@InitBinder("tournament")
+	public void initPetBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new TournamentValidator());
+	}
 
-	@GetMapping(value = "/tournament/new")
+	@GetMapping(value = "/tournaments/new")
 	public String initCreationForm(ModelMap model) {
 		Tournament tournament = new Tournament();
 		// Collection<Category> category = this.categoryService.findAllCategories();
@@ -64,38 +74,45 @@ public class TournamentController {
 		
 		// Collection<Field> field = this.fieldService.findAllFields();
 		// model.put("field", field);
-		return "tournament/form";
+		return "tournaments/form";
 	}
 
-	@PostMapping(value = "/tournament/new")
-	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) {
+	@PostMapping(value = "/tournaments/new")
+	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) throws DataAccessException, DuplicateTournamentNameException {
 
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
 			return "tournaments/form";
 		} else {
-			System.out.println(tournament);
+			
+			try {
 
-			this.tournamentService.saveTournament(tournament);
+				this.tournamentService.saveTournament(tournament);
+			} catch (DuplicateTournamentNameException ex) {
+				result.rejectValue("name", "duplicate", "already exists");
+				return "tournaments/form";
+			}
+
+			
 
 			return "welcome";
 		}
 	}
 	
-	@GetMapping(value = { "/tournament/all" })
+	@GetMapping(value = { "/tournaments/all" })
 	public String showAllTournaments(Map<String, Object> model) {
 				
 		Collection<Tournament> allTournaments = this.tournamentService.findAllTournament();
 		model.put("tournaments", allTournaments);
-		return "tournament/list";
+		return "tournaments/list";
 	}
 	
-	@GetMapping(value = { "/tournament/active" })
+	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
 				
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
 		model.put("tournaments", activeTournaments);
-		return "tournament/list";
+		return "tournaments/list";
 	}
 
 }

@@ -20,10 +20,12 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.FieldService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,7 +46,7 @@ public class FieldController {
 		this.fieldService = fieldService;
 	}
 
-	@GetMapping(value = "/fields")
+	@GetMapping(value = "/fields/all")
 	public String showFields(Map<String, Object> model) {
 		model.put("fields", this.fieldService.findAllFields());
 		return "fields/list";
@@ -58,13 +60,21 @@ public class FieldController {
 	}
 
 	@PostMapping(value = "/fields/new")
-	public String processCreationForm(@Valid Field field, BindingResult result, ModelMap model) {
+	public String processCreationForm(@Valid Field field, BindingResult result, ModelMap model)
+			throws DataAccessException, DuplicateFieldNameException {
 		if (result.hasErrors()) {
 			model.put("field", field);
 			return VIEWS_FIELDS_CREATE_OR_UPDATE_FORM;
 		} else {
-			this.fieldService.saveField(field);
-			return "redirect:/fields/";
+			try {
+
+				this.fieldService.saveField(field);
+			} catch (DuplicateFieldNameException ex) {
+				result.rejectValue("name", "duplicate", "already exists");
+				return "fields/form";
+			}
+
+			return "redirect:/fields/all";
 		}
 	}
 

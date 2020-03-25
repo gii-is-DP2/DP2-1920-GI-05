@@ -7,12 +7,10 @@ import javax.validation.constraints.NotBlank;
 
 import org.h2.value.DataType;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Embeddable
-@Getter
-@Setter
+@Data
 public class Money extends DataType{
 
 	// Attributes -------------------------------------------------------------

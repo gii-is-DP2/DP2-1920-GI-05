@@ -23,4 +23,8 @@ public interface SpringDataTournamentRepository extends TournamentRepository, Re
 	@Query("SELECT  t FROM Tournament t WHERE t.applyDate > current_timestamp")
 	public Collection<Tournament> findActiveTournaments();
 	
+	@Override
+	@Query("SELECT t FROM Tournament t WHERE t.name =:name")
+	public List<Tournament> findByName(@Param("name") String name);
+	
 }
