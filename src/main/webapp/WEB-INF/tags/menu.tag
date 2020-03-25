@@ -62,7 +62,7 @@
 									categories</a></li>
 
 							<li><a href="<c:url value="/fields/all" />"> All fields</a></li>
-
+							<li><a href="<c:url value="/judges/new" />">Register a Judge	</a></li>
 						</ul></li>
 				</sec:authorize>
 
@@ -74,6 +74,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="<c:url value="/applications/${owner.id}/list" />">My applications
 									</a></li>
+						<li><a href="<c:url value="/owners/${owner.id}" />">My profile
+									</a></li>		
 						</ul></li>
 				</sec:authorize>
 
@@ -102,7 +104,17 @@
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/users/new" />">Register</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Sign in</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+					<ul class="dropdown-menu">
+							<li><a href="<c:url value="/owners/new" />">As Owner
+									</a></li>
+						<li><a href="<c:url value="/guides/new" />">As Guide
+									</a></li>		
+						</ul>
+					
+					</li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

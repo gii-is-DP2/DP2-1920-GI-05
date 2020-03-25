@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
+import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
@@ -35,14 +37,16 @@ public class TournamentController {
 	private final CategoryService categoryService;
 	private final PetService petService;
 	private final FieldService fieldService;
+	private final JudgeService  judgeService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService) {
+			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
 		this.fieldService = fieldService;
+		this.judgeService = judgeService;
 	}
 
 	@ModelAttribute("categories")
@@ -60,6 +64,11 @@ public class TournamentController {
 		return this.petService.findPetTypes();
 	}
 	
+	@ModelAttribute("judges")
+	public Collection<Judge> populateJudges() {
+		return this.judgeService.findAllJudges();
+	}
+	
 	@InitBinder("tournament")
 	public void initPetBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new TournamentValidator());
@@ -74,7 +83,7 @@ public class TournamentController {
 		
 		// Collection<Field> field = this.fieldService.findAllFields();
 		// model.put("field", field);
-		return "tournaments/form";
+		return "tournaments/createOrUpdateTournamentForm";
 	}
 
 	@PostMapping(value = "/tournaments/new")
@@ -82,7 +91,7 @@ public class TournamentController {
 
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
-			return "tournaments/form";
+			return "tournaments/createOrUpdateTournamentForm";
 		} else {
 			
 			try {
@@ -90,7 +99,7 @@ public class TournamentController {
 				this.tournamentService.saveTournament(tournament);
 			} catch (DuplicateTournamentNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return "tournaments/form";
+				return "tournaments/createOrUpdateTournamentForm";
 			}
 
 			

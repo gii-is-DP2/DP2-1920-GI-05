@@ -30,8 +30,8 @@ public class Report extends BaseEntity {
 	}
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "jugde_id")
-	private Jugde jugde;
+	@JoinColumn(name = "judge_id")
+	private Judge judge;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "tournament_id")

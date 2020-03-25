@@ -32,7 +32,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "jugdes")
-public class Jugde extends Person {
+public class Judge extends Person {
 
 
 

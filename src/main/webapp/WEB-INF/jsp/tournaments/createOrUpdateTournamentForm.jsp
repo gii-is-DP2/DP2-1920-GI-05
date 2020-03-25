@@ -27,6 +27,8 @@
                 <petclinic:inputField label="Location" name="location"/>      
                 <petclinic:selectField label="Category" name="category"  names="${categories}" size="${categories.size()}"/>
                 <petclinic:selectField label="PetType" name="petType"  names="${types}" size="${types.size()}"/>
+                 <petclinic:selectField label="Field"  name="field"  names="${fields}" size="${fields.size()}"/>
+                <petclinic:selectField label="Judge" name="judge" names="${judges}" size="${judges.size()}"/>
                 <petclinic:inputField label="Apply Date" name="applyDate"/>
                 <petclinic:inputField label="Start Date" name="startDate"/>
                 <petclinic:inputField label="End Date" name="endDate"/>

@@ -49,8 +49,8 @@ public class Tournament extends NamedEntity {
 	private Field field;
 
 	@ManyToOne(optional = true)
-	@JoinColumn(name = "jugde_id")
-	private Jugde jugde;
+	@JoinColumn(name = "judge_id")
+	private Judge judge;
 
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "category_id")
