@@ -29,7 +29,9 @@ INSERT INTO authorities VALUES ('guide1','guide');
 INSERT INTO users(username,password,enabled) VALUES ('judge1','jugd3',TRUE);
 INSERT INTO authorities VALUES ('judge1','judge');
 
-
+--JUDGE--
+INSERT INTO owners(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Judge', 'Dredd', '60 W. Liberty St.', 'Mega City', '6081251023', 'judge1');
+INSERT INTO owners(id,first_name,last_name,address,city,telephone,username)  VALUES (2, 'Travis', 'Touchdown', '10 W. Liberty St.', 'St Destroy', '6085554523', 'judge1');
 
 INSERT INTO types VALUES (1, 'cat');
 INSERT INTO types VALUES (2, 'dog');
