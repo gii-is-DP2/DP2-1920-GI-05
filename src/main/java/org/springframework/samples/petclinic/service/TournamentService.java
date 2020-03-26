@@ -25,14 +25,18 @@ public class TournamentService {
 		this.tournamentRepository = tournamentRepository;
 	}
 
-	@Transactional(rollbackFor = DuplicateTournamentNameException.class)	
-	public void saveTournament(Tournament tournament) throws DataAccessException, DuplicateTournamentNameException{
-        if (!tournamentRepository.findByName(tournament.getName()).isEmpty()){            	
-        	throw new DuplicateTournamentNameException();
-        }else
-		tournamentRepository.save(tournament);
-        
-	}
+	@Transactional(rollbackFor = DuplicateTournamentNameException.class)
+	public void saveTournament(Tournament tournament) throws DataAccessException, DuplicateTournamentNameException {
+
+		Tournament other = this.tournamentRepository.findByName(tournament.getName());
+		if(other != null && !other.getId().equals(tournament.getId()) &&  !tournament.isNew()
+				|| StringUtils.hasLength(tournament.getName()) && other != null && other.getId() != tournament.getId()) {
+			throw new DuplicateTournamentNameException();
+		}
+		else		
+			tournamentRepository.save(tournament);
+		}
+	
 
 	@Transactional(readOnly = true)
 	public Tournament findTournamentById(int id) throws DataAccessException {

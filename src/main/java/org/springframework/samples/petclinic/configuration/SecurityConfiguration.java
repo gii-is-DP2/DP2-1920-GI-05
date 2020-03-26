@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
 				.antMatchers("/owners/{editId}").hasAnyAuthority("owner")	
 				.antMatchers("/owners/{editId}/edit").hasAnyAuthority("owner")	
+				.antMatchers("/owners/{editId}/pets/**").hasAnyAuthority("owner")	
 				.antMatchers("/owners/new").permitAll()			
 				.antMatchers("/judges/{judgeId}").hasAnyAuthority("judge","admin")	
 				.antMatchers("/judges/{judgeId}/edit").hasAnyAuthority("judge","admin")					
@@ -46,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/guides/{guideId}/edit").hasAnyAuthority("guide")	
 				.antMatchers("/guides/new").permitAll()
 				.antMatchers("/tournaments/new").hasAnyAuthority("admin")
-				.antMatchers("/tournaments/all").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/{tournamentId}/edit").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/all").hasAnyAuthority("admin")				
 				.antMatchers("/tournaments/active").authenticated()
 
 				.antMatchers("/categories/**").hasAnyAuthority("admin")

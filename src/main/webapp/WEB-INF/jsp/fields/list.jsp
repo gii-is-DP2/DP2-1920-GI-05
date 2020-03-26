@@ -15,8 +15,8 @@
         <tr>
             <th style="width: 150px;">Name</th>
             <th style="width: 200px;">Photo</th>
-            <th>Lenght</th>
-            <th>Breadth</th>
+            <th>Length (m)</th>
+            <th>Breadth (m)</th>
         </tr>
         </thead>
         <tbody>

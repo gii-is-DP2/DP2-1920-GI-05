@@ -15,11 +15,10 @@ public class Money extends DataType{
 
 	// Attributes -------------------------------------------------------------
 
-	@Digits(integer = 10, fraction = 2)
+	@Digits(integer = 8, fraction = 2)
 	@Min(0)
 	private Double				amount;
-
-	@NotBlank
+	
 	private String				currency;
 
 
