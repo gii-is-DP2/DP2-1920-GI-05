@@ -8,6 +8,7 @@ import org.springframework.samples.petclinic.model.Guide;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.JudgeRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,5 +47,12 @@ public class JudgeService {
 		// TODO Auto-generated method stub
 		return this.findJudgeById(judgeId);
 	}	
+	
+	@Transactional(readOnly = true)
+	public Judge findJudgeByUserName() throws DataAccessException {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		Judge res = this.judgeRepository.findByUserName(userName);
+		return res;
+	}
 
 }

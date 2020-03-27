@@ -5,8 +5,9 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Guide;
-import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Guide;
 import org.springframework.samples.petclinic.repository.GuideRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +46,12 @@ public class GuideService {
 		// TODO Auto-generated method stub
 		return this.findGuideById(guideId);
 	}	
+	
+	@Transactional(readOnly = true)
+	public Guide findGuideByUserName() throws DataAccessException {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		Guide res = this.guideRepository.findByUserName(userName);
+		return res;
+	}
 
 }

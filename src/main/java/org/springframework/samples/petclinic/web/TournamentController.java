@@ -16,6 +16,7 @@ import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.JudgeService;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
@@ -43,15 +44,17 @@ public class TournamentController {
 	private final PetService petService;
 	private final FieldService fieldService;
 	private final JudgeService  judgeService;
+	private final OwnerService ownerService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService) {
+			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
 		this.fieldService = fieldService;
 		this.judgeService = judgeService;
+		this.ownerService = ownerService;
 	}
 
 	@ModelAttribute("categories")
@@ -73,6 +76,7 @@ public class TournamentController {
 	public Collection<Judge> populateJudges() {
 		return this.judgeService.findAllJudges();
 	}
+	
 	
 	@InitBinder("tournament")
 	public void initPetBinder(WebDataBinder dataBinder) {
@@ -123,6 +127,11 @@ public class TournamentController {
 	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
 				
+		
+		if(this.ownerService.findOwnerByUserName()!=null)	{
+			model.put("owner", this.ownerService.findOwnerByUserName());
+		}
+		
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
 		model.put("tournaments", activeTournaments);
 		return "tournaments/list";
