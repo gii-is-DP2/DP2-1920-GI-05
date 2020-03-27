@@ -42,10 +42,11 @@ public class JudgeService {
 		//creating authorities
 		authoritiesService.saveAuthorities(judge.getUser().getUsername(), "judge");
 	}
-
-	public Judge findJudgeById(int judgeId) {
+	
+	@Transactional(readOnly = true)
+	public Judge findJudgeById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return this.findJudgeById(judgeId);
+		return this.judgeRepository.findById(id);
 	}	
 	
 	@Transactional(readOnly = true)

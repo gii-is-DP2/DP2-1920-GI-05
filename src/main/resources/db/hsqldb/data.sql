@@ -1,7 +1,7 @@
 -- One admin user, named admin1 with password 4dm1n and authority admin
 INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
 INSERT INTO authorities VALUES ('admin1','admin');
--- One owner user, named owner1 with passwor 0wn3r
+-- Ten owner users, named owner1 with passwor 0wn3r
 INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('owner2','0wn3r',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('owner3','0wn3r',TRUE);
@@ -25,15 +25,20 @@ INSERT INTO authorities VALUES ('owner10','owner');
 -- One guide user, named guide1 with password guid3
 INSERT INTO users(username,password,enabled) VALUES ('guide1','guid3',TRUE);
 INSERT INTO authorities VALUES ('guide1','guide');
--- One owner user, named judge1 with password jugd3
+-- Two judge users, named judge1 and judge2 with password jugd3
 INSERT INTO users(username,password,enabled) VALUES ('judge1','jugd3',TRUE);
 INSERT INTO authorities VALUES ('judge1','judge');
 INSERT INTO users(username,password,enabled) VALUES ('judge2','jugd3',TRUE);
 INSERT INTO authorities VALUES ('judge2','judge');
+-- A veterinary test user but does not have any functionality
+INSERT INTO users(username,password,enabled) VALUES ('vet1','ve3t1',FALSE);
+INSERT INTO authorities VALUES ('vet1','vet');
+
+INSERT INTO guides(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Carmelo', 'Justice', '89 W. Wings St.', 'Sky City', '6081251012', 'guide1');
 
 --JUDGE--
-INSERT INTO jugdes(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Michael', 'Dredd', '60 W. Liberty St.', 'Mega City', '6081251023', 'judge1');
-INSERT INTO jugdes(id,first_name,last_name,address,city,telephone,username)  VALUES (2, 'Travis', 'Dacon', '10 W. Liberty St.', 'St Destroy', '6085554523', 'judge2');
+INSERT INTO judges(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Michael', 'Dredd', '60 W. Liberty St.', 'Mega City', '6081251023', 'judge1');
+INSERT INTO judges(id,first_name,last_name,address,city,telephone,username)  VALUES (2, 'Travis', 'Dacon', '10 W. Liberty St.', 'St Destroy', '6085554523', 'judge2');
 
 INSERT INTO types VALUES (1, 'cat');
 INSERT INTO types VALUES (2, 'dog');
@@ -72,14 +77,14 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO CATEGORIES(id,name) VALUES (1,'Dog Puller');
-INSERT INTO CATEGORIES(id,name) VALUES (2,'Speed');
-INSERT INTO CATEGORIES(id,name) VALUES (3,'Obstacles');
+INSERT INTO categories(id,name) VALUES (1,'Dog Puller');
+INSERT INTO categories(id,name) VALUES (2,'Speed');
+INSERT INTO categories(id,name) VALUES (3,'Obstacles');
 
-INSERT INTO TOURNAMENTS VALUES (1, 'Winbendoll tournament 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
-INSERT INTO TOURNAMENTS VALUES (2, 'Winbendoll tournament 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
-INSERT INTO TOURNAMENTS VALUES (3, 'Winbendoll tournament 5', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, null, 1 );
-INSERT INTO TOURNAMENTS VALUES (4, 'Winbendoll tournament 10', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (1, 'Winbendoll tournament 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (2, 'Winbendoll tournament 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (3, 'Winbendoll tournament 5', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (4, 'Winbendoll tournament 10', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
 
 INSERT INTO applications VALUES (1,'PENDING', '2020-07-25', '352571631239294', 1, 1, 1);
 INSERT INTO applications VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 1, 1, 2);
@@ -87,5 +92,22 @@ INSERT INTO applications VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2
 INSERT INTO applications VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, 2);
 INSERT INTO applications VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, 1);
 
-INSERT INTO FIELDS(id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', '100', '300');
+INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', '100', '300');
+
+INSERT  INTO vets VALUES (1, '563 Friendly St.', 'Boston', 'James', 'Carter', '6085551093','vet1');
+INSERT  INTO vets VALUES (2, '638 Cardinal Ave.', 'York', 'Helen', 'Leary' , '6089552765', 'vet1');
+INSERT  INTO vets VALUES (3, '2387 S. Fair Way', 'Madrid', 'Linda', 'Douglas', '6095552654', 'vet1');
+INSERT  INTO vets VALUES (4, '2749 Blackhawk Trail' ,'Barcelona', 'Rafael', 'Ortega', '6085855487', 'vet1');
+INSERT  INTO vets VALUES (5, '105 N. Lake St', 'Asturias', 'Henry', 'Stevens', '6985553898', 'vet1');
+INSERT  INTO vets VALUES (6, '2335 Independence La', 'Munich', 'Sharon', 'Jenkins','6087555387', 'vet1');
+
+INSERT INTO specialties VALUES (1, 'radiology');
+INSERT INTO specialties VALUES (2, 'surgery');
+INSERT INTO specialties VALUES (3, 'dentistry');
+
+INSERT  INTO vet_specialties VALUES (2, 1);
+INSERT  INTO vet_specialties VALUES (3, 2);
+INSERT  INTO vet_specialties VALUES (3, 3);
+INSERT  INTO vet_specialties VALUES (4, 2);
+INSERT  INTO vet_specialties VALUES (5, 1);
 

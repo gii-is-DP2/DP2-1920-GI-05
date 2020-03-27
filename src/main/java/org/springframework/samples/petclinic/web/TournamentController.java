@@ -15,6 +15,7 @@ import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
+import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -44,17 +45,19 @@ public class TournamentController {
 	private final PetService petService;
 	private final FieldService fieldService;
 	private final JudgeService  judgeService;
+	private final GuideService  guideService;
 	private final OwnerService ownerService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService) {
+			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService, GuideService  guideService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
 		this.fieldService = fieldService;
 		this.judgeService = judgeService;
 		this.ownerService = ownerService;
+		this.guideService = guideService;
 	}
 
 	@ModelAttribute("categories")
@@ -131,6 +134,15 @@ public class TournamentController {
 		if(this.ownerService.findOwnerByUserName()!=null)	{
 			model.put("owner", this.ownerService.findOwnerByUserName());
 		}
+		
+		if(this.judgeService.findJudgeByUserName()!=null)	{
+			model.put("judge", this.judgeService.findJudgeByUserName());
+		}
+		
+		if(this.guideService.findGuideByUserName()!=null)	{
+			model.put("guide", this.guideService.findGuideByUserName());
+		}
+		
 		
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
 		model.put("tournaments", activeTournaments);

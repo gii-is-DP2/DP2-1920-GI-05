@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="guides">
     <h2>
-        <c:if test="${guide['new']}">New </c:if> Owner
+        <c:if test="${guide['new']}">New </c:if> Guide
     </h2>
     <form:form modelAttribute="guide" class="form-horizontal" id="add-guide-form">
         <div class="form-group has-feedback">

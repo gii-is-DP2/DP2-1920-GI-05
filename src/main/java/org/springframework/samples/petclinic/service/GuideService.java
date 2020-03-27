@@ -34,7 +34,7 @@ public class GuideService {
 	
 	@Transactional
 	public void saveGuide(Guide guide) throws DataAccessException {
-		//creating owner
+		//creating guide
 		guideRepository.save(guide);		
 		//creating user
 		userService.saveUser(guide.getUser());
@@ -42,9 +42,9 @@ public class GuideService {
 		authoritiesService.saveAuthorities(guide.getUser().getUsername(), "guide");
 	}
 
-	public Guide findGuideById(int guideId) {
-		// TODO Auto-generated method stub
-		return this.findGuideById(guideId);
+	@Transactional(readOnly = true)
+	public Guide findGuideById(int id)  throws DataAccessException{
+		return this.guideRepository.findById(id);
 	}	
 	
 	@Transactional(readOnly = true)

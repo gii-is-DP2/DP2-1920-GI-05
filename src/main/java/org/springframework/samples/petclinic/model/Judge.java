@@ -18,8 +18,12 @@ package org.springframework.samples.petclinic.model;
 
 
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import lombok.Data;
+
 
 
 /**
@@ -31,7 +35,8 @@ import javax.persistence.Table;
  * @author Michael Isvy
  */
 @Entity
-@Table(name = "jugdes")
+@Data
+@Table(name = "judges")
 public class Judge extends Person {
 
 

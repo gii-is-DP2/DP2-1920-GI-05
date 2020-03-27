@@ -76,38 +76,7 @@ public class GuideController {
 		}
 	}
 
-	@GetMapping(value = "/guides/find")
-	public String initFindForm(Map<String, Object> model) {
-		model.put("guide", new Guide());
-		return "guides/findGuides";
-	}
 
-	@GetMapping(value = "/guides")
-	public String processFindForm(Guide guide, BindingResult result, Map<String, Object> model) {
-
-		// allow parameterless GET request for /guides to return all records
-		if (guide.getLastName() == null) {
-			guide.setLastName(""); // empty string signifies broadest possible search
-		}
-
-		// find guides
-		Collection<Guide> results = this.guideService.findAllGuides();
-		if (results.isEmpty()) {
-			// no guides found
-			result.rejectValue("lastName", "notFound", "not found");
-			return "guides/all";
-		}
-		else if (results.size() == 1) {
-			// 1 guide found
-			guide = results.iterator().next();
-			return "redirect:/guides/" + guide.getId();
-		}
-		else {
-			// multiple guides found
-			model.put("selections", results);
-			return "guides/all";
-		}
-	}
 
 	@GetMapping(value = "/guides/{guideId}/edit")
 	public String initUpdateGuideForm(@PathVariable("guideId") int guideId, Model model) {
@@ -125,9 +94,16 @@ public class GuideController {
 		else {
 			guide.setId(guideId);
 			this.guideService.saveGuide(guide);
-			return "redirect:/guides/{guideId}";
+			return "welcome";
 		}
 	}
+	
+	/*
+	 * @GetMapping("/guides/{guideId}/details") public ModelAndView
+	 * showOwner(@PathVariable("guideId") int guideId) { ModelAndView mav = new
+	 * ModelAndView("guides/guideDetails");
+	 * mav.addObject(this.guideService.findGuideById(guideId)); return mav; }
+	 */
 
 
 

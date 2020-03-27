@@ -19,7 +19,7 @@ public interface GuideRepository {
 
 	List<Guide> findAllGuides() throws DataAccessException;
 
-	void save(Guide guide);
+	void save(Guide guide)  throws DataAccessException;
 	
 	
 
