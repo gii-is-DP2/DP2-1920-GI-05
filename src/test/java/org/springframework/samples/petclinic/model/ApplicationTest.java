@@ -18,6 +18,7 @@ public class ApplicationTest {
 	
 	private Owner owner;
 	private Tournament tournament;
+	private Pet pet;
 	
 	
 	@BeforeEach
@@ -28,6 +29,9 @@ public class ApplicationTest {
 		
 		tournament = new Tournament();
 		tournament.setName("Quarentine's Tournament");
+		
+		pet = new Pet();
+		pet.setName("Goomba");;		
 		
 	}
 	
@@ -49,6 +53,7 @@ public class ApplicationTest {
 		app.setOwner(owner);
 		app.setStatus("");
 		app.setTournament(tournament);
+		app.setPet(pet);
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Application>> constraintViolations = validator.validate(app);
@@ -71,6 +76,7 @@ public class ApplicationTest {
 		app.setOwner(owner);
 		app.setStatus("REJECTED");
 		app.setTournament(tournament);
+		app.setPet(pet);
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Application>> constraintViolations = validator.validate(app);
@@ -93,6 +99,7 @@ public class ApplicationTest {
 		app.setOwner(owner);
 		app.setStatus("REJECTED");
 		app.setTournament(null);
+		app.setPet(pet);
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Application>> constraintViolations = validator.validate(app);
