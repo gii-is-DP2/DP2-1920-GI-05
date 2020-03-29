@@ -14,6 +14,9 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
+import org.springframework.samples.petclinic.service.GuideService;
+import org.springframework.samples.petclinic.service.JudgeService;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -48,6 +51,15 @@ class TournamentControllerTests {
 	
 	@MockBean
 	private CategoryService categoryService;
+	
+	@MockBean
+	private OwnerService ownerService;
+	
+	@MockBean
+	private GuideService guideService;
+	
+	@MockBean
+	private JudgeService judgeService;
 
 	@Autowired
 	private MockMvc mockMvc;

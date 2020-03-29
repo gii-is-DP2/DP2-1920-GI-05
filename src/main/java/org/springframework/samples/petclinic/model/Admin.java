@@ -35,6 +35,6 @@ import lombok.Setter;
 @Entity
 @Data
 @Table(name = "guides")
-public class Guide extends Person {
+public class Admin extends Person {
 
 }

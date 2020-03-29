@@ -13,9 +13,9 @@
     <form:form modelAttribute="field" class="form-horizontal" id="add-field-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Name" name="name"/>
-            <petclinic:inputField label="photo (URL)" name="photoURL"/>
-            <petclinic:inputField label="Lenght" name="lenght"/>
-            <petclinic:inputField label="Breadth" name="breadth"/>
+            <petclinic:inputField label="Photo (URL)" name="photoURL"/>
+            <petclinic:inputField label="Lenght (in meters, 2 fractions)" name="lenght"/>
+            <petclinic:inputField label="Breadth (in meters, 2 fractions)" name="breadth"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

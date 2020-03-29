@@ -73,7 +73,7 @@ public class FieldTests {
 		assertThat(constraintViolations.size()).isEqualTo(1);
 		ConstraintViolation<Field> violation = constraintViolations.iterator().next();
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("breadth");
-		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<0 digits> expected)");
+		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<2 digits> expected)");
 
 	}
 	
@@ -94,7 +94,7 @@ public class FieldTests {
 		assertThat(constraintViolations.size()).isEqualTo(1);
 		ConstraintViolation<Field> violation = constraintViolations.iterator().next();
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("lenght");
-		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<0 digits> expected)");
+		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<2 digits> expected)");
 
 	}
 	

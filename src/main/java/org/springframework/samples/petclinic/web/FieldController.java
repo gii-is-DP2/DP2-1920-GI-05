@@ -22,15 +22,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Field;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -44,6 +43,11 @@ public class FieldController {
 	@Autowired
 	public FieldController(FieldService fieldService) {
 		this.fieldService = fieldService;
+	}
+	
+	@InitBinder("field")
+	public void initPetBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new FieldValidator());
 	}
 
 	@GetMapping(value = "/fields/all")
@@ -61,7 +65,7 @@ public class FieldController {
 
 	@PostMapping(value = "/fields/new")
 	public String processCreationForm(@Valid Field field, BindingResult result, ModelMap model)
-			throws DataAccessException, DuplicateFieldNameException {
+			throws DataAccessException,  DuplicateFieldNameException {
 		if (result.hasErrors()) {
 			model.put("field", field);
 			return VIEWS_FIELDS_CREATE_OR_UPDATE_FORM;

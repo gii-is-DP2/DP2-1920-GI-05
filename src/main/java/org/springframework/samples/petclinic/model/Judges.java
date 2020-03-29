@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Jugdes {
+public class Judges {
 	
-	private List<Jugde> judges;
+	private List<Judge> judges;
 	
 	@XmlElement
-	public List<Jugde> getJugdeList() {
+	public List<Judge> getJugdeList() {
 		if (judges == null) {
 			judges = new ArrayList<>();
 		}

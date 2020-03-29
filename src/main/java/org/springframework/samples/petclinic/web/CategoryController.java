@@ -47,7 +47,7 @@ public class CategoryController {
 		// Collection<Category> category = this.categoryService.findAllCategories();
 		model.put("category", category);
 		// model.put("category", category);
-		return "categories/form";
+		return "categories/createOrUpdateCategoryForm";
 	}
 
 	@PostMapping(value = "/categories/new")
@@ -55,7 +55,7 @@ public class CategoryController {
 
 		if (result.hasErrors()) {
 			model.put("category", category);
-			return "categories/form";
+			return "categories/createOrUpdateCategoryForm";
 		} else {
 
 			try{

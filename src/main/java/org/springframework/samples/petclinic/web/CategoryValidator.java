@@ -15,8 +15,8 @@ public class CategoryValidator implements Validator {
 		String name = category.getName();
 		// name validation
 		if (!StringUtils.hasLength(name) || name.length() > 50 || name.length() < 3) {
-			errors.rejectValue("name", REQUIRED + " and between 3 and 50 characters",
-					REQUIRED + " and between 3 and 50 character");
+			errors.rejectValue("name", "The name must be between 3 and 50 characters",
+					"The name must be between 3 and 50 characters");
 		}
 
 		/* type validation

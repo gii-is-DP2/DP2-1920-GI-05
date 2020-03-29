@@ -21,23 +21,20 @@ import lombok.Data;
 @Table(name = "tournaments")
 public class Tournament extends NamedEntity {
 
-	@NotNull
 	@Column(name = "apply_date")        
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate applyDate;
-	
-	@NotNull
+		
 	@Column(name = "start_date")        
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate startDate;
 	
-	@NotNull
 	@Column(name = "end_date")        
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate endDate;
-
+	
+	@Column(name = "location")    
 	@NotBlank
-	@Column(name = "location")        
 	private String location;
 
 	@Valid
@@ -49,14 +46,14 @@ public class Tournament extends NamedEntity {
 	private Field field;
 
 	@ManyToOne(optional = true)
-	@JoinColumn(name = "jugde_id")
-	private Jugde jugde;
+	@JoinColumn(name = "judge_id")
+	private Judge judge;
 
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "petType_id")
 	private PetType petType;
 
