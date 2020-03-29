@@ -38,6 +38,9 @@ class VetControllerTests {
 
 	@MockBean
 	private VetService clinicService;
+    
+    @MockBean
+	private OwnerService ownerService;
 
 	@Autowired
 	private MockMvc mockMvc;
