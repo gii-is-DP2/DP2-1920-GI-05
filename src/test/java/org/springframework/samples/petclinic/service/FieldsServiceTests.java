@@ -103,7 +103,7 @@ class FieldsServiceTests {
 	}
 	
 	@Test
-	void shouldFindFieldByName() {
+	void shouldFindFieldById() {
 		Collection<Field> fields = this.fieldsService.findFieldsByName("Map 1");
 		Field field = fieldsService.findFieldById(1);
 		assertThat(fields.contains(field));
