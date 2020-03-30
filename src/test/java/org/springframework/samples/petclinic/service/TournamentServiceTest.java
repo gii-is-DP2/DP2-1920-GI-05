@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -92,8 +93,6 @@ class TournamentServiceTest {
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
 	
-	
-
 	
 
 
