@@ -29,29 +29,6 @@ public class TournamentValidator implements Validator {
 					REQUIRED + "and must be between 3 and 50 characters");
 		}
 
-		
-		  // birth date validation if
-		  if(tournament.getApplyDate() !=null && tournament.getStartDate() != null && tournament.getApplyDate().isAfter(tournament.getStartDate())) {
-		  errors.rejectValue("applyDate", "Apply date can not be after start date",
-		  "Apply date can not be after start date"); }
-		  
-		  if (tournament.getApplyDate() !=null && tournament.getEndDate() != null && tournament.getApplyDate().isAfter(tournament.getEndDate())) {
-		  errors.rejectValue("applyDate", " Apply date can not be after end date", DATE
-		  + " apply date can not be after end date"); }
-		  
-		  
-		  if (tournament.getStartDate() !=null && tournament.getEndDate() != null && tournament.getStartDate().isAfter(tournament.getEndDate())) {
-		  errors.rejectValue("startDate", " Start date can not be after end date", DATE
-		  + " start date can not be after end date"); }
-		  
-		  if (location.isEmpty() ) {
-		  errors.rejectValue("location", REQUIRED, REQUIRED); }
-		  
-		  LocalDate now = LocalDate.now();
-		  
-		  if (tournament.getApplyDate() != null && (tournament.getApplyDate().isAfter(now) || tournament.getApplyDate().equals(now))) {
-		  errors.rejectValue("applyDate", REQUIRED, REQUIRED); }
-		  
 		  if (tournament.getApplyDate() == null) {
 		  errors.rejectValue("applyDate", REQUIRED, REQUIRED); }
 		  
@@ -60,6 +37,36 @@ public class TournamentValidator implements Validator {
 		  
 		  if (tournament.getEndDate() == null) {
 		  errors.rejectValue("endDate", REQUIRED, REQUIRED); }
+		
+		  LocalDate now = LocalDate.now(); 
+		  		  
+		  if(tournament.getApplyDate() !=null && tournament.getStartDate() != null && tournament.getApplyDate().isAfter(tournament.getStartDate())) {
+		  errors.rejectValue("applyDate", "Apply date can not be after start date",
+		  "Apply date can not be after start date"); }
+		  
+		  if (tournament.getApplyDate() !=null && tournament.getEndDate() != null && tournament.getApplyDate().isAfter(tournament.getEndDate())) {
+		  errors.rejectValue("applyDate", " Apply date can not be after end date", DATE
+		  + " apply date can not be after end date"); }
+		  
+		  if (tournament.getApplyDate() != null && (tournament.getApplyDate().isBefore(now) || tournament.getApplyDate().equals(now))) {
+		  errors.rejectValue("applyDate", "Apply day can not be before today", "Apply day can not be before today"); }
+		  		  
+		  if (tournament.getStartDate() !=null && tournament.getEndDate() != null && tournament.getStartDate().isAfter(tournament.getEndDate())) {
+		  errors.rejectValue("startDate", "Start date can not be after end date", DATE
+		  + " start date can not be after end date"); }
+		  
+		  if (tournament.getApplyDate() != null && (tournament.getApplyDate().isBefore(now) || tournament.getApplyDate().equals(now))) {
+		  errors.rejectValue("applyDate", "Apply date can not be before today", "Apply date can not be before today"); }
+		  
+		  if (tournament.getStartDate() != null && (tournament.getStartDate().isBefore(now) || tournament.getStartDate().equals(now))) {
+		  errors.rejectValue("startDate", "Start date can not be before today", "Start date can not be before today"); }
+		  
+		  if (tournament.getEndDate() != null && (tournament.getEndDate().isBefore(now) || tournament.getEndDate().equals(now))) {
+			  errors.rejectValue("endDate", "End date can not be before today", "End date can not be before today"); }
+		  		  
+		  if (location.isEmpty() ) {
+		  errors.rejectValue("location", REQUIRED, REQUIRED); }  
+ 	  
 		  
 		  if (tournament.isNew() && tournament.getPetType() == null) {
 		  errors.rejectValue("petType", REQUIRED, REQUIRED); }

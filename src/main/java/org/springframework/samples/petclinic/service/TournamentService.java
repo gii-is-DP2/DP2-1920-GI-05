@@ -42,11 +42,13 @@ public class TournamentService {
 	public Tournament findTournamentById(int id) throws DataAccessException {
 		return tournamentRepository.findById(id);
 	}
-
+	
+	 @Transactional()
 	public Collection<Tournament> findAllTournament() throws DataAccessException {
 		return tournamentRepository.findAllTournament();
 	}
 
+	 @Transactional()
 	public Collection<Tournament> findActiveTournaments() throws DataAccessException {
 		return tournamentRepository.findActiveTournaments();
 	}

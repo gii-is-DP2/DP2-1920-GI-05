@@ -28,7 +28,10 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 
-@WebMvcTest(controllers = CategoryController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = CategoryController.class,
+excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, 
+classes = WebSecurityConfigurer.class), 
+excludeAutoConfiguration = SecurityConfiguration.class)
 class CategoryControllerTests {
 
 	@Autowired
@@ -40,26 +43,29 @@ class CategoryControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	@WithMockUser(username = "spring", authorities = {"owner"})
+	// List Categories: Positive case
+	@WithMockUser(username = "spring")
 	@Test
 	void testListAll() throws Exception {
 		mockMvc.perform(get("/categories/all")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("categories")).andExpect(view().name("categories/list"));
 	}
 
+	// Create category Positive Case: all valid inputs
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/categories/new").with(csrf()).param("name", "Betty"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/categories/all"));
+				.andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/categories/all"));
 
 	}
 	
+	// Create category Negative Case: invalid input 
+	@WithMockUser(value = "spring")
 	@Test
-    void testNotProcessCreationFormSuccess() throws Exception {
-        mockMvc.perform(post("/categories/new").with(csrf())).
-                andExpect(status().is4xxClientError());
-    }
+	void testNotProcessCreationFormSuccess() throws Exception {
+		mockMvc.perform(post("/categories/new").with(csrf())).andExpect(model().attributeHasErrors("category"))
+				.andExpect(status().isOk());
+	}
 
 }

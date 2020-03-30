@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.util.EntityUtils;
@@ -45,35 +48,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Integration test of the Service and the Repository layer.
- * <p>
- * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided
- * by the Spring TestContext Framework:
- * </p>
- * <ul>
- * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up
- * time between test execution.</li>
- * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we
- * don't need to perform application context lookups. See the use of
- * {@link Autowired @Autowired} on the <code>{@link
- * FieldsServiceTests#clinicService clinicService}</code> instance variable, which uses
- * autowiring <em>by type</em>.
- * <li><strong>Transaction management</strong>, meaning each test method is executed in
- * its own transaction, which is automatically rolled back by default. Thus, even if tests
- * insert or otherwise change database state, there is no need for a teardown or cleanup
- * script.
- * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is
- * also inherited and can be used for explicit bean lookup if necessary.</li>
- * </ul>
- *
- * @author Ken Krebs
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Michael Isvy
- * @author Dave Syer
- */
+
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class FieldsServiceTests { 
@@ -82,12 +57,14 @@ class FieldsServiceTests {
 	protected FieldService fieldsService;
                 
 
+    // List all Fields Postive Case
 	@Test
 	void shouldFindAllFields() {
 		Collection<Field> fields = this.fieldsService.findAllFields();
 		assertThat(fields.size()).isEqualTo(1);
 	}
 
+	// 
 	@Test
 	void shouldFindNewFields() throws DataAccessException, DuplicateFieldNameException {
 		
@@ -102,11 +79,34 @@ class FieldsServiceTests {
 		assertThat(fields.size()).isEqualTo(2);
 	}
 	
+	// Service test: Show field by Id 
 	@Test
 	void shouldFindFieldById() {
 		Collection<Field> fields = this.fieldsService.findFieldsByName("Map 1");
 		Field field = fieldsService.findFieldById(1);
 		assertThat(fields.contains(field));
+	}
+	
+	// Create Field Positive Case: Duplicated Field Name 
+	@Test
+	@Transactional
+	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		
+		
+		Field field = new Field();
+		field.setBreadth("500");
+		field.setLenght("1000");
+		field.setName("Map 1");
+		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");		
+		try {
+			fieldsService.saveField(field);		
+		} catch (DuplicateFieldNameException e) {
+			
+			e.printStackTrace();
+		}
+		
+		Field anotherFieldWithTheSameName = new Field();	
+		anotherFieldWithTheSameName.setName("Map 1");
+		Assertions.assertThrows(DuplicateFieldNameException.class, () ->{fieldsService.saveField(anotherFieldWithTheSameName);});		
 	}
 
 	

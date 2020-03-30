@@ -18,6 +18,7 @@ public class TournamentRepositoryTests {
 	@Autowired
 	TournamentRepository tournamentRepository;
 
+	// Repository test: Return a tournament that already passes Negative Case
 	@Test
 	public void shouldNotReturnOldTournament() throws Exception {
 				

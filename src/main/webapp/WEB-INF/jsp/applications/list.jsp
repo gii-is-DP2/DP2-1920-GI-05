@@ -6,8 +6,8 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 
-<petclinic:layout pageName="My Applications">
-    <h2>Peticiones</h2>
+<petclinic:layout pageName="applications ">
+    <h2>Applications</h2>
 
     <table id="applicationsTable" class="table table-striped">
         <thead>

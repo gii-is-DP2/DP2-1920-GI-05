@@ -24,6 +24,7 @@ class ValidatorTests {
 		return localValidatorFactoryBean;
 	}
 
+	// Validator test Negative Case: Invalid input used First name of person is empty
 	@Test
 	void shouldNotValidateWhenFirstNameEmpty() {
 
@@ -31,7 +32,12 @@ class ValidatorTests {
 		Person person = new Person();
 		person.setFirstName("");
 		person.setLastName("smith");
-
+		person.setAddress("Manzanar St.");
+		person.setCity("Seville");
+		person.setTelephone("985331452");
+		
+		User user = new User();;
+		person.setUser(user );
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
 

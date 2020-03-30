@@ -18,12 +18,22 @@ public class ApplicationRepositoryTests {
 	@Autowired
 	ApplicationRepository applicationRepository;
 	
+	// Repository test: List all applications
 	@Test
 	public void shouldReturnAllApplications() throws Exception {
 				
 		Collection<Application> allApplications = this.applicationRepository.findAllApplications();
 		
 		assertThat(allApplications.size()).isEqualTo(5);	
+	}
+	
+	// Repository test: List all applications by one owner
+	@Test
+	public void shouldReturnOwnerApplications() throws Exception {
+				
+		Collection<Application> owner1Applications = this.applicationRepository.findApplicationsByOwnerId(1);
+		
+		assertThat(owner1Applications.size()).isEqualTo(2);	
 	}
 
 }

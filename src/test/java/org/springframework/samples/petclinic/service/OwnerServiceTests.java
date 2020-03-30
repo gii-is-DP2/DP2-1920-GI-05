@@ -77,6 +77,7 @@ class OwnerServiceTests {
         @Autowired
 	protected OwnerService ownerService;
 
+    
 	@Test
 	void shouldFindOwnersByLastName() {
 		Collection<Owner> owners = this.ownerService.findOwnerByLastName("Davis");

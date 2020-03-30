@@ -36,6 +36,7 @@ public class CategoryTests {
 		return localValidatorFactoryBean;
 	}
 
+	//  Create new Category Negative Case: invalid name input 
 	@Test
 	void shouldNotValidateName() {
 		

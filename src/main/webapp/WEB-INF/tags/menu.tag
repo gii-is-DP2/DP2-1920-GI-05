@@ -55,13 +55,10 @@
 						data-toggle="dropdown"><strong>Admin</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/tournaments/all" />">All
-									tournaments</a></li>
-
-							<li><a href="<c:url value="/categories/all" />"> All
-									categories</a></li>
-
+							<li><a href="<c:url value="/tournaments/all" />">All tournaments</a></li>
+							<li><a href="<c:url value="/categories/all" />"> All categories</a></li>
 							<li><a href="<c:url value="/fields/all" />"> All fields</a></li>
+							<li><a href="<c:url value="/applications/all" />"> All applications</a></li>
 							<li><a href="<c:url value="/judges/new" />">Register a Judge	</a></li>
 						</ul></li>
 				</sec:authorize>

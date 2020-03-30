@@ -53,16 +53,17 @@ public class TournamentTests {
 		return localValidatorFactoryBean;
 	}
 
+	// Create new tournament Negative Case: invalid name input
 	@Test
 	void shouldNotValidateName() {
 
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Tournament tournament = new Tournament();
 
-		tournament.setApplyDate(LocalDate.of(2000, 10, 12));
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
 
 		tournament.setCategory(category);
-		tournament.setEndDate(LocalDate.of(2000, 12, 12));
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
 		// tournament.setField();
 		// tournament.setJugde();
 		tournament.setLocation("Seville");
@@ -71,7 +72,7 @@ public class TournamentTests {
 
 		tournament.setPrize(money);
 		tournament.setName("");
-		tournament.setStartDate(LocalDate.of(2000, 12, 10));
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
 
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Tournament>> constraintViolations = validator.validate(tournament);
@@ -81,20 +82,21 @@ public class TournamentTests {
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("name");
 		assertThat(violation.getMessage()).isEqualTo("size must be between 3 and 50");
 	}
-
+	
+	// Create new tournament Negative Case: invalid location input
 	@Test
 	void shouldNotValidateLocation() {
 
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Tournament tournament = new Tournament();
 
-		tournament.setApplyDate(LocalDate.of(2000, 10, 12));
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
 
 		Category category = new Category();
 		category.setName("Agility");
 
 		tournament.setCategory(category);
-		tournament.setEndDate(LocalDate.of(2000, 12, 12));
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
 		// tournament.setField();
 		// tournament.setJugde();
 		tournament.setLocation("");
@@ -109,7 +111,7 @@ public class TournamentTests {
 
 		tournament.setPrize(money);
 		tournament.setName("Kendall 3 tournament");
-		tournament.setStartDate(LocalDate.of(2000, 12, 10));
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
 
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Tournament>> constraintViolations = validator.validate(tournament);
@@ -120,6 +122,8 @@ public class TournamentTests {
 		assertThat(violation.getMessage()).isEqualTo("must not be blank");
 	}
 	
+	// Create new tournament Negative Case: invalid apply Date input, can´t be after 
+	// end or start date
 	@Test
 	void shouldNotValidateApplyDate() {
 
@@ -158,6 +162,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	// Create new tournament Negative Case: invalid start Date input, can´t be after end date 
 	@Test
 	void shouldNotValidateStartDate() {
 
@@ -196,6 +201,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	// Create new tournament Negative Case: invalid end Date input, can´t be before start or apply Date	
 	@Test
 	void shouldNotValidateEndDate() {
 
@@ -228,12 +234,13 @@ public class TournamentTests {
 		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
 		validator.validate(tournament, errors);
 
-		assertThat(errors.getErrorCount()).isEqualTo(2);
+		assertThat(errors.getErrorCount()).isEqualTo(3);
 		assertThat(errors.hasFieldErrors("applyDate")).isEqualTo(true);		
 		assertThat(errors.hasFieldErrors("startDate")).isEqualTo(true);
-		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);		
+		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(true);		
 	}
 	
+	// Create new tournament Negative Case: Invalid money currency 
 	@Test
 	void shouldNotValidateCurrency() {
 
@@ -270,6 +277,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("prize.currency")).isEqualTo(true);
 	}
 	
+	// Create new tournament Negative Case: Invalid money amount with more than 2 fractions
 	@Test
 	void shouldNotValidatePrizeAmount1() {
 
@@ -306,6 +314,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("prize.amount")).isEqualTo(true);
 	}
 	
+	// Create new tournament Negative Case: invalid amount with more than 8 digits
 	@Test
 	void shouldNotValidatePrizeAmount2() {
 
@@ -337,9 +346,38 @@ public class TournamentTests {
 
 		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
 		validator.validate(tournament, errors);
-		System.out.println(validator.countFractions(tournament.getPrize().getAmount()));
 		assertThat(errors.getErrorCount()).isEqualTo(2);	
 		assertThat(errors.hasFieldErrors("prize.amount")).isEqualTo(true);
+	}
+	
+	
+	// Create new tournament Negative Case: Null Category
+	@Test
+	void shouldNotValidateCategory() {
+		
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		Tournament tournament = new Tournament();
+
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
+
+		
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
+		// tournament.setField();
+		// tournament.setJugde();
+		tournament.setLocation("Seville");
+		tournament.setName("Douglas Tournament");
+		tournament.setPetType(petType);
+
+		tournament.setPrize(money);
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
+
+		
+		TournamentValidator validator = new TournamentValidator();
+
+		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
+		validator.validate(tournament, errors);
+		assertThat(errors.getErrorCount()).isEqualTo(1);	
+		assertThat(errors.hasFieldErrors("category")).isEqualTo(true);
 	}
 	
 

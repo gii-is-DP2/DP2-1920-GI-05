@@ -8,6 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,7 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -58,10 +62,12 @@ class FieldControllerTests {
 		field1.setBreadth("100.00");
 		field1.setLenght("100.00");
 		field1.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
-		given(this.fieldService.findAllFields()).willReturn(Lists.newArrayList(field1));
+		Collection<Field> fields = this.fieldService.findAllFields();
+		given(this.fieldService.findAllFields()).willReturn(fields);	
 
 	}
 
+	// List Fields Postive Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListAll() throws Exception {
@@ -69,9 +75,18 @@ class FieldControllerTests {
 				.andExpect(model().attributeExists("fields")).andExpect(view().name("fields/list"));
 	}
 	
+	// Create Fields Positive Case: all valid inputs
+	@WithMockUser(value = "spring")
+	@Test
+	void testGetNewFields() throws Exception {
+		mockMvc.perform(get("/fields/new")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("field")).andExpect(view().name("fields/createOrUpdateFieldForm"));
+	}
+	
+	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(value = "spring")
     @Test
-void testProcessCreationFormSuccess() throws Exception {
+void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameException {
 	mockMvc.perform(post("/fields/new")
 						.with(csrf())
 						.param("name", "Map 5")
@@ -82,13 +97,14 @@ void testProcessCreationFormSuccess() throws Exception {
 			.andExpect(view().name("redirect:/fields/all"));
 }	
 	
+	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(value = "spring")
     @Test
-	void testProcessCreationFormHasNameErrors() throws Exception {
+	void testProcessCreationFormHasNameErrors() throws Exception, DuplicateFieldNameException {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
-							.param("name", "Map 1")
-							.param("breadth", "100000.00")
+							//.param("name", "Map 1")
+							.param("breadth", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -97,6 +113,7 @@ void testProcessCreationFormSuccess() throws Exception {
 					
 	}
 	
+	// Create Fields Negative breadth is too long
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasIntegerErrors1() throws Exception {
@@ -112,6 +129,7 @@ void testProcessCreationFormSuccess() throws Exception {
 					
 	}
 	
+	// Create Fields Negative breadth is not a valid input, must be x.YY
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasFractionsErrors1() throws Exception {
@@ -127,6 +145,7 @@ void testProcessCreationFormSuccess() throws Exception {
 		
 	}
 	
+	// Create Fields Negative: length is too long
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasIntegerErrors2() throws Exception {
@@ -142,6 +161,7 @@ void testProcessCreationFormSuccess() throws Exception {
 					
 	}
 	
+	// Create Fields Negative: length is not a valid input, must be x.YY
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasFractionsErrors2() throws Exception {
@@ -157,13 +177,14 @@ void testProcessCreationFormSuccess() throws Exception {
 		
 	}
 	
+	// Create Fields Negative: URL of photo is not a valid URL
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasURLErrors() throws Exception {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.009")
+							.param("breadth", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "Sample text"))				
 				.andExpect(model().attributeHasErrors("field"))

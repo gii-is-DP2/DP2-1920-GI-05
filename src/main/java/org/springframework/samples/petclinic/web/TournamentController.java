@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
+
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -10,7 +11,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.CategoryService;
@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TournamentController {
 	
-	private static final String VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM = "tournaments/createOrUpdateTournamentForm";
+	private static final String VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM = "tournaments/createOrUpdateTournamentForm";
 
 	private final TournamentService tournamentService;
 	private final CategoryService categoryService;
@@ -80,42 +80,35 @@ public class TournamentController {
 		return this.judgeService.findAllJudges();
 	}
 	
-	
+		
 	@InitBinder("tournament")
-	public void initPetBinder(WebDataBinder dataBinder) {
+	public void initTournamentBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new TournamentValidator());
 	}
 
 	@GetMapping(value = "/tournaments/new")
 	public String initCreationForm(ModelMap model) {
 		Tournament tournament = new Tournament();
-		// Collection<Category> category = this.categoryService.findAllCategories();
 		model.put("tournament", tournament);
-		// model.put("category", category);
-		
-		// Collection<Field> field = this.fieldService.findAllFields();
-		// model.put("field", field);
-		return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/tournaments/new")
-	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) throws DataAccessException, DuplicateTournamentNameException {
-
+	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) 
+			throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
-			return "tournaments/createOrUpdateTournamentForm";
+			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		} else {
-			
 			try {
+
 				this.tournamentService.saveTournament(tournament);
 			} catch (DuplicateTournamentNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+				return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 			}
 
-			
-
-			return "/tournaments/all";
+			return "redirect:/tournaments/all";
 		}
 	}
 	
@@ -150,17 +143,17 @@ public class TournamentController {
 	}
 	
 	@GetMapping(value = "/tournaments/{tournamentId}/edit")
-	public String initUpdateOwnerForm(@PathVariable("tournamentId") int tournamentId, Model model) {
+	public String initUpdateOwnerForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);;
-		model.addAttribute(tournament);
-		return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+		 model.put("tournament", tournament);
+		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/tournaments/{tournamentId}/edit")
 	public String processUpdateOwnerForm(@Valid Tournament tournament, BindingResult result,
 			@PathVariable("tournamentId") int tournamentId) throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
-			return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			
@@ -169,7 +162,7 @@ public class TournamentController {
 				this.tournamentService.saveTournament(tournament);
 			} catch (DuplicateTournamentNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+				return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 			}
 		
 			return "redirect:/tournaments/all";

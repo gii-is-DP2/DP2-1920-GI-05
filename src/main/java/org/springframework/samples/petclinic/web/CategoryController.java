@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class CategoryController {
+
+	private static final String VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM = "categories/createOrUpdateCategoryForm";
 
 	private final CategoryService categoryService;
 
@@ -33,8 +37,8 @@ public class CategoryController {
 	}
 
 	// CRUD: List
-	
-	@GetMapping(value = {"/categories/all"})
+
+	@GetMapping(value = { "/categories/all" })
 	public String CategoriesList(ModelMap model) {
 		List<Category> categories = this.categoryService.findAllCategories().stream().collect(Collectors.toList());
 		model.put("categories", categories);
@@ -47,24 +51,23 @@ public class CategoryController {
 		// Collection<Category> category = this.categoryService.findAllCategories();
 		model.put("category", category);
 		// model.put("category", category);
-		return "categories/createOrUpdateCategoryForm";
-	}
+		return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;	
+		}
 
 	@PostMapping(value = "/categories/new")
-	public String processCreationForm(@Valid Category category, BindingResult result, ModelMap model) {
-
+	public String processCreationForm(@Valid Category category, BindingResult result, ModelMap model) 
+		throws DataAccessException,  DuplicateCategoryNameException {
 		if (result.hasErrors()) {
 			model.put("category", category);
-			return "categories/createOrUpdateCategoryForm";
+			return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;
 		} else {
-
-			try{
-            	//owner.addPet(pet);
-            	this.categoryService.saveCategory(category);
-            }catch(DuplicateCategoryNameException ex){
-                result.rejectValue("name", "duplicate", "already exists");
-                return "categories/form";
-            }
+			try {
+			
+				this.categoryService.saveCategory(category);
+			} catch (DuplicateCategoryNameException ex) {
+				result.rejectValue("name", "duplicate", "already exists");
+				return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;
+			}
 
 			return "redirect:/categories/all";
 		}

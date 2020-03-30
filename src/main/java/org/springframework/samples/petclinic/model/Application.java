@@ -13,16 +13,19 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "applications")
 public class Application extends BaseEntity {
 
 	// Attributes -------------------------------------------------------------
 	
 	@NotBlank
-	@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
+	//@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
 	private String status;
 
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
