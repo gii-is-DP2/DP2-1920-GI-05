@@ -41,7 +41,7 @@ class CategoryControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	@WithMockUser(value = "spring")
+	@WithMockUser(username = "spring", authorities = {"owner"})
 	@Test
 	void testListAll() throws Exception {
 		mockMvc.perform(get("/categories/all")).andExpect(status().isOk())

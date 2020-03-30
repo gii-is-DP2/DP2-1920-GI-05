@@ -19,6 +19,7 @@ public class Money extends DataType{
 	@Min(0)
 	private Double				amount;
 	
+  @NotBlank
 	private String				currency;
 
 

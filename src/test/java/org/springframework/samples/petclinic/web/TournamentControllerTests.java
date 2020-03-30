@@ -65,7 +65,7 @@ class TournamentControllerTests {
 	private MockMvc mockMvc;
 
 	@WithMockUser(value = "spring")
-	@Test
+	@Test	
 	void testListAll() throws Exception {
 		mockMvc.perform(get("/tournaments/all")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/list"));
