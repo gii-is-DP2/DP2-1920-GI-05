@@ -29,9 +29,9 @@
                 <petclinic:selectField label="Pet type" name="petType"  names="${types}" size="${types.size()}"/>
                  <petclinic:selectField label="Select field"  name="field"  names="${fields}" size="${fields.size()}"/>
                 <petclinic:selectField label="Select judge" name="judge" names="${judges}" size="${judges.size()}"/>
-                <petclinic:inputField label="Apply Date" name="applyDate"/>
-                <petclinic:inputField label="Start Date" name="startDate"/>
-                <petclinic:inputField label="End Date" name="endDate"/>
+                <petclinic:inputField label="Apply Date (yyyy/MM/dd)" name="applyDate" />
+                <petclinic:inputField label="Start Date (yyyy/MM/dd)" name="startDate"/>
+                <petclinic:inputField label="End Date (yyyy/MM/dd)" name="endDate"/>
                	<petclinic:inputField  label="Prize amount" name="prize.amount"/>
                	<petclinic:inputField  label="Prize currency" name="prize.currency"/>
               
