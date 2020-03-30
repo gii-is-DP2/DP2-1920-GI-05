@@ -91,6 +91,8 @@ class TournamentServiceTest {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
+	
+	
 
 	
 

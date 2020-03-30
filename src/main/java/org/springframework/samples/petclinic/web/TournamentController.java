@@ -115,7 +115,7 @@ public class TournamentController {
 
 			
 
-			return "welcome";
+			return "/tournaments/all";
 		}
 	}
 	
