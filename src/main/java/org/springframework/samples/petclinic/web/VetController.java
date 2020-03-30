@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +34,13 @@ import java.util.Map;
 @Controller
 public class VetController {
 
-	private final VetService vetService;
+	private final VetService vetService;	
+	private OwnerService ownerService;
 
 	@Autowired
-	public VetController(VetService clinicService) {
+	public VetController(VetService clinicService, OwnerService ownerService) {
 		this.vetService = clinicService;
+		this.ownerService = ownerService;
 	}
 
 	@GetMapping(value = { "/vets" })
@@ -45,6 +48,11 @@ public class VetController {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet
 		// objects
 		// so it is simpler for Object-Xml mapping
+		
+		if(this.ownerService.findOwnerByUserName()!=null)	{
+			model.put("owner", this.ownerService.findOwnerByUserName());
+		}
+		
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		model.put("vets", vets);

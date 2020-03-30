@@ -40,12 +40,61 @@
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
-				</petclinic:menuItem>
+				<sec:authorize access="isAuthenticated()">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Authenticated</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/tournaments/active" />">Active
+									tournaments </a></li>
+						</ul></li>
+				</sec:authorize>
 
+				<sec:authorize access="hasAuthority('admin')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Admin</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/tournaments/all" />">All tournaments</a></li>
+							<li><a href="<c:url value="/categories/all" />"> All categories</a></li>
+							<li><a href="<c:url value="/fields/all" />"> All fields</a></li>
+							<li><a href="<c:url value="/applications/all" />"> All applications</a></li>
+							<li><a href="<c:url value="/judges/new" />">Register a Judge	</a></li>
+						</ul></li>
+				</sec:authorize>
+
+				<sec:authorize access="hasAuthority('owner')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> <strong>Owner</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/applications/${owner.id}/list" />">My applications
+									</a></li>
+						<li><a href="<c:url value="/owners/${owner.id}" />">My profile
+									</a></li>		
+						</ul></li>
+				</sec:authorize>
+
+				<sec:authorize access="hasAuthority('judge')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Jugde</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+						<ul class="dropdown-menu">
+						<li><a href="<c:url value="/judges/${judge.id}" />">My profile
+									</a></li>		
+						</ul></li>
+				</sec:authorize>
+
+				<sec:authorize access="hasAuthority('guide')">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Guide</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+						<ul class="dropdown-menu">
+						<li><a href="<c:url value="/guides/${guide.id}/edit" />">Edit my profile
+									</a></li>		
+						</ul></li>
+				</sec:authorize>
 			</ul>
 
 
@@ -54,7 +103,17 @@
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/users/new" />">Register</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong>Sign in</strong> <span
+							class="glyphicon glyphicon-chevron-down"></span> </a>
+					<ul class="dropdown-menu">
+							<li><a href="<c:url value="/users/new" />">As Owner
+									</a></li>
+						<li><a href="<c:url value="/guides/new" />">As Guide
+									</a></li>		
+						</ul>
+					
+					</li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -84,7 +143,7 @@
 								</div>
 							</li>
 							<li class="divider"></li>
-<!-- 							
+							<!-- 							
                             <li> 
 								<div class="navbar-login navbar-login-session">
 									<div class="row">

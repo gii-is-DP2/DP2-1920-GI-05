@@ -106,7 +106,7 @@ class PetServiceTests {
 		pet.setName("bowser");
 		Collection<PetType> types = this.petService.findPetTypes();
 		pet.setType(EntityUtils.getById(types, PetType.class, 2));
-		pet.setBirthDate(LocalDate.now());
+		pet.setBirthDate(LocalDate.of(2001, 11, 13));
 		owner6.addPet(pet);
 		assertThat(owner6.getPets().size()).isEqualTo(found + 1);
 
@@ -131,7 +131,7 @@ class PetServiceTests {
 		pet.setName("wario");
 		Collection<PetType> types = this.petService.findPetTypes();
 		pet.setType(EntityUtils.getById(types, PetType.class, 2));
-		pet.setBirthDate(LocalDate.now());
+		pet.setBirthDate(LocalDate.of(2001, 11, 13));
 		owner6.addPet(pet);
 		try {
 			petService.savePet(pet);		
@@ -172,7 +172,7 @@ class PetServiceTests {
 		pet.setName("wario");
 		Collection<PetType> types = this.petService.findPetTypes();
 		pet.setType(EntityUtils.getById(types, PetType.class, 2));
-		pet.setBirthDate(LocalDate.now());
+		pet.setBirthDate(LocalDate.of(2001, 11, 13));
 		owner6.addPet(pet);
 		
 		Pet anotherPet = new Pet();		

@@ -32,7 +32,7 @@ import org.springframework.validation.Validator;
  */
 public class PetValidator implements Validator {
 
-	private static final String REQUIRED = "required";
+	private static final String REQUIRED = "Required";
 
 	@Override
 	public void validate(Object obj, Errors errors) {

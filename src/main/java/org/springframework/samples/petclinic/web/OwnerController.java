@@ -23,6 +23,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
+import org.springframework.samples.petclinic.service.GuideService;
+import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.samples.petclinic.service.UserService;
@@ -45,10 +47,14 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
 	private final OwnerService ownerService;
+	private final JudgeService  jugdeService;
+	private final GuideService guideService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
+	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService,  JudgeService  jugdeService, GuideService guideService) {
 		this.ownerService = ownerService;
+		this.jugdeService = jugdeService;
+		this.guideService = guideService;	
 	}
 
 	@InitBinder
@@ -78,13 +84,40 @@ public class OwnerController {
 
 	@GetMapping(value = "/owners/find")
 	public String initFindForm(Map<String, Object> model) {
-		model.put("owner", new Owner());
+		
+		if(this.jugdeService.findJudgeByUserName()!=null)	{
+			model.put("judge", this.jugdeService.findJudgeByUserName());
+		}
+		
+		if(this.guideService.findGuideByUserName()!=null)	{
+			model.put("guide", this.guideService.findGuideByUserName());
+		}
+		
+		if(this.ownerService.findOwnerByUserName()!=null)	{
+			model.put("owner", this.ownerService.findOwnerByUserName());
+		}else {		
+			model.put("owner", new Owner());	
+		}
+		
+		
 		return "owners/findOwners";
 	}
 
 	@GetMapping(value = "/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
 
+		if(this.ownerService.findOwnerByUserName()!=null)	{
+			model.put("owner", this.ownerService.findOwnerByUserName());
+		}
+		
+		if(this.jugdeService.findJudgeByUserName()!=null)	{
+			model.put("judge", this.jugdeService.findJudgeByUserName());
+		}
+		
+		if(this.guideService.findGuideByUserName()!=null)	{
+			model.put("guide", this.guideService.findGuideByUserName());
+		}
+		
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName() == null) {
 			owner.setLastName(""); // empty string signifies broadest possible search

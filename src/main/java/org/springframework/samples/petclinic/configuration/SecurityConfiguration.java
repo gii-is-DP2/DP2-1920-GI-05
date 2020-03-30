@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -37,8 +36,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
-				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")				
+				.antMatchers("/owners/find").authenticated()
+				.antMatchers("/owners").authenticated()
+				.antMatchers("/owners/{editId}").hasAnyAuthority("owner")	
+				//.antMatchers("/owners/{editId}/details").hasAnyAuthority("owner")	
+				.antMatchers("/owners/{editId}/edit").hasAnyAuthority("owner")	
+				.antMatchers("/owners/{editId}/pets/**").hasAnyAuthority("owner")					
+				.antMatchers("/judges/{judgeId}").hasAnyAuthority("judge","admin")	
+				.antMatchers("/judges/{judgeId}/edit").hasAnyAuthority("judge","admin")	
+				//.antMatchers("/judges/{judgeId}/details").hasAnyAuthority("judge")	
+				.antMatchers("/judges/new").hasAnyAuthority("admin")					
+				.antMatchers("/guides/{guideId}/edit").hasAnyAuthority("guide")	
+				//.antMatchers("/guides/{guideId}/details").hasAnyAuthority("guide")	
+				.antMatchers("/guides/new").permitAll()
+				.antMatchers("/tournaments/new").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/{tournamentId}/edit").hasAnyAuthority("admin")
+				.antMatchers("/tournaments/all").hasAnyAuthority("admin")				
+				.antMatchers("/tournaments/active").authenticated()
+
+				.antMatchers("/categories/**").hasAnyAuthority("admin")
+				
+				.antMatchers("/application/list").hasAnyAuthority("admin")
+
 				.antMatchers("/vets/**").authenticated()
+				.antMatchers("/fields/**").hasAnyAuthority("admin")
+				.antMatchers("/applications/{ownerId}/list").hasAnyAuthority("owner")
+				.antMatchers("/applications/all").hasAnyAuthority("admin")
 				.anyRequest().denyAll()
 				.and()
 				 	.formLogin()
