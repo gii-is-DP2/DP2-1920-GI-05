@@ -49,7 +49,7 @@ public class TournamentValidator implements Validator {
 		  
 		  LocalDate now = LocalDate.now();
 		  
-		  if (tournament.getApplyDate().isAfter(now) || tournament.getApplyDate().equals(obj)) {
+		  if (tournament.getApplyDate() != null && (tournament.getApplyDate().isAfter(now) || tournament.getApplyDate().equals(now))) {
 		  errors.rejectValue("applyDate", REQUIRED, REQUIRED); }
 		  
 		  if (tournament.getApplyDate() == null) {

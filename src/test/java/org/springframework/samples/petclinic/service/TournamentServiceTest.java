@@ -93,12 +93,6 @@ class TournamentServiceTest {
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
 	
-	@Test
-	void shouldSaveTournaments() {
-		Tournament tournament = new Tournament();
-		this.tournamentService.saveTournament(tournament);
-		assertThat();
-	}
 	
 
 

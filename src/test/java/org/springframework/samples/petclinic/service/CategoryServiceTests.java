@@ -100,7 +100,7 @@ class CategoryServiceTests {
 	
 	@Test
 	@Transactional
-	public void shouldThrowExceptionInsertingPetsWithTheSameName() {		
+	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		
 		Category category = new Category();
 		category.setName("Speed");
 		try {

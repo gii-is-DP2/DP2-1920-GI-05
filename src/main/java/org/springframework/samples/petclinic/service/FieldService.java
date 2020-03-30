@@ -35,5 +35,15 @@ public class FieldService {
         }else
     	fieldRepository.save(field);
     }
+    
+    @Transactional()
+    public Collection<Field> findFieldsByName(String name) throws DataAccessException {
+        return fieldRepository.findByName(name);
+    }
+    
+    @Transactional()
+    public Field findFieldById(int id) throws DataAccessException {
+        return fieldRepository.findById(id);
+    }
 	
 }
