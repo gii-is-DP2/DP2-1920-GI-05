@@ -84,8 +84,8 @@ class FieldsServiceTests {
 
 	@Test
 	void shouldFindAllFields() {
-		Collection<Field> tournaments = this.fieldsService.findAllFields();
-		assertThat(tournaments.size()).isEqualTo(1);
+		Collection<Field> fields = this.fieldsService.findAllFields();
+		assertThat(fields.size()).isEqualTo(1);
 	}
 
 	@Test
@@ -98,8 +98,15 @@ class FieldsServiceTests {
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");		
 		
 		this.fieldsService.saveField(field);
-		Collection<Field> tournaments = this.fieldsService.findAllFields();
-		assertThat(tournaments.size()).isEqualTo(2);
+		Collection<Field> fields = this.fieldsService.findAllFields();
+		assertThat(fields.size()).isEqualTo(2);
+	}
+	
+	@Test
+	void shouldFindFieldByName() {
+		Collection<Field> fields = this.fieldsService.findFieldsByName("Map 1");
+		Field field = fieldsService.findFieldById(1);
+		assertThat(fields.contains(field));
 	}
 
 	
