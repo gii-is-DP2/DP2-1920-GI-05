@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -91,7 +92,13 @@ class TournamentServiceTest {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
-
+	
+	@Test
+	void shouldSaveTournaments() {
+		Tournament tournament = new Tournament();
+		this.tournamentService.saveTournament(tournament);
+		assertThat();
+	}
 	
 
 

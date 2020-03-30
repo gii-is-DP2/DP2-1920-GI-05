@@ -77,5 +77,18 @@ class TournamentControllerTests {
 		mockMvc.perform(get("/tournaments/active")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/list"));
 	}
-
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testNewTournaments() throws Exception {
+		mockMvc.perform(get("/tournaments/new")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testUpdateTournaments() throws Exception {
+		mockMvc.perform(get("/tournaments/{tournamentId}/edit")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}
 }
