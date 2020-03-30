@@ -45,6 +45,11 @@ public class FieldController {
 		this.fieldService = fieldService;
 	}
 	
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+	
 	@InitBinder("field")
 	public void initFieldBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new FieldValidator());

@@ -5,13 +5,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="createTournament">
+<petclinic:layout pageName="categories">
 
 	<h2>
 		<c:if test="${category['new']}">New </c:if>
 		Category
 	</h2>
-	<form:form modelAttribute="category" class="form-horizontal">
+	<form:form modelAttribute="category" class="form-horizontal" id="add-field-form">
 		<input type="hidden" name="id" value="${category.id}" />
 		<div class="form-group has-feedback">
 

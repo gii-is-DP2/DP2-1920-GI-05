@@ -28,7 +28,10 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 
-@WebMvcTest(controllers = CategoryController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = CategoryController.class,
+excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, 
+classes = WebSecurityConfigurer.class), 
+excludeAutoConfiguration = SecurityConfiguration.class)
 class CategoryControllerTests {
 
 	@Autowired
@@ -51,16 +54,15 @@ class CategoryControllerTests {
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/categories/new").with(csrf()).param("name", "Betty"))
-				.andExpect(status().is3xxRedirection())			
-				.andExpect(view().name("redirect:/categories/all"));
+				.andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/categories/all"));
 
 	}
 	
+	@WithMockUser(value = "spring")
 	@Test
-    void testNotProcessCreationFormSuccess() throws Exception {
-        mockMvc.perform(post("/categories/new").with(csrf()))
-    		   .andExpect(model().attributeHasErrors("category"))
-               .andExpect(status().is4xxClientError());
-    }
+	void testNotProcessCreationFormSuccess() throws Exception {
+		mockMvc.perform(post("/categories/new").with(csrf())).andExpect(model().attributeHasErrors("category"))
+				.andExpect(status().isOk());
+	}
 
 }

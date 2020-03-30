@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.util.EntityUtils;
@@ -107,6 +110,27 @@ class FieldsServiceTests {
 		Collection<Field> fields = this.fieldsService.findFieldsByName("Map 1");
 		Field field = fieldsService.findFieldById(1);
 		assertThat(fields.contains(field));
+	}
+	
+	@Test
+	@Transactional
+	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		
+		
+		Field field = new Field();
+		field.setBreadth("500");
+		field.setLenght("1000");
+		field.setName("Map 1");
+		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");		
+		try {
+			fieldsService.saveField(field);		
+		} catch (DuplicateFieldNameException e) {
+			
+			e.printStackTrace();
+		}
+		
+		Field anotherFieldWithTheSameName = new Field();	
+		anotherFieldWithTheSameName.setName("Map 1");
+		Assertions.assertThrows(DuplicateFieldNameException.class, () ->{fieldsService.saveField(anotherFieldWithTheSameName);});		
 	}
 
 	

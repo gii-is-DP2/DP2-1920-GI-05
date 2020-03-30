@@ -25,5 +25,13 @@ public class ApplicationRepositoryTests {
 		
 		assertThat(allApplications.size()).isEqualTo(5);	
 	}
+	
+	@Test
+	public void shouldReturnOwnerApplications() throws Exception {
+				
+		Collection<Application> owner1Applications = this.applicationRepository.findApplicationsByOwnerId(1);
+		
+		assertThat(owner1Applications.size()).isEqualTo(2);	
+	}
 
 }

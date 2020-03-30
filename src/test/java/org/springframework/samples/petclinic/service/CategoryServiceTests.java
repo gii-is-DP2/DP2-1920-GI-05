@@ -106,7 +106,7 @@ class CategoryServiceTests {
 		try {
 			categoryService.saveCategory(category);		
 		} catch (DuplicateCategoryNameException e) {
-			// The pet already exists!
+		
 			e.printStackTrace();
 		}
 		
@@ -114,6 +114,8 @@ class CategoryServiceTests {
 		anotherCategoryWithTheSameName.setName("Obstacles");
 		Assertions.assertThrows(DuplicateCategoryNameException.class, () ->{categoryService.saveCategory(anotherCategoryWithTheSameName);});		
 	}
+	
+	
 	
 	
 

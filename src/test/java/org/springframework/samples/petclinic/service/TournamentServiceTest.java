@@ -23,6 +23,10 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.validation.Validator;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +41,13 @@ import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Authorities;
+import org.springframework.samples.petclinic.model.Category;
+import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.model.Judge;
+import org.springframework.samples.petclinic.model.Money;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
@@ -77,9 +88,61 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class TournamentServiceTest { 
 	
-        @Autowired
+    @Autowired
 	protected TournamentService tournamentService;
+    
+	@Autowired
+	protected PetService petService;
+	
+	@Autowired
+	protected CategoryService categoryService;
+	
+	@Autowired
+	protected JudgeService judgeService;
+	
+	@Autowired
+	protected FieldService fieldService;
                 
+        
+    	private Money money;
+    	private Category category;
+    	private PetType petType;
+    	private Tournament tournament;
+    	private Field field;
+    	private Judge judge;
+
+    	@BeforeEach
+    	void setup() {
+
+    		category = this.categoryService.findCategoryById(1);
+    		petType = this.petService.findPetTypes().iterator().next();
+    		field = this.fieldService.findFieldById(1);
+    		judge = this.judgeService.findJudgeById(1);
+    		
+    		
+    		money = new Money();
+    		money.setAmount(100.00);
+    		money.setCurrency("$");
+
+    		
+    		tournament = new Tournament();
+
+    		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
+
+    		tournament.setCategory(category);
+    		tournament.setEndDate(LocalDate.of(2020, 12, 12));
+    		// tournament.setField();
+    		// tournament.setJugde();
+    		tournament.setLocation("Seville");
+
+    		tournament.setPetType(petType);
+
+    		tournament.setPrize(money);
+    		tournament.setName("Sample tournament");
+    		tournament.setStartDate(LocalDate.of(2020, 12, 10));
+  
+
+    	}   
 
 	@Test
 	void shouldFindAllTournaments() {
@@ -93,7 +156,65 @@ class TournamentServiceTest {
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
 	
+	@Test
+	void shouldInsertdNewTournament() throws DataAccessException, DuplicateTournamentNameException {
+				
+		this.tournamentService.saveTournament(tournament);
+		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
+		assertThat(tournaments.size()).isEqualTo(5);
+	}
 	
+	@Test
+	@Transactional
+	public void shouldThrowExceptionInsertingTournamentWithTheSameName() {		
+		tournament.setName("Winbendoll tournament 3");
+		try {
+			tournamentService.saveTournament(tournament);		
+		} catch (DuplicateTournamentNameException e) {
+		
+			e.printStackTrace();
+		}
+		
+		Tournament anotherTournamentWithTheSameName = new Tournament();	
+		anotherTournamentWithTheSameName.setName("Winbendoll tournament 3");
+		Assertions.assertThrows(DuplicateTournamentNameException.class, () ->{tournamentService.saveTournament(anotherTournamentWithTheSameName);});		
+	}
+	
+	@Test
+	void shouldUpdateFieldTournament() throws DataAccessException, DuplicateTournamentNameException {
+		tournament.setField(field);		
+		this.tournamentService.saveTournament(tournament);
+		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
+		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournament.getField()).isEqualTo(field);
+	}
+	
+	@Test
+	void shouldUpdateJudgeTournament() throws DataAccessException, DuplicateTournamentNameException {
+		tournament.setJudge(judge);		
+		
+		this.tournamentService.saveTournament(tournament);
+		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
+		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournament.getJudge()).isEqualTo(judge);
+	}
+	
+	@Test
+	void shouldNotUpdateTournamentWithTheSameName() throws DataAccessException, DuplicateTournamentNameException {
+		tournament.setField(field);		
+		tournament.setJudge(judge);		
+		this.tournamentService.saveTournament(tournament);
+		try {
+			tournamentService.saveTournament(tournament);		
+		} catch (DuplicateTournamentNameException e) {
+		
+			e.printStackTrace();
+		}
+		
+		Tournament anotherTournamentWithTheSameName = new Tournament();	
+		anotherTournamentWithTheSameName.setName("Winbendoll tournament 3");
+		Assertions.assertThrows(DuplicateTournamentNameException.class, () ->{tournamentService.saveTournament(anotherTournamentWithTheSameName);});		
+	}
 
 
 }

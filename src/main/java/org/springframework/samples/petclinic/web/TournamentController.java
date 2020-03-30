@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TournamentController {
 	
-	private static final String VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM = "tournaments/createOrUpdateTournamentForm";
+	private static final String VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM = "tournaments/createOrUpdateTournamentForm";
 
 	private final TournamentService tournamentService;
 	private final CategoryService categoryService;
@@ -79,6 +79,7 @@ public class TournamentController {
 	public Collection<Judge> populateJudges() {
 		return this.judgeService.findAllJudges();
 	}
+	
 		
 	@InitBinder("tournament")
 	public void initTournamentBinder(WebDataBinder dataBinder) {
@@ -89,25 +90,23 @@ public class TournamentController {
 	public String initCreationForm(ModelMap model) {
 		Tournament tournament = new Tournament();
 		model.put("tournament", tournament);
-		return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/tournaments/new")
-	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) throws DataAccessException, DuplicateTournamentNameException {
-
+	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) 
+			throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
 			model.put("tournament", tournament);
-			return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		} else {
-			
 			try {
+
 				this.tournamentService.saveTournament(tournament);
 			} catch (DuplicateTournamentNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+				return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 			}
-
-			
 
 			return "redirect:/tournaments/all";
 		}
@@ -147,14 +146,14 @@ public class TournamentController {
 	public String initUpdateOwnerForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);;
 		 model.put("tournament", tournament);
-		return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/tournaments/{tournamentId}/edit")
 	public String processUpdateOwnerForm(@Valid Tournament tournament, BindingResult result,
 			@PathVariable("tournamentId") int tournamentId) throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
-			return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			
@@ -163,7 +162,7 @@ public class TournamentController {
 				this.tournamentService.saveTournament(tournament);
 			} catch (DuplicateTournamentNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return VIEWS_TOURNAMENT_CREATE_OR_UPDATE_FORM;
+				return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 			}
 		
 			return "redirect:/tournaments/all";

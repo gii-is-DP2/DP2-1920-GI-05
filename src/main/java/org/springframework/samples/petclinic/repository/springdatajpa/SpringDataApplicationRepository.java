@@ -11,7 +11,7 @@ import org.springframework.samples.petclinic.repository.ApplicationRepository;
 
 public interface SpringDataApplicationRepository extends ApplicationRepository, Repository<Application, Integer> {
 
-	
+	@Override
 	@Query("SELECT a FROM Application a")
 	List<Application> findAllApplications() throws DataAccessException;
 	

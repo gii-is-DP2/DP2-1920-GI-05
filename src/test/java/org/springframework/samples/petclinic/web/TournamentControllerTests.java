@@ -125,23 +125,7 @@ class TournamentControllerTests {
 		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(new Tournament());
 	}
 
-	/*
-	 * 
-	 * @WithMockUser(value = "spring")
-	 * 
-	 * @Test void testProcessCreationFormSuccess() throws Exception {
-	 * mockMvc.perform(post("/tournaments/new").with(csrf()).param("name",
-	 * "Betty").param("location", "Seville") //.param("petType",
-	 * "hamster").param("field", "Ice") .param("applyDate",
-	 * "2021/01/01").param("startDate", "2021/01/02").param("endDate", "2021/01/03")
-	 * .param("prize.amount", "500.00").param("prize.currency", "EUR"))
-	 * .andExpect(status().is3xxRedirection())
-	 * .andExpect(view().name("redirect:/tournaments/all"));
-	 * 
-	 * }
-	 * 
-	 */
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testGetNewTournaments() throws Exception {
@@ -153,26 +137,33 @@ class TournamentControllerTests {
 	@Test
 	void testProcessTournamentFormSuccess() throws Exception {		
 		mockMvc.perform(post("/tournaments/new").with(csrf()).param("name", "Betty").param("location", "Seville")
-				.param("petType", "hamster").param("field", "Ice").param("applyDate", "2020/01/01")
+				.param("petType", "hamster")
+				.param("field", "Ice")
 				.param("category","Agility")
-				.param("startDate", "2020/01/02").param("endDate", "2020/01/03")
+				.param("applyDate", "2020/12/10")
+				.param("startDate", "2020/12/11")
+				.param("endDate", "2020/12/12")
 				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/tournaments/all"));
 	}
 	
-
+	
+	@WithMockUser(value = "spring")
 	@Test
 	void testNotProcessNewTournamentFormSuccess() throws Exception {
 		mockMvc.perform(
 				post("/tournaments/new").with(csrf())
-				.param("petType", "hamster").param("field", "Ice").param("applyDate", "2020/01/01")
+				.param("petType", "hamster")
+				.param("field", "Ice")
 				.param("category","Agility")
-				.param("startDate", "2020/01/02").param("endDate", "2020/01/03")
-				.param("prize.amount", "500.00").param("prize.currency", "euro"))
+				.param("applyDate", "2020/12/10")
+				.param("startDate", "2020/12/11")
+				.param("endDate", "2020/12/12")				
+				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+				.andExpect(model().attributeHasErrors("tournament"))
 				.andExpect(status().isOk())
-				.andExpect(model().attributeHasErrors("tournament"));
-
+				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
 	  @WithMockUser(value = "spring")	  

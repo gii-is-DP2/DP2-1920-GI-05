@@ -23,38 +23,45 @@ public class ApplicationServiceTest {
 	@Autowired
 	protected ApplicationService applicationService;
 	
+	@Autowired
+	protected OwnerService ownerService;
+	
+	@Autowired
+	protected PetService petService;
+	
+	@Autowired
+	protected TournamentService  tournamentService;
+	
 	@Test
-	void shouldFindAllFields() {
+	void shouldFindAllApplications() {
 		Collection<Application> applications = this.applicationService.findAllApplications();
 		assertThat(applications.size()).isEqualTo(5);
 	}
 	
 	@Test
-	void shouldFindNewApplications() throws DataAccessException, DuplicateFieldNameException {
+	void shouldFindOwnerApplications() {
+		Collection<Application> ownerApplications = this.applicationService.findApplicationsByOwnerId(1);
+		assertThat(ownerApplications.size()).isEqualTo(2);
+	}
+	
+	@Test
+	void shouldFindNewApplications() throws DataAccessException {
 		
-		Owner owner;
-		Tournament tournament;
-		Pet pet;
+		Owner owner = this.ownerService.findOwnerById(2);
+		Tournament tournament = this.tournamentService.findTournamentById(3);
+		Pet pet = this.petService.findPetById(2);
 		
-		owner = new Owner();
-		owner.setFirstName("John Doe");
 		
-		tournament = new Tournament();
-		tournament.setName("Quarentine's Tournament");
+		Application application = new Application();
 		
-		pet = new Pet();
-		pet.setName("Goomba");;	
+		application.setCreditCard("4065972557141631");
+		application.setMoment(LocalDate.of(2000, 10, 12));
+		application.setOwner(owner);
+		application.setStatus("PENDING");
+		application.setTournament(tournament);
+		application.setPet(pet);
 		
-		Application app = new Application();
-		
-		app.setCreditCard("4065972557141631");
-		app.setMoment(LocalDate.of(2000, 10, 12));
-		app.setOwner(owner);
-		app.setStatus("");
-		app.setTournament(tournament);
-		app.setPet(pet);
-		
-		this.applicationService.saveApplication(app);
+		this.applicationService.saveApplication(application);
 		Collection<Application> apps = this.applicationService.findAllApplications();
 		assertThat(apps.size()).isEqualTo(6);
 	}

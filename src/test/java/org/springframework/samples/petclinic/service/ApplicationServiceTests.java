@@ -24,5 +24,11 @@ class ApplicationServiceTests {
 		Collection<Application> applications = this.applicationService.findAllApplications();
 		assertThat(applications.size()).isEqualTo(5);
 	}
+	
+	@Test
+	void shouldFindOwnerApplications() {
+		Collection<Application> ownerApplications = this.applicationService.findApplicationsByOwnerId(1);
+		assertThat(ownerApplications.size()).isEqualTo(2);
+	}
 
 }

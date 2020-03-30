@@ -8,6 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +28,7 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -58,7 +62,8 @@ class FieldControllerTests {
 		field1.setBreadth("100.00");
 		field1.setLenght("100.00");
 		field1.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
-		given(this.fieldService.findAllFields()).willReturn(Lists.newArrayList(field1));
+		Collection<Field> fields = this.fieldService.findAllFields();
+		given(this.fieldService.findAllFields()).willReturn(fields);	
 
 	}
 
@@ -78,7 +83,7 @@ class FieldControllerTests {
 	
 	@WithMockUser(value = "spring")
     @Test
-void testProcessCreationFormSuccess() throws Exception {
+void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameException {
 	mockMvc.perform(post("/fields/new")
 						.with(csrf())
 						.param("name", "Map 5")
@@ -91,11 +96,11 @@ void testProcessCreationFormSuccess() throws Exception {
 	
 	@WithMockUser(value = "spring")
     @Test
-	void testProcessCreationFormHasNameErrors() throws Exception {
+	void testProcessCreationFormHasNameErrors() throws Exception, DuplicateFieldNameException {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
-							.param("name", "Map 1")
-							.param("breadth", "100000.00")
+							//.param("name", "Map 1")
+							.param("breadth", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))

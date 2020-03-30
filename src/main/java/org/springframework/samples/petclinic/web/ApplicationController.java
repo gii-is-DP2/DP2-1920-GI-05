@@ -35,26 +35,21 @@ import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNam
 public class ApplicationController {
 
 	private final ApplicationService applicationService;
-
-	private PetService petService;
-	private TournamentService tournamentService;
+	private final PetService petService;
+	private final TournamentService tournamentService;
 	private final OwnerService ownerService;
 
 	@Autowired
 	public ApplicationController(ApplicationService applicationService,
-	PetService petService, OwnerService ownerService) {
+	PetService petService, TournamentService tournamentService, OwnerService ownerService) {
 		this.applicationService = applicationService;
 		this.petService = petService;
+		this.tournamentService = tournamentService;
 		this.ownerService = ownerService;
     
 	}
 
 	// Model Attributes
-
-	@ModelAttribute("owner")
-	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-		return this.ownerService.findOwnerById(ownerId);
-	}
 
 /* 	@ModelAttribute("pet")
 	public Pet findPet(@PathVariable("petId") int petId) {
@@ -66,17 +61,9 @@ public class ApplicationController {
 		return this.tournamentService.findTournamentById(tournamentId);
 	} */
 
-	// Init Binders
 
-	@InitBinder("owner")
-	public void initOwnerBinder(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
 
-/* 	@InitBinder("tournament")
-	public void initTournamentBinder(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	} */
+
 
 	// CRUD: List
 	
@@ -88,10 +75,9 @@ public class ApplicationController {
 	}
 	
 	//user_story_8
-	@GetMapping(value = {"/application/list"})
-	public String ApplicationList(ModelMap model) {
-		List<Application> applications = this.applicationService.findAllApplications().stream().collect(Collectors.toList());
-		model.put("application", applications);
+	@GetMapping(value = "/applications/all")
+	public String ApplicationList(ModelMap model) {		
+		model.put("applications", this.applicationService.findAllApplications());
 		return "applications/list";
 	}
 	

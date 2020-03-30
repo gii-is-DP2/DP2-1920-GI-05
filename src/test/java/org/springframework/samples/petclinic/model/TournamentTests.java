@@ -59,10 +59,10 @@ public class TournamentTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Tournament tournament = new Tournament();
 
-		tournament.setApplyDate(LocalDate.of(2000, 10, 12));
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
 
 		tournament.setCategory(category);
-		tournament.setEndDate(LocalDate.of(2000, 12, 12));
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
 		// tournament.setField();
 		// tournament.setJugde();
 		tournament.setLocation("Seville");
@@ -71,7 +71,7 @@ public class TournamentTests {
 
 		tournament.setPrize(money);
 		tournament.setName("");
-		tournament.setStartDate(LocalDate.of(2000, 12, 10));
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
 
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Tournament>> constraintViolations = validator.validate(tournament);
@@ -88,13 +88,13 @@ public class TournamentTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		Tournament tournament = new Tournament();
 
-		tournament.setApplyDate(LocalDate.of(2000, 10, 12));
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
 
 		Category category = new Category();
 		category.setName("Agility");
 
 		tournament.setCategory(category);
-		tournament.setEndDate(LocalDate.of(2000, 12, 12));
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
 		// tournament.setField();
 		// tournament.setJugde();
 		tournament.setLocation("");
@@ -109,7 +109,7 @@ public class TournamentTests {
 
 		tournament.setPrize(money);
 		tournament.setName("Kendall 3 tournament");
-		tournament.setStartDate(LocalDate.of(2000, 12, 10));
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
 
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Tournament>> constraintViolations = validator.validate(tournament);
@@ -228,10 +228,10 @@ public class TournamentTests {
 		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
 		validator.validate(tournament, errors);
 
-		assertThat(errors.getErrorCount()).isEqualTo(2);
+		assertThat(errors.getErrorCount()).isEqualTo(3);
 		assertThat(errors.hasFieldErrors("applyDate")).isEqualTo(true);		
 		assertThat(errors.hasFieldErrors("startDate")).isEqualTo(true);
-		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);		
+		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(true);		
 	}
 	
 	@Test
@@ -337,9 +337,36 @@ public class TournamentTests {
 
 		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
 		validator.validate(tournament, errors);
-		System.out.println(validator.countFractions(tournament.getPrize().getAmount()));
 		assertThat(errors.getErrorCount()).isEqualTo(2);	
 		assertThat(errors.hasFieldErrors("prize.amount")).isEqualTo(true);
+	}
+	
+	@Test
+	void shouldNotValidateCategory() {
+		
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		Tournament tournament = new Tournament();
+
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
+
+		
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
+		// tournament.setField();
+		// tournament.setJugde();
+		tournament.setLocation("Seville");
+		tournament.setName("Douglas Tournament");
+		tournament.setPetType(petType);
+
+		tournament.setPrize(money);
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
+
+		
+		TournamentValidator validator = new TournamentValidator();
+
+		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
+		validator.validate(tournament, errors);
+		assertThat(errors.getErrorCount()).isEqualTo(1);	
+		assertThat(errors.hasFieldErrors("category")).isEqualTo(true);
 	}
 	
 
