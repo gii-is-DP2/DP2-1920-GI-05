@@ -70,6 +70,13 @@ class FieldControllerTests {
 	}
 	
 	@WithMockUser(value = "spring")
+	@Test
+	void testGetNewFields() throws Exception {
+		mockMvc.perform(get("/fields/new")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("field")).andExpect(view().name("fields/createOrUpdateFieldForm"));
+	}
+	
+	@WithMockUser(value = "spring")
     @Test
 void testProcessCreationFormSuccess() throws Exception {
 	mockMvc.perform(post("/fields/new")

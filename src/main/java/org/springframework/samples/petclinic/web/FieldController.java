@@ -46,7 +46,7 @@ public class FieldController {
 	}
 	
 	@InitBinder("field")
-	public void initPetBinder(WebDataBinder dataBinder) {
+	public void initFieldBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new FieldValidator());
 	}
 
@@ -75,7 +75,7 @@ public class FieldController {
 				this.fieldService.saveField(field);
 			} catch (DuplicateFieldNameException ex) {
 				result.rejectValue("name", "duplicate", "already exists");
-				return "fields/form";
+				return VIEWS_FIELDS_CREATE_OR_UPDATE_FORM;
 			}
 
 			return "redirect:/fields/all";

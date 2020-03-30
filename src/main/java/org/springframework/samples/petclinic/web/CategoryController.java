@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class CategoryController {
 
+	private static final String VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM = "pets/createOrUpdateCategoryForm";
+
 	private final CategoryService categoryService;
 
 	public CategoryController(CategoryService categoryService) {
@@ -33,8 +35,8 @@ public class CategoryController {
 	}
 
 	// CRUD: List
-	
-	@GetMapping(value = {"/categories/all"})
+
+	@GetMapping(value = { "/categories/all" })
 	public String CategoriesList(ModelMap model) {
 		List<Category> categories = this.categoryService.findAllCategories().stream().collect(Collectors.toList());
 		model.put("categories", categories);
@@ -47,24 +49,24 @@ public class CategoryController {
 		// Collection<Category> category = this.categoryService.findAllCategories();
 		model.put("category", category);
 		// model.put("category", category);
-		return "categories/createOrUpdateCategoryForm";
-	}
+		return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;	
+		}
 
 	@PostMapping(value = "/categories/new")
 	public String processCreationForm(@Valid Category category, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			model.put("category", category);
-			return "categories/createOrUpdateCategoryForm";
+			return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;
 		} else {
 
-			try{
-            	//owner.addPet(pet);
-            	this.categoryService.saveCategory(category);
-            }catch(DuplicateCategoryNameException ex){
-                result.rejectValue("name", "duplicate", "already exists");
-                return "categories/form";
-            }
+			try {
+				// owner.addPet(pet);
+				this.categoryService.saveCategory(category);
+			} catch (DuplicateCategoryNameException ex) {
+				result.rejectValue("name", "duplicate", "already exists");
+				return VIEWS_CATEGORIES_CREATE_OR_UPDATE_FORM;
+			}
 
 			return "redirect:/categories/all";
 		}

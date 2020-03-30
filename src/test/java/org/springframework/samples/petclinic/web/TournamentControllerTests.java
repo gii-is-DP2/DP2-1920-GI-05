@@ -74,11 +74,11 @@ class TournamentControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	private Category category;
+
 
 	@BeforeEach
 	void setup() {
-		
+						
 		PetType cat = new PetType();
 		cat.setId(3);
 		cat.setName("hamster");
@@ -92,6 +92,7 @@ class TournamentControllerTests {
 		field.setName("Ice");
 		given(this.fieldService.findAllFields()).willReturn(Lists.newArrayList(field));
 
+		Category category = new Category();
 		category = new Category();
 		category.setId(1);
 	    category.setName("Agility");
@@ -121,7 +122,7 @@ class TournamentControllerTests {
 
 		Tournament tournament = new Tournament();
 		tournament.setId(10);
-		given(this.tournamentService.findTournamentById(tournament.getId())).willReturn(new Tournament());
+		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(new Tournament());
 	}
 
 	/*
@@ -141,34 +142,46 @@ class TournamentControllerTests {
 	 * 
 	 */
 	
-	
+	@WithMockUser(value = "spring")
+	@Test
+	void testGetNewTournaments() throws Exception {
+		mockMvc.perform(get("/tournaments/new")).andExpect(status().isOk())
+		.andExpect(model().attributeExists("tournament")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}
 	
 	@WithMockUser(value = "spring")
 	@Test
-	void testProcessTournamentFormSuccess() throws Exception {
+	void testProcessTournamentFormSuccess() throws Exception {		
 		mockMvc.perform(post("/tournaments/new").with(csrf()).param("name", "Betty").param("location", "Seville")
-				.param("petType", "hamster").param("field", "Ice").param("applyDate", "2021/01/01")
+				.param("petType", "hamster").param("field", "Ice").param("applyDate", "2020/01/01")
 				.param("category","Agility")
-				.param("startDate", "2021/01/02").param("endDate", "2021/01/03")
+				.param("startDate", "2020/01/02").param("endDate", "2020/01/03")
 				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
 				.andExpect(status().is3xxRedirection())
-				.andExpect(view().name("welcome"));
+				.andExpect(view().name("redirect:/tournaments/all"));
 	}
 	
 
 	@Test
-	void testNotProcessTournamentFormSuccess() throws Exception {
+	void testNotProcessNewTournamentFormSuccess() throws Exception {
 		mockMvc.perform(
 				post("/tournaments/new").with(csrf())
-				.param("applyDate", "2020/04/01").param("startDate", "2020/05/01")
-				.param("endDate","2020/07/01").param("name","Mordor")
-				.param("location","Seville").param("prize.amount", "500.00")
-				.param("category","Speed").param("field","Ice").param("judge","Peter")
-				.param("prize.currency","EUR").param("petType","hamster"))
-				.andExpect(status().is4xxClientError());
+				.param("petType", "hamster").param("field", "Ice").param("applyDate", "2020/01/01")
+				.param("category","Agility")
+				.param("startDate", "2020/01/02").param("endDate", "2020/01/03")
+				.param("prize.amount", "500.00").param("prize.currency", "euro"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeHasErrors("tournament"));
+
 	}
 	
-	
+	  @WithMockUser(value = "spring")	  
+	  @Test void testUpdateTournaments() throws Exception {
+	  mockMvc.perform(get("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)).andExpect(status().
+	  isOk())
+	  .andExpect(model().attributeExists("tournament")).andExpect(view().name(
+	  "tournaments/createOrUpdateTournamentForm")); 
+	  }
 
 	@WithMockUser(value = "spring")
 	@Test	
@@ -184,17 +197,9 @@ class TournamentControllerTests {
 				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/list"));
 	}
 	
-	@WithMockUser(value = "spring")
-	@Test
-	void testNewTournaments() throws Exception {
-		mockMvc.perform(get("/tournaments/new")).andExpect(status().isOk())
-		.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
-	}
+
 	
-	@WithMockUser(value = "spring")
-	@Test
-	void testUpdateTournaments() throws Exception {
-		mockMvc.perform(get("/tournaments/{tournamentId}/edit")).andExpect(status().isOk())
-		.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
-	}
+	
+
+	 
 }

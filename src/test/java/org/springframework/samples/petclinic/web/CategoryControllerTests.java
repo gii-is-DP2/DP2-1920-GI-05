@@ -40,7 +40,7 @@ class CategoryControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	@WithMockUser(username = "spring", authorities = {"owner"})
+	@WithMockUser(username = "spring")
 	@Test
 	void testListAll() throws Exception {
 		mockMvc.perform(get("/categories/all")).andExpect(status().isOk())
@@ -51,15 +51,16 @@ class CategoryControllerTests {
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/categories/new").with(csrf()).param("name", "Betty"))
-				.andExpect(status().is3xxRedirection())
+				.andExpect(status().is3xxRedirection())			
 				.andExpect(view().name("redirect:/categories/all"));
 
 	}
 	
 	@Test
     void testNotProcessCreationFormSuccess() throws Exception {
-        mockMvc.perform(post("/categories/new").with(csrf())).
-                andExpect(status().is4xxClientError());
+        mockMvc.perform(post("/categories/new").with(csrf()))
+    		   .andExpect(model().attributeHasErrors("category"))
+               .andExpect(status().is4xxClientError());
     }
 
 }
