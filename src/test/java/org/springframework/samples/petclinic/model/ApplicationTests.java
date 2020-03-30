@@ -46,6 +46,7 @@ public class ApplicationTests {
 	}
 	
 
+	// Create new Application Negative Case: Invalid status input not blank
 	@Test
 	void shouldNotValidateBlankStatus() {
 		
@@ -69,6 +70,7 @@ public class ApplicationTests {
 		assertThat(violation.getMessage()).isEqualTo("must not be blank");			
 	}
 	
+	// Create new Application Negative Case: Invalid status 
 	@Test
 	void shouldNotValidateWrongStatus() {
 		
@@ -92,8 +94,9 @@ public class ApplicationTests {
 
 	}
 	
+	// Create new Application Negative Case: Invalid credit card number
 	@Test
-	void shouldNotValidateCreditCard() {
+	void shouldNotValidateBlankCreditCard() {
 		
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
@@ -115,8 +118,9 @@ public class ApplicationTests {
 		
 	}
 	
+	// Create new Application Negative Case: Invalid tournament input
 	@Test
-	void shouldNotValidateTournament() {
+	void shouldNotValidateBlankTournament() {
 		
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
@@ -137,8 +141,9 @@ public class ApplicationTests {
 		assertThat(errors.getErrorCount()).isEqualTo(1);				
 	}
 	
+	// Create new Application Negative Case: Invalid application input
 	@Test
-	void shouldNotValidateOwner() {
+	void shouldNotValidateBlankOwner() {
 		
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
@@ -160,8 +165,9 @@ public class ApplicationTests {
 		assertThat(errors.hasFieldErrors("owner")).isEqualTo(true);	
 	}
 	
+	// Create new Application Negative Case: Invalid pet input
 	@Test
-	void shouldNotValidatePet() {
+	void shouldNotValidateBlankPet() {
 		
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		

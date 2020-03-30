@@ -48,35 +48,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Integration test of the Service and the Repository layer.
- * <p>
- * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided
- * by the Spring TestContext Framework:
- * </p>
- * <ul>
- * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up
- * time between test execution.</li>
- * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we
- * don't need to perform application context lookups. See the use of
- * {@link Autowired @Autowired} on the <code>{@link
- * FieldsServiceTests#clinicService clinicService}</code> instance variable, which uses
- * autowiring <em>by type</em>.
- * <li><strong>Transaction management</strong>, meaning each test method is executed in
- * its own transaction, which is automatically rolled back by default. Thus, even if tests
- * insert or otherwise change database state, there is no need for a teardown or cleanup
- * script.
- * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is
- * also inherited and can be used for explicit bean lookup if necessary.</li>
- * </ul>
- *
- * @author Ken Krebs
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Michael Isvy
- * @author Dave Syer
- */
+
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class FieldsServiceTests { 
@@ -85,12 +57,14 @@ class FieldsServiceTests {
 	protected FieldService fieldsService;
                 
 
+    // List all Fields Postive Case
 	@Test
 	void shouldFindAllFields() {
 		Collection<Field> fields = this.fieldsService.findAllFields();
 		assertThat(fields.size()).isEqualTo(1);
 	}
 
+	// 
 	@Test
 	void shouldFindNewFields() throws DataAccessException, DuplicateFieldNameException {
 		
@@ -105,6 +79,7 @@ class FieldsServiceTests {
 		assertThat(fields.size()).isEqualTo(2);
 	}
 	
+	// Service test: Show field by Id 
 	@Test
 	void shouldFindFieldById() {
 		Collection<Field> fields = this.fieldsService.findFieldsByName("Map 1");
@@ -112,6 +87,7 @@ class FieldsServiceTests {
 		assertThat(fields.contains(field));
 	}
 	
+	// Create Field Positive Case: Duplicated Field Name 
 	@Test
 	@Transactional
 	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		

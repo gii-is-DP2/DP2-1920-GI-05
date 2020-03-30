@@ -18,6 +18,7 @@ public class ApplicationRepositoryTests {
 	@Autowired
 	ApplicationRepository applicationRepository;
 	
+	// Repository test: List all applications
 	@Test
 	public void shouldReturnAllApplications() throws Exception {
 				
@@ -26,6 +27,7 @@ public class ApplicationRepositoryTests {
 		assertThat(allApplications.size()).isEqualTo(5);	
 	}
 	
+	// Repository test: List all applications by one owner
 	@Test
 	public void shouldReturnOwnerApplications() throws Exception {
 				

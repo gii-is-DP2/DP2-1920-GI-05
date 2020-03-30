@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.time.LocalDate;
+
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,7 @@ import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -112,7 +115,7 @@ class TournamentControllerTests {
 
 		Tournament tournament = new Tournament();
 		tournament.setId(10);
-		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(new Tournament());
+		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(tournament);
 	}
 
 	@WithMockUser(value = "spring")
@@ -136,6 +139,7 @@ class TournamentControllerTests {
 		.andExpect(model().attributeExists("tournament")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Positive case valid inputs
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessTournamentFormSuccess() throws Exception {		
@@ -152,7 +156,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("redirect:/tournaments/all"));
 	}
 	
-	
+	// Create tournament Negative Case: Missed name input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankName() throws Exception {
@@ -170,6 +174,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed location input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankLocation() throws Exception {
@@ -188,6 +193,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed category input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankCategory() throws Exception {
@@ -205,6 +211,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed pet type input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankPetType() throws Exception {
@@ -222,6 +229,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed apply date input 
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankApplyDate() throws Exception {
@@ -239,6 +247,65 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: Apply date after star date
+	@WithMockUser(value = "spring")
+	@Test
+	void testShouldNotCreateTournamentWrongApplyDate() throws Exception {
+		mockMvc.perform(
+				post("/tournaments/new").with(csrf())
+				.param("name", "Betty tornament")
+				.param("location", "Seville")
+				.param("category","Agility")
+				.param("petType", "hamster")
+				.param("applyDate", "2020/12/13")
+				.param("startDate", "2020/12/11")
+				.param("endDate", "2020/12/12")				
+				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+				.andExpect(model().attributeHasErrors("tournament"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}
+	
+	
+	// Create Tournament Negative Case: start date after end date
+	@WithMockUser(value = "spring")
+	@Test
+	void testShouldNotCreateTournamentWrongStartDate() throws Exception {
+		mockMvc.perform(
+				post("/tournaments/new").with(csrf())
+				.param("name", "Betty tornament")
+				.param("location", "Seville")
+				.param("category","Agility")
+				.param("petType", "hamster")
+				.param("applyDate", "2020/12/10")	
+				.param("startDate", "2020/12/13")
+				.param("endDate", "2020/12/12")				
+				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+				.andExpect(model().attributeHasErrors("tournament"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}
+	
+	// Create Tournament Negative Case: end date before start date
+	@WithMockUser(value = "spring")
+	@Test
+	void testShouldNotCreateTournamentWrongEndDate() throws Exception {
+		mockMvc.perform(
+				post("/tournaments/new").with(csrf())
+				.param("name", "Betty tornament")
+				.param("location", "Seville")
+				.param("category","Agility")
+				.param("petType", "hamster")
+				.param("applyDate", "2020/12/11")	
+				.param("startDate", "2020/12/12")
+				.param("endDate", "2020/12/10")				
+				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+				.andExpect(model().attributeHasErrors("tournament"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	}	
+	
+	// Create Tournament Negative Case: missed start date input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankStartDate() throws Exception {
@@ -256,6 +323,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed end date input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankEndDate() throws Exception {
@@ -264,6 +332,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
@@ -272,6 +341,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed prize amount input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankAmount() throws Exception {
@@ -280,6 +350,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("endDate", "2020/12/12")				
@@ -289,6 +360,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: invalid amount input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentWrongAmount1() throws Exception {
@@ -297,6 +369,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("endDate", "2020/12/12")			
@@ -306,6 +379,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: invalid amount input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentWrongAmount2() throws Exception {
@@ -314,6 +388,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("endDate", "2020/12/12")			
@@ -323,6 +398,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: missed prize currency input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentBlankCurrency() throws Exception {
@@ -331,6 +407,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("endDate", "2020/12/12")				
@@ -340,6 +417,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Create Tournament Negative Case: invalid currency input
 	@WithMockUser(value = "spring")
 	@Test
 	void testShouldNotCreateTournamentWrongCurrency() throws Exception {
@@ -348,6 +426,7 @@ class TournamentControllerTests {
 				.param("name", "Betty tornament")
 				.param("location", "Seville")
 				.param("category","Agility")
+				.param("petType", "hamster")		
 				.param("applyDate", "2020/12/10")
 				.param("startDate", "2020/12/11")	
 				.param("endDate", "2020/12/12")				
@@ -357,6 +436,7 @@ class TournamentControllerTests {
 				.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	}
 	
+	// Edit tournament Init Test 
 	  @WithMockUser(value = "spring")	  
 	  @Test void testUpdateTournaments() throws Exception {
 	  mockMvc.perform(get("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)).andExpect(status().
@@ -365,19 +445,52 @@ class TournamentControllerTests {
 	  "tournaments/createOrUpdateTournamentForm")); 
 	  }
 	  
-	  @WithMockUser(value = "spring")	  
-	  @Test void testUpdateTournamentsSuccess() throws Exception {
+	// Edit user Positive Case: all valid inputs 
+	  @WithMockUser(value = "spring", authorities = "admin")	  
+	  @Test 
+	  void testUpdateTournamentsSuccess() throws Exception {
 	  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+	    .with(csrf())
 		.param("name", "Betty tornament")
 		.param("location", "Seville")
 		.param("category","Agility")
+		.param("petType", "hamster")		
 		.param("applyDate", "2020/12/10")
 		.param("startDate", "2020/12/11")	
 		.param("endDate", "2020/12/12")				
-		.param("prize.amount", "500.00").param("prize.currency", "EUR"))	
+		.param("prize.amount", "500.00").param("prize.currency", "EUR")
+	  
+	  	//Updating judge and field
+	  	.param("field", "Ice")
+	  	.param("judge", "Peter"))
 	  	.andExpect(status().is3xxRedirection())	  
 	  	.andExpect(view().name("redirect:/tournaments/all")); 
 	  }
+	  
+		// Edit user Negative Case: Blank location
+	  @WithMockUser(value = "spring")	  
+	  @Test 
+	  void testsShoulNotUpdateTournaments() throws Exception {
+	  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+	    .with(csrf())		
+	    .param("name", "Betty tornament")
+		.param("location", "")
+		.param("category","Agility")
+		.param("petType", "hamster")		
+		.param("applyDate", "2020/12/10")
+		.param("startDate", "2020/12/11")	
+		.param("endDate", "2020/12/12")				
+		.param("prize.amount", "500.00").param("prize.currency", "EUR")
+	  
+	  	//Updating judge and field
+	  	.param("field", "Ice")
+	  	.param("judge", "Peter"))
+		.andExpect(model().attributeHasErrors("tournament"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+	  }
+	  
+
 
 
 	

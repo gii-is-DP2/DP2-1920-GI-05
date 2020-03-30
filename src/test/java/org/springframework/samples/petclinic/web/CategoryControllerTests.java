@@ -43,6 +43,7 @@ class CategoryControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	// List Categories: Positive case
 	@WithMockUser(username = "spring")
 	@Test
 	void testListAll() throws Exception {
@@ -50,6 +51,7 @@ class CategoryControllerTests {
 				.andExpect(model().attributeExists("categories")).andExpect(view().name("categories/list"));
 	}
 
+	// Create category Positive Case: all valid inputs
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
@@ -58,6 +60,7 @@ class CategoryControllerTests {
 
 	}
 	
+	// Create category Negative Case: invalid input 
 	@WithMockUser(value = "spring")
 	@Test
 	void testNotProcessCreationFormSuccess() throws Exception {

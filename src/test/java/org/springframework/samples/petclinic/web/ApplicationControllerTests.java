@@ -61,6 +61,7 @@ class ApplicationControllerTests {
 		given(this.applicationService.findApplicationsByOwnerId(TEST_OWNER_ID)).willReturn(ownerApplications);
 	}
 
+	// List applications Positive Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListAll() throws Exception {
@@ -68,6 +69,7 @@ class ApplicationControllerTests {
 				.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
 	}
 
+	// List applications by owner Positive Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOwnerApplications() throws Exception {

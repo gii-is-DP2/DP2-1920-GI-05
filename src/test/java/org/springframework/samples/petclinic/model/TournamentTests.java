@@ -53,6 +53,7 @@ public class TournamentTests {
 		return localValidatorFactoryBean;
 	}
 
+	// Create new tournament Negative Case: invalid name input
 	@Test
 	void shouldNotValidateName() {
 
@@ -81,7 +82,8 @@ public class TournamentTests {
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("name");
 		assertThat(violation.getMessage()).isEqualTo("size must be between 3 and 50");
 	}
-
+	
+	// Create new tournament Negative Case: invalid location input
 	@Test
 	void shouldNotValidateLocation() {
 
@@ -120,6 +122,8 @@ public class TournamentTests {
 		assertThat(violation.getMessage()).isEqualTo("must not be blank");
 	}
 	
+	// Create new tournament Negative Case: invalid apply Date input, can´t be after 
+	// end or start date
 	@Test
 	void shouldNotValidateApplyDate() {
 
@@ -158,6 +162,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	// Create new tournament Negative Case: invalid start Date input, can´t be after end date 
 	@Test
 	void shouldNotValidateStartDate() {
 
@@ -196,6 +201,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	// Create new tournament Negative Case: invalid end Date input, can´t be before start or apply Date	
 	@Test
 	void shouldNotValidateEndDate() {
 
@@ -234,6 +240,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(true);		
 	}
 	
+	// Create new tournament Negative Case: Invalid money currency 
 	@Test
 	void shouldNotValidateCurrency() {
 
@@ -270,6 +277,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("prize.currency")).isEqualTo(true);
 	}
 	
+	// Create new tournament Negative Case: Invalid money amount with more than 2 fractions
 	@Test
 	void shouldNotValidatePrizeAmount1() {
 
@@ -306,6 +314,7 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("prize.amount")).isEqualTo(true);
 	}
 	
+	// Create new tournament Negative Case: invalid amount with more than 8 digits
 	@Test
 	void shouldNotValidatePrizeAmount2() {
 
@@ -341,6 +350,8 @@ public class TournamentTests {
 		assertThat(errors.hasFieldErrors("prize.amount")).isEqualTo(true);
 	}
 	
+	
+	// Create new tournament Negative Case: Null Category
 	@Test
 	void shouldNotValidateCategory() {
 		

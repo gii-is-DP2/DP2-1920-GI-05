@@ -55,36 +55,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Integration test of the Service and the Repository layer.
- * <p>
- * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided
- * by the Spring TestContext Framework:
- * </p>
- * <ul>
- * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up
- * time between test execution.</li>
- * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we
- * don't need to perform application context lookups. See the use of
- * {@link Autowired @Autowired} on the <code>{@link
- * TournamentServiceTest#clinicService clinicService}</code> instance variable, which uses
- * autowiring <em>by type</em>.
- * <li><strong>Transaction management</strong>, meaning each test method is executed in
- * its own transaction, which is automatically rolled back by default. Thus, even if tests
- * insert or otherwise change database state, there is no need for a teardown or cleanup
- * script.
- * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is
- * also inherited and can be used for explicit bean lookup if necessary.</li>
- * </ul>
- *
- * @author Ken Krebs
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Michael Isvy
- * @author Dave Syer
- */
-
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class TournamentServiceTest { 
 	
@@ -144,18 +114,21 @@ class TournamentServiceTest {
 
     	}   
 
+    // Find all Tournaments Postive Case
 	@Test
 	void shouldFindAllTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
 		assertThat(tournaments.size()).isEqualTo(4);
 	}
 
+	// Find all Tournaments Negative Case
 	@Test
 	void shouldFindActiveTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
 	
+	// Save Tournament Postive Case
 	@Test
 	void shouldInsertdNewTournament() throws DataAccessException, DuplicateTournamentNameException {
 				
@@ -164,6 +137,7 @@ class TournamentServiceTest {
 		assertThat(tournaments.size()).isEqualTo(5);
 	}
 	
+	// Save Tournament Negative Case: Duplicated Name
 	@Test
 	@Transactional
 	public void shouldThrowExceptionInsertingTournamentWithTheSameName() {		
@@ -180,6 +154,7 @@ class TournamentServiceTest {
 		Assertions.assertThrows(DuplicateTournamentNameException.class, () ->{tournamentService.saveTournament(anotherTournamentWithTheSameName);});		
 	}
 	
+	// Edit Tournament Postive Case: Insert new Field
 	@Test
 	void shouldUpdateFieldTournament() throws DataAccessException, DuplicateTournamentNameException {
 		tournament.setField(field);		
@@ -189,6 +164,7 @@ class TournamentServiceTest {
 		assertThat(tournament.getField()).isEqualTo(field);
 	}
 	
+	// Edit Tournament Postive Case: Insert new Judge
 	@Test
 	void shouldUpdateJudgeTournament() throws DataAccessException, DuplicateTournamentNameException {
 		tournament.setJudge(judge);		
@@ -199,6 +175,7 @@ class TournamentServiceTest {
 		assertThat(tournament.getJudge()).isEqualTo(judge);
 	}
 	
+	// Edit Tournament Negative Case: Updated Name to a name that is already taken
 	@Test
 	void shouldNotUpdateTournamentWithTheSameName() throws DataAccessException, DuplicateTournamentNameException {
 		tournament.setField(field);		

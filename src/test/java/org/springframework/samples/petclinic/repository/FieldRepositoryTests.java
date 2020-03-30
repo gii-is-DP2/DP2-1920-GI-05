@@ -19,6 +19,7 @@ public class FieldRepositoryTests {
 	@Autowired
 	FieldRepository fieldRepository;
 
+	// Repository test: Return Field by Name
 	@Test
 	public void returnByName() throws Exception {
 				

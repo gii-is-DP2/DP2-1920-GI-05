@@ -67,6 +67,7 @@ class FieldControllerTests {
 
 	}
 
+	// List Fields Postive Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListAll() throws Exception {
@@ -74,6 +75,7 @@ class FieldControllerTests {
 				.andExpect(model().attributeExists("fields")).andExpect(view().name("fields/list"));
 	}
 	
+	// Create Fields Positive Case: all valid inputs
 	@WithMockUser(value = "spring")
 	@Test
 	void testGetNewFields() throws Exception {
@@ -81,6 +83,7 @@ class FieldControllerTests {
 		.andExpect(model().attributeExists("field")).andExpect(view().name("fields/createOrUpdateFieldForm"));
 	}
 	
+	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(value = "spring")
     @Test
 void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameException {
@@ -94,6 +97,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 			.andExpect(view().name("redirect:/fields/all"));
 }	
 	
+	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasNameErrors() throws Exception, DuplicateFieldNameException {
@@ -109,6 +113,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 					
 	}
 	
+	// Create Fields Negative breadth is too long
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasIntegerErrors1() throws Exception {
@@ -124,6 +129,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 					
 	}
 	
+	// Create Fields Negative breadth is not a valid input, must be x.YY
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasFractionsErrors1() throws Exception {
@@ -139,6 +145,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		
 	}
 	
+	// Create Fields Negative: length is too long
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasIntegerErrors2() throws Exception {
@@ -154,6 +161,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 					
 	}
 	
+	// Create Fields Negative: length is not a valid input, must be x.YY
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasFractionsErrors2() throws Exception {
@@ -169,13 +177,14 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		
 	}
 	
+	// Create Fields Negative: URL of photo is not a valid URL
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasURLErrors() throws Exception {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.009")
+							.param("breadth", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "Sample text"))				
 				.andExpect(model().attributeHasErrors("field"))
