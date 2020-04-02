@@ -59,8 +59,8 @@ class FieldControllerTests {
 	void setup() {
 		Field field1 = new Field();
 		field1.setName("Map 1");
-		field1.setBreadth("100.00");
-		field1.setLenght("100.00");
+		field1.setBreadth(100.00);
+		field1.setLenght(100.00);
 		field1.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
 		Collection<Field> fields = this.fieldService.findAllFields();
 		given(this.fieldService.findAllFields()).willReturn(fields);	

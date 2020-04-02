@@ -25,10 +25,10 @@ public class Field extends NamedEntity {
 
 	@Digits(fraction = 2, integer = 5)
 	@Min(0)
-	private String lenght;
+	private Double lenght;
 
 	@Digits(fraction = 2, integer = 5)
 	@Min(0)
-	private String breadth;
+	private Double breadth;
 
 }

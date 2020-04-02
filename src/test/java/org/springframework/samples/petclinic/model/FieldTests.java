@@ -36,6 +36,23 @@ public class FieldTests {
 		return localValidatorFactoryBean;
 	}
 
+	// Create new Field Positive Case
+	@Test
+	void shouldValidateField() {
+		
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+				
+		Field field = new Field();
+		field.setName("Map 150");
+		field.setBreadth(100.00);
+		field.setLenght(600.00);
+		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
+		
+		Validator validator = createValidator();	
+		Set<ConstraintViolation<Field>> constraintViolations = validator.validate(field);		
+		assertThat(constraintViolations.size()).isEqualTo(0);
+		}
+	
 	// Create new Field Negative Case: Invalid name input
 	@Test
 	void shouldNotValidateName() {
@@ -43,8 +60,8 @@ public class FieldTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 				
 		Field field = new Field();
-		field.setBreadth("100");
-		field.setLenght("1000");
+		field.setBreadth(100.00);
+		field.setLenght(600.00);
 		field.setName("me");
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
 		
@@ -64,8 +81,8 @@ public class FieldTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 				
 		Field field = new Field();
-		field.setBreadth("99999999");
-		field.setLenght("1000");
+		field.setBreadth(99999999.00);
+		field.setLenght(1000.00);
 		field.setName("Map 1");
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
 		
@@ -85,8 +102,8 @@ public class FieldTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 					
 		Field field = new Field();
-		field.setBreadth("500");
-		field.setLenght("99999999");
+		field.setBreadth(500.00);
+		field.setLenght(99999999.00);
 		field.setName("Map 2");
 		field.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
 		
@@ -107,8 +124,8 @@ public class FieldTests {
 		
 			
 		Field field = new Field();
-		field.setBreadth("500");
-		field.setLenght("1000");
+		field.setBreadth(500.00);
+		field.setLenght(1000.00);
 		field.setName("Map 3");
 		field.setPhotoURL("photo");
 		
