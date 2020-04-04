@@ -69,9 +69,9 @@
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/applications/${owner.id}/list" />">My applications
+							<li><a href="<c:url value="/applications/list_mine" />">My applications
 									</a></li>
-						<li><a href="<c:url value="/owners/${owner.id}" />">My profile
+						<li><a href="<c:url value="/owners/details" />">My profile
 									</a></li>		
 						</ul></li>
 				</sec:authorize>
@@ -81,7 +81,7 @@
 						data-toggle="dropdown"><strong>Jugde</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-						<li><a href="<c:url value="/judges/${judge.id}" />">My profile
+						<li><a href="<c:url value="/judges/details" />">My profile
 									</a></li>		
 						</ul></li>
 				</sec:authorize>
@@ -91,7 +91,7 @@
 						data-toggle="dropdown"><strong>Guide</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-						<li><a href="<c:url value="/guides/${guide.id}/edit" />">Edit my profile
+						<li><a href="<c:url value="/guides/details" />">Edit my profile
 									</a></li>		
 						</ul></li>
 				</sec:authorize>

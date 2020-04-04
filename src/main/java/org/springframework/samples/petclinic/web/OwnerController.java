@@ -158,7 +158,7 @@ public class OwnerController {
 		else {
 			owner.setId(ownerId);
 			this.ownerService.saveOwner(owner);
-			return "redirect:/owners/{ownerId}";
+			return "redirect:/owners/details";
 		}
 	}
 
@@ -167,10 +167,10 @@ public class OwnerController {
 	 * @param ownerId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
-	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
+	@GetMapping("/owners/details")
+	public ModelAndView showOwner() {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		mav.addObject(this.ownerService.findOwnerById(ownerId));
+		mav.addObject(this.ownerService.findOwnerByUserName());
 		return mav;
 	}
 
