@@ -30,6 +30,8 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Controller
 public class ApplicationController {
@@ -40,46 +42,52 @@ public class ApplicationController {
 	private final OwnerService ownerService;
 
 	@Autowired
-	public ApplicationController(ApplicationService applicationService,
-	PetService petService, TournamentService tournamentService, OwnerService ownerService) {
+	public ApplicationController(ApplicationService applicationService, PetService petService,
+			TournamentService tournamentService, OwnerService ownerService) {
 		this.applicationService = applicationService;
 		this.petService = petService;
 		this.tournamentService = tournamentService;
 		this.ownerService = ownerService;
-    
+
 	}
 
 	// Model Attributes
 
-/* 	@ModelAttribute("pet")
-	public Pet findPet(@PathVariable("petId") int petId) {
-		return this.petService.findPetById(petId);
-	} */
+	/*
+	 * @ModelAttribute("pet") public Pet findPet(@PathVariable("petId") int petId) {
+	 * return this.petService.findPetById(petId); }
+	 */
 
-/* 	@ModelAttribute("tournament")
-	public Tournament findTournament(@PathVariable("tournamentId") int tournamentId) {
-		return this.tournamentService.findTournamentById(tournamentId);
-	} */
-
-
-
-
+	/*
+	 * @ModelAttribute("tournament") public Tournament
+	 * findTournament(@PathVariable("tournamentId") int tournamentId) { return
+	 * this.tournamentService.findTournamentById(tournamentId); }
+	 */
+	
+	@ModelAttribute("ownerId")
+	public Integer findOwnerId(@ModelAttribute("owner") Owner owner) {
+		 
+		return owner.getId();
+	}
 
 	// CRUD: List
-	
-	@GetMapping(value = {"/applications/{ownerId}/list"})
-	public String MyApplicationsList(@PathVariable("ownerId") int ownerId,ModelMap model) {
-		List<Application> applications = this.applicationService.findApplicationsByOwnerId(ownerId).stream().collect(Collectors.toList());
+
+	@GetMapping(value = { "/applications/list_mine" })
+	public String MyApplicationsList(ModelMap model) {
+		Owner owner = this.ownerService.findOwnerByUserName();		
+		
+		List<Application> applications = this.applicationService.findApplicationsByOwnerId(owner.getId()).stream()
+				.collect(Collectors.toList());
+
 		model.put("applications", applications);
 		return "applications/list";
 	}
-	
-	//user_story_8
+
+	// user_story_8
 	@GetMapping(value = "/applications/all")
-	public String ApplicationList(ModelMap model) {		
+	public String ApplicationList(ModelMap model) {
 		model.put("applications", this.applicationService.findAllApplications());
 		return "applications/list";
 	}
-	
-	
+
 }

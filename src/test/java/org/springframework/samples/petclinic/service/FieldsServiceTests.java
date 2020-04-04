@@ -61,7 +61,7 @@ class FieldsServiceTests {
 	@Test
 	void shouldFindAllFields() {
 		Collection<Field> fields = this.fieldsService.findAllFields();
-		assertThat(fields.size()).isEqualTo(1);
+		assertThat(fields.size()).isEqualTo(2);
 	}
 
 	// 
@@ -69,14 +69,14 @@ class FieldsServiceTests {
 	void shouldFindNewFields() throws DataAccessException, DuplicateFieldNameException {
 		
 		Field field = new Field();
-		field.setBreadth("500");
-		field.setLenght("1000");
+		field.setBreadth(500.00);
+		field.setLenght(1000.00);
 		field.setName("Map 2");
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");		
 		
 		this.fieldsService.saveField(field);
 		Collection<Field> fields = this.fieldsService.findAllFields();
-		assertThat(fields.size()).isEqualTo(2);
+		assertThat(fields.size()).isEqualTo(3);
 	}
 	
 	// Service test: Show field by Id 
@@ -91,18 +91,6 @@ class FieldsServiceTests {
 	@Test
 	@Transactional
 	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		
-		
-		Field field = new Field();
-		field.setBreadth("500");
-		field.setLenght("1000");
-		field.setName("Map 1");
-		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");		
-		try {
-			fieldsService.saveField(field);		
-		} catch (DuplicateFieldNameException e) {
-			
-			e.printStackTrace();
-		}
 		
 		Field anotherFieldWithTheSameName = new Field();	
 		anotherFieldWithTheSameName.setName("Map 1");

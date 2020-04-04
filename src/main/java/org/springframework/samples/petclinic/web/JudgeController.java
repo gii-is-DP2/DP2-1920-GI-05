@@ -61,7 +61,7 @@ public class JudgeController {
 			// creating owner, user and authorities
 			this.judgeService.saveJudge(judge);
 
-			return "redirect:/judges/" + judge.getId();
+			return "redirect:/judges/details";
 		}
 	}
 
@@ -84,10 +84,10 @@ public class JudgeController {
 		}
 	}
 
-	@GetMapping("/judges/{judgeId}")
-	public ModelAndView showJudge(@PathVariable("judgeId") int judgeId) {
+	@GetMapping("/judges/details")
+	public ModelAndView showJudge() {
 		ModelAndView mav = new ModelAndView("judges/judgeDetails");
-		mav.addObject(this.judgeService.findJudgeById(judgeId));
+		mav.addObject(this.judgeService.findJudgeByUserName());
 		return mav;
 	}
 

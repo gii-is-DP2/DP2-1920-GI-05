@@ -92,7 +92,8 @@ INSERT INTO applications VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2
 INSERT INTO applications VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, 2);
 INSERT INTO applications VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, 1);
 
-INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', '100', '300');
+INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 200.00, 120.00);
+INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (2, 'Map 10', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 100.00, 300.00);
 
 INSERT  INTO vets VALUES (1, '563 Friendly St.', 'Boston', 'James', 'Carter', '6085551093','vet1');
 INSERT  INTO vets VALUES (2, '638 Cardinal Ave.', 'York', 'Helen', 'Leary' , '6089552765', 'vet1');

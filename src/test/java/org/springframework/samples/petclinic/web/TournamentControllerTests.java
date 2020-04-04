@@ -45,7 +45,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = TournamentController.class, includeFilters = @ComponentScan.Filter(value = {
 		CategoryFormatter.class, FieldFormatter.class, JudgeFormatter.class,
-		PetTypeFormatter.class }, type = FilterType.ASSIGNABLE_TYPE), excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+		PetTypeFormatter.class }, type = FilterType.ASSIGNABLE_TYPE), excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), 
+		excludeAutoConfiguration = SecurityConfiguration.class)
 class TournamentControllerTests {
 
 	private static final int TEST_TOURNAMENT_ID = 1;

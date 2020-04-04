@@ -67,16 +67,13 @@ public class GuideController {
 	public String processCreationForm(@Valid Guide guide, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;
-		}
-		else {
-			//creating guide, user and authorities
+		} else {
+			// creating guide, user and authorities
 			this.guideService.saveGuide(guide);
-			
-			return "redirect:/guides/" + guide.getId();
+
+			return "redirect/guides/details";
 		}
 	}
-
-
 
 	@GetMapping(value = "/guides/{guideId}/edit")
 	public String initUpdateGuideForm(@PathVariable("guideId") int guideId, Model model) {
@@ -90,21 +87,18 @@ public class GuideController {
 			@PathVariable("guideId") int guideId) {
 		if (result.hasErrors()) {
 			return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;
-		}
-		else {
+		} else {
 			guide.setId(guideId);
 			this.guideService.saveGuide(guide);
 			return "welcome";
 		}
 	}
-	
-	/*
-	 * @GetMapping("/guides/{guideId}/details") public ModelAndView
-	 * showOwner(@PathVariable("guideId") int guideId) { ModelAndView mav = new
-	 * ModelAndView("guides/guideDetails");
-	 * mav.addObject(this.guideService.findGuideById(guideId)); return mav; }
-	 */
 
-
+	@GetMapping("/guides/details")
+	public ModelAndView showOwner() {
+		ModelAndView mav = new ModelAndView("guides/guideDetails");
+		mav.addObject(this.guideService.findGuideByUserName());
+		return mav;
+	}
 
 }

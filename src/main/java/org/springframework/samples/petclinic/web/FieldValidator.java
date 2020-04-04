@@ -14,58 +14,54 @@ public class FieldValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Field field = (Field) obj;
 		String name = field.getName();
+		
+		Double breadth = field.getBreadth();
+		Double lenght = field.getLenght();
+		
 		// name validation
 		if (!StringUtils.hasLength(name) || name.length() > 50 || name.length() < 3) {
 			errors.rejectValue("name", REQUIRED + " and must be between 3 and 50 characters",
 					REQUIRED + " and must be between 3 and 50 characters");
 		}
 
-		if (!field.getBreadth().isEmpty()) {
-			if (countIntegers(field.getBreadth()) > 5) {
+		if (field.getBreadth() ==null) {
+			errors.rejectValue("breadth", REQUIRED, REQUIRED);
+		}
+		
+		if (breadth != null && countIntegers(breadth) > 5) {		
 				errors.rejectValue("breadth", "Must be less than 5 integers", "Must be less than 5 integers");
 			}
-		}
+		
 
-		if (!field.getBreadth().isEmpty()) {
-			if (countFractions(field.getBreadth()) > 2) {
+		if (breadth != null && countFractions(breadth) > 2) {		
 				errors.rejectValue("breadth", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
-		}
 
-		if (!field.getBreadth().isEmpty()) {
-			if (Double.parseDouble(field.getBreadth()) <= 0) {
+		if (breadth != null && breadth <= 0) {		
 				errors.rejectValue("breadth", "The breadth can not be negative or 0",
 						"The breadth can not be negative or 0");
 			}
-		}
+		
 
-		if (field.getBreadth().isEmpty()) {
-			errors.rejectValue("breadth", REQUIRED, REQUIRED);
+		if (lenght == null) {
+			errors.rejectValue("lenght", REQUIRED, REQUIRED);
 		}
-
-		if (!field.getLenght().isEmpty()) {
-			if (countIntegers(field.getLenght()) > 5)
+		
+		if (lenght != null && countIntegers(lenght) > 5) {		
 				errors.rejectValue("lenght", "Must be less than 5 integers", "Must be less than 5 integers");
 		}
 
-		if (!field.getLenght().isEmpty()) {
-			if (countFractions(field.getLenght()) > 2) {
+		if (lenght != null && countFractions(lenght) > 2) {		
 				errors.rejectValue("lenght", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
-		}
 
-		if (!field.getLenght().isEmpty()) {
-			if (Double.parseDouble(field.getLenght()) <= 0) {
+
+		if (lenght != null && lenght <= 0) {		
 				errors.rejectValue("lenght", "The lenght can not be negative or 0",
 						"The lenght can not be negative or 0");
 			}
 
-		}
-
-		if (field.getLenght().isEmpty()) {
-			errors.rejectValue("lenght", REQUIRED, REQUIRED);
-		}
-
+		
 		if (field.getPhotoURL().isEmpty()) {
 			errors.rejectValue("photoURL", REQUIRED, REQUIRED);
 		}
@@ -84,27 +80,19 @@ public class FieldValidator implements Validator {
 		return Field.class.isAssignableFrom(clazz);
 	}
 
-	public static int countIntegers(String s) {
-		int count = 0;
-		String r = s;
-		if (s.contains("-")) {
-			r = s.substring(1);
-		}
-		Double d = Double.parseDouble(r);
-		Integer i = d.intValue();
-		count = i.toString().length();
-
-		return count;
+	public int countIntegers(Double d) {
+		Integer intValue = d.intValue();		
+		int count = intValue.toString().length();
+		
+		return count;		
 	}
-
-	public int countFractions(String s) {
-		int count = 0;
-		if (s.contains(".")) {
-			int integerPlaces = s.indexOf('.');
-			count = s.length() - integerPlaces - 1;
-
-		}
-		return count;
+	
+	public int countFractions(Double d) {
+		
+		String text = Double.toString(Math.abs(d));
+		int integerPlaces = text.indexOf('.');
+		int count = text.length() - integerPlaces - 1;		
+		return count;		
 	}
 
 }
