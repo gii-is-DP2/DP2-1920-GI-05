@@ -69,12 +69,12 @@ class ApplicationControllerTests {
 				.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
 	}
 
-	// List applications by owner Positive Case
+	// List applications by owner Negative Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOwnerApplications() throws Exception {
-		mockMvc.perform(get("/applications/{ownerId}/list", TEST_OWNER_ID)).andExpect(status().isOk())
-				.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
+		mockMvc.perform(get("/applications/list_mine")).andExpect(status().isOk())
+				.andExpect(model().attributeDoesNotExist("applications")).andExpect(view().name("exception"));
 	}
 
 
