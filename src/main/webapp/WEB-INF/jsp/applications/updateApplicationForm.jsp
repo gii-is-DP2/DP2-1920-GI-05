@@ -12,9 +12,13 @@
     </h2>
     <form:form modelAttribute="application" class="form-horizontal" id="add-field-form">
         <div class="form-group has-feedback">
-       	   <petclinic:inputField label="Pet" name="pet" readonly="true"/>
-       	   <petclinic:inputField label="Moment" name="moment" readonly="true"/>
-       	   <petclinic:inputField label="Credit Card" name="creditCard" readonly="true"/>
+        	
+        
+        	<petclinic:readField label="Tournament" name="tournament" />
+        	<petclinic:readField label="Owner" name="owner" />
+       	   <petclinic:readField label="Pet" name="pet" />
+       	   <petclinic:readField label="Moment" name="moment" />
+       	   <petclinic:readField  label="Credit Card" name="creditCard" />				
            <petclinic:selectField label="Status" name="status"  names="${statusType}" size="${statusType.size()}"/>           
            <%-- <petclinic:inputField label="Rejected Reason" name="rejectReason"/> --%>
         </div>

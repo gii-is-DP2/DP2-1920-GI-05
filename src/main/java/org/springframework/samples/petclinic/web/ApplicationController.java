@@ -44,37 +44,29 @@ public class ApplicationController {
 		this.petService = petService;
 		this.tournamentService = tournamentService;
 		this.ownerService = ownerService;
-
 	}
 
 	// Model Attributes
-
 
 	@InitBinder
 	public void initOwnerBinder(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@ModelAttribute("pets")
-	public Collection<Pet> ownerPets() {
-		Owner owner = this.ownerService.findOwnerByUserName();
-		return this.petService.findPetByOwnerId(owner.getId());
-	}
-
 	@InitBinder("application")
 	public void initApplicationBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new ApplicationValidator());
 	}
-	
-	@InitBinder("statusType")
+
+	@ModelAttribute("statusType")
 	public List<String> statusTypes() {
 		List<String> types = new ArrayList<>();
 		types.add("PENDING");
 		types.add("ACCEPTED");
 		types.add("REJECTED");
-		
+
 		return types;
-		}
+	}
 
 	// CRUD: List
 
@@ -90,18 +82,21 @@ public class ApplicationController {
 	}
 
 	// user_story_8
-	@GetMapping(value = {"/applications/all" })
+	@GetMapping(value = { "/applications/all" })
 	public String ApplicationList(Map<String, Object> model) {
 		System.out.println("HOLA");
 		Collection<Application> allApplications = this.applicationService.findAllApplications();
 		model.put("applications", allApplications);
-		return "applications/list";		
+		return "applications/list";
 	}
 
 	@GetMapping(value = "/applications/{tournamentId}/new")
 	public String initCreateApplicationForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		ApplicationPOJO applicationPOJO = new ApplicationPOJO();
-		model.put("applicationPOJO", applicationPOJO);	
+
+		Owner owner = this.ownerService.findOwnerByUserName();
+		model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+		model.put("applicationPOJO", applicationPOJO);
 		return "applications/createApplicationForm";
 	}
 
@@ -111,7 +106,8 @@ public class ApplicationController {
 			throws DataAccessException, DuplicateApplicationException {
 
 		if (result.hasErrors()) {
-			System.out.println(result.getFieldError());
+			Owner owner = this.ownerService.findOwnerByUserName();
+			model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 			model.put("applicationPOJO", applicationPOJO);
 			return "applications/createApplicationForm";
 		} else {
@@ -133,6 +129,8 @@ public class ApplicationController {
 			} catch (DuplicateApplicationException ex) {
 				result.rejectValue("pet", "You have already applied for this tournament",
 						"You have already applied for this tournament");
+				Owner owner = this.ownerService.findOwnerByUserName();
+				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 				return "applications/createApplicationForm";
 			}
 
@@ -150,22 +148,15 @@ public class ApplicationController {
 
 	@PostMapping(value = { "/applications/{applicationId}/edit" })
 	public String processUpdateForm(@PathVariable("applicationId") int applicationId, @Valid Application application,
-			BindingResult result, ModelMap model) throws DataAccessException, DuplicateApplicationException {
+			BindingResult result, ModelMap model) throws DataAccessException {
 
 		if (result.hasErrors()) {
-			System.out.println(result.getFieldError());
 			model.put("application", application);
 			return "applications/updateApplicationForm";
 		} else {
 
-			try {
-
-				this.applicationService.saveApplication(application);
-			} catch (DuplicateApplicationException ex) {
-				result.rejectValue("pet", "You have already applied for this tournament",
-						"You have already applied for this tournament");
-				return "applications/updateApplicationForm";
-			}
+				application.setId(applicationId);
+				this.applicationService.updateApplication(application);
 
 			return "redirect:/applications/all";
 		}

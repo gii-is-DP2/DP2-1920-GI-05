@@ -25,10 +25,11 @@ public class ApplicationValidator implements Validator {
 
 		  if (application.isNew() && application.getStatus().isEmpty()){
 		  errors.rejectValue("status", REQUIRED, REQUIRED); }	 	
-		  
-		  if (!application.getStatus().isEmpty() && !validateStatus(application.getStatus())) {
-		  errors.rejectValue("status", "Status has to be rejected, pending or accepted", "Status has to be rejected, pending or accepted"); 
-		  }	 	
+		  		
+		  if (!application.isNew() && !application.getStatus().isEmpty() && !validateStatus(application.getStatus())) { errors.rejectValue("status",
+		  "Status has to be rejected, pending or accepted",
+		  "Status has to be rejected, pending or accepted"); }
+		 
  
 	
 

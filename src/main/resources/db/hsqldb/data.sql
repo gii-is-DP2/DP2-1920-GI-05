@@ -81,12 +81,12 @@ INSERT INTO categories(id,name) VALUES (1,'Dog Puller');
 INSERT INTO categories(id,name) VALUES (2,'Speed');
 INSERT INTO categories(id,name) VALUES (3,'Obstacles');
 
-INSERT INTO tournaments VALUES (1, 'Winbendoll tournament 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
-INSERT INTO tournaments VALUES (2, 'Winbendoll tournament 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
-INSERT INTO tournaments VALUES (3, 'Winbendoll tournament 5', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, null, 1 );
-INSERT INTO tournaments VALUES (4, 'Winbendoll tournament 7', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
-INSERT INTO tournaments VALUES (5, 'Winbendoll tournament 8', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
-INSERT INTO tournaments VALUES (6, 'Winbendoll tournament 9', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (1, 'Winbendoll tournament 1', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (2, 'Winbendoll tournament 2', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (3, 'Winbendoll tournament 3', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (4, 'Winbendoll tournament 6', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (5, 'Winbendoll tournament 7', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
+INSERT INTO tournaments VALUES (6, 'Winbendoll tournament 8', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, null, 1 );
 
 INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id) VALUES (1,'PENDING', '2020-07-25', '352571631239294', 1, 1, 4);
 INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 1, 1, 2);

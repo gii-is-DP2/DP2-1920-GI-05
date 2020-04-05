@@ -60,4 +60,6 @@ public interface OwnerRepository {
 	
 	Owner findByUserName(String userName) throws DataAccessException;
 
+	Collection<Owner> findAllOwners() throws DataAccessException;
+
 }

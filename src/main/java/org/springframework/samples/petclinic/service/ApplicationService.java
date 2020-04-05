@@ -23,17 +23,20 @@ public class ApplicationService {
 	@Transactional
 	public void saveApplication(Application application) throws DataAccessException, DuplicateApplicationException {
 		
-		Application same =  this.applicationRepository.findApplicationByOwnerTournament(application.getOwner().getId(), application.getTournament().getId());
-		
-		if(application.isNew() && same != null){
+		Application a =  this.applicationRepository.findApplicationByOwnerTournament(application.getOwner().getId(), application.getTournament().getId());		
+		if(a != null){
 			throw new DuplicateApplicationException();
-		}else if(!application.isNew() && same.equals(application)) {
-			applicationRepository.save(application);
-		}else if(application.isNew() && same == null) {
+		}else {
 			applicationRepository.save(application);
 		}
+	}
+	
+	@Transactional
+	public void updateApplication(Application application) throws DataAccessException {
+		applicationRepository.save(application);
+	}
 			
-		}
+		
 
 	@Transactional(readOnly = true)
 	public Application findApplicationById(int id) throws DataAccessException {
@@ -46,8 +49,7 @@ public class ApplicationService {
 	}
 	
 	@Transactional
-	public Collection<Application> findAllApplications() throws DataAccessException{
-		System.out.println("HOLA");
+	public Collection<Application> findAllApplications() throws DataAccessException{		
 		return applicationRepository.findAllApplications();
 	}
 	

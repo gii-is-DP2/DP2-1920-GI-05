@@ -16,7 +16,7 @@ public interface SpringDataApplicationRepository extends ApplicationRepository, 
 	@Query("SELECT a FROM Application a")
 	List<Application> findAllApplications() throws DataAccessException;
 	
-	@Query("SELECT a FROM Application a WHERE a.owner.id =:ownerId AND a.tournament.id =:tournamentId")
+	@Query("SELECT DISTINCT a FROM Application a WHERE a.owner.id =:ownerId AND a.tournament.id =:tournamentId")
 	Application findApplicationByOwnerTournament(@Param("ownerId") int ownerId, @Param("tournamentId") int tournamentId);
 	
 }
