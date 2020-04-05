@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataAccessException;
@@ -47,31 +49,32 @@ public class ApplicationController {
 
 	// Model Attributes
 
-	/*
-	 * @ModelAttribute("pet") public Pet findPet(@PathVariable("petId") int petId) {
-	 * return this.petService.findPetById(petId); }
-	 */
 
-	@InitBinder("owner")
+	@InitBinder
 	public void initOwnerBinder(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
 
 	@ModelAttribute("pets")
-	public Collection<Pet> findOwner() {
+	public Collection<Pet> ownerPets() {
 		Owner owner = this.ownerService.findOwnerByUserName();
 		return this.petService.findPetByOwnerId(owner.getId());
 	}
 
-	@ModelAttribute("ownerId")
-	public Integer findOwnerId() {
-		return this.ownerService.findOwnerByUserName().getId();
-	}
-
 	@InitBinder("application")
-	public void initTournamentBinder(WebDataBinder dataBinder) {
+	public void initApplicationBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new ApplicationValidator());
 	}
+	
+	@InitBinder("statusType")
+	public List<String> statusTypes() {
+		List<String> types = new ArrayList<>();
+		types.add("PENDING");
+		types.add("ACCEPTED");
+		types.add("REJECTED");
+		
+		return types;
+		}
 
 	// CRUD: List
 
@@ -87,17 +90,18 @@ public class ApplicationController {
 	}
 
 	// user_story_8
-	@GetMapping(value = "/applications/all")
-	public String ApplicationList(ModelMap model) {
-		model.put("applications", this.applicationService.findAllApplications());
-		return "applications/list";
+	@GetMapping(value = {"/applications/all" })
+	public String ApplicationList(Map<String, Object> model) {
+		System.out.println("HOLA");
+		Collection<Application> allApplications = this.applicationService.findAllApplications();
+		model.put("applications", allApplications);
+		return "applications/list";		
 	}
 
 	@GetMapping(value = "/applications/{tournamentId}/new")
 	public String initCreateApplicationForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		ApplicationPOJO applicationPOJO = new ApplicationPOJO();
-		model.put("applicationPOJO", applicationPOJO);
-		System.out.println("Llegando al POST");
+		model.put("applicationPOJO", applicationPOJO);	
 		return "applications/createApplicationForm";
 	}
 
@@ -127,11 +131,43 @@ public class ApplicationController {
 
 				this.applicationService.saveApplication(application);
 			} catch (DuplicateApplicationException ex) {
-				result.rejectValue("pet", "You have already applied for this tournament", "You have already applied for this tournament");
+				result.rejectValue("pet", "You have already applied for this tournament",
+						"You have already applied for this tournament");
 				return "applications/createApplicationForm";
 			}
 
 			return "redirect:/applications/list_mine";
+		}
+	}
+
+	@GetMapping(value = { "/applications/{applicationId}/edit" })
+	public String initUpdateApplicationForm(@PathVariable("applicationId") int applicationId, ModelMap model) {
+		Application application = this.applicationService.findApplicationById(applicationId);
+		model.put("application", application);
+
+		return "applications/updateApplicationForm";
+	}
+
+	@PostMapping(value = { "/applications/{applicationId}/edit" })
+	public String processUpdateForm(@PathVariable("applicationId") int applicationId, @Valid Application application,
+			BindingResult result, ModelMap model) throws DataAccessException, DuplicateApplicationException {
+
+		if (result.hasErrors()) {
+			System.out.println(result.getFieldError());
+			model.put("application", application);
+			return "applications/updateApplicationForm";
+		} else {
+
+			try {
+
+				this.applicationService.saveApplication(application);
+			} catch (DuplicateApplicationException ex) {
+				result.rejectValue("pet", "You have already applied for this tournament",
+						"You have already applied for this tournament");
+				return "applications/updateApplicationForm";
+			}
+
+			return "redirect:/applications/all";
 		}
 	}
 

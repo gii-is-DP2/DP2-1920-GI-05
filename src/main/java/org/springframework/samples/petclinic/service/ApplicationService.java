@@ -41,18 +41,18 @@ public class ApplicationService {
 	}
 
 	@Transactional
-	public Collection<Application> findApplicationsByOwnerId(int ownerId) {
+	public Collection<Application> findApplicationsByOwnerId(int ownerId) throws DataAccessException{
 		return applicationRepository.findApplicationsByOwnerId(ownerId);
 	}
 	
-	@Transactional(readOnly = true)
-	public Collection<Application> findAllApplications() throws DataAccessException {
+	@Transactional
+	public Collection<Application> findAllApplications() throws DataAccessException{
+		System.out.println("HOLA");
 		return applicationRepository.findAllApplications();
 	}
 	
 	@Transactional(readOnly = true)
-	public Application findApplicationsByOwnerTournament(int ownerId, int tournamentId) {
-		
+	public Application findApplicationsByOwnerTournament(int ownerId, int tournamentId) {		
 		return applicationRepository.findApplicationByOwnerTournament(ownerId, tournamentId);
 	}
 

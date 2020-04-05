@@ -12,11 +12,11 @@
     <table id="applicationsTable" class="table table-striped">
         <thead>
         <tr>
+            <th>Tournament</th>
+            <th>Pet</th>
             <th>Status</th>
             <th>Moment</th>
-            <th>Credit Card</th>
-            <th>Pet</th>
-            <th>Tournament</th>
+            <th>Credit card</th>
             
         </tr>
         </thead>
@@ -24,19 +24,19 @@
         <c:forEach items="${applications}" var="application">
             <tr>
                 <td>
-                    <c:out value="${application.status} "/>
+                    <a href="<c:url value="/applications/${application.id}/edit" />"><c:out value="${application.pet} "/></a>
+                </td>
+                <td>
+                    <c:out value="${application.tournament.name} "/>
+                </td>
+                <td>
+                   <c:out value="${application.status} "/>
                 </td>
                 <td>
                     <c:out value="${application.moment} "/>
                 </td>
                 <td>
-                    <c:out value="${application.creditCard} "/>
-                </td>
-                <td>
-                    <c:out value="${application.pet} "/>
-                </td>
-                <td>
-                    <c:out value="${application.tournament.name} "/>
+                     <c:out value="${application.creditCard} "/>
                 </td>
             </tr>
         </c:forEach>

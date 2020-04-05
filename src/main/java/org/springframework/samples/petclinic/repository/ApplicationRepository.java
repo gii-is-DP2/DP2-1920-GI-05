@@ -14,7 +14,7 @@ public interface ApplicationRepository {
 	
 	Collection<Application> findApplicationsByOwnerId(int ownerId) throws DataAccessException;
 	
-	List<Application> findAllApplications() throws DataAccessException;
+	Collection<Application> findAllApplications() throws DataAccessException;
 
 	Application findApplicationByOwnerTournament(int ownerId, int tournamentId) throws DataAccessException;
 }
