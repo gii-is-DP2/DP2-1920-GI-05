@@ -11,8 +11,10 @@ public interface ApplicationRepository {
 	Application findById(int id) throws DataAccessException;
 
 	void save(Application application) throws DataAccessException;
-
+	
 	Collection<Application> findApplicationsByOwnerId(int ownerId) throws DataAccessException;
 	
 	List<Application> findAllApplications() throws DataAccessException;
+
+	Application findApplicationByOwnerTournament(int ownerId, int tournamentId) throws DataAccessException;
 }

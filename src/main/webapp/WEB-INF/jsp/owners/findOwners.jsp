@@ -29,12 +29,10 @@
                 <button type="submit" class="btn btn-default">Find Owner</button>
             </div>
         </div>
-
     </form:form>
 
-    <br/> 
-    <sec:authorize access="hasAuthority('admin')">
+    <br/>     
 		<a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'>Add Owner</a>
-	</sec:authorize>
+
 	
 </petclinic:layout>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.repository.ApplicationRepository;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,19 @@ public class ApplicationService {
 	}
 	
 	@Transactional
-	public void saveApplication(Application application) throws DataAccessException {
-		applicationRepository.save(application);
-	}
+	public void saveApplication(Application application) throws DataAccessException, DuplicateApplicationException {
+		
+		Application same =  this.applicationRepository.findApplicationByOwnerTournament(application.getOwner().getId(), application.getTournament().getId());
+		
+		if(application.isNew() && same != null){
+			throw new DuplicateApplicationException();
+		}else if(!application.isNew() && same.equals(application)) {
+			applicationRepository.save(application);
+		}else if(application.isNew() && same == null) {
+			applicationRepository.save(application);
+		}
+			
+		}
 
 	@Transactional(readOnly = true)
 	public Application findApplicationById(int id) throws DataAccessException {
@@ -37,6 +48,12 @@ public class ApplicationService {
 	@Transactional(readOnly = true)
 	public Collection<Application> findAllApplications() throws DataAccessException {
 		return applicationRepository.findAllApplications();
+	}
+	
+	@Transactional(readOnly = true)
+	public Application findApplicationsByOwnerTournament(int ownerId, int tournamentId) {
+		
+		return applicationRepository.findApplicationByOwnerTournament(ownerId, tournamentId);
 	}
 
 }

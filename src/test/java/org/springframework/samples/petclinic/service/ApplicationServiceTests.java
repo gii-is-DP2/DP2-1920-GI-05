@@ -14,6 +14,7 @@ import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Tournament;
+import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class ApplicationServiceTests {
 	
     // Service test: Create new Applications Postive Case
 	@Test
-	void shouldFindNewApplications() throws DataAccessException {
+	void shouldFindNewApplications() throws DataAccessException, DuplicateApplicationException {
 		
 		Owner owner = this.ownerService.findOwnerById(2);
 		Tournament tournament = this.tournamentService.findTournamentById(3);

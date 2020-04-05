@@ -173,5 +173,12 @@ public class OwnerController {
 		mav.addObject(this.ownerService.findOwnerByUserName());
 		return mav;
 	}
+	
+	@GetMapping(value = "/owners/{ownerId}/show")
+	public String showFinderOwner(@PathVariable("ownerId") int ownerId, Model model) {
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		model.addAttribute(owner);
+		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+	}
 
 }
