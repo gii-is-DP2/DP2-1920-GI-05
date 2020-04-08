@@ -25,6 +25,7 @@ import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.GuideService;
@@ -74,6 +75,9 @@ class TournamentControllerTests {
 
 	@MockBean
 	private TournamentService tournamentService;
+	
+	@MockBean
+	private ApplicationService applicationService;
 
 	@Autowired
 	private MockMvc mockMvc;

@@ -83,8 +83,7 @@ public class ApplicationController {
 
 	// user_story_8
 	@GetMapping(value = { "/applications/all" })
-	public String ApplicationList(Map<String, Object> model) {
-		System.out.println("HOLA");
+	public String ApplicationList(Map<String, Object> model) {		
 		Collection<Application> allApplications = this.applicationService.findAllApplications();
 		model.put("applications", allApplications);
 		return "applications/list";

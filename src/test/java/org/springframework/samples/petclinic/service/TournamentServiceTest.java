@@ -118,21 +118,21 @@ class TournamentServiceTest {
 	@Test
 	void shouldFindAllTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(4);
+		assertThat(tournaments.size()).isEqualTo(6);
 	}
 
-	// Find all Tournaments Negative Case
+	// Find active Tournaments Positive Case
 	@Test
 	void shouldFindActiveTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
-		assertThat(tournaments.size()).isEqualTo(1);
+		assertThat(tournaments.size()).isEqualTo(3);
 	}
 	
 	// Find all tournaments by Judge ID Positive case
 	@Test
 	void shouldFindAllTournamentsByJudgeId() {
 		Collection<Tournament> tournaments = this.tournamentService.findTournamentByJudgeId(1);
-		assertThat(tournaments.size()).isEqualTo(4);
+		assertThat(tournaments.size()).isEqualTo(5);
 	}
 
 	
@@ -142,7 +142,7 @@ class TournamentServiceTest {
 				
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournaments.size()).isEqualTo(7);
 	}
 	
 	// Save Tournament Negative Case: Duplicated Name
@@ -168,7 +168,7 @@ class TournamentServiceTest {
 		tournament.setField(field);		
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournaments.size()).isEqualTo(7);
 		assertThat(tournament.getField()).isEqualTo(field);
 	}
 	
@@ -179,7 +179,7 @@ class TournamentServiceTest {
 		
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournaments.size()).isEqualTo(7);
 		assertThat(tournament.getJudge()).isEqualTo(judge);
 	}
 	
