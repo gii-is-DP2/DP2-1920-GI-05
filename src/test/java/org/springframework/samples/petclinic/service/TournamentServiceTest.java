@@ -128,6 +128,14 @@ class TournamentServiceTest {
 		assertThat(tournaments.size()).isEqualTo(1);
 	}
 	
+	// Find all tournaments by Judge ID Positive case
+	@Test
+	void shouldFindAllTournamentsByJudgeId() {
+		Collection<Tournament> tournaments = this.tournamentService.findTournamentByJudgeId(1);
+		assertThat(tournaments.size()).isEqualTo(4);
+	}
+
+	
 	// Save Tournament Postive Case
 	@Test
 	void shouldInsertdNewTournament() throws DataAccessException, DuplicateTournamentNameException {

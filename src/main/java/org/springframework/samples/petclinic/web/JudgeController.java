@@ -96,10 +96,10 @@ public class JudgeController {
 	}
 	
 	@GetMapping(value = "/judges/{judgeId}/tournaments")
-	public String initTournaments4Judge(@PathVariable("judgeId") int judgeId, Model model) {
-		Judge judge =  this.judgeService.findJudgeById(judgeId);
+	public String initTournaments4Judge(@PathVariable("judgeId") int judgeId, Map<String, Object> model) {
+		
 		Collection<Tournament> tournaments = tournamentService.findTournamentByJudgeId(judgeId);
-		model.addAttribute(tournaments);
+		model.put("tournaments",tournaments);
 		return "judges/tournaments";
 	}
 
