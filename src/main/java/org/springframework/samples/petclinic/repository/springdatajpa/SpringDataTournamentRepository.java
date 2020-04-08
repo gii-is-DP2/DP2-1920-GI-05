@@ -27,4 +27,8 @@ public interface SpringDataTournamentRepository extends TournamentRepository, Re
 	@Query("SELECT DISTINCT  t FROM Tournament t WHERE t.name =:name")
 	public Tournament findByName(@Param("name") String name);
 	
+	@Override
+	@Query("SELECT t FROM Tournament t WHERE t.judge.id = :judge")
+	Collection<Tournament> findTournamentByJudgeId(@Param("judge") int judgeId) throws DataAccessException;
+	
 }

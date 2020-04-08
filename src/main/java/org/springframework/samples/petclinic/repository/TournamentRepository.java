@@ -18,6 +18,8 @@ public interface TournamentRepository {
 	Collection<Tournament> findActiveTournaments() throws DataAccessException;
 	
 	Tournament findByName(String name) throws DataAccessException;
+
+	Collection<Tournament> findTournamentByJudgeId(int judgeId)throws DataAccessException;
     
     
 	
