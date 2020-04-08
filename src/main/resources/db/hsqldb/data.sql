@@ -40,12 +40,12 @@ INSERT INTO guides(id,first_name,last_name,address,city,telephone,username)  VAL
 INSERT INTO judges(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Michael', 'Dredd', '60 W. Liberty St.', 'Mega City', '6081251023', 'judge1');
 INSERT INTO judges(id,first_name,last_name,address,city,telephone,username)  VALUES (2, 'Travis', 'Dacon', '10 W. Liberty St.', 'St Destroy', '6085554523', 'judge2');
 
-INSERT INTO types VALUES (1, 'cat');
-INSERT INTO types VALUES (2, 'dog');
-INSERT INTO types VALUES (3, 'lizard');
-INSERT INTO types VALUES (4, 'snake');
-INSERT INTO types VALUES (5, 'bird');
-INSERT INTO types VALUES (6, 'hamster');
+INSERT INTO types VALUES (1, 'Cat');
+INSERT INTO types VALUES (2, 'Dog');
+INSERT INTO types VALUES (3, 'Lizard');
+INSERT INTO types VALUES (4, 'Snake');
+INSERT INTO types VALUES (5, 'Bird');
+INSERT INTO types VALUES (6, 'Hamster');
 
 INSERT INTO owners(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner1');
 INSERT INTO owners(id,first_name,last_name,address,city,telephone,username) VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'owner2');
@@ -81,16 +81,18 @@ INSERT INTO categories(id,name) VALUES (1,'Dog Puller');
 INSERT INTO categories(id,name) VALUES (2,'Speed');
 INSERT INTO categories(id,name) VALUES (3,'Obstacles');
 
-INSERT INTO tournaments VALUES (1, 'Winbendoll tournament 3', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, 1, 1 );
-INSERT INTO tournaments VALUES (2, 'Winbendoll tournament 4', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, 1, 1 );
-INSERT INTO tournaments VALUES (3, 'Winbendoll tournament 5', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, 1, 1 );
-INSERT INTO tournaments VALUES (4, 'Winbendoll tournament 10', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (1, 'Winbendoll tournament 1', '2013-01-04', '2013-01-04', 'Sevilla', 100.00, '€', '2013-01-04', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (2, 'Winbendoll tournament 2', '2014-01-04', '2014-01-04', 'Sevilla', 100.00, '€', '2014-01-04', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (3, 'Winbendoll tournament 3', '2015-01-04', '2015-01-04', 'Sevilla', 100.00, '€', '2015-01-04', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (4, 'Winbendoll tournament 6', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (5, 'Winbendoll tournament 7', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, 1, 1 );
+INSERT INTO tournaments VALUES (6, 'Winbendoll tournament 8', '2020-05-01', '2020-05-22', 'Sevilla', 100.00, '€', '2020-05-20', 1, null, 1, 1 )
 
-INSERT INTO applications VALUES (1,'PENDING', '2020-07-25', '352571631239294', 1, 1, 1);
-INSERT INTO applications VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 1, 1, 2);
-INSERT INTO applications VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2, 2, 1);
-INSERT INTO applications VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, 2);
-INSERT INTO applications VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, 1);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id) VALUES (1,'PENDING', '2020-07-25', '352571631239294', 1, 1, 4);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  VALUES (2,'APPROVED', '2020-05-27', '352571631239294', 1, 1, 2);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  VALUES (3,'PENDING', '2020-07-25', '363017956100486', 2, 2, 1);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  VALUES (4,'REJECTED', '2020-05-27', '363017956100486', 2, 2, 2);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  VALUES (5,'PENDING', '2020-07-25', '379254492621186', 3, 3, 1);
 
 INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 200.00, 120.00);
 INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (2, 'Map 10', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 100.00, 300.00);

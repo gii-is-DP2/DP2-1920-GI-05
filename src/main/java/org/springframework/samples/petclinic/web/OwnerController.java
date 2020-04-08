@@ -85,38 +85,13 @@ public class OwnerController {
 	@GetMapping(value = "/owners/find")
 	public String initFindForm(Map<String, Object> model) {
 		
-		if(this.jugdeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.jugdeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
-		
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}else {		
 			model.put("owner", new Owner());	
-		}
-		
-		
+						
 		return "owners/findOwners";
 	}
 
 	@GetMapping(value = "/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
-
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}
-		
-		if(this.jugdeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.jugdeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
 		
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName() == null) {
@@ -172,6 +147,13 @@ public class OwnerController {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
 		mav.addObject(this.ownerService.findOwnerByUserName());
 		return mav;
+	}
+	
+	@GetMapping(value = "/owners/{ownerId}/show")
+	public String showFinderOwner(@PathVariable("ownerId") int ownerId, Model model) {
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		model.addAttribute(owner);
+		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
 }

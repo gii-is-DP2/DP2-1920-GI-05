@@ -74,4 +74,8 @@ public class OwnerService {
 		return res;
 	}
 
+	public Collection<Owner> findAllOwners() {	
+		return this.ownerRepository.findAllOwners();
+	}
+
 }

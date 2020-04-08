@@ -17,34 +17,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
-@Table(name = "applications")
-public class Application extends BaseEntity {
+public class ApplicationPOJO {
 
 	// Attributes -------------------------------------------------------------
 	
-	@NotBlank
-	//@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
-	private String status;
-
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate moment;
-
 	@CreditCardNumber
 	private String creditCard;
-
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "owner_id")
-	private Owner owner;
-
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "tournament_id")
-	private Tournament tournament;
 
 }

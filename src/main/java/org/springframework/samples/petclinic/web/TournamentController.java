@@ -1,7 +1,6 @@
-package org.springframework.samples.petclinic.web;
+ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
-
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -11,8 +10,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
+import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.GuideService;
@@ -20,12 +21,8 @@ import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
-import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -47,10 +44,11 @@ public class TournamentController {
 	private final JudgeService  judgeService;
 	private final GuideService  guideService;
 	private final OwnerService ownerService;
+	private final ApplicationService applicationService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService, GuideService  guideService) {
+			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService, GuideService  guideService, ApplicationService applicationService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
@@ -58,6 +56,7 @@ public class TournamentController {
 		this.judgeService = judgeService;
 		this.ownerService = ownerService;
 		this.guideService = guideService;
+		this.applicationService = applicationService;
 	}
 
 	@ModelAttribute("categories")
@@ -122,10 +121,11 @@ public class TournamentController {
 	
 	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
-				
+			
 		
 		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
+			Owner owner = this.ownerService.findOwnerByUserName();
+			model.put("owner", owner);			
 		}
 		
 		if(this.judgeService.findJudgeByUserName()!=null)	{
@@ -143,14 +143,17 @@ public class TournamentController {
 	}
 	
 	@GetMapping(value = "/tournaments/{tournamentId}/edit")
-	public String initUpdateOwnerForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
-		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);;
+	public String initUpdateTournamentForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
+		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);
+	
 		 model.put("tournament", tournament);
 		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
+	
+
 	@PostMapping(value = "/tournaments/{tournamentId}/edit")
-	public String processUpdateOwnerForm(@Valid Tournament tournament, BindingResult result,
+	public String processUpdateTournamentForm(@Valid Tournament tournament, BindingResult result,
 			@PathVariable("tournamentId") int tournamentId) throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
 			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
@@ -167,6 +170,25 @@ public class TournamentController {
 		
 			return "redirect:/tournaments/all";
 		}
+	}
+	
+	@GetMapping(value = "/tournaments/{tournamentId}/show")
+	public String initShowTournament(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
+		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);
+		
+		if(this.ownerService.findOwnerByUserName()!=null)	{
+			Owner owner = this.ownerService.findOwnerByUserName();
+			Boolean hasApplication = false;
+			int ownerId = owner.getId();
+			if(this.applicationService.findApplicationsByOwnerTournament(ownerId, tournamentId) != null) {
+				hasApplication=true;
+			}
+			model.put("hasApplication", hasApplication);	
+			model.put("owner", owner);			
+		}
+		
+		 model.put("tournament", tournament);
+		return "tournaments/showTournament";
 	}
 
 }
