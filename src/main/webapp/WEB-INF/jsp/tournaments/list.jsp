@@ -17,8 +17,7 @@
 				<th>Pet type</th>	
 				<th>Category </th>
 				<th>Location</th>				
-				<th>Applications available until</th>
-				
+				<th>Applications available until</th>				
 			</tr>
 		</thead>
 		<tbody>
@@ -34,9 +33,6 @@
 					<td><c:out value="${tournament.category.name}" /></td>		
 					<td><c:out value="${tournament.location}" /></td>									
 					<td><petclinic:localDate date="${tournament.applyDate}" pattern="yyyy-MM-dd"/></td>
-<%-- 					<td><petclinic:localDate date="${tournament.startDate}" pattern="yyyy-MM-dd"/></td>
-					<td><petclinic:localDate date="${tournament.endDate}" pattern="yyyy-MM-dd"/></td>		 --%>					
-					<%-- <c:out value="${tournament.prize.amount} ${tournament.prize.currency}" />	 --%>				
 				</tr>
 			</c:forEach>
 		</tbody>

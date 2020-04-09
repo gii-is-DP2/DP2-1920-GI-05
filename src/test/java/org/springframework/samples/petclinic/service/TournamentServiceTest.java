@@ -16,43 +16,23 @@
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
-
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.validation.Validator;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
-import org.springframework.samples.petclinic.model.Vet;
-import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.samples.petclinic.model.User;
-import org.springframework.samples.petclinic.model.Authorities;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Money;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
-import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -84,29 +64,22 @@ class TournamentServiceTest {
     	@BeforeEach
     	void setup() {
 
+    		tournament = new Tournament();
+    		money = new Money();
+    		
     		category = this.categoryService.findCategoryById(1);
     		petType = this.petService.findPetTypes().iterator().next();
     		field = this.fieldService.findFieldById(1);
     		judge = this.judgeService.findJudgeById(1);
-    		
-    		
-    		money = new Money();
+    		    		
+
     		money.setAmount(100.00);
-    		money.setCurrency("$");
-
-    		
-    		tournament = new Tournament();
-
+    		money.setCurrency("$");   		
     		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
-
     		tournament.setCategory(category);
     		tournament.setEndDate(LocalDate.of(2020, 12, 12));
-    		// tournament.setField();
-    		// tournament.setJugde();
     		tournament.setLocation("Seville");
-
     		tournament.setPetType(petType);
-
     		tournament.setPrize(money);
     		tournament.setName("Sample tournament");
     		tournament.setStartDate(LocalDate.of(2020, 12, 10));

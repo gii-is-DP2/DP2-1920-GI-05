@@ -15,7 +15,8 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
+import org.springframework.samples.petclinic.service.exceptions.InactiveTournamentException;
+import org.springframework.samples.petclinic.service.exceptions.InvalidPetTypeException;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -33,6 +34,8 @@ public class ApplicationServiceTests {
 	@Autowired
 	protected TournamentService  tournamentService;
 	
+
+	
 	// Service test: List all applications
 	@Test
 	void shouldFindAllApplications() {
@@ -49,7 +52,7 @@ public class ApplicationServiceTests {
 	
     // Service test: Create new Applications Postive Case
 	@Test
-	void shouldFindNewApplications() throws DataAccessException, DuplicateApplicationException {
+	void shouldCreateNewApplications() throws DataAccessException, DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException {
 		
 		Owner owner = this.ownerService.findOwnerById(2);
 		Tournament tournament = this.tournamentService.findTournamentById(3);

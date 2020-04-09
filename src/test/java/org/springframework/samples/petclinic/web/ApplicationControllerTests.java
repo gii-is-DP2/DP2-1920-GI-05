@@ -5,10 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,6 +18,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -36,6 +35,7 @@ excludeAutoConfiguration = SecurityConfiguration.class)
 class ApplicationControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
+	private static final int TEST_TOURNAMENT_ID = 1;
 	
 	@Autowired
 	private ApplicationController applicationController;
@@ -57,6 +57,8 @@ class ApplicationControllerTests {
 	
 	private Owner george;
 	
+	private Tournament tournament;
+	
 	@BeforeEach
 	void setup() {
 						
@@ -70,9 +72,11 @@ class ApplicationControllerTests {
 		
 		Collection<Application> ownerApplications = this.applicationService.findApplicationsByOwnerId(TEST_OWNER_ID);
 		
+		tournament = this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID);
 			
 		given(this.applicationService.findAllApplications()).willReturn(new ArrayList<>());
 		given(this.applicationService.findApplicationsByOwnerId(TEST_OWNER_ID)).willReturn(ownerApplications);
+		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(tournament);
 	}
 
 	// List applications Positive Case
@@ -99,6 +103,24 @@ class ApplicationControllerTests {
 		mockMvc.perform(get("/applications/list_mine")).andExpect(status().isOk())
 		.andExpect(view().name("exception"));
 	}
+	
+	// Create applications 
 
-
+	// Get Create Fields Positive Case
+	@WithMockUser(value = "spring")
+	@Test
+	void testGetNewApplication() throws Exception {
+		given(this.ownerService.findOwnerByUserName()).willReturn(george);  
+		mockMvc.perform(get("/applications/{tournamentId}/new", TEST_TOURNAMENT_ID)).andExpect(status().isOk())
+		.andExpect(model().attributeExists("applicationPOJO")).andExpect(view().name("applications/createApplicationForm"));
+	}
+	
+	// Post Create Fields Positive Case
+	@WithMockUser(value = "spring")
+	@Test
+	void testProcessNewApplication() throws Exception {
+		given(this.ownerService.findOwnerByUserName()).willReturn(george);  
+		mockMvc.perform(get("/applications/{tournamentId}/new", TEST_TOURNAMENT_ID)).andExpect(status().isOk())
+		.andExpect(model().attributeExists("applicationPOJO")).andExpect(view().name("applications/createApplicationForm"));
+	}
 }

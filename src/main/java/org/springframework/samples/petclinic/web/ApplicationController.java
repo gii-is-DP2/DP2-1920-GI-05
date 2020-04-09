@@ -28,6 +28,8 @@ import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
+import org.springframework.samples.petclinic.service.exceptions.InactiveTournamentException;
+import org.springframework.samples.petclinic.service.exceptions.InvalidPetTypeException;
 
 @Controller
 public class ApplicationController {
@@ -83,7 +85,7 @@ public class ApplicationController {
 
 	// user_story_8
 	@GetMapping(value = { "/applications/all" })
-	public String ApplicationList(Map<String, Object> model) {		
+	public String ApplicationList(Map<String, Object> model) {
 		Collection<Application> allApplications = this.applicationService.findAllApplications();
 		model.put("applications", allApplications);
 		return "applications/list";
@@ -102,7 +104,7 @@ public class ApplicationController {
 	@PostMapping(value = "/applications/{tournamentId}/new")
 	public String processCreateForm(@PathVariable("tournamentId") int tournamentId,
 			@Valid ApplicationPOJO applicationPOJO, BindingResult result, ModelMap model)
-			throws DataAccessException, DuplicateApplicationException {
+			throws DataAccessException, DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException{
 
 		if (result.hasErrors()) {
 			Owner owner = this.ownerService.findOwnerByUserName();
@@ -131,8 +133,21 @@ public class ApplicationController {
 				Owner owner = this.ownerService.findOwnerByUserName();
 				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 				return "applications/createApplicationForm";
+			
+			} catch (InvalidPetTypeException ex) {
+				result.rejectValue("pet", "You can not apply to this tournament with that pet type",
+						"You can not apply to this tournament with that pet type");
+				Owner owner = this.ownerService.findOwnerByUserName();
+				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+				return "applications/createApplicationForm";
+			} catch (InactiveTournamentException ex) {
+				result.rejectValue("pet", "This tournament no longer allows requests",
+						"This tournament no longer allows requests");
+				Owner owner = this.ownerService.findOwnerByUserName();
+				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+				return "applications/createApplicationForm";
 			}
-
+	
 			return "redirect:/applications/list_mine";
 		}
 	}
@@ -154,8 +169,8 @@ public class ApplicationController {
 			return "applications/updateApplicationForm";
 		} else {
 
-				application.setId(applicationId);
-				this.applicationService.updateApplication(application);
+			application.setId(applicationId);
+			this.applicationService.updateApplication(application);
 
 			return "redirect:/applications/all";
 		}

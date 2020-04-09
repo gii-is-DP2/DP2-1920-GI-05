@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.repository.ApplicationRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
+import org.springframework.samples.petclinic.service.exceptions.InactiveTournamentException;
+import org.springframework.samples.petclinic.service.exceptions.InvalidPetTypeException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,14 +24,22 @@ public class ApplicationService {
 	}
 	
 	@Transactional
-	public void saveApplication(Application application) throws DataAccessException, DuplicateApplicationException {
+	public void saveApplication(Application application) throws DataAccessException, DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException {
 		
 		Application a =  this.applicationRepository.findApplicationByOwnerTournament(application.getOwner().getId(), application.getTournament().getId());		
+		Boolean sameType = application.getPet().getType().equals(application.getTournament().getPetType());
+		Boolean isActive = application.getTournament().getApplyDate().isBefore(application.getMoment());
 		if(a != null){
 			throw new DuplicateApplicationException();
-		}else {
-			applicationRepository.save(application);
+		}if(sameType.equals(false)) {
+			throw new InvalidPetTypeException();
+		}if(isActive.equals(true)) {
+			throw new InactiveTournamentException();
 		}
+		else {
+			applicationRepository.save(application);
+		} 
+
 	}
 	
 	@Transactional
