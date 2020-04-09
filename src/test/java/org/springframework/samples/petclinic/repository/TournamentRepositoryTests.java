@@ -18,9 +18,9 @@ public class TournamentRepositoryTests {
 	@Autowired
 	TournamentRepository tournamentRepository;
 
-	// Repository test: Return a tournament that already passes Negative Case
+	// Repository test: Return only active tournaments
 	@Test
-	public void shouldNotReturnOldTournament() throws Exception {
+	public void shouldReturnActiveTournaments() throws Exception {
 				
 		Collection<Tournament> activeTournaments = this.tournamentRepository.findActiveTournaments();
 		
@@ -28,6 +28,18 @@ public class TournamentRepositoryTests {
 		
 		assertThat(activeTournaments.size()).isEqualTo(3);
 		assertThat(!activeTournaments.contains(t1));
+	}
+	
+	// Repository test: Return tournaments by judge id
+	@Test
+	public void shouldReturnJudgeTournaments() throws Exception {
+				
+		Collection<Tournament> judgeTournaments = this.tournamentRepository.findTournamentByJudgeId(1);
+		
+		Tournament t1 = this.tournamentRepository.findById(1);
+		
+		assertThat(judgeTournaments.size()).isEqualTo(5);
+		assertThat(!judgeTournaments.contains(t1));
 	}
 
 }

@@ -55,6 +55,39 @@ public class TournamentTests {
 
 	// Create new tournament Negative Case: invalid name input
 	@Test
+	void shouldValidateTournament() {
+
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		Tournament tournament = new Tournament();
+
+		tournament.setApplyDate(LocalDate.of(2020, 10, 12));
+
+		tournament.setCategory(category);
+		tournament.setEndDate(LocalDate.of(2020, 12, 12));
+		// tournament.setField();
+		// tournament.setJugde();
+		tournament.setLocation("Seville");
+
+		tournament.setPetType(petType);
+
+		tournament.setPrize(money);
+		tournament.setName("McArthur Tournament 2020");
+		tournament.setStartDate(LocalDate.of(2020, 12, 10));
+
+		Validator validator = createValidator();
+		Set<ConstraintViolation<Tournament>> constraintViolations = validator.validate(tournament);
+		assertThat(constraintViolations.size()).isEqualTo(0);
+		
+		TournamentValidator tournamentValidator = new TournamentValidator();
+
+		Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
+		tournamentValidator.validate(tournament, errors);
+		assertThat(errors.getErrorCount()).isEqualTo(0);	
+		assertThat(errors.hasErrors()).isEqualTo(false);	
+	}
+	
+	// Create new tournament Negative Case: invalid name input
+	@Test
 	void shouldNotValidateName() {
 
 		LocaleContextHolder.setLocale(Locale.ENGLISH);

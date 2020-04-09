@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Application;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -26,6 +28,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+@Nested
 @WebMvcTest(controllers = ApplicationController.class, 
 excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, 
 classes = WebSecurityConfigurer.class),
@@ -52,11 +55,22 @@ class ApplicationControllerTests {
 	@Autowired	
 	private MockMvc mockMvc;	
 	
+	private Owner george;
+	
 	@BeforeEach
 	void setup() {
 						
+		george = new Owner();
+		george.setId(TEST_OWNER_ID);
+		george.setFirstName("George");
+		george.setLastName("Franklin");
+		george.setAddress("110 W. Liberty St.");
+		george.setCity("Madison");
+		george.setTelephone("6085551023");
+		
 		Collection<Application> ownerApplications = this.applicationService.findApplicationsByOwnerId(TEST_OWNER_ID);
 		
+			
 		given(this.applicationService.findAllApplications()).willReturn(new ArrayList<>());
 		given(this.applicationService.findApplicationsByOwnerId(TEST_OWNER_ID)).willReturn(ownerApplications);
 	}
@@ -69,12 +83,21 @@ class ApplicationControllerTests {
 				.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
 	}
 
-	// List applications by owner Negative Case
+	// List applications by Owner Positive Case
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOwnerApplications() throws Exception {
+		 given(this.ownerService.findOwnerByUserName()).willReturn(george);  
 		mockMvc.perform(get("/applications/list_mine")).andExpect(status().isOk())
-				.andExpect(model().attributeDoesNotExist("applications")).andExpect(view().name("exception"));
+			.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
+	}
+
+	// List applications by Owner Negativo Case
+	@WithMockUser(value = "spring")
+	@Test
+	void testListOwnerApplicationsException() throws Exception {
+		mockMvc.perform(get("/applications/list_mine")).andExpect(status().isOk())
+		.andExpect(view().name("exception"));
 	}
 
 

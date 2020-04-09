@@ -94,6 +94,32 @@ public class ApplicationTests {
 
 	}
 	
+	// Create new Application Positive Case: 
+	@Test
+	void shouldValidateApplication() {
+		
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+		
+		Application application = new Application();
+		application.setCreditCard("4065972557141631");
+		application.setMoment(LocalDate.of(2000, 10, 12));
+		application.setOwner(owner);
+		application.setStatus("REJECTED");
+		application.setTournament(tournament);
+		application.setPet(pet);
+		
+		Validator validator = createValidator();
+		Set<ConstraintViolation<Application>> constraintViolations = validator.validate(application);		
+		assertThat(constraintViolations.size()).isEqualTo(0);
+		
+		ApplicationValidator applicationValidator = new ApplicationValidator();
+		Errors errors = new BeanPropertyBindingResult(application, "application");
+		applicationValidator.validate(application, errors);
+	
+		assertThat(errors.hasErrors()).isEqualTo(false);	
+		assertThat(errors.getErrorCount()).isEqualTo(0);				
+	}
+	
 	// Create new Application Negative Case: Invalid credit card number
 	@Test
 	void shouldNotValidateBlankCreditCard() {
