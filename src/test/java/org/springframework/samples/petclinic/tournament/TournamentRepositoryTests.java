@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.repository;
+package org.springframework.samples.petclinic.tournament;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.samples.petclinic.model.Tournament;
+import org.springframework.samples.petclinic.repository.TournamentRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +27,7 @@ public class TournamentRepositoryTests {
 		
 		Tournament t1 = this.tournamentRepository.findById(1);
 		
-		assertThat(activeTournaments.size()).isEqualTo(3);
+		assertThat(activeTournaments.size()).isEqualTo(8);
 		assertThat(!activeTournaments.contains(t1));
 	}
 	
@@ -38,8 +39,8 @@ public class TournamentRepositoryTests {
 		
 		Tournament t1 = this.tournamentRepository.findById(1);
 		
-		assertThat(judgeTournaments.size()).isEqualTo(5);
-		assertThat(!judgeTournaments.contains(t1));
+		assertThat(judgeTournaments.size()).isEqualTo(2);
+		assertThat(judgeTournaments.contains(t1));
 	}
 
 }

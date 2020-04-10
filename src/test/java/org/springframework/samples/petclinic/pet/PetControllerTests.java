@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.pet;
 
 /*
  * Copyright 2012-2019 the original author or authors.
@@ -39,6 +39,8 @@ import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.samples.petclinic.web.PetController;
+import org.springframework.samples.petclinic.web.PetTypeFormatter;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -49,7 +51,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 @WebMvcTest(value = PetController.class,
-		includeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE),
+		includeFilters = @ComponentScan.Filter(value =  PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE),
 		excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 		excludeAutoConfiguration= SecurityConfiguration.class)
 class PetControllerTests {
@@ -73,10 +75,10 @@ class PetControllerTests {
 
 	@BeforeEach
 	void setup() {
-		PetType cat = new PetType();
-		cat.setId(3);
-		cat.setName("hamster");
-		given(this.petService.findPetTypes()).willReturn(Lists.newArrayList(cat));
+		PetType hamster = new PetType();
+		hamster.setId(3);
+		hamster.setName("hamster");
+		given(this.petService.findPetTypes()).willReturn(Lists.newArrayList(hamster));
 		given(this.ownerService.findOwnerById(TEST_OWNER_ID)).willReturn(new Owner());
 		given(this.petService.findPetById(TEST_PET_ID)).willReturn(new Pet());
 	}

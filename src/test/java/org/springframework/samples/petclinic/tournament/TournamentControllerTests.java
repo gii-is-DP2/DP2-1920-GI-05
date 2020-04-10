@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.tournament;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -34,6 +34,12 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
+import org.springframework.samples.petclinic.web.CategoryFormatter;
+import org.springframework.samples.petclinic.web.FieldFormatter;
+import org.springframework.samples.petclinic.web.JudgeFormatter;
+import org.springframework.samples.petclinic.web.OwnerController;
+import org.springframework.samples.petclinic.web.PetTypeFormatter;
+import org.springframework.samples.petclinic.web.TournamentController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -98,24 +104,13 @@ class TournamentControllerTests {
 		given(this.fieldService.findAllFields()).willReturn(Lists.newArrayList(field));
 
 		Category category = new Category();
-		category = new Category();
 		category.setId(1);
 	    category.setName("Agility");
 	    given(this.categoryService.findAllCategories()).willReturn(Lists.newArrayList(category));
-   
-	    User user = new User();
-	    user.setEnabled(true);
-	    user.setUsername("peter");
-	    user.setPassword("easy");
-	    
+   	    
 		Judge judge = new Judge();
 		judge.setId(3);
-		judge.setUser(user);
 		judge.setLastName("Peter");
-		judge.setFirstName("Randal");
-		judge.setAddress("Sevilla");
-		judge.setCity("Tomares");
-		judge.setTelephone("6666666");		
 		given(this.judgeService.findAllJudges()).willReturn(Lists.newArrayList(judge));
 
 		Tournament tournament = new Tournament();
@@ -157,6 +152,7 @@ class TournamentControllerTests {
 				.param("startDate", "2020/12/11")
 				.param("endDate", "2020/12/12")
 				.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+				//.andExpect(model().attributeHasNoErrors("tournament"))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/tournaments/all"));
 	}

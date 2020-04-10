@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.service;
+package org.springframework.samples.petclinic.category;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Collection;
@@ -24,6 +24,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Category;
+import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,7 @@ class CategoryServiceTests {
 	@Test
 	void shouldFindAllCategories() {
 		Collection<Category> categories = this.categoryService.findAllCategories();
-		assertThat(categories.size()).isEqualTo(3);
+		assertThat(categories.size()).isEqualTo(6);
 	}
 
     // Create new Category Postive Case
@@ -49,22 +50,14 @@ class CategoryServiceTests {
 		c.setName("Frisbee");
 		this.categoryService.saveCategory(c);
 		Collection<Category> categories = this.categoryService.findAllCategories();
-		assertThat(categories.size()).isEqualTo(4);
+		assertThat(categories.size()).isEqualTo(7);
 	}
 	
 	// Create new Category Negative Case: Duplicated name
 	@Test
 	@Transactional
 	public void shouldThrowExceptionInsertingCategoriesWithTheSameName() {		
-		Category category = new Category();
-		category.setName("Speed");
-		try {
-			categoryService.saveCategory(category);		
-		} catch (DuplicateCategoryNameException e) {
-		
-			e.printStackTrace();
-		}
-		
+
 		Category anotherCategoryWithTheSameName = new Category();	
 		anotherCategoryWithTheSameName.setName("Obstacles");
 		Assertions.assertThrows(DuplicateCategoryNameException.class, () ->{categoryService.saveCategory(anotherCategoryWithTheSameName);});		

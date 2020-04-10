@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.ApplicationPOJO;
+import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Tournament;
@@ -70,6 +71,18 @@ public class ApplicationController {
 		return types;
 	}
 
+	@ModelAttribute("pets")
+	public Collection<Pet> populatePets() {
+
+		Collection<Pet> pets = new ArrayList<>();
+		Owner owner = this.ownerService.findOwnerByUserName();
+		if (owner != null) {
+			pets = this.petService.findPetByOwnerId(owner.getId());
+		}
+
+		return pets;
+	}
+
 	// CRUD: List
 
 	@GetMapping(value = { "/applications/list_mine" })
@@ -96,19 +109,16 @@ public class ApplicationController {
 		ApplicationPOJO applicationPOJO = new ApplicationPOJO();
 
 		Owner owner = this.ownerService.findOwnerByUserName();
-		model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 		model.put("applicationPOJO", applicationPOJO);
 		return "applications/createApplicationForm";
 	}
 
 	@PostMapping(value = "/applications/{tournamentId}/new")
-	public String processCreateForm(@PathVariable("tournamentId") int tournamentId,
-			@Valid ApplicationPOJO applicationPOJO, BindingResult result, ModelMap model)
-			throws DataAccessException, DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException{
+	public String processCreateForm(@Valid ApplicationPOJO applicationPOJO, BindingResult result,
+			@PathVariable("tournamentId") int tournamentId, ModelMap model) throws DataAccessException,
+			DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException {
 
 		if (result.hasErrors()) {
-			Owner owner = this.ownerService.findOwnerByUserName();
-			model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 			model.put("applicationPOJO", applicationPOJO);
 			return "applications/createApplicationForm";
 		} else {
@@ -130,24 +140,22 @@ public class ApplicationController {
 			} catch (DuplicateApplicationException ex) {
 				result.rejectValue("pet", "You have already applied for this tournament",
 						"You have already applied for this tournament");
-				Owner owner = this.ownerService.findOwnerByUserName();
-				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+				model.put("applicationPOJO", applicationPOJO);
 				return "applications/createApplicationForm";
-			
+
 			} catch (InvalidPetTypeException ex) {
 				result.rejectValue("pet", "You can not apply to this tournament with that pet type",
 						"You can not apply to this tournament with that pet type");
 				Owner owner = this.ownerService.findOwnerByUserName();
-				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+				// model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 				return "applications/createApplicationForm";
 			} catch (InactiveTournamentException ex) {
 				result.rejectValue("pet", "This tournament no longer allows requests",
 						"This tournament no longer allows requests");
-				Owner owner = this.ownerService.findOwnerByUserName();
-				model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
+				model.put("applicationPOJO", applicationPOJO);
 				return "applications/createApplicationForm";
 			}
-	
+
 			return "redirect:/applications/list_mine";
 		}
 	}
@@ -161,17 +169,24 @@ public class ApplicationController {
 	}
 
 	@PostMapping(value = { "/applications/{applicationId}/edit" })
-	public String processUpdateForm(@PathVariable("applicationId") int applicationId, @Valid Application application,
-			BindingResult result, ModelMap model) throws DataAccessException {
+	public String processUpdateForm(@Valid Application application, BindingResult result,
+			@PathVariable("applicationId") int applicationId, ModelMap model) throws DataAccessException, InactiveTournamentException {
 
 		if (result.hasErrors()) {
 			model.put("application", application);
 			return "applications/updateApplicationForm";
 		} else {
 
-			application.setId(applicationId);
-			this.applicationService.updateApplication(application);
+			try {
 
+				application.setId(applicationId);
+				this.applicationService.updateApplication(application);
+			} catch (InactiveTournamentException ex) {
+				result.rejectValue("status", "The application date for this tournament has expired",
+						"The application date for this tournament has expired");
+				model.put("application", application);
+				return "applications/updateApplicationForm";
+			}
 			return "redirect:/applications/all";
 		}
 	}
