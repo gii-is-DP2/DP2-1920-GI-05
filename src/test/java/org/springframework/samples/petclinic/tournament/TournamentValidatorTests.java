@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.tournament;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
@@ -9,12 +9,16 @@ import javax.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.model.Category;
+import org.springframework.samples.petclinic.model.Money;
+import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.web.TournamentValidator;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-public class TournamentTests {
+public class TournamentValidatorTests {
 
 	// OJO Aquí habria que crear tournamentValidator
 	/*

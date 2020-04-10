@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.service;
+package org.springframework.samples.petclinic.field;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Collection;
@@ -24,6 +24,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

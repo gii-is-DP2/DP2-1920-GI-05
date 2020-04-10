@@ -58,8 +58,8 @@ public class TournamentFormatter implements Formatter<Tournament> {
 
 	@Override
 	public Tournament parse(String text, Locale locale) throws ParseException {
-		Collection<Tournament> findJudges = this.tournamentService.findAllTournament();
-		for (Tournament tournament : findJudges) {
+		Collection<Tournament> findTournaments = this.tournamentService.findAllTournament();
+		for (Tournament tournament : findTournaments) {
 			if (tournament.getName().equals(text)) {
 				return tournament;
 			}

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.service;
+package org.springframework.samples.petclinic.tournament;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
@@ -31,6 +31,11 @@ import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Money;
+import org.springframework.samples.petclinic.service.CategoryService;
+import org.springframework.samples.petclinic.service.FieldService;
+import org.springframework.samples.petclinic.service.JudgeService;
+import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,21 +96,21 @@ class TournamentServiceTest {
 	@Test
 	void shouldFindAllTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(6);
+		assertThat(tournaments.size()).isEqualTo(10);
 	}
 
 	// Find active Tournaments Positive Case
 	@Test
 	void shouldFindActiveTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
-		assertThat(tournaments.size()).isEqualTo(3);
+		assertThat(tournaments.size()).isEqualTo(8);
 	}
 	
 	// Find all tournaments by Judge ID Positive case
 	@Test
 	void shouldFindAllTournamentsByJudgeId() {
 		Collection<Tournament> tournaments = this.tournamentService.findTournamentByJudgeId(1);
-		assertThat(tournaments.size()).isEqualTo(5);
+		assertThat(tournaments.size()).isEqualTo(2);
 	}
 
 	
@@ -115,23 +120,16 @@ class TournamentServiceTest {
 				
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(7);
+		assertThat(tournaments.size()).isEqualTo(11);
 	}
 	
 	// Save Tournament Negative Case: Duplicated Name
 	@Test
 	@Transactional
 	public void shouldThrowExceptionInsertingTournamentWithTheSameName() {		
-		tournament.setName("Winbendoll tournament 3");
-		try {
-			tournamentService.saveTournament(tournament);		
-		} catch (DuplicateTournamentNameException e) {
-		
-			e.printStackTrace();
-		}
 		
 		Tournament anotherTournamentWithTheSameName = new Tournament();	
-		anotherTournamentWithTheSameName.setName("Winbendoll tournament 3");
+		anotherTournamentWithTheSameName.setName("Cats beauty contest 2019");
 		Assertions.assertThrows(DuplicateTournamentNameException.class, () ->{tournamentService.saveTournament(anotherTournamentWithTheSameName);});		
 	}
 	
@@ -141,7 +139,7 @@ class TournamentServiceTest {
 		tournament.setField(field);		
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(7);
+		assertThat(tournaments.size()).isEqualTo(11);
 		assertThat(tournament.getField()).isEqualTo(field);
 	}
 	
@@ -152,25 +150,16 @@ class TournamentServiceTest {
 		
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
-		assertThat(tournaments.size()).isEqualTo(7);
+		assertThat(tournaments.size()).isEqualTo(11);
 		assertThat(tournament.getJudge()).isEqualTo(judge);
 	}
 	
 	// Edit Tournament Negative Case: Updated Name to a name that is already taken
 	@Test
 	void shouldNotUpdateTournamentWithTheSameName() throws DataAccessException, DuplicateTournamentNameException {
-		tournament.setField(field);		
-		tournament.setJudge(judge);		
-		this.tournamentService.saveTournament(tournament);
-		try {
-			tournamentService.saveTournament(tournament);		
-		} catch (DuplicateTournamentNameException e) {
-		
-			e.printStackTrace();
-		}
 		
 		Tournament anotherTournamentWithTheSameName = new Tournament();	
-		anotherTournamentWithTheSameName.setName("Winbendoll tournament 3");
+		anotherTournamentWithTheSameName.setName("Cats beauty contest 2019");
 		Assertions.assertThrows(DuplicateTournamentNameException.class, () ->{tournamentService.saveTournament(anotherTournamentWithTheSameName);});		
 	}
 

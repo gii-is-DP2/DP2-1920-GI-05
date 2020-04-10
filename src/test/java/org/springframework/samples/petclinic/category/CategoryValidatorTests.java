@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.category;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,12 +8,13 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.web.CategoryValidator;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-public class CategoryTests {
+public class CategoryValidatorTests {
 	
 	//OJO Aquí habria que crear tournamentValidator
 	/*

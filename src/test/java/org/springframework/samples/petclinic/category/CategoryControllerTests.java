@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.category;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,6 +17,8 @@ import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.web.CategoryController;
+import org.springframework.samples.petclinic.web.OwnerController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;

@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.field;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,9 +8,10 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.model.Field;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-public class FieldTests {
+public class FieldValidatorTests {
 	
 	//OJO Aquí habria que crear tournamentValidator
 	/*
