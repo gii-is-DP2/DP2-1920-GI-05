@@ -1,11 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
 
-import org.springframework.samples.petclinic.model.Money;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;

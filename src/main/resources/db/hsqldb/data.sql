@@ -154,3 +154,18 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
+--VISITS--
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (1, 20, 'Sin comentarios', 1, 1);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (2, 30, 'Sin comentarios', 1, 2);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (3, 60, 'Sin comentarios', 1, 3);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (4, 40, 'Sin comentarios', 2, 1);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (5, 70, 'Sin comentarios', 2, 2);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id) 
+VALUES (6, 90, 'Sin comentarios', 2, 3);
+
+
