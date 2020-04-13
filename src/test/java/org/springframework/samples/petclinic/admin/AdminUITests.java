@@ -1,297 +1,186 @@
 package org.springframework.samples.petclinic.admin;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AdminUITests {
 	
+	@LocalServerPort
+	private int port;
+
+	private String username;
 	private WebDriver driver;
+	private String baseUrl;
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
 
 
 	@BeforeEach
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./src/test/java/resources/chromedriver/chromedriver.exe");
-		ChromeOptions chromeOptions = new ChromeOptions();
-		driver = new ChromeDriver(chromeOptions);
+		System.setProperty("webdriver.gecko.driver", "./src/test/java/resources/selenium/geckodriver.exe");
+		driver = new FirefoxDriver();
+		baseUrl = "https://www.google.com/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
-
+	
 	@Test
-	public void testProbandoCosasDelAdmin() throws Exception {
-		
-	    // Test name: Prueba admin
-	    // Step # | name | target | value
-	    // 1 | open | / | 
-	    driver.get("http://localhost:8080/");
-	    // 2 | setWindowSize | 945x1020 | 
-	    driver.manage().window().setSize(new Dimension(945, 1020));
-	    // 3 | click | id=login | 
-	    driver.findElement(By.id("login")).click();
-	    // 4 | type | id=username | admin1
-	    driver.findElement(By.id("username")).sendKeys("admin1");
-	    // 5 | click | id=password | 
-	    driver.findElement(By.id("password")).click();
-	    // 6 | type | id=password | 4dm1n
-	    driver.findElement(By.id("password")).sendKeys("4dm1n");
-	    // 7 | sendKeys | id=password | ${KEY_ENTER}
-	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    // 8 | click | css=#adminbar > strong | 
-	    driver.findElement(By.cssSelector("#adminbar > strong")).click();
-	    // 9 | click | id=allTournaments | 
-	    driver.findElement(By.id("allTournaments")).click();
-	    // 10 | click | linkText=Add tournament | 
-	    driver.findElement(By.linkText("Add tournament")).click();
-	    // 11 | click | id=name | 
-	    driver.findElement(By.id("name")).click();
-	    // 12 | type | id=name | Torneo de prueba
-	    driver.findElement(By.id("name")).sendKeys("Torneo de prueba");
-	    // 13 | click | id=location | 
-	    driver.findElement(By.id("location")).click();
-	    // 14 | click | id=location | 
-	    driver.findElement(By.id("location")).click();
-	    // 15 | doubleClick | id=location | 
-	    {
-	      WebElement element = driver.findElement(By.id("location"));
-	      Actions builder = new Actions(driver);
-	      builder.doubleClick(element).perform();
-	    }
-	    // 16 | type | id=location | Sevilla
-	    driver.findElement(By.id("location")).sendKeys("Sevilla");
-	    // 17 | select | id=category | label=Agility
-	    {
-	      WebElement dropdown = driver.findElement(By.id("category"));
-	      dropdown.findElement(By.xpath("//option[. = 'Agility']")).click();
-	    }
-	    // 18 | click | css=#category > option:nth-child(1) | 
-	    driver.findElement(By.cssSelector("#category > option:nth-child(1)")).click();
-	    // 19 | select | id=petType | label=Bird
-	    {
-	      WebElement dropdown = driver.findElement(By.id("petType"));
-	      dropdown.findElement(By.xpath("//option[. = 'Bird']")).click();
-	    }
-	    // 20 | click | css=#petType > option:nth-child(1) | 
-	    driver.findElement(By.cssSelector("#petType > option:nth-child(1)")).click();
-	    // 21 | select | id=field | label=Map 1
-	    {
-	      WebElement dropdown = driver.findElement(By.id("field"));
-	      dropdown.findElement(By.xpath("//option[. = 'Map 1']")).click();
-	    }
-	    // 22 | click | css=#field > option:nth-child(1) | 
-	    driver.findElement(By.cssSelector("#field > option:nth-child(1)")).click();
-	    // 23 | select | id=judge | label=Dacon
-	    {
-	      WebElement dropdown = driver.findElement(By.id("judge"));
-	      dropdown.findElement(By.xpath("//option[. = 'Dacon']")).click();
-	    }
-	    // 24 | click | css=#judge > option:nth-child(1) | 
-	    driver.findElement(By.cssSelector("#judge > option:nth-child(1)")).click();
-	    // 25 | click | css=#judge > option:nth-child(1) | 
-	    driver.findElement(By.cssSelector("#judge > option:nth-child(1)")).click();
-	    // 26 | doubleClick | css=#judge > option:nth-child(1) | 
-	    {
-	      WebElement element = driver.findElement(By.cssSelector("#judge > option:nth-child(1)"));
-	      Actions builder = new Actions(driver);
-	      builder.doubleClick(element).perform();
-	    }
-	    // 27 | click | id=applyDate | 
-	    driver.findElement(By.id("applyDate")).click();
-	    // 28 | type | id=applyDate | 2020/12/10
-	    driver.findElement(By.id("applyDate")).sendKeys("2020/12/10");
-	    // 29 | click | id=startDate | 
-	    driver.findElement(By.id("startDate")).click();
-	    // 30 | type | id=startDate | 2020/12/19
-	    driver.findElement(By.id("startDate")).sendKeys("2020/12/19");
-	    // 31 | click | id=endDate | 
-	    driver.findElement(By.id("endDate")).click();
-	    // 32 | type | id=endDate | 2020/12/21
-	    driver.findElement(By.id("endDate")).sendKeys("2020/12/21");
-	    // 33 | click | id=prize.amount | 
-	    driver.findElement(By.id("prize.amount")).click();
-	    // 34 | type | id=prize.amount | 10.00
-	    driver.findElement(By.id("prize.amount")).sendKeys("10.00");
-	    // 35 | click | id=prize.currency | 
-	    driver.findElement(By.id("prize.currency")).click();
-	    // 36 | type | id=prize.currency | EUR
-	    driver.findElement(By.id("prize.currency")).sendKeys("EUR");
-	    // 37 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 38 | click | css=tr:nth-child(11) > td:nth-child(1) | 
-	    driver.findElement(By.cssSelector("tr:nth-child(11) > td:nth-child(1)")).click();
-	    // 39 | click | linkText=Torneo de prueba | 
-	    driver.findElement(By.linkText("Torneo de prueba")).click();
-	    // 40 | click | id=name | 
-	    driver.findElement(By.id("name")).click();
-	    // 41 | type | id=name | Torneo de prueba 2
-	    driver.findElement(By.id("name")).sendKeys("Torneo de prueba 2");
-	    // 42 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 43 | click | id=adminbar | 
-	    driver.findElement(By.id("adminbar")).click();
-	    // 44 | click | id=allCategories | 
-	    driver.findElement(By.id("allCategories")).click();
-	    // 45 | click | linkText=Add category | 
-	    driver.findElement(By.linkText("Add category")).click();
-	    // 46 | click | id=name | 
-	    driver.findElement(By.id("name")).click();
-	    // 47 | type | id=name | Testing
-	    driver.findElement(By.id("name")).sendKeys("Testing");
-	    // 48 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 49 | click | css=#adminbar > strong | 
-	    driver.findElement(By.cssSelector("#adminbar > strong")).click();
-	    // 50 | click | id=allFields | 
-	    driver.findElement(By.id("allFields")).click();
-	    // 51 | click | linkText=Add Field | 
-	    driver.findElement(By.linkText("Add Field")).click();
-	    // 52 | click | id=name | 
-	    driver.findElement(By.id("name")).click();
-	    // 53 | type | id=name | Test map
-	    driver.findElement(By.id("name")).sendKeys("Test map");
-	    // 54 | click | id=photoURL | 
-	    driver.findElement(By.id("photoURL")).click();
-	    // 55 | type | id=photoURL | http://localhost:8080/
-	    driver.findElement(By.id("photoURL")).sendKeys("http://localhost:8080/");
-	    // 56 | mouseDownAt | id=photoURL | 197.171875,19
-	    {
-	      WebElement element = driver.findElement(By.id("photoURL"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element).clickAndHold().perform();
-	    }
-	    // 57 | mouseMoveAt | id=photoURL | 197.171875,19
-	    {
-	      WebElement element = driver.findElement(By.id("photoURL"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element).perform();
-	    }
-	    // 58 | mouseUpAt | id=photoURL | 197.171875,19
-	    {
-	      WebElement element = driver.findElement(By.id("photoURL"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element).release().perform();
-	    }
-	    // 59 | click | id=photoURL | 
-	    driver.findElement(By.id("photoURL")).click();
-	    // 60 | click | css=.form-group:nth-child(3) | 
-	    driver.findElement(By.cssSelector(".form-group:nth-child(3)")).click();
-	    // 61 | click | id=lenght | 
-	    driver.findElement(By.id("lenght")).click();
-	    // 62 | type | id=lenght | 10.00
-	    driver.findElement(By.id("lenght")).sendKeys("10.00");
-	    // 63 | click | css=.form-group:nth-child(4) | 
-	    driver.findElement(By.cssSelector(".form-group:nth-child(4)")).click();
-	    // 64 | click | id=breadth | 
-	    driver.findElement(By.id("breadth")).click();
-	    // 65 | type | id=breadth | 10.00
-	    driver.findElement(By.id("breadth")).sendKeys("10.00");
-	    // 66 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 67 | click | id=adminbar | 
-	    driver.findElement(By.id("adminbar")).click();
-	    // 68 | doubleClick | id=adminbar | 
-	    {
-	      WebElement element = driver.findElement(By.id("adminbar"));
-	      Actions builder = new Actions(driver);
-	      builder.doubleClick(element).perform();
-	    }
-	    // 69 | click | css=#adminbar > .glyphicon | 
-	    driver.findElement(By.cssSelector("#adminbar > .glyphicon")).click();
-	    // 70 | click | id=allApplications | 
-	    driver.findElement(By.id("allApplications")).click();
-	    // 71 | click | css=tr:nth-child(5) > td:nth-child(1) > a | 
-	    driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(1) > a")).click();
-	    // 72 | click | css=#adminbar > strong | 
-	    driver.findElement(By.cssSelector("#adminbar > strong")).click();
-	    // 73 | click | id=allApplications | 
-	    driver.findElement(By.id("allApplications")).click();
-	    // 74 | click | css=tr:nth-child(5) > td:nth-child(6) > a | 
-	    driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(6) > a")).click();
-	    // 75 | select | id=status | label=ACCEPTED
-	    {
-	      WebElement dropdown = driver.findElement(By.id("status"));
-	      dropdown.findElement(By.xpath("//option[. = 'ACCEPTED']")).click();
-	    }
-	    // 76 | click | css=option:nth-child(2) | 
-	    driver.findElement(By.cssSelector("option:nth-child(2)")).click();
-	    // 77 | click | css=option:nth-child(2) | 
-	    driver.findElement(By.cssSelector("option:nth-child(2)")).click();
-	    // 78 | doubleClick | css=option:nth-child(2) | 
-	    {
-	      WebElement element = driver.findElement(By.cssSelector("option:nth-child(2)"));
-	      Actions builder = new Actions(driver);
-	      builder.doubleClick(element).perform();
-	    }
-	    // 79 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 80 | click | id=adminbar | 
-	    driver.findElement(By.id("adminbar")).click();
-	    // 81 | click | id=newJudge | 
-	    driver.findElement(By.id("newJudge")).click();
-	    // 82 | click | css=.xd-container | 
-	    driver.findElement(By.cssSelector(".xd-container")).click();
-	    // 83 | click | css=.xd-container | 
-	    driver.findElement(By.cssSelector(".xd-container")).click();
-	    // 84 | doubleClick | css=.xd-container | 
-	    {
-	      WebElement element = driver.findElement(By.cssSelector(".xd-container"));
-	      Actions builder = new Actions(driver);
-	      builder.doubleClick(element).perform();
-	    }
-	    // 85 | click | id=firstName | 
-	    driver.findElement(By.id("firstName")).click();
-	    // 86 | type | id=firstName | Shane
-	    driver.findElement(By.id("firstName")).sendKeys("Shane");
-	    // 87 | click | id=lastName | 
-	    driver.findElement(By.id("lastName")).click();
-	    // 88 | type | id=lastName | Michel
-	    driver.findElement(By.id("lastName")).sendKeys("Michel");
-	    // 89 | click | id=address | 
-	    driver.findElement(By.id("address")).click();
-	    // 90 | type | id=address | Santa Street
-	    driver.findElement(By.id("address")).sendKeys("Santa Street");
-	    // 91 | click | id=city | 
-	    driver.findElement(By.id("city")).click();
-	    // 92 | click | id=city | 
-	    driver.findElement(By.id("city")).click();
-	    // 93 | type | id=city | Boston
-	    driver.findElement(By.id("city")).sendKeys("Boston");
-	    // 94 | click | id=telephone | 
-	    driver.findElement(By.id("telephone")).click();
-	    // 95 | type | id=telephone | 999666111
-	    driver.findElement(By.id("telephone")).sendKeys("999666111");
-	    // 96 | click | id=user.username | 
-	    driver.findElement(By.id("user.username")).click();
-	    // 97 | type | id=user.username | shane
-	    driver.findElement(By.id("user.username")).sendKeys("shane");
-	    // 98 | click | id=user.password | 
-	    driver.findElement(By.id("user.password")).click();
-	    // 99 | type | id=user.password | michael
-	    driver.findElement(By.id("user.password")).sendKeys("michael");
-	    // 100 | click | css=.btn-default | 
-	    driver.findElement(By.cssSelector(".btn-default")).click();
-	    // 101 | click | css=.dropdown:nth-child(1) > .dropdown-toggle | 
-	    driver.findElement(By.cssSelector(".dropdown:nth-child(1) > .dropdown-toggle")).click();
-	    // 102 | click | id=logout | 
-	    driver.findElement(By.id("logout")).click();
-	    // 103 | click | css=.btn | 
-	    driver.findElement(By.cssSelector(".btn")).click();	   
-
-
-		
+	public void testLoginAsAdmin() throws Exception {
+		as("admin1").whenIamLoggedIntheSystem().testProbandoCosasDelAdmin();;
 	}
 
+	private void thenISeeMyUsernameInTheMenuBar() {
+		assertEquals(username.toUpperCase(),
+				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
+
+	}
+
+	private AdminUITests whenIamLoggedIntheSystem() {
+		return this;
+	}
+
+	private AdminUITests as(String username) {
+		this.username = username;
+		driver.get("http://localhost:"+port);
+		driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(passwordOf(username));
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(username);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		return this;
+	}
+	
+	private CharSequence passwordOf(String username) {
+		return "4dm1n";
+	}
+
+
+
+	public void testProbandoCosasDelAdmin() throws Exception {				   
+	    driver.findElement(By.xpath("//a[@id='adminbar']/strong")).click();
+	    driver.findElement(By.id("allTournaments")).click();
+	    driver.findElement(By.linkText("Add tournament")).click();
+	    driver.findElement(By.id("name")).click();
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("Cats tournament 2020");
+	    driver.findElement(By.id("location")).click();
+	    driver.findElement(By.id("location")).clear();
+	    driver.findElement(By.id("location")).sendKeys("Seville");
+	    new Select(driver.findElement(By.id("category"))).selectByVisibleText("Disc");
+	    driver.findElement(By.xpath("//option[@value='Disc']")).click();
+	    new Select(driver.findElement(By.id("petType"))).selectByVisibleText("Cat");
+	    driver.findElement(By.xpath("//option[@value='Cat']")).click();
+	    driver.findElement(By.id("applyDate")).click();
+	    driver.findElement(By.id("applyDate")).clear();
+	    driver.findElement(By.id("applyDate")).sendKeys("2020/12/10");
+	    driver.findElement(By.id("startDate")).click();
+	    driver.findElement(By.id("startDate")).clear();
+	    driver.findElement(By.id("startDate")).sendKeys("2020/12/14");
+	    driver.findElement(By.id("endDate")).click();
+	    driver.findElement(By.id("endDate")).clear();
+	    driver.findElement(By.id("endDate")).sendKeys("2020/12/18");
+	    driver.findElement(By.id("prize.amount")).click();
+	    driver.findElement(By.id("prize.amount")).clear();
+	    driver.findElement(By.id("prize.amount")).sendKeys("100.00");
+	    driver.findElement(By.id("prize.currency")).click();
+	    driver.findElement(By.id("prize.currency")).clear();
+	    driver.findElement(By.id("prize.currency")).sendKeys("EUR");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.linkText("Cats tournament 2020")).click();
+	    new Select(driver.findElement(By.id("category"))).selectByVisibleText("Obstacles");
+	    driver.findElement(By.xpath("//option[@value='Obstacles']")).click();
+	    new Select(driver.findElement(By.id("judge"))).selectByVisibleText("Dredd");
+	    driver.findElement(By.xpath("//option[@value='Dredd']")).click();
+	    new Select(driver.findElement(By.id("field"))).selectByVisibleText("Map 10");
+	    driver.findElement(By.xpath("//option[@value='Map 10']")).click();
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.id("adminbar")).click();
+	    driver.findElement(By.id("allCategories")).click();
+	    driver.findElement(By.linkText("Add category")).click();
+	    driver.findElement(By.id("name")).click();
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("Dogde");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.id("adminbar")).click();
+	    driver.findElement(By.id("allFields")).click();
+	    driver.findElement(By.linkText("Add Field")).click();
+	    driver.findElement(By.id("name")).click();
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("Dogde map");
+	    driver.findElement(By.id("photoURL")).click();
+	    driver.findElement(By.id("photoURL")).clear();
+	    driver.findElement(By.id("photoURL")).sendKeys("http://localhost:8080/");
+	    driver.findElement(By.id("lenght")).click();
+	    driver.findElement(By.id("lenght")).clear();
+	    driver.findElement(By.id("lenght")).sendKeys("23.00");
+	    driver.findElement(By.id("breadth")).click();
+	    driver.findElement(By.id("breadth")).clear();
+	    driver.findElement(By.id("breadth")).sendKeys("24.00");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.id("adminbar")).click();
+	    driver.findElement(By.id("newJudge")).click();
+	    driver.findElement(By.id("firstName")).click();
+	    driver.findElement(By.id("firstName")).clear();
+	    driver.findElement(By.id("firstName")).sendKeys("Michael");
+	    driver.findElement(By.id("lastName")).click();
+	    driver.findElement(By.id("lastName")).clear();
+	    driver.findElement(By.id("lastName")).sendKeys("Finn");
+	    driver.findElement(By.id("address")).click();
+	    driver.findElement(By.id("address")).clear();
+	    driver.findElement(By.id("address")).sendKeys("Santa Street");
+	    driver.findElement(By.id("city")).click();
+	    driver.findElement(By.id("city")).click();
+	    driver.findElement(By.id("city")).clear();
+	    driver.findElement(By.id("city")).sendKeys("Boston");
+	    driver.findElement(By.id("telephone")).click();
+	    driver.findElement(By.id("telephone")).clear();
+	    driver.findElement(By.id("telephone")).sendKeys("978124786");
+	    driver.findElement(By.id("user.username")).click();
+	    driver.findElement(By.id("user.username")).clear();
+	    driver.findElement(By.id("user.username")).sendKeys("michael");
+	    driver.findElement(By.id("user.password")).click();
+	    driver.findElement(By.id("user.password")).clear();
+	    driver.findElement(By.id("user.password")).sendKeys("justice");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
+	    driver.findElement(By.id("logout")).click();
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.id("login")).click();
+	    driver.findElement(By.id("username")).click();
+	    driver.findElement(By.id("username")).clear();
+	    driver.findElement(By.id("username")).sendKeys("michael");
+	    driver.findElement(By.id("password")).click();
+	    driver.findElement(By.id("password")).clear();
+	    driver.findElement(By.id("password")).sendKeys("justice");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+		
+	}
+	
 	@AfterEach
 	public void tearDown() throws Exception {
 		driver.quit();
+		String verificationErrorString = verificationErrors.toString();
+		if (!"".equals(verificationErrorString)) {
+			fail(verificationErrorString);
+		}
 	}
+
+
 }

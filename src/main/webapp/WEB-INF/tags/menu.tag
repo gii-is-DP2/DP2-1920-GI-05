@@ -72,21 +72,21 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('owner')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="ownerbar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <strong>Owner</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/applications/list_mine" />">My applications
+							<li><a id="myapplist" href="<c:url value="/applications/list_mine" />">My applications
 									</a></li>
-						<li><a href="<c:url value="/owners/details" />">My profile
+						<li><a id="profile" href="<c:url value="/owners/details" />">My profile
 									</a></li>		
 						</ul></li>
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('judge')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"><strong>Jugde</strong> <span
+						data-toggle="dropdown"><strong>Judge</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
 						<li><a href="<c:url value="/judges/details" />">My profile
@@ -111,13 +111,13 @@
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a id="login" href="<c:url value="/login" />">Login</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="signinbar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Sign in</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 					<ul class="dropdown-menu">
-							<li><a href="<c:url value="/users/new" />">As Owner
+							<li><a id="signowner" href="<c:url value="/users/new" />">As Owner
 									</a></li>
-						<li><a href="<c:url value="/guides/new" />">As Guide
+						<li><a id="signguide" href="<c:url value="/guides/new" />">As Guide
 									</a></li>		
 						</ul>
 					
