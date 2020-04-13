@@ -22,33 +22,17 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
-	private OwnerService ownerService;
-	private JudgeService  jugdeService;
-	private GuideService guideService;
+
 	
 	@Autowired
-	public WelcomeController(OwnerService ownerService, JudgeService  jugdeService, GuideService guideService) {
-		this.ownerService = ownerService;
-		this.jugdeService = jugdeService;
-		this.guideService = guideService;	
+	public WelcomeController() {
 
 	}
 
 	@GetMapping({ "/", "/welcome" })
 	public String welcome(Map<String, Object> model) {
 		
-		
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}
-		
-		if(this.jugdeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.jugdeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
+	
 
 		return "welcome";
 	}

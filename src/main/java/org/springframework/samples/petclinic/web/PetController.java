@@ -111,7 +111,7 @@ public class PetController {
                         result.rejectValue("name", "duplicate", "already exists");
                         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
                     }
-                    return "redirect:/owners/{ownerId}";
+                    return "redirect:/owners/details";
 		}
 	}
 

@@ -26,8 +26,8 @@
 		<webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.2.4</webjars-jquery.version>
 		<wro4j.version>1.8.0</wro4j.version>
-
 		<jacoco.version>0.8.5</jacoco.version>
+		<selenium.version>3.141.59</selenium.version>
 		<spring-format.version>0.0.19</spring-format.version>
 
 
@@ -141,25 +141,30 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Selenium dependences -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
-			
+			<version>${selenium.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
-
+			<version>${selenium.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-
+			<version>${selenium.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
-
+			<version>${selenium.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -179,6 +184,7 @@
 						<configuration>
 							<excludes>
 								<exclude>**/*AdminUITests.java</exclude>
+								<exclude>**/*OwnerUITests.java</exclude>
 							</excludes>
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>
