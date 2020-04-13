@@ -39,6 +39,14 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
+				
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'reports'}" url="/myReports/"
+					title="My reports">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>My reports</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
