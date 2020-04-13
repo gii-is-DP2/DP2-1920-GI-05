@@ -125,6 +125,8 @@ INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tour
 VALUES (4,'PENDING', '2020-11-02', '363017956100486', 2, 4, 9);
 INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new lizard application from owner3 -- 
 VALUES (5,'REJECTED', '2020-11-03', '379254492621186', 3, 5, 10);
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat application from ownwer6 -- 
+VALUES (6,'ACCEPTED', '2019-09-20', '379254492621186', 6, 12, 1);
 
 --VETS--
 INSERT INTO users(username,password,enabled) VALUES ('vet1','ve3t1',FALSE);

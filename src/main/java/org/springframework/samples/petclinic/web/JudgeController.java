@@ -100,6 +100,7 @@ public class JudgeController {
 		
 		Collection<Tournament> tournaments = tournamentService.findTournamentByJudgeId(judgeId);
 		model.put("tournaments",tournaments);
+		model.put("judge", judgeService.findJudgeById(judgeId));
 		return "judges/tournaments";
 	}
 
