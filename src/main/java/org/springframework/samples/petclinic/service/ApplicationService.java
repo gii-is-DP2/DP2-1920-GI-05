@@ -67,6 +67,11 @@ public class ApplicationService {
 	}
 
 	@Transactional
+	public Collection<Application> findApplicationsByTournamentId(int tournamentId) throws DataAccessException {
+		return applicationRepository.findApplicationsByTournamentId(tournamentId);
+	}
+
+	@Transactional
 	public Collection<Application> findAllApplications() throws DataAccessException {
 		return applicationRepository.findAllApplications();
 	}

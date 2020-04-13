@@ -6,7 +6,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="judges">
-	<h2>Owners</h2>
+	<h2>Tournaments</h2>
 
 	<table id="tournaments" class="table table-striped">
 		<thead>
@@ -15,6 +15,7 @@
 				<th>Location</th>
 				<th>Category</th>
 				<th>Type</th>
+				<th>Do a report</th>
 
 
 			</tr>
@@ -26,6 +27,14 @@
 					<td><c:out value="${tournament.location} " /></td>
 					<td><c:out value="${tournament.category} " /></td>
 					<td><c:out value="${tournament.petType} " /></td>
+
+					<td>
+						<spring:url value="/judges/{judgeId}/reports/{tournamentId}/new" var="reportURL">
+						<spring:param name="judgeId" value="${judge.id}"/>
+						<spring:param name="tournamentId" value="${tournament.id}"/>
+						</spring:url>
+					<a href="${fn:escapeXml(reportURL)}" class="btn btn-default">New Report</a>
+					</td>
 
 				</tr>
 			</c:forEach>

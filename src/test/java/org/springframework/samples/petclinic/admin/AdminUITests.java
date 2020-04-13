@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.admin;
+/* package org.springframework.samples.petclinic.admin;
 
 import java.util.concurrent.TimeUnit;
 
@@ -295,3 +295,4 @@ public class AdminUITests {
 		driver.quit();
 	}
 }
+ */

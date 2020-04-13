@@ -14,12 +14,13 @@
                    class="form-horizontal">
             <input type="hidden" name="id" value="${report.id}"/>
             <input type="hidden" name="id" value="${report.judge}"/>
+            <input type="hidden" name="id" value="${report.tournament}"/>
             <div class="form-group has-feedback">
         
                 <petclinic:inputField label="Points" name="points"/>
                 <petclinic:inputField label="Comments" name="comments"/>
                 <div class="control-group">
-                    <petclinic:selectField name="tournament" label="Tournament " names="${tournaments}" size="5"/>
+                    <petclinic:selectField name="pet" label="Pet " names="${pets}" size="5"/>
                 </div>
             </div>
             <div class="form-group">

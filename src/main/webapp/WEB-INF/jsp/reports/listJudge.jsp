@@ -27,12 +27,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
 	
-	<spring:url value="/judges/{judgeId}/reports/new" var="reportURL">
-		<spring:param name="judgeId" value="${judge.id}"/>
-	</spring:url>
-	<a href="${fn:escapeXml(reportURL)}" class="btn btn-default">New Report</a>
-	
-
 </petclinic:layout>
