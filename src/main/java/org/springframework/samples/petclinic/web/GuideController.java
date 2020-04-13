@@ -22,8 +22,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Guide;
+import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.GuideService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -45,10 +48,12 @@ public class GuideController {
 	private static final String VIEWS_GUIDE_CREATE_OR_UPDATE_FORM = "guides/createOrUpdateGuideForm";
 
 	private final GuideService guideService;
+	private final PetService petService;			
 
 	@Autowired
-	public GuideController(GuideService guideService, UserService userService, AuthoritiesService authoritiesService) {
+	public GuideController(GuideService guideService, PetService petService, UserService userService, AuthoritiesService authoritiesService) {
 		this.guideService = guideService;
+		this.petService =  petService;
 	}
 
 	@InitBinder
@@ -100,5 +105,14 @@ public class GuideController {
 		mav.addObject(this.guideService.findGuideByUserName());
 		return mav;
 	}
+	
+	@GetMapping(value = "/guides/{guideId}/pets")
+	public String initPets4Guide(@PathVariable("guideId") int guideId, Map<String, Object> model) {
+		
+		Collection<Pet> pets = petService.findPetByGuideId(guideId);
+		model.put("pets",pets);
+		return "guides/pets";
+	}
+
 
 }

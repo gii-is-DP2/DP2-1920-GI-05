@@ -61,4 +61,6 @@ public interface PetRepository {
 
 	List<Pet> findAllPets() throws DataAccessException;
 
+	Collection<Pet> findPetByGuideId(int guideId) throws DataAccessException;
+
 }
