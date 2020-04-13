@@ -177,6 +177,9 @@
 							<goal>build-info</goal>
 						</goals>
 						<configuration>
+							<excludes>
+								<exclude>**/*AdminUITests.java</exclude>
+							</excludes>
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>
 								<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>

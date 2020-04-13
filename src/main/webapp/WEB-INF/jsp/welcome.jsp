@@ -5,7 +5,7 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
 <petclinic:layout pageName="home">
-    <h2>Welcome to PeTournament ${owner.firstName}  ${owner.lastName}  ${guide.firstName}  ${guide.lastName}  ${judge.firstName}  ${judge.lastName}</h2>
+    <h2>Welcome to PeTournament </h2>
     <div class="row">
         <div class="col-md-12">
             <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>

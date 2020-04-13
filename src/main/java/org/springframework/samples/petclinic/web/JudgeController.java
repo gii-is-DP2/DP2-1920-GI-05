@@ -62,10 +62,10 @@ public class JudgeController {
 		if (result.hasErrors()) {
 			return "judges/createOrUpdateJudgeForm";
 		} else {
-			// creating owner, user and authorities
+			// creating judge, user and authorities
 			this.judgeService.saveJudge(judge);
 
-			return "redirect:/judges/details";
+			return "welcome";
 		}
 	}
 
@@ -84,7 +84,7 @@ public class JudgeController {
 		} else {
 			judge.setId(judgeId);
 			this.judgeService.saveJudge(judge);
-			return "welcome";
+			return "redirect:/judges/details";
 		}
 	}
 

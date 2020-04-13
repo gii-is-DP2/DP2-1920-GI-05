@@ -51,15 +51,15 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('admin')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="adminbar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Admin</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/tournaments/all" />">All tournaments</a></li>
-							<li><a href="<c:url value="/categories/all" />"> All categories</a></li>
-							<li><a href="<c:url value="/fields/all" />"> All fields</a></li>
-							<li><a href="<c:url value="/applications/all" />"> All applications</a></li>
-							<li><a href="<c:url value="/judges/new" />">Register a Judge	</a></li>
+							<li><a id="allTournaments" href="<c:url value="/tournaments/all" />">All tournaments</a></li>
+							<li><a id="allCategories" href="<c:url value="/categories/all" />"> All categories</a></li>
+							<li><a id="allFields" href="<c:url value="/fields/all" />"> All fields</a></li>
+							<li><a id="allApplications" href="<c:url value="/applications/all" />"> All applications</a></li>
+							<li><a id="newJudge" href="<c:url value="/judges/new" />">Register a Judge	</a></li>
 						</ul></li>
 				</sec:authorize>
 
@@ -102,7 +102,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
+					<li><a id="login" href="<c:url value="/login" />">Login</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Sign in</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
@@ -135,7 +135,7 @@
 												<strong><sec:authentication property="name" /></strong>
 											</p>
 											<p class="text-left">
-												<a href="<c:url value="/logout" />"
+												<a id="logout" href="<c:url value="/logout" />"
 													class="btn btn-primary btn-block btn-sm">Logout</a>
 											</p>
 										</div>

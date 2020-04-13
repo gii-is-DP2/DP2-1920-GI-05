@@ -77,7 +77,7 @@ INSERT INTO categories(id,name) VALUES (6,'Disc');
 
 --TOURNAMENTS--
 INSERT INTO tournaments(id, name, apply_date, start_date, end_date, location, amount, currency , category_id, pet_type_id, field_id, judge_id) 
-VALUES (1, 'Cats beauty contest 2019', '2019-10-10', '2019-12-11',  '2019-01-13', 'Sevilla', 120.00, '€', 4, 1, 1, 1); -- old cats tournament --
+VALUES (1, 'Cats beauty contest 2019', '2019-10-10', '2019-12-11',  '2019-12-13', 'Sevilla', 120.00, '€', 4, 1, 1, 1); -- old cats tournament --
 INSERT INTO tournaments(id, name, apply_date, start_date, end_date, location, amount, currency , category_id, pet_type_id, field_id, judge_id) 
 VALUES (2, 'Dogs obedience contest 2019', '2019-12-04', '2019-01-05',  '2019-01-07', 'Sevilla', 250.00, '€', 5, 2, 2, 1); -- old dogs tournament -- 
 INSERT INTO tournaments(id, name, apply_date, start_date, end_date, location, amount, currency , category_id, pet_type_id, field_id, judge_id) 

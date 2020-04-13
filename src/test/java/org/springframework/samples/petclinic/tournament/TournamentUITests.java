@@ -18,8 +18,7 @@ public class TournamentUITests {
 
 	@BeforeEach
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./src/test/java/resources/chromedriver/chromedriver.exe");
-	
+		System.setProperty("webdriver.chrome.driver", "./src/test/java/resources/chromedriver/chromedriver.exe");	
 		ChromeOptions chromeOptions = new ChromeOptions();
 		driver = new ChromeDriver(chromeOptions);
 	}
