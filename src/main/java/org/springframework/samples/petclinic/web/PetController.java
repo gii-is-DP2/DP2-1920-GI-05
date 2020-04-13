@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Guide;
+import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -35,6 +37,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
@@ -52,11 +55,13 @@ public class PetController {
 
 	private final PetService petService;
         private final OwnerService ownerService;
+        private final GuideService  guideService;
 
 	@Autowired
-	public PetController(PetService petService, OwnerService ownerService) {
+	public PetController(PetService petService, GuideService  guideService, OwnerService ownerService) {
 		this.petService = petService;
                 this.ownerService = ownerService;
+                this.guideService = guideService;
 	}
 
 	@ModelAttribute("types")
@@ -78,6 +83,11 @@ public class PetController {
                     result=new Pet();
             return result;
 	}*/
+	
+	@ModelAttribute("guides")
+	public Collection<Guide> populateGuides() {
+		return this.guideService.findAllGuides();
+	}
                 
 	@InitBinder("owner")
 	public void initOwnerBinder(WebDataBinder dataBinder) {
