@@ -71,7 +71,7 @@ public class GuideController {
 			// creating guide, user and authorities
 			this.guideService.saveGuide(guide);
 
-			return "redirect/guides/details";
+			return "welcome";
 		}
 	}
 
@@ -90,7 +90,7 @@ public class GuideController {
 		} else {
 			guide.setId(guideId);
 			this.guideService.saveGuide(guide);
-			return "welcome";
+			return "redirect/guides/details";
 		}
 	}
 
