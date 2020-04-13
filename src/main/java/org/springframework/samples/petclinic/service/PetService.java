@@ -22,6 +22,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
@@ -87,5 +88,11 @@ public class PetService {
 	public Collection<Pet> findAllPets() {
 		return this.petRepository.findAllPets();
 	}
+	
+	@Transactional()
+	 public Collection<Pet> findPetByGuideId(int guideId) throws DataAccessException {
+			return petRepository.findPetByGuideId(guideId);
+		}
+
 
 }
