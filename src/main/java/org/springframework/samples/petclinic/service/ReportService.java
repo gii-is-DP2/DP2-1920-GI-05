@@ -1,9 +1,12 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Report;
 import org.springframework.samples.petclinic.repository.ReportRepository;
@@ -37,5 +40,19 @@ public class ReportService {
 	public Collection<Report> findAll() {
 		return this.reportRepository.findAll();
 	}
+	
+	public List<Report> findByPetId(int id){
+		return this.reportRepository.findByPetId(id);
+	}
+	
+	public List<Report> findAllReportsFromAnOwner(Owner owner){
+		List<Report> reports = new ArrayList<Report>();
+		for (Pet p : owner.getPets()) {
+			reports.addAll(findByPetId(p.getId()));
+		}
+		return reports;
+	}
+	
+	
 
 }

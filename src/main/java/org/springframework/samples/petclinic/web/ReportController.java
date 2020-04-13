@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Report;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.JudgeService;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -25,13 +28,15 @@ public class ReportController {
 	private final ReportService reportService;
 	private final TournamentService tournamentService;
 	private final JudgeService judgeService;
+	private final OwnerService ownerService;
 
 	@Autowired
 	public ReportController(ReportService reportService, 
-	TournamentService tournamentService, JudgeService judgeService) {
+	TournamentService tournamentService, JudgeService judgeService, OwnerService ownerService) {
 		this.reportService = reportService;
 		this.tournamentService = tournamentService;
 		this.judgeService = judgeService;
+		this.ownerService = ownerService;
 
 	}
 
@@ -79,6 +84,17 @@ public class ReportController {
             return "redirect:/judges/{judgeId}/reports";
 		}
 	}
+	
+	//Reports of my pets
+	
+	@GetMapping(value = "/myReports/")
+	public String initMyReports(Map<String, Object> model) {
+		
+		Collection<Report> reports = reportService.findAllReportsFromAnOwner(ownerService.findOwnerByUserName());
+		model.put("reports",reports);
+		return "reports/listOwner";
+	}
+	
 
 
 
