@@ -102,7 +102,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
+					<li><a id="login" href="<c:url value="/login" />">Login</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Sign in</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
