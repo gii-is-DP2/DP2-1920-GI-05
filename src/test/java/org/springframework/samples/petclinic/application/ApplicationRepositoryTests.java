@@ -25,7 +25,7 @@ public class ApplicationRepositoryTests {
 				
 		Collection<Application> allApplications = this.applicationRepository.findAllApplications();
 		
-		assertThat(allApplications.size()).isEqualTo(5);	
+		assertThat(allApplications.size()).isEqualTo(6);	
 	}
 	
 	// Repository test: List all applications by one owner

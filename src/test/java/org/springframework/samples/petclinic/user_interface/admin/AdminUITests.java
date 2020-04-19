@@ -1,4 +1,4 @@
-/* package org.springframework.samples.petclinic.admin;
+package org.springframework.samples.petclinic.user_interface.admin;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -41,21 +41,27 @@ public class AdminUITests {
 	}
 	
 	@Test
-	public void testLoginAsAdmin() throws Exception {
-		as("admin1").whenIamLoggedIntheSystem().testProbandoCosasDelAdmin();;
+	public void testCreateTournament() throws Exception {
+		as("admin1").testProbandoCreateTournament().thenISeeMyUsernameInTheMenuBar();
 	}
-
-	private void thenISeeMyUsernameInTheMenuBar() {
-		assertEquals(username.toUpperCase(),
-				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
-
+	
+	@Test
+	public void testCreateJudge() throws Exception {		
+		as("admin1").testProbandoCreateJudge();
 	}
-
-	private AdminUITests whenIamLoggedIntheSystem() {
-		return this;
+	
+	@Test
+	public void testCreateCategory() throws Exception {		
+		as("admin1").testProbandoCreateCategory().thenISeeMyUsernameInTheMenuBar();;
 	}
+	
+	@Test
+	public void testCreateField() throws Exception {		
+		as("admin1").testProbandoCreateField().thenISeeMyUsernameInTheMenuBar();;
+	}
+	
 
-	private AdminUITests as(String username) {
+	private AdminUITests as(String username) {		
 		this.username = username;
 		driver.get("http://localhost:"+port);
 		driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
@@ -66,14 +72,9 @@ public class AdminUITests {
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		return this;
 	}
-	
-	private CharSequence passwordOf(String username) {
-		return "4dm1n";
-	}
 
 
-
-	public void testProbandoCosasDelAdmin() throws Exception {				   
+	public AdminUITests testProbandoCreateTournament() throws Exception {				   
 	    driver.findElement(By.xpath("//a[@id='adminbar']/strong")).click();
 	    driver.findElement(By.id("allTournaments")).click();
 	    driver.findElement(By.linkText("Add tournament")).click();
@@ -111,6 +112,12 @@ public class AdminUITests {
 	    new Select(driver.findElement(By.id("field"))).selectByVisibleText("Map 10");
 	    driver.findElement(By.xpath("//option[@value='Map 10']")).click();
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    
+	    return this;
+		
+	}
+	
+	private AdminUITests testProbandoCreateCategory() {
 	    driver.findElement(By.id("adminbar")).click();
 	    driver.findElement(By.id("allCategories")).click();
 	    driver.findElement(By.linkText("Add category")).click();
@@ -118,22 +125,12 @@ public class AdminUITests {
 	    driver.findElement(By.id("name")).clear();
 	    driver.findElement(By.id("name")).sendKeys("Dogde");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    driver.findElement(By.id("adminbar")).click();
-	    driver.findElement(By.id("allFields")).click();
-	    driver.findElement(By.linkText("Add Field")).click();
-	    driver.findElement(By.id("name")).click();
-	    driver.findElement(By.id("name")).clear();
-	    driver.findElement(By.id("name")).sendKeys("Dogde map");
-	    driver.findElement(By.id("photoURL")).click();
-	    driver.findElement(By.id("photoURL")).clear();
-	    driver.findElement(By.id("photoURL")).sendKeys("http://localhost:8080/");
-	    driver.findElement(By.id("lenght")).click();
-	    driver.findElement(By.id("lenght")).clear();
-	    driver.findElement(By.id("lenght")).sendKeys("23.00");
-	    driver.findElement(By.id("breadth")).click();
-	    driver.findElement(By.id("breadth")).clear();
-	    driver.findElement(By.id("breadth")).sendKeys("24.00");
-	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    
+		return this;
+	}
+	
+	public AdminUITests testProbandoCreateJudge() throws Exception {			
+		
 	    driver.findElement(By.id("adminbar")).click();
 	    driver.findElement(By.id("newJudge")).click();
 	    driver.findElement(By.id("firstName")).click();
@@ -171,17 +168,50 @@ public class AdminUITests {
 	    driver.findElement(By.id("password")).sendKeys("justice");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 		
+		return this;
+	}
+	
+	public AdminUITests testProbandoCreateField() throws Exception {			  
+	    driver.findElement(By.id("adminbar")).click();
+	    driver.findElement(By.id("allFields")).click();
+	    driver.findElement(By.linkText("Add Field")).click();
+	    driver.findElement(By.id("name")).click();
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("Dogde map");
+	    driver.findElement(By.id("photoURL")).click();
+	    driver.findElement(By.id("photoURL")).clear();
+	    driver.findElement(By.id("photoURL")).sendKeys("http://localhost:8080/");
+	    driver.findElement(By.id("lenght")).click();
+	    driver.findElement(By.id("lenght")).clear();
+	    driver.findElement(By.id("lenght")).sendKeys("23.00");
+	    driver.findElement(By.id("breadth")).click();
+	    driver.findElement(By.id("breadth")).clear();
+	    driver.findElement(By.id("breadth")).sendKeys("24.00");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    
+	    return this;
+		
 	}
 	
 	@AfterEach
 	public void tearDown() throws Exception {
+
 		driver.quit();
 		String verificationErrorString = verificationErrors.toString();
 		if (!"".equals(verificationErrorString)) {
 			fail(verificationErrorString);
 		}
 	}
+	
+	private CharSequence passwordOf(String username) {
+		return "4dm1n";
+	}
+	
+	private void thenISeeMyUsernameInTheMenuBar() {		
+		assertEquals(username.toUpperCase(),
+				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
 
+	}
 
 }
- */
+ 

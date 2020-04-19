@@ -85,11 +85,11 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('judge')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="judgebar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Judge</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-						<li><a href="<c:url value="/judges/details" />">My profile
+						<li><a id="profile" href="<c:url value="/judges/details" />">My profile
 									</a></li>		
 						</ul></li>
 				</sec:authorize>

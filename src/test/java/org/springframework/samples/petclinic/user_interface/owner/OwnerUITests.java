@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.user_interface.owner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.samples.petclinic.user_interface.judge.JudgeUITests;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -41,18 +42,29 @@ public class OwnerUITests {
 	}
 	
 	@Test
-	public void testLoginAsAdmin() throws Exception {
-		testProbandoCosasDelOwner();
+	public void testCreatePet() throws Exception {
+		testProbandoCosasDelOwner().thenISeeMyUsernameInTheMenuBar();
+	}
+	
+	@Test
+	public void testOwner() throws Exception {
+		testProbandoCosasDelOwner().thenISeeMyUsernameInTheMenuBar();
 	}
 
 
 
+	private void thenISeeMyUsernameInTheMenuBar() {		
+		assertEquals(username.toUpperCase(),
+				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
+	}
 
-
+	private OwnerUITests whenIamLoggedIntheSystem() {
+		return this;
+	}
 	
 
 
-	public void testProbandoCosasDelOwner() throws Exception {
+	public OwnerUITests testProbandoCosasDelOwner() throws Exception {		
 		driver.get("http://localhost:"+port);
 		driver.findElement(By.xpath("//a[@id='signinbar']/strong")).click();
 		driver.findElement(By.xpath("//a[@id='signowner']")).click();
@@ -111,7 +123,8 @@ public class OwnerUITests {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	    driver.findElement(By.xpath("//div[@id='main-navbar']/ul/li[4]/a/span[2]")).click();
 	    driver.findElement(By.xpath("//div[@id='main-navbar']/ul/li/a/span[2]")).click();
-		
+	    this.username = "shane";
+	    return this;		
 	}
 	
 	@AfterEach

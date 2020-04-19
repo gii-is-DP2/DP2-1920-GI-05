@@ -47,7 +47,7 @@ public class ApplicationServiceTests {
 	@Test
 	void shouldFindAllApplications() {
 		Collection<Application> applications = this.applicationService.findAllApplications();
-		assertThat(applications.size()).isEqualTo(5);
+		assertThat(applications.size()).isEqualTo(6);
 	}
 	
 	//  Service test: List applications by owner
@@ -77,7 +77,7 @@ public class ApplicationServiceTests {
 		
 		this.applicationService.saveApplication(application);
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(6);
+		assertThat(apps.size()).isEqualTo(7);
 	}
 	
 
@@ -167,7 +167,7 @@ public class ApplicationServiceTests {
 		
 		this.applicationService.updateApplication(application);
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(5);
+		assertThat(apps.size()).isEqualTo(6);
 	}
 	
     // Service test: Update applications Negative Case: Inactive tournament
@@ -181,7 +181,7 @@ public class ApplicationServiceTests {
 		applicationService.updateApplication(application);});		
 		
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(5);
+		assertThat(apps.size()).isEqualTo(6);
 	}
 	
 }

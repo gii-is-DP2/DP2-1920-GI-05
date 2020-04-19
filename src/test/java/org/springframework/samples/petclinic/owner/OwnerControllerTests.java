@@ -1,4 +1,4 @@
-/* package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.owner;
 
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -36,7 +36,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 
-/* @WebMvcTest(controllers = OwnerController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+ @WebMvcTest(controllers = OwnerController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 class OwnerControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
@@ -155,7 +155,7 @@ class OwnerControllerTests {
 		mockMvc.perform(post("/owners/{ownerId}/edit", TEST_OWNER_ID).with(csrf()).param("firstName", "Joe")
 				.param("lastName", "Bloggs").param("address", "123 Caramel Street").param("city", "London")
 				.param("telephone", "01616291589")).andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/owners/{ownerId}"));
+				.andExpect(view().name("redirect:/owners/details"));
 	}
 
 	@WithMockUser(value = "spring")
@@ -172,14 +172,14 @@ class OwnerControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testShowOwner() throws Exception {
-		mockMvc.perform(get("/owners/{ownerId}", TEST_OWNER_ID)).andExpect(status().isOk())
+		mockMvc.perform(get("/owners/{ownerId}/show", TEST_OWNER_ID)).andExpect(status().isOk())
 				.andExpect(model().attribute("owner", hasProperty("lastName", is("Franklin"))))
 				.andExpect(model().attribute("owner", hasProperty("firstName", is("George"))))
 				.andExpect(model().attribute("owner", hasProperty("address", is("110 W. Liberty St."))))
 				.andExpect(model().attribute("owner", hasProperty("city", is("Madison"))))
 				.andExpect(model().attribute("owner", hasProperty("telephone", is("6085551023"))))
-				.andExpect(view().name("owners/ownerDetails"));
+				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
 	}
 
 }
- */ 
+ 
