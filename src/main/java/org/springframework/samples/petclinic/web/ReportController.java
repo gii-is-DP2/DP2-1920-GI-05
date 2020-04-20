@@ -105,8 +105,8 @@ public class ReportController {
 	}
 
 	@PostMapping(value = "/judges/{judgeId}/reports/{tournamentId}/new")
-	public String processCreationForm(@Valid Report report, @PathVariable("judgeId") int judgeId,
-	@PathVariable("tournamentId") int tournamentId, BindingResult result, ModelMap model) {		
+	public String processCreationForm(@Valid Report report, BindingResult result, @PathVariable("judgeId") int judgeId,
+	@PathVariable("tournamentId") int tournamentId,  ModelMap model) {		
 		if (result.hasErrors()) {
 			model.put("report", report);
 			return "reports/create";

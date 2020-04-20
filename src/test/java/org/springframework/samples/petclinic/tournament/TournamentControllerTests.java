@@ -50,13 +50,17 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 
-@WebMvcTest(controllers = TournamentController.class, includeFilters = @ComponentScan.Filter(value = {
+@WebMvcTest(controllers = TournamentController.class, 
+		includeFilters = @ComponentScan.Filter(value = {
 		CategoryFormatter.class, FieldFormatter.class, JudgeFormatter.class,
-		PetTypeFormatter.class }, type = FilterType.ASSIGNABLE_TYPE), excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), 
+		PetTypeFormatter.class }, type = FilterType.ASSIGNABLE_TYPE), 
+		excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), 
 		excludeAutoConfiguration = SecurityConfiguration.class)
 class TournamentControllerTests {
 
 	private static final int TEST_TOURNAMENT_ID = 1;
+	
+	private static final int TEST_JUDGE_ID = 1;
 
 	@Autowired
 	private TournamentController tournamentController;
@@ -112,10 +116,12 @@ class TournamentControllerTests {
 		judge.setId(3);
 		judge.setLastName("Peter");
 		given(this.judgeService.findAllJudges()).willReturn(Lists.newArrayList(judge));
+		
 
 		Tournament tournament = new Tournament();
 		tournament.setId(10);
 		given(this.tournamentService.findTournamentById(TEST_TOURNAMENT_ID)).willReturn(tournament);
+		given(this.tournamentService.findTournamentByJudgeId(TEST_JUDGE_ID)).willReturn(Lists.newArrayList(tournament));
 	}
 
 	@WithMockUser(value = "spring")
@@ -491,6 +497,7 @@ class TournamentControllerTests {
 		.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	  }
 	  
+
 
 
 

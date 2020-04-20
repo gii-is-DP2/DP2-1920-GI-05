@@ -23,6 +23,9 @@ public class ReportValidator implements Validator {
 		  
 		  if (comments.isEmpty() ) {
 		  errors.rejectValue("comments", REQUIRED, REQUIRED); }  
+		  
+		  if (points!= null && (points < 0 || points > 100)) {
+		  errors.rejectValue("points", REQUIRED + " beetwen 0 and 100", REQUIRED + " beetwen 0 and 100"); }  
  
 	}
 

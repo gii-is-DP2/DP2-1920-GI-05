@@ -121,22 +121,7 @@ public class TournamentController {
 	
 	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
-			
-		
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			Owner owner = this.ownerService.findOwnerByUserName();
-			model.put("owner", owner);			
-		}
-		
-		if(this.judgeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.judgeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
-		
-		
+	
 		Collection<Tournament> activeTournaments = this.tournamentService.findActiveTournaments();
 		model.put("tournaments", activeTournaments);
 		return "tournaments/list";

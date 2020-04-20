@@ -4,24 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Locale;
 import java.util.Set;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.samples.petclinic.model.Field;
+import org.springframework.samples.petclinic.web.FieldValidator;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 public class FieldValidatorTests {
-	
-	//OJO Aquí habria que crear tournamentValidator
-	/*
-	 * private TournamentValidator createValidator() { LocalValidatorFactoryBean
-	 * localValidatorFactoryBean = new LocalValidatorFactoryBean();
-	 * localValidatorFactoryBean.afterPropertiesSet(); return (TournamentValidator)
-	 * localValidatorFactoryBean.getValidator(); }
-	 */
-		
-
 	
 	private Validator createValidator() {
 		LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
@@ -44,6 +39,13 @@ public class FieldValidatorTests {
 		Validator validator = createValidator();	
 		Set<ConstraintViolation<Field>> constraintViolations = validator.validate(field);		
 		assertThat(constraintViolations.size()).isEqualTo(0);
+		
+		FieldValidator fieldValidator = new FieldValidator();
+
+		Errors errors = new BeanPropertyBindingResult(field, "field");
+		fieldValidator.validate(field, errors);
+		assertThat(errors.getErrorCount()).isEqualTo(0);	
+		assertThat(errors.hasErrors()).isEqualTo(false);	
 		}
 	
 	// Create new Field Negative Case: Invalid name input

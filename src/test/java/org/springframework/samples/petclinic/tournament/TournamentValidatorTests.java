@@ -53,7 +53,7 @@ public class TournamentValidatorTests {
 		return localValidatorFactoryBean;
 	}
 
-	// Create new tournament Negative Case: invalid name input
+	// Create new tournament Positive Case
 	@Test
 	void shouldValidateTournament() {
 

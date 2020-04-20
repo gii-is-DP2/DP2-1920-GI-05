@@ -3,11 +3,11 @@ package org.springframework.samples.petclinic.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -25,6 +25,7 @@ public class Report extends BaseEntity {
 	private Integer points;
 
 	@Length(max = 500)
+	@NotBlank
 	private String comments;
 
 	public Integer getPoints() {
