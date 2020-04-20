@@ -85,18 +85,13 @@ public class ReportControllerTests {
 	@BeforeEach
 	void setup() {
 		
-		PetType cat = new PetType();
-		cat.setId(1);
-		cat.setName("cat");		
-		
 		Pet petWithoutReport = new Pet();
 		petWithoutReport.setId(TEST_PET_ID_1);
 		petWithoutReport.setName("Leo");
-		petWithoutReport.setType(cat);
 	
 		Pet petWithReport = new Pet();
-		petWithoutReport.setId(TEST_PET_ID_2);
-		petWithoutReport.setName("Pau");
+		petWithReport.setId(TEST_PET_ID_2);
+		petWithReport.setName("Pau");
 		
 		given(this.petService.findAllPets()).willReturn(Lists.newArrayList(petWithoutReport));
 		given(this.petService.findPetByOwnerId(TEST_OWNER_ID)).willReturn(Lists.newArrayList(petWithoutReport));
@@ -105,10 +100,6 @@ public class ReportControllerTests {
 		owner.setLastName("Michael");
 		given(this.ownerService.findOwnerByUserName()).willReturn(owner);
 		
-		Judge judge = new Judge();
-		judge.setId(TEST_JUDGE_ID);
-		judge.setLastName("Peter");
-		given(this.judgeService.findAllJudges()).willReturn(Lists.newArrayList(judge));
 				
 		Tournament tournament = new Tournament();
 		tournament.setId(TEST_TOURNAMENT_ID);
@@ -159,12 +150,38 @@ public class ReportControllerTests {
 	void testPostCreateReport() throws Exception {
 		mockMvc.perform(post("/judges/{judgeId}/reports/{tournamentsId}/new",  TEST_JUDGE_ID, TEST_TOURNAMENT_ID)
 		.with(csrf())
-		.param("pet", "Pau")
+		.param("pet", "Leo")
 		.param("points", "100")
-		.param("comments", "Just perfect, no complaints"))
+		.param("comments", "Perfect performances"))
 		//.andExpect(model().attributeHasNoErrors("report"))
 		.andExpect(status().is3xxRedirection())
 		.andExpect(view().name("redirect:/judges/{judgeId}/reports"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testPostCreateReportHigherPoints() throws Exception {
+		mockMvc.perform(post("/judges/{judgeId}/reports/{tournamentsId}/new",  TEST_JUDGE_ID, TEST_TOURNAMENT_ID)
+		.with(csrf())
+		.param("pet", "Leo")
+		.param("points", "101")
+		.param("comments", "Perfect performances"))
+		.andExpect(model().attributeHasErrors("report"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("reports/create"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testPostCreateReportNegativePoints() throws Exception {
+		mockMvc.perform(post("/judges/{judgeId}/reports/{tournamentsId}/new",  TEST_JUDGE_ID, TEST_TOURNAMENT_ID)
+		.with(csrf())
+		.param("pet", "Leo")
+		.param("points", "89")
+		.param("comments", ""))
+		.andExpect(model().attributeHasErrors("report"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("reports/create"));
 	}
 	
 
