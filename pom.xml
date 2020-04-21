@@ -185,6 +185,7 @@
 							<excludes>
 								<exclude>**/*AdminUITests.java</exclude>
 								<exclude>**/*OwnerUITests.java</exclude>
+								<exclude>**/*JudgeUITests.java</exclude>
 							</excludes>
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>

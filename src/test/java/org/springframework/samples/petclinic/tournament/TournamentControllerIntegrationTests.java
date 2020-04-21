@@ -30,7 +30,7 @@ import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TournamentIntegrationTests {
+public class TournamentControllerIntegrationTests {
 
 	private static final int TEST_JUDGE_ID = 1;
 	

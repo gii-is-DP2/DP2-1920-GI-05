@@ -19,7 +19,7 @@ import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FieldIntegrationTests {
+public class FieldControllerIntegrationTests {
 
 	@Autowired
 	private FieldController fieldController;

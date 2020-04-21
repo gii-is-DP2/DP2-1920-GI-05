@@ -177,6 +177,19 @@ public class ReportControllerTests {
 		mockMvc.perform(post("/judges/{judgeId}/reports/{tournamentsId}/new",  TEST_JUDGE_ID, TEST_TOURNAMENT_ID)
 		.with(csrf())
 		.param("pet", "Leo")
+		.param("points", "-89")
+		.param("comments", "Nothing"))
+		.andExpect(model().attributeHasErrors("report"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("reports/create"));
+	}
+	
+	@WithMockUser(value = "spring")
+	@Test
+	void testPostCreateReportBlankComment() throws Exception {
+		mockMvc.perform(post("/judges/{judgeId}/reports/{tournamentsId}/new",  TEST_JUDGE_ID, TEST_TOURNAMENT_ID)
+		.with(csrf())
+		.param("pet", "Leo")
 		.param("points", "89")
 		.param("comments", ""))
 		.andExpect(model().attributeHasErrors("report"))

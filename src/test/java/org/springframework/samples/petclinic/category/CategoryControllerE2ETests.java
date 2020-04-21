@@ -49,7 +49,7 @@ public class CategoryControllerE2ETests {
 	void testNotProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/categories/new").with(csrf())).andExpect(model().attributeHasErrors("category"))
 				.andExpect(status().isOk());
-}	
+	}	
 	
 
 	

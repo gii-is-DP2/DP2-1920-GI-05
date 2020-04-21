@@ -36,7 +36,7 @@ import com.mysql.cj.xdevapi.Result;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ApplicationIntegrationTests {
+public class ApplicationControllerIntegrationTests {
 
 	private static final int TEST_OWNER_ID = 1;
 	private static final int TEST_TOURNAMENT_ID = 6;
@@ -100,7 +100,7 @@ public class ApplicationIntegrationTests {
     	
     	ap.setCreditCard("352571631239294");
     	ap.setPet(p);
-
+    	
     	BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
     	String view= this.applicationController.processCreateForm(ap, bindingResult, TEST_TOURNAMENT_ID, model);
      	

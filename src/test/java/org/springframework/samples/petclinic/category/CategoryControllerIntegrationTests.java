@@ -36,7 +36,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CategoryIntegrationTests {
+public class CategoryControllerIntegrationTests {
 
 
 	
