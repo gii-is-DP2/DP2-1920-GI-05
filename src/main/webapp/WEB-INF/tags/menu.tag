@@ -1,8 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 <%@ attribute name="name" required="true" rtexprvalue="true"
 	description="Name of the active menu: home, owners, vets or error"%>
@@ -49,11 +48,11 @@
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="authenticatedbar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Authenticated</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/tournaments/active" />">Active
+							<li><a id="activeapp" href="<c:url value="/tournaments/active" />">Active
 									tournaments </a></li>
 						</ul></li>
 				</sec:authorize>

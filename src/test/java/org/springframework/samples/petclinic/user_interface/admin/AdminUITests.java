@@ -65,8 +65,10 @@ public class AdminUITests {
 		this.username = username;
 		driver.get("http://localhost:"+port);
 		driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
+	    driver.findElement(By.id("password")).click();
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys(passwordOf(username));
+		driver.findElement(By.id("username")).click();
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys(username);
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
