@@ -1,6 +1,7 @@
 -- ADMIN --
 INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
 INSERT INTO authorities VALUES ('admin1','admin');
+INSERT INTO admins(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Marc', 'Oliver', '128 W. Santana St.', 'Detrroit', '6085551043', 'admin1');
 -- OWNERS
 INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 INSERT INTO users(username,password,enabled) VALUES ('owner2','0wn3r',TRUE);
@@ -125,7 +126,7 @@ INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tour
 VALUES (4,'PENDING', '2020-11-02', '363017956100486', 2, 4, 9);
 INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new lizard application from owner3 -- 
 VALUES (5,'REJECTED', '2020-11-03', '379254492621186', 3, 5, 10);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat application from ownwer6 -- 
+INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat application from owwer6 -- 
 VALUES (6,'ACCEPTED', '2019-09-20', '379254492621186', 6, 12, 1);
 
 --VETS--

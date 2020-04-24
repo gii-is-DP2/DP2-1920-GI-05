@@ -70,7 +70,7 @@ class PetControllerIntegrationTests {
     	Owner owner=ownerService.findOwnerById(TEST_OWNER_ID);
     	Pet newPet=new Pet();
     	PetType petType=petService.findPetTypes().iterator().next();
-    	newPet.setName("Betty");
+    	newPet.setName("Pau");
 		newPet.setType(petType);
 		newPet.setBirthDate(LocalDate.of(2015, 12, 23));    	
 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
@@ -87,7 +87,7 @@ class PetControllerIntegrationTests {
     	Owner owner=ownerService.findOwnerById(TEST_OWNER_ID);
     	Pet newPet=new Pet();
     	PetType petType=petService.findPetTypes().iterator().next();
-    	newPet.setName("Betty");		
+    	newPet.setName("Josuke");		
     	newPet.setBirthDate(LocalDate.of(2015, 12, 23));    
 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
 		bindingResult.reject("petType", "Requied!");
@@ -108,7 +108,7 @@ class PetControllerIntegrationTests {
 		assertNotNull(model.get("pet"));						
 	}
 	
-		@WithMockUser(username="owner1",authorities= {"owner"})
+	  @WithMockUser(username="owner1",authorities= {"owner"})
 	  @Test
 		void testProcessUpdateFormSuccess() throws Exception {
 	    	ModelMap model=new ModelMap();

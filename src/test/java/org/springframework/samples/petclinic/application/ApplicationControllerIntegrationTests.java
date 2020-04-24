@@ -152,7 +152,7 @@ public class ApplicationControllerIntegrationTests {
 		assertEquals(view,"redirect:/applications/all");				
 	}
     
-    @Test
+   @Test
 	void testProcessUpdateFormHasErrors()  throws Exception {
     	Application ap= this.applicationService.findApplicationById(TEST_APPLICATION_ID);
     	ModelMap model=new ModelMap();		

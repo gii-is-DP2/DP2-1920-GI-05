@@ -56,7 +56,7 @@ public class ReportController {
 	// Judge List
 
 	@GetMapping(value = "/judges/{judgeId}/reports")
-	public String initReport4Judge(@PathVariable("judgeId") int judgeId, Map<String, Object> model) {
+	public String reportListByJudge(@PathVariable("judgeId") int judgeId, ModelMap model) {
 		
 		Collection<Report> reports = reportService.findReportByJudgeId(judgeId);
 		
@@ -125,7 +125,7 @@ public class ReportController {
 	//Reports of my pets
 	
 	@GetMapping(value = "/myReports/")
-	public String initMyReports(Map<String, Object> model) {
+	public String reportListByOwner(ModelMap model) {
 		
 		Collection<Report> reports = reportService.findAllReportsFromAnOwner(ownerService.findOwnerByUserName());
 		model.put("reports",reports);
