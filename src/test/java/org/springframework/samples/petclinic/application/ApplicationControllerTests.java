@@ -146,7 +146,7 @@ class ApplicationControllerTests {
 				.andExpect(model().attributeExists("applications")).andExpect(view().name("applications/list"));
 	}
 
-	// List applications by Owner Negativo Case
+	// List applications by Owner Negativo Case when a owner is not authenticated
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOwnerApplicationsException() throws Exception {

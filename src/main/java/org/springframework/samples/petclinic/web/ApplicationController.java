@@ -3,10 +3,8 @@ package org.springframework.samples.petclinic.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.ApplicationPOJO;
-import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -28,7 +26,6 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.service.exceptions.InactiveTournamentException;
 import org.springframework.samples.petclinic.service.exceptions.InvalidPetTypeException;
 
@@ -108,7 +105,7 @@ public class ApplicationController {
 	public String initCreateApplicationForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		ApplicationPOJO applicationPOJO = new ApplicationPOJO();
 
-		Owner owner = this.ownerService.findOwnerByUserName();
+		//Owner owner = this.ownerService.findOwnerByUserName();
 		model.put("applicationPOJO", applicationPOJO);
 		return "applications/createApplicationForm";
 	}
@@ -117,8 +114,7 @@ public class ApplicationController {
 	public String processCreateForm(@Valid ApplicationPOJO applicationPOJO, BindingResult result,
 			@PathVariable("tournamentId") int tournamentId, ModelMap model) throws DataAccessException,
 			DuplicateApplicationException, InvalidPetTypeException, InactiveTournamentException {
-
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {			
 			model.put("applicationPOJO", applicationPOJO);
 			return "applications/createApplicationForm";
 		} else {
@@ -146,7 +142,7 @@ public class ApplicationController {
 			} catch (InvalidPetTypeException ex) {
 				result.rejectValue("pet", "You can not apply to this tournament with that pet type",
 						"You can not apply to this tournament with that pet type");
-				Owner owner = this.ownerService.findOwnerByUserName();
+				//Owner owner = this.ownerService.findOwnerByUserName();
 				// model.put("pets", this.petService.findPetByOwnerId(owner.getId()));
 				return "applications/createApplicationForm";
 			} catch (InactiveTournamentException ex) {

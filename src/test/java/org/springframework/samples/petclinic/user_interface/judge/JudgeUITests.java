@@ -55,17 +55,15 @@ public class JudgeUITests {
 	    driver.findElement(By.xpath("//a[@id='judgebar']/strong")).click();
 	    driver.findElement(By.xpath("//a[@id='profile']")).click();
 	    driver.findElement(By.linkText("My tournaments")).click();
-	    driver.findElement(By.linkText("New Report")).click();
+	    driver.findElement(By.xpath("//a[contains(@href, '/judges/1/reports/1/new')]")).click();
 	    driver.findElement(By.id("points")).click();
 	    driver.findElement(By.id("points")).clear();
-	    driver.findElement(By.id("points")).sendKeys("30");
+	    driver.findElement(By.id("points")).sendKeys("20");
 	    driver.findElement(By.id("comments")).click();
 	    driver.findElement(By.id("comments")).clear();
-	    driver.findElement(By.id("comments")).sendKeys("It made some mistakes");
+	    driver.findElement(By.id("comments")).sendKeys("Poor performance");
 	    new Select(driver.findElement(By.id("pet"))).selectByVisibleText("Lucky");
 	    driver.findElement(By.xpath("//option[@value='Lucky']")).click();
-	    driver.findElement(By.xpath("//option[@value='Lucky']")).click();
-	    // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | //option[@value='Lucky'] | ]]
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 		return this;
 	}
