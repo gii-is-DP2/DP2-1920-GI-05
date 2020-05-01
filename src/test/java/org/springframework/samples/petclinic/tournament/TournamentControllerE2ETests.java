@@ -441,6 +441,318 @@ class TournamentControllerE2ETests {
 		.andExpect(status().isOk())
 		.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
 	  }
+	
+	// Edit user Negative Case: Blank Name
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments2() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())		
+		    .param("name", "")
+			.param("location", "Seville")
+			.param("category","Agility")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Edit user Negative Case: missed input category
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments3() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Edit user Negative Case: missed input petType
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments4() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("category","Agility")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Edit user Negative Case: missed input ApplyDate
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments5() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("category","Agility")
+			.param("petType", "Hamster")		
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm")); 
+		  }
+		
+		// Edit user Negative Case: missed input StartDate
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments6() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("category","Agility")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")			
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Edit user Negative Case: missed input EndDate
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments7() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("category","Agility")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")					
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Edit user Negative Case: missed input prize ammount
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments8() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("category","Agility")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: Apply date after star date
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments9() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/13")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: start date after end date
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments10() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/13")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+
+		// Create Tournament Negative Case: end date before start date
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments11() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/19")				
+			.param("prize.amount", "500.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: invalid prize amount input
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments12() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.000001").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: invalid prize amount input
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments13() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "50000000000000.00").param("prize.currency", "EUR")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: blank prize currency input
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments14() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }
+		
+		// Create Tournament Negative Case: wrong prize currency input
+		@WithMockUser(username="admin1",authorities= {"admin"})
+		  @Test 
+		  void testsShoulNotUpdateTournaments15() throws Exception {
+		  mockMvc.perform(post("/tournaments/{tournamentId}/edit", TEST_TOURNAMENT_ID)
+		    .with(csrf())
+			.param("name", "Betty tournament")
+			.param("location", "Seville")
+			.param("petType", "Hamster")		
+			.param("applyDate", "2020/12/10")
+			.param("startDate", "2020/12/11")	
+			.param("endDate", "2020/12/12")				
+			.param("prize.amount", "500.00").param("prize.currency", "dolar")
+		  
+		  	//Updating judge and field
+		  	.param("field", "Map 1")
+		  	.param("judge", "Dacon"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		  }		
+		
+
 	  
 
 

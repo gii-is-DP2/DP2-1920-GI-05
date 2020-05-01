@@ -64,10 +64,36 @@ public class PetControllerE2ETest {
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors() throws Exception {
-		mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
+		mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
 							.with(csrf())
 							.param("name", "Betty")
 							.param("birthDate", "2015/02/12"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
+	
+	@WithMockUser(username="owner1",authorities= {"owner"})
+    @Test
+	void testProcessCreationFormHasErrors2() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
+							.with(csrf())
+							.param("name", "Betty")
+							.param("type", "Hamster"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
+
+	@WithMockUser(username="owner1",authorities= {"owner"})
+    @Test
+	void testProcessCreationFormHasErrors3() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
+							.with(csrf())
+							.param("birthDate", "2015/02/12")
+							.param("type", "Hamster"))
 				.andExpect(model().attributeHasNoErrors("owner"))
 				.andExpect(model().attributeHasErrors("pet"))
 				.andExpect(status().isOk())
@@ -102,6 +128,30 @@ public class PetControllerE2ETest {
 							.with(csrf())
 							.param("name", "Betty")
 							.param("birthDate", "2015/02/12"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet")).andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
+	
+	@WithMockUser(username="owner1",authorities= {"owner"})
+	@Test
+	void testProcessUpdateFormHasErrors2() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
+							.with(csrf())
+							.param("name", "Betty")
+							.param("type", "Hamster"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet")).andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
+	
+	@WithMockUser(username="owner1",authorities= {"owner"})
+	@Test
+	void testProcessUpdateFormHasErrors3() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
+							.with(csrf())
+							.param("birthDate", "2015/02/12")
+							.param("type", "Hamster"))
 				.andExpect(model().attributeHasNoErrors("owner"))
 				.andExpect(model().attributeHasErrors("pet")).andExpect(status().isOk())
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
