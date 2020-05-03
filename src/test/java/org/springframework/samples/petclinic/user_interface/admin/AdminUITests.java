@@ -5,6 +5,8 @@ import static org.junit.Assert.fail;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class AdminUITests {
 	
 	@LocalServerPort

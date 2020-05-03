@@ -15,12 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
   webEnvironment=SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
+@Transactional
 /*@TestPropertySource(
   locations = "classpath:application-mysql.properties")*/
 public class CategoryControllerE2ETests {
@@ -48,8 +50,16 @@ public class CategoryControllerE2ETests {
 	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(username="admin1",authorities= {"admin"})
     @Test
-	void testNotProcessCreationFormSuccess() throws Exception {
-		mockMvc.perform(post("/categories/new").with(csrf())).andExpect(model().attributeHasErrors("category"))
+	void testNotProcessCreationFormDuplicatedName() throws Exception {
+		mockMvc.perform(post("/categories/new").with(csrf()).param("name", "Speed")).andExpect(model().attributeHasErrors("category"))
+				.andExpect(status().isOk());
+	}	
+	
+	// Create Fields Negative Case: Blank Name
+	@WithMockUser(username="admin1",authorities= {"admin"})
+    @Test
+	void testNotProcessCreationFormBlankName() throws Exception {
+		mockMvc.perform(post("/categories/new").with(csrf()).param("name", "")).andExpect(model().attributeHasErrors("category"))
 				.andExpect(status().isOk());
 	}	
 	

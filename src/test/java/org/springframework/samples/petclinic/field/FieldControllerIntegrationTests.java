@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -65,15 +66,19 @@ public class FieldControllerIntegrationTests {
     @Test
   	void testShouldNotProcessCreateName() throws Exception {
 
-  		ModelMap model=new ModelMap();		
   		Field field = new Field();
-  		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+  		ModelMap model=new ModelMap();		
+
   		field.setBreadth(100.00);
   		field.setLenght(200.00);
-  		field.setName("no");
+  		field.setName("");
   		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
   		
+  		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
+  		bindingResult.reject("name", "Requied!");
+  		
   		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
+  		
   		assertEquals(view,"fields/createOrUpdateFieldForm");
   	}
     
@@ -82,7 +87,7 @@ public class FieldControllerIntegrationTests {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
- 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+ 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
  		field.setBreadth(-100.00);
  		field.setLenght(200.00);
  		field.setName("Test field");
@@ -97,7 +102,7 @@ public class FieldControllerIntegrationTests {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
- 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+ 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
  		field.setBreadth(100.009);
  		field.setLenght(200.00);
  		field.setName("Test field");
@@ -112,7 +117,7 @@ public class FieldControllerIntegrationTests {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
- 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+ 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
  		field.setBreadth(100.00);
  		field.setLenght(-200.00);
  		field.setName("Test field");
@@ -127,7 +132,7 @@ public class FieldControllerIntegrationTests {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
- 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+ 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
  		field.setBreadth(100.00);
  		field.setLenght(200.008);
  		field.setName("Test field");
@@ -142,7 +147,7 @@ public class FieldControllerIntegrationTests {
 
 		ModelMap model=new ModelMap();		
 		Field field = new Field();
-		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
 		field.setBreadth(100.00);
 		field.setLenght(200.00);
 		field.setName("Test field");
