@@ -47,6 +47,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Test class for {@link OwnerController}
@@ -58,6 +59,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(
   webEnvironment=SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
+@Transactional
 class TournamentControllerE2ETests {
 
 	private static final int TEST_TOURNAMENT_ID = 1;

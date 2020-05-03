@@ -87,7 +87,7 @@ class PetControllerIntegrationTests {
     	Owner owner=ownerService.findOwnerById(TEST_OWNER_ID);
     	Pet newPet=new Pet();
     	PetType petType=petService.findPetTypes().iterator().next();
-    	newPet.setName("Josuke");		
+    	newPet.setName("Josu");		
     	newPet.setBirthDate(LocalDate.of(2015, 12, 23));    
 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
 		bindingResult.reject("petType", "Requied!");

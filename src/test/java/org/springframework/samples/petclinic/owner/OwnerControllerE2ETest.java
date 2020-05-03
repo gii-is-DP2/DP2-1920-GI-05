@@ -93,7 +93,9 @@ public class OwnerControllerE2ETest {
 	void testProcessUpdateOwnerFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/{ownerId}/edit", TEST_OWNER_ID).with(csrf()).param("firstName", "Joe")
 				.param("lastName", "Bloggs").param("address", "123 Caramel Street").param("city", "London")
-				.param("telephone", "01616291589")).andExpect(status().is3xxRedirection())
+				.param("telephone", "01616291589")
+				.param("user.username", "joewheeler").param("user.password", "contrasena"))
+				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/owners/details"));
 	}
 	

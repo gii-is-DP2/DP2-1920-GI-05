@@ -25,6 +25,7 @@ import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -74,7 +75,7 @@ class TournamentServiceTest {
     		tournament.setLocation("Seville");
     		tournament.setPetType(petType);
     		tournament.setPrize(money);
-    		tournament.setName("Sample tournament");
+    		tournament.setName("Sample tournament 1");
     		tournament.setStartDate(LocalDate.of(2020, 12, 10));
   
 
@@ -82,6 +83,7 @@ class TournamentServiceTest {
 
     // Find all Tournaments Postive Case
 	@Test
+	@Transactional
 	void shouldFindAllTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
 		assertThat(tournaments.size()).isEqualTo(10);
@@ -89,6 +91,7 @@ class TournamentServiceTest {
 
 	// Find active Tournaments Positive Case
 	@Test
+	@Transactional
 	void shouldFindActiveTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
 		assertThat(tournaments.size()).isEqualTo(8);
@@ -96,6 +99,7 @@ class TournamentServiceTest {
 	
 	// Find all tournaments by Judge ID Positive case
 	@Test
+	@Transactional
 	void shouldFindAllTournamentsByJudgeId() {
 		Collection<Tournament> tournaments = this.tournamentService.findTournamentByJudgeId(1);
 		assertThat(tournaments.size()).isEqualTo(2);
@@ -104,6 +108,7 @@ class TournamentServiceTest {
 	
 	// Save Tournament Postive Case
 	@Test
+	@Transactional
 	void shouldInsertdNewTournament() throws DataAccessException, DuplicateTournamentNameException {
 				
 		this.tournamentService.saveTournament(tournament);
@@ -123,7 +128,10 @@ class TournamentServiceTest {
 	
 	// Edit Tournament Postive Case: Insert new Field
 	@Test
+	@Transactional
 	void shouldUpdateFieldTournament() throws DataAccessException, DuplicateTournamentNameException {
+		
+		tournament.setName("Sample tournament 2");
 		tournament.setField(field);		
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
@@ -133,9 +141,11 @@ class TournamentServiceTest {
 	
 	// Edit Tournament Postive Case: Insert new Judge
 	@Test
+	@Transactional
 	void shouldUpdateJudgeTournament() throws DataAccessException, DuplicateTournamentNameException {
-		tournament.setJudge(judge);		
 		
+		tournament.setName("Sample tournament 3");
+		tournament.setJudge(judge);				
 		this.tournamentService.saveTournament(tournament);
 		Collection<Tournament> tournaments = this.tournamentService.findAllTournament();
 		assertThat(tournaments.size()).isEqualTo(11);
@@ -143,7 +153,7 @@ class TournamentServiceTest {
 	}
 	
 	// Edit Tournament Negative Case: Updated Name to a name that is already taken
-	@Test
+	@Test	
 	void shouldNotUpdateTournamentWithTheSameName() throws DataAccessException, DuplicateTournamentNameException {
 		
 		Tournament anotherTournamentWithTheSameName = new Tournament();	

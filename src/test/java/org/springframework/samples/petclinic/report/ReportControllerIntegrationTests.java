@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.util.Collections;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,6 +36,12 @@ import org.springframework.validation.MapBindingResult;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReportControllerIntegrationTests {
+	
+	private static final int TEST_PET_ID_1 = 1;
+
+	private static final int TEST_JUDGE_ID = 1;
+
+	private static final int TEST_TOURNAMENT_ID = 1;
 
 	@Autowired
 	private ReportController reportController;
@@ -86,7 +93,7 @@ public class ReportControllerIntegrationTests {
 		
 		ModelMap model=new ModelMap();		
 		
-		String view= this.reportController.initCreationForm(1, 1, model);
+		String view=reportController.initCreationForm(TEST_JUDGE_ID, TEST_TOURNAMENT_ID, model);
 		
 		
 		assertEquals(view,"reports/create");
@@ -106,10 +113,31 @@ public class ReportControllerIntegrationTests {
 		report.setPoints( 55);
 		report.setPet(pet);
 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
-		String view= this.reportController.processCreationForm(report, bindingResult, 1, 1, model);
+		String view= this.reportController.processCreationForm(report, bindingResult, TEST_JUDGE_ID, TEST_TOURNAMENT_ID, model);
 		
 		assertEquals(view,"redirect:/judges/{judgeId}/reports");
 	}
+    
+    @Test
+ 	void testProcessCreationFormHasErrors() throws Exception {
+ 		
+ 		ModelMap model=new ModelMap();
+
+     	Report newReport = new Report();
+ 		
+ 		newReport.setComments("Bien comentado");
+ 		newReport.setJudge(judgeService.findJudgeById(TEST_JUDGE_ID));
+ 		newReport.setTournament(tournamentService.findTournamentById(TEST_TOURNAMENT_ID));
+ 		newReport.setPet(petService.findPetById(TEST_PET_ID_1));
+ 		
+ 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
+ 		bindingResult.reject("points", "Required!");
+ 		
+ 		String view=reportController.processCreationForm(
+ 			newReport, bindingResult, TEST_JUDGE_ID, TEST_TOURNAMENT_ID, model);
+ 		
+ 		assertEquals(view,"reports/create");		
+ 	}
     
 
 

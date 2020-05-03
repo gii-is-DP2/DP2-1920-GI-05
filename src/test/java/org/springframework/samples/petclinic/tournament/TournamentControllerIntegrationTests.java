@@ -24,12 +24,14 @@ import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.TournamentController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class TournamentControllerIntegrationTests {
 
 	private static final int TEST_JUDGE_ID = 1;
@@ -138,12 +140,12 @@ public class TournamentControllerIntegrationTests {
 		
 		Money m = new Money();		
 		m.setAmount(1000.00);
-		m.setCurrency("EUR");
-		
+		m.setCurrency("EUR");		
 		t.setPrize(m);
 
 		t.setStartDate(LocalDate.of(2020, 12, 10));		
 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+		bindingResult.reject("name", "Requied!");
 		String view= this.tournamentController.processCreationForm(t, bindingResult, model);
 		
 		assertEquals(view,"tournaments/createOrUpdateTournamentForm");
@@ -172,6 +174,7 @@ public class TournamentControllerIntegrationTests {
 
 		t.setStartDate(LocalDate.of(2020, 12, 10));		
 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
+		bindingResult.reject("location", "pingas!");
 		String view= this.tournamentController.processCreationForm(t, bindingResult, model);
 		
 		assertEquals(view,"tournaments/createOrUpdateTournamentForm");

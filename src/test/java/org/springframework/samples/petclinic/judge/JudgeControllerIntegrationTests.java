@@ -12,19 +12,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.JudgeController;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class JudgeControllerIntegrationTests {
 
 	private static final int TEST_JUDGE_ID = 1;
@@ -40,7 +46,7 @@ public class JudgeControllerIntegrationTests {
 
 
 	
-	@Test
+	@Test	
 	void testTournamentJudgeList() throws Exception {
 		
 		ModelMap model=new ModelMap();		
@@ -64,7 +70,8 @@ public class JudgeControllerIntegrationTests {
 	}
     
 
-    @Test
+    @Test    
+    @Transactional
 	void testProcessCreationFormSuccess()  throws Exception {
     	Judge j= new Judge();
     	ModelMap model=new ModelMap();		

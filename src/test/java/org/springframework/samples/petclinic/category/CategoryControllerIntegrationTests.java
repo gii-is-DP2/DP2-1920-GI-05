@@ -16,12 +16,14 @@ import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.web.CategoryController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class CategoryControllerIntegrationTests {
 
 
@@ -77,7 +79,7 @@ public class CategoryControllerIntegrationTests {
     	Category c= new Category();
     	ModelMap model=new ModelMap();		
 
-    	//c.setName("");
+    	c.setName("");
 
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
     	bindingResult.reject("name", "Requied!");
