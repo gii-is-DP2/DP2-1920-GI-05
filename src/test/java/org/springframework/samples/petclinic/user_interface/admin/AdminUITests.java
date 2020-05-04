@@ -49,6 +49,7 @@ public class AdminUITests {
 	}
 	
 	@Test
+	@Transactional
 	public void testCreateJudge() throws Exception {		
 		as("admin1").testProbandoCreateJudge();
 	}

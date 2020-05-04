@@ -43,6 +43,7 @@ public class JudgeUITests {
 	}
 	
 	@Test
+	@Transactional
 	public void testJudgeReports() throws Exception {
 		as("judge1").whenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
 	}

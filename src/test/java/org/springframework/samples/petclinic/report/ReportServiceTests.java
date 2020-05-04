@@ -21,6 +21,7 @@ import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 @AutoConfigureTestDatabase(replace=Replace.NONE)
@@ -43,6 +44,7 @@ public class ReportServiceTests {
 
 	//  Service test: List reports by judge
 	@Test
+	@Transactional
 	void shouldFindJudgeReports() {
 		Collection<Report> judgeReports = this.reportService.findReportByJudgeId(1);
 		assertThat(judgeReports.size()).isEqualTo(3);
@@ -50,6 +52,7 @@ public class ReportServiceTests {
 	
 	//  Service test: List reports by pet
 	@Test
+	@Transactional
 	void shouldFindPetReports() {
 		Collection<Report> petReports = this.reportService.findByPetId(1);
 		assertThat(petReports.size()).isEqualTo(2);
@@ -57,6 +60,7 @@ public class ReportServiceTests {
 	
 	//  Service test: List reports by owner
 	@Test
+	@Transactional
 	void shouldFindOwnerReports() {
 
 		Owner owner1 = this.ownerService.findOwnerById(1);
@@ -67,6 +71,7 @@ public class ReportServiceTests {
 	
 	//  Service test: Save report
 	@Test
+	@Transactional
 	void shouldSaveReport() {
 
 		//Save a report for the dog (pet2) from the tournament 2 by judge 1
