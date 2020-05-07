@@ -26,6 +26,7 @@
 		<webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.2.4</webjars-jquery.version>
 		<wro4j.version>1.8.0</wro4j.version>
+
 		<jacoco.version>0.8.5</jacoco.version>
 		<selenium.version>3.141.59</selenium.version>
 		<spring-format.version>0.0.19</spring-format.version>
@@ -132,8 +133,14 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<artifactId>junit</artifactId>
-			<groupId>junit</groupId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-console</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- Development tools -->
 		<dependency>
@@ -187,11 +194,6 @@
 							<goal>build-info</goal>
 						</goals>
 						<configuration>
-							<excludes>
-								<exclude>**/*AdminUITests.java</exclude>
-								<exclude>**/*OwnerUITests.java</exclude>
-								<exclude>**/*JudgeUITests.java</exclude>
-							</excludes>
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>
 								<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
@@ -276,6 +278,19 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*AdminUITests.java</exclude>
+						<exclude>**/*OwnerUITests.java</exclude>
+						<exclude>**/*JudgeUITests.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
