@@ -71,6 +71,11 @@
 			</dependency> -->
 		<!-- caching -->
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.15.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.cache</groupId>
 			<artifactId>cache-api</artifactId>
 		</dependency>
@@ -281,8 +286,8 @@
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
-	
-		<profiles>
+
+	<profiles>
 		<profile>
 			<id>AcceptanceTests</id>
 			<build>
@@ -334,14 +339,14 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 		<profile>
-			<id>mysql</id	>
+			<id>mysql</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>				
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<spring.profiles.active>mysql</spring.profiles.active>				
+				<spring.profiles.active>mysql</spring.profiles.active>
 			</properties>
 		</profile>
 	</profiles>
