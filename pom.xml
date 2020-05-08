@@ -318,8 +318,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>**/*UITest.java</exclude>
-						<exclude>**/*APITest.java</exclude>
+						<exclude>**/*AdminUITests.java</exclude>
+						<exclude>**/*OwnerUITests.java</exclude>
+						<exclude>**/*JudgeUITests.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
