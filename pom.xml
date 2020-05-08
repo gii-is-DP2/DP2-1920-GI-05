@@ -26,11 +26,12 @@
 		<webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.2.4</webjars-jquery.version>
 		<wro4j.version>1.8.0</wro4j.version>
+
 		<jacoco.version>0.8.5</jacoco.version>
-		<selenium.version>3.141.59</selenium.version>
 		<spring-format.version>0.0.19</spring-format.version>
-
-
+		<rest-assured.version>4.2.0</rest-assured.version>
+		<selenium.version>3.141.59</selenium.version>
+		<cucumber.version>5.5.0</cucumber.version>
 	</properties>
 
 	<dependencies>
@@ -67,13 +68,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-
+		<!-- validation <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> 
+			</dependency> -->
 		<!-- caching -->
 		<dependency>
 			<groupId>javax.cache</groupId>
@@ -119,12 +115,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -132,20 +122,27 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<artifactId>junit</artifactId>
-			<groupId>junit</groupId>
-		</dependency>
-		<!-- Development tools -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-console</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- Selenium dependences -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -171,7 +168,51 @@
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- Cucumber dependences -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit-platform-engine</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>4.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>de.monochromata.cucumber</groupId>
+			<artifactId>reporting-plugin</artifactId>
+			<version>4.0.36</version>
+		</dependency>
 
+		<!-- Development tools -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -277,13 +318,11 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>**/*AdminUITests.java</exclude>
-						<exclude>**/*OwnerUITests.java</exclude>
-						<exclude>**/*JudgeUITests.java</exclude>
+						<exclude>**/*UITest.java</exclude>
+						<exclude>**/*APITest.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -294,6 +333,7 @@
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
+
 
 	<profiles>
 		<profile>
@@ -357,6 +397,7 @@
 				<spring.profiles.active>mysql</spring.profiles.active>
 			</properties>
 		</profile>
+
 	</profiles>
 
 
