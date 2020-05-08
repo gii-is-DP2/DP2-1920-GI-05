@@ -187,11 +187,6 @@
 							<goal>build-info</goal>
 						</goals>
 						<configuration>
-							<excludes>
-								<exclude>**/*AdminUITests.java</exclude>
-								<exclude>**/*OwnerUITests.java</exclude>
-								<exclude>**/*JudgeUITests.java</exclude>
-							</excludes>
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>
 								<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
@@ -276,6 +271,19 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*AdminUITests.java</exclude>
+						<exclude>**/*OwnerUITests.java</exclude>
+						<exclude>**/*JudgeUITests.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
