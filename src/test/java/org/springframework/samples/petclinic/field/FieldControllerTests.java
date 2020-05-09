@@ -45,7 +45,7 @@ class FieldControllerTests {
 	void setup() {
 		Field field1 = new Field();
 		field1.setName("Map 1");
-		field1.setBreadth(100.00);
+		field1.setWidth(100.00);
 		field1.setLenght(100.00);
 		field1.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
 		Collection<Field> fields = this.fieldService.findAllFields();
@@ -76,7 +76,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 	mockMvc.perform(post("/fields/new")
 						.with(csrf())
 						.param("name", "Map 5")
-						.param("breadth", "100.00")
+						.param("width", "100.00")
 						.param("lenght", "100.00")
 						.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 			.andExpect(status().is3xxRedirection())
@@ -90,7 +90,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							//.param("name", "Map 1")
-							.param("breadth", "100.00")
+							.param("width", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -99,14 +99,14 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 					
 	}
 	
-	// Create Fields Negative breadth is too long
+	// Create Fields Negative width is too long
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasIntegerErrors1() throws Exception {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100000.00")
+							.param("width", "100000.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -115,14 +115,14 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 					
 	}
 	
-	// Create Fields Negative breadth is not a valid input, must be x.YY
+	// Create Fields Negative width is not a valid input, must be x.YY
 	@WithMockUser(value = "spring")
     @Test
 	void testProcessCreationFormHasFractionsErrors1() throws Exception {
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.009")
+							.param("width", "100.009")
 							.param("lenght", "100.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -138,7 +138,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.00")
+							.param("width", "100.00")
 							.param("lenght", "100000.00")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -154,7 +154,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.00")
+							.param("width", "100.00")
 							.param("lenght", "100.009")
 							.param("photoURL", "https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676"))				
 				.andExpect(model().attributeHasErrors("field"))
@@ -170,7 +170,7 @@ void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameExcept
 		mockMvc.perform(post("/fields/new")
 							.with(csrf())
 							.param("name", "Map 2")
-							.param("breadth", "100.00")
+							.param("width", "100.00")
 							.param("lenght", "100.00")
 							.param("photoURL", "Sample text"))				
 				.andExpect(model().attributeHasErrors("field"))

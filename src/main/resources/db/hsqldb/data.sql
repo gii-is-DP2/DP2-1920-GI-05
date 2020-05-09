@@ -53,8 +53,8 @@ INSERT INTO judges(id,first_name,last_name,address,city,telephone,username)  VAL
 
 
 --FIELDS--
-INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 200.00, 120.00);
-INSERT INTO fields (id, name, photoURL, lenght, breadth)  VALUES (2, 'Map 10', 'https://data.agilitynerd.com/images/courses/robertson001.jpg', 100.00, 300.00);
+INSERT INTO fields (id, name, photoURL, lenght, width)  VALUES (1, 'Map 1', 'https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676', 200.00, 120.00);
+INSERT INTO fields (id, name, photoURL, lenght, width)  VALUES (2, 'Map 10', 'https://data.agilitynerd.com/images/courses/robertson001.jpg', 100.00, 300.00);
 
 
 --PET TYPES--

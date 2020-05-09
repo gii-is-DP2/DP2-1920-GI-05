@@ -54,7 +54,7 @@ public class FieldControllerIntegrationTests {
 		ModelMap model=new ModelMap();		
 		Field field = new Field();
 		BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
-		field.setBreadth(100.00);
+		field.setWidth(100.00);
 		field.setLenght(200.00);
 		field.setName("Test field");
 		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -69,7 +69,7 @@ public class FieldControllerIntegrationTests {
   		Field field = new Field();
   		ModelMap model=new ModelMap();		
 
-  		field.setBreadth(100.00);
+  		field.setWidth(100.00);
   		field.setLenght(200.00);
   		field.setName("");
   		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -88,7 +88,7 @@ public class FieldControllerIntegrationTests {
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
  		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
- 		field.setBreadth(-100.00);
+ 		field.setWidth(-100.00);
  		field.setLenght(200.00);
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -103,7 +103,7 @@ public class FieldControllerIntegrationTests {
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
  		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
- 		field.setBreadth(100.009);
+ 		field.setWidth(100.009);
  		field.setLenght(200.00);
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -118,7 +118,7 @@ public class FieldControllerIntegrationTests {
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
  		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
- 		field.setBreadth(100.00);
+ 		field.setWidth(100.00);
  		field.setLenght(-200.00);
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -133,7 +133,7 @@ public class FieldControllerIntegrationTests {
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
  		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
- 		field.setBreadth(100.00);
+ 		field.setWidth(100.00);
  		field.setLenght(200.008);
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
@@ -148,7 +148,7 @@ public class FieldControllerIntegrationTests {
 		ModelMap model=new ModelMap();		
 		Field field = new Field();
 		BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
-		field.setBreadth(100.00);
+		field.setWidth(100.00);
 		field.setLenght(200.00);
 		field.setName("Test field");
 		field.setPhotoURL("NotURL");

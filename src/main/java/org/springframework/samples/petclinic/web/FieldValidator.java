@@ -15,7 +15,7 @@ public class FieldValidator implements Validator {
 		Field field = (Field) obj;
 		String name = field.getName();
 		
-		Double breadth = field.getBreadth();
+		Double width = field.getWidth();
 		Double lenght = field.getLenght();
 		
 		// name validation
@@ -24,20 +24,20 @@ public class FieldValidator implements Validator {
 					REQUIRED + " and must be between 3 and 50 characters");
 		}
 
-		if (field.getBreadth() ==null) {
-			errors.rejectValue("breadth", REQUIRED, REQUIRED);
+		if (width ==null) {
+			errors.rejectValue("width", REQUIRED, REQUIRED);
 		}
 		
-		if (breadth != null && countIntegers(breadth) > 5) {		
-				errors.rejectValue("breadth", "Must be less than 5 integers", "Must be less than 5 integers");
+		if (width != null && countIntegers(width) > 5) {		
+				errors.rejectValue("width", "Must be less than 5 integers", "Must be less than 5 integers");
 			}
 		
 
-		if (breadth != null && countFractions(breadth) > 2) {		
+		if (width != null && countFractions(width) > 2) {		
 				errors.rejectValue("breadth", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
 
-		if (breadth != null && breadth <= 0) {		
+		if (width != null && width <= 0) {		
 				errors.rejectValue("breadth", "The breadth can not be negative or 0",
 						"The breadth can not be negative or 0");
 			}

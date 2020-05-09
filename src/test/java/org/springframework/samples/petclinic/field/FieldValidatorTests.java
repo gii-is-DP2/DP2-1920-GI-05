@@ -32,7 +32,7 @@ public class FieldValidatorTests {
 				
 		Field field = new Field();
 		field.setName("Map 150");
-		field.setBreadth(100.00);
+		field.setWidth(100.00);
 		field.setLenght(600.00);
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
 		
@@ -55,7 +55,7 @@ public class FieldValidatorTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 				
 		Field field = new Field();
-		field.setBreadth(100.00);
+		field.setWidth(100.00);
 		field.setLenght(600.00);
 		field.setName("me");
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
@@ -71,12 +71,12 @@ public class FieldValidatorTests {
 	
 	// Create new Field Negative Case: Invalid breath input
 	@Test
-	void shouldNotValidateBreadth() {
+	void shouldNotValidateWidth() {
 		
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 				
 		Field field = new Field();
-		field.setBreadth(99999999.00);
+		field.setWidth(99999999.00);
 		field.setLenght(1000.00);
 		field.setName("Map 1");
 		field.setPhotoURL("https://alliancecincinnati.com/wp-content/uploads/2019/08/Dog-Days-Field-Map-2019.jpg");
@@ -85,7 +85,7 @@ public class FieldValidatorTests {
 		Set<ConstraintViolation<Field>> constraintViolations = validator.validate(field);		
 		assertThat(constraintViolations.size()).isEqualTo(1);
 		ConstraintViolation<Field> violation = constraintViolations.iterator().next();
-		assertThat(violation.getPropertyPath().toString()).isEqualTo("breadth");
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("Width");
 		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<2 digits> expected)");
 
 	}
@@ -97,7 +97,7 @@ public class FieldValidatorTests {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 					
 		Field field = new Field();
-		field.setBreadth(500.00);
+		field.setWidth(500.00);
 		field.setLenght(99999999.00);
 		field.setName("Map 2");
 		field.setPhotoURL("https://helgehimleagilitycourses.files.wordpress.com/2019/09/dm-jump-team.gif?w=676");
@@ -119,7 +119,7 @@ public class FieldValidatorTests {
 		
 			
 		Field field = new Field();
-		field.setBreadth(500.00);
+		field.setWidth(500.00);
 		field.setLenght(1000.00);
 		field.setName("Map 3");
 		field.setPhotoURL("photo");
