@@ -190,9 +190,9 @@ public class AdminUITests {
 	    driver.findElement(By.id("lenght")).click();
 	    driver.findElement(By.id("lenght")).clear();
 	    driver.findElement(By.id("lenght")).sendKeys("23.00");
-	    driver.findElement(By.id("breadth")).click();
-	    driver.findElement(By.id("breadth")).clear();
-	    driver.findElement(By.id("breadth")).sendKeys("24.00");
+	    driver.findElement(By.id("width")).click();
+	    driver.findElement(By.id("width")).clear();
+	    driver.findElement(By.id("width")).sendKeys("24.00");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	    
 	    return this;

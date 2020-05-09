@@ -32,7 +32,7 @@
                     <c:out value="${field.lenght}"/>
                 </td>
                 <td>
-                    <c:out value="${field.breadth}"/>
+                    <c:out value="${field.width}"/>
                 </td>       
             </tr>
         </c:forEach>
