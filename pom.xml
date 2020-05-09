@@ -128,16 +128,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
+			<artifactId>junit</artifactId>
+			<groupId>junit</groupId>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-console</artifactId>
-			<version>1.6.1</version>
-			<scope>test</scope>
-		</dependency>
-		
+
 		<!-- Selenium dependences -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -163,7 +157,7 @@
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
-	
+
 
 		<!-- Development tools -->
 		<dependency>
