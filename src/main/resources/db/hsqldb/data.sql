@@ -116,17 +116,17 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'Drummond', '2
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (15, 'JoJo', '2017-06-12', 7, 9); -- horse from owner9 --
 
 --APPLICATIONS--
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id) -- old cat accepted pplication from owner1 --
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) -- old cat accepted pplication from owner1 --
 VALUES (1,'ACCEPTED', '2019-09-22', '352571631239294', 1, 1, 1);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id) -- old dog accepted application from owner2 --
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) -- old dog accepted application from owner2 --
 VALUES (2,'ACCEPTED', '2019-09-18', '363017956100486', 2, 3, 2);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new hamster pending application from owner1 --
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new hamster pending application from owner1 --
 VALUES (3,'PENDING', '2020-11-01', '352571631239294', 1, 2, 5);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new bird pending application from owner 2 --
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new bird pending application from owner 2 --
 VALUES (4,'PENDING', '2020-11-02', '363017956100486', 2, 4, 9);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new lizard rejected application from owner3 -- 
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new lizard rejected application from owner3 -- 
 VALUES (5,'REJECTED', '2020-11-03', '379254492621186', 3, 5, 10);
-INSERT INTO applications(id, status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat accepted application from owwer6 -- 
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat accepted application from owwer6 -- 
 VALUES (6,'ACCEPTED', '2019-09-20', '379254492621186', 6, 12, 1);
 
 --VETS--
