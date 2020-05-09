@@ -8,4 +8,4 @@ services:
 before_install:
   - mysql -e 'CREATE DATABASE petclinic;'
   - chmod +x mvnw
-script: mvn test -Dspring.profiles.active=mysql-travis | grep "BUILD SUCCESS"
+script: mvn test -Dspring.profiles.active=mysql-travis
