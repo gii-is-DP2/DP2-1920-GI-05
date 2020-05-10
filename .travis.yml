@@ -8,3 +8,4 @@ services:
 before_install:
   - mysql -e 'CREATE DATABASE petclinic;'
   - chmod +x mvnw
+script: mvn test -Dspring-boot.run.profiles=mysql-travis
