@@ -21,6 +21,7 @@ import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.web.PetController;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
@@ -65,6 +66,7 @@ class PetControllerIntegrationTests {
 
 	
     @Test
+    @Transactional
 	void testProcessCreationFormSuccess() throws Exception {
     	ModelMap model=new ModelMap();
     	Owner owner=ownerService.findOwnerById(TEST_OWNER_ID);
@@ -98,7 +100,7 @@ class PetControllerIntegrationTests {
 	}
 
 
-	@Test
+	@Test	
 	void testInitUpdateForm() throws Exception {		
 		ModelMap model=new ModelMap();
 		

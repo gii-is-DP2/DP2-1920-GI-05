@@ -50,7 +50,6 @@ class PetServiceTests {
 	protected OwnerService ownerService;	
 
 	@Test
-	@Transactional
 	void shouldFindPetWithCorrectId() {
 		Pet pet7 = this.petService.findPetById(7);
 		assertThat(pet7.getName()).startsWith("Samantha");
@@ -59,7 +58,6 @@ class PetServiceTests {
 	}
 
 	@Test
-	@Transactional
 	void shouldFindAllPetTypes() {
 		Collection<PetType> petTypes = this.petService.findPetTypes();
 
@@ -189,7 +187,6 @@ class PetServiceTests {
 	}
 
 	@Test
-	@Transactional
 	void shouldFindVisitsByPetId() throws Exception {
 		Collection<Visit> visits = this.petService.findVisitsByPetId(7);
 		assertThat(visits.size()).isEqualTo(2);
