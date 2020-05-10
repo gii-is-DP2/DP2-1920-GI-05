@@ -24,6 +24,7 @@ public class ReportRepositoryTests {
 	@Autowired
 	ReportRepository reportRepository;
 	
+	// Repository test: Return  reports by judge
 	@Test
 	public void shouldReturnJudgeReports() throws Exception {
 				
@@ -32,6 +33,7 @@ public class ReportRepositoryTests {
 		assertThat(judgeReports.size()).isEqualTo(3);	
 	}	
 	
+	// Repository test: Return reports by pet
 	@Test
 	public void shouldReturnPetReports() throws Exception {
 				

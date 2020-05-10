@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
+@Transactional
 public class OwnerControllerE2ETest {
 
 	private static final int TEST_OWNER_ID = 1;
@@ -39,7 +40,6 @@ public class OwnerControllerE2ETest {
 
 	
 	@Test	
-	@Transactional
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
 				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638"))
@@ -89,7 +89,6 @@ public class OwnerControllerE2ETest {
 
 	@WithMockUser(username="owner1",authorities= {"owner"})
 	@Test
-	@Transactional
 	void testProcessUpdateOwnerFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/{ownerId}/edit", TEST_OWNER_ID).with(csrf()).param("firstName", "Joe")
 				.param("lastName", "Bloggs").param("address", "123 Caramel Street").param("city", "London")
