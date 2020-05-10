@@ -43,22 +43,26 @@ public class AdminUITests {
 
 	}
 	
+	// Creating a tournament
 	@Test
 	public void testCreateTournament() throws Exception {
 		as("admin1").testProbandoCreateTournament().thenISeeMyUsernameInTheMenuBar();
 	}
 	
+	//Creating a Judge User
 	@Test
 	@Transactional
 	public void testCreateJudge() throws Exception {		
-		as("admin1").testProbandoCreateJudge();
+		as("admin1").testProbandoCreateJudge().thenISeeMyUsernameInTheMenuBar();;
 	}
 	
+	//Creating a category
 	@Test
 	public void testCreateCategory() throws Exception {		
 		as("admin1").testProbandoCreateCategory().thenISeeMyUsernameInTheMenuBar();;
 	}
 	
+	//Creating a field
 	@Test
 	public void testCreateField() throws Exception {		
 		as("admin1").testProbandoCreateField().thenISeeMyUsernameInTheMenuBar();;
@@ -173,7 +177,7 @@ public class AdminUITests {
 	    driver.findElement(By.id("password")).clear();
 	    driver.findElement(By.id("password")).sendKeys("justice");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-		
+		username = "michael";
 		return this;
 	}
 	

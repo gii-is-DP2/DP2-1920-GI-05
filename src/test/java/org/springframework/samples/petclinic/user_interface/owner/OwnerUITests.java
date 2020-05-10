@@ -43,16 +43,19 @@ public class OwnerUITests {
 
 	}
 	
+	//Creating a owner user
 	@Test
 	public void testCreateOwner() throws Exception {
 		createOwner().thenISeeMyUsernameInTheMenuBar();
 	}
 	
+	//Creating a  pet 
 	@Test
 	public void testCreatePet() throws Exception {
 		as("owner1").createPet().thenISeeMyUsernameInTheMenuBar();
 	}
 	
+	//Throwing a application
 	@Test
 	public void testThrowApplication() throws Exception {
 		as("owner2").throwApplication().thenISeeMyUsernameInTheMenuBar();

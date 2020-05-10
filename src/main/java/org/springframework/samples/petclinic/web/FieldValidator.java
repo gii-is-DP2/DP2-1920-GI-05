@@ -34,11 +34,11 @@ public class FieldValidator implements Validator {
 		
 
 		if (width != null && countFractions(width) > 2) {		
-				errors.rejectValue("breadth", "Must be less than  2 fractions", "Must be less than 2 fractions");
+				errors.rejectValue("width", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
 
 		if (width != null && width <= 0) {		
-				errors.rejectValue("breadth", "The breadth can not be negative or 0",
+				errors.rejectValue("width", "The breadth can not be negative or 0",
 						"The breadth can not be negative or 0");
 			}
 		

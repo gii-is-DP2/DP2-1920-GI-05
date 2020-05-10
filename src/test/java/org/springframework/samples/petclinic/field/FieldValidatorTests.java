@@ -85,7 +85,7 @@ public class FieldValidatorTests {
 		Set<ConstraintViolation<Field>> constraintViolations = validator.validate(field);		
 		assertThat(constraintViolations.size()).isEqualTo(1);
 		ConstraintViolation<Field> violation = constraintViolations.iterator().next();
-		assertThat(violation.getPropertyPath().toString()).isEqualTo("Width");
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("width");
 		assertThat(violation.getMessage()).isEqualTo("numeric value out of bounds (<5 digits>.<2 digits> expected)");
 
 	}
