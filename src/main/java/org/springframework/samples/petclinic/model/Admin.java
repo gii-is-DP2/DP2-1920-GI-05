@@ -34,7 +34,7 @@ import lombok.Setter;
  */
 @Entity
 @Data
-@Table(name = "guides")
+@Table(name = "admins")
 public class Admin extends Person {
 
 }

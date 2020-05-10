@@ -125,7 +125,7 @@ class TournamentServiceTest {
 	@Test
 	void shouldFindActiveTournaments() {
 		Collection<Tournament> tournaments = this.tournamentService.findActiveTournaments();
-		assertThat(tournaments.size()).isEqualTo(1);
+		assertThat(tournaments.size()).isEqualTo(0);
 	}
 	
 	// Save Tournament Postive Case

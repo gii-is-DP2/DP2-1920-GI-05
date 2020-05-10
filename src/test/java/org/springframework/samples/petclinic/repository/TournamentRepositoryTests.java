@@ -26,7 +26,7 @@ public class TournamentRepositoryTests {
 		
 		Tournament t1 = this.tournamentRepository.findById(1);
 		
-		assertThat(activeTournaments.size()).isEqualTo(1);
+		assertThat(activeTournaments.size()).isEqualTo(0);
 		assertThat(!activeTournaments.contains(t1));
 	}
 
