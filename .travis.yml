@@ -3,5 +3,8 @@ sudo: true
 language: java
 jdk: 
   - oraclejdk8
+services:
+  - mysql
 before_install:
+  - mysql -e 'CREATE DATABASE petclinic;'
   - chmod +x mvnw
