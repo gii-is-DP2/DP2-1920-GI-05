@@ -27,6 +27,7 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.ApplicationController;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
@@ -92,7 +93,8 @@ public class ApplicationControllerIntegrationTests {
 	}
     
     @WithMockUser(username="owner1",authorities= {"owner"})
-    //@Test
+    @Test
+    @Transactional
 	void testProcessCreationFormSuccess()  throws Exception {
     	ApplicationPOJO ap= new ApplicationPOJO();
     	ModelMap model=new ModelMap();		

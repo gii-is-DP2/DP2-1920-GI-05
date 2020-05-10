@@ -54,7 +54,7 @@ public class ApplicationControllerE2ETests {
 	
 	// Post Create Fields Positive Case It does not work on Travis CI
 	@WithMockUser(username="owner1",authorities= {"owner"})
-	//@Test
+	@Test
 	void testProcessNewApplication() throws Exception {					
 		mockMvc.perform(post("/applications/{tournamentId}/new", TEST_TOURNAMENT_ID).with(csrf())
 				.param("pet", "Leo")
