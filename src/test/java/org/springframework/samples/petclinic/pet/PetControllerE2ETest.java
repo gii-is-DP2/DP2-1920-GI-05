@@ -112,7 +112,6 @@ public class PetControllerE2ETest {
     
 	@WithMockUser(username="owner1",authorities= {"owner"})
 	@Test
-	@Transactional
 	void testProcessUpdateFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
 							.with(csrf())						

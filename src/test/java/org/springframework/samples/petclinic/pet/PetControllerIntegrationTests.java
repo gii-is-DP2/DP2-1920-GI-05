@@ -112,6 +112,7 @@ class PetControllerIntegrationTests {
 	
 	  @WithMockUser(username="owner1",authorities= {"owner"})
 	  @Test
+	  @Transactional
 		void testProcessUpdateFormSuccess() throws Exception {
 	    	ModelMap model=new ModelMap();
 	    	Owner owner=ownerService.findOwnerById(TEST_OWNER_ID);
