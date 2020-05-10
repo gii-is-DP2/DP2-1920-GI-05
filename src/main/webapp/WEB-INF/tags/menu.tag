@@ -39,13 +39,7 @@
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
 				
-				<sec:authorize access="hasAuthority('owner')">
-				<petclinic:menuItem active="${name eq 'reports'}" url="/myReports/"
-					title="My reports">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>My reports</span>
-				</petclinic:menuItem>
-				</sec:authorize>
+
 
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a id="authenticatedbar" href="#" class="dropdown-toggle"
@@ -80,6 +74,8 @@
 									</a></li>
 						<li><a id="profile" href="<c:url value="/owners/details" />">My profile
 									</a></li>		
+						<li><a id="ownerreports" href="<c:url value="/myReports/" />">My reports
+								</a></li>				
 						</ul></li>
 				</sec:authorize>
 
