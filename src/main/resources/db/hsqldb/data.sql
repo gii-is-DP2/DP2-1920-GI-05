@@ -101,12 +101,12 @@ VALUES (10, 'Lizards  speed contest 2020', '2020-11-10', '2020-12-01',  '2020-12
 --PETS--
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);  -- cat from owner1 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 1); -- hamster from owner1 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (3, 'Rosy', '2011-04-17', 2, 2, 1); -- dog from owner2 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (3, 'Rosy', '2011-04-17', 2, 2, 1); -- dog from owner2 with guide assigned--
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (4, 'Jewel', '2010-03-07', 5, 2); -- bird from owner2 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (5, 'Iggy', '2010-11-30', 3, 3); -- lizard from owner3 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (6, 'George', '2010-01-20', 4, 3); -- snake from owner3 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (7, 'Samantha', '2012-09-04', 4, 4); -- snake from owner4 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (8, 'Max', '2012-09-04', 2, 4,1); -- dog from owner4 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (8, 'Max', '2012-09-04', 2, 4,1); -- dog from owner4  with guide assigned--
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (9, 'Garp', '2011-08-06', 5, 5); -- bird from owner5 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (10, 'Mulligan', '2007-02-24', 3, 5); -- snake from owner5 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (11, 'Freddy', '2010-03-09', 6, 6); -- hamster from owner6 -- 
