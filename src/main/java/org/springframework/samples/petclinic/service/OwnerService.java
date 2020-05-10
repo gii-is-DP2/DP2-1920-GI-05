@@ -22,6 +22,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,9 +70,14 @@ public class OwnerService {
 	
 	@Transactional(readOnly = true)
 	public Owner findOwnerByUserName() throws DataAccessException {
-		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-		Owner res = this.ownerRepository.findByUserName(userName);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = userDetails.getUsername();
+		Owner res = this.ownerRepository.findByUserName(username);
 		return res;
+	}
+
+	public Collection<Owner> findAllOwners() {	
+		return this.ownerRepository.findAllOwners();
 	}
 
 }

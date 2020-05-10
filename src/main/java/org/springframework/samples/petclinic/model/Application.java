@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,12 +14,13 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper=false)
 @Table(name = "applications")
 public class Application extends BaseEntity {
 
@@ -26,6 +28,7 @@ public class Application extends BaseEntity {
 	
 	@NotBlank
 	//@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
+	@Column(name = "application_status")      
 	private String status;
 
 	@DateTimeFormat(pattern = "yyyy/MM/dd")

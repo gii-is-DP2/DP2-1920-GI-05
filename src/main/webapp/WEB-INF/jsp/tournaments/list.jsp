@@ -9,7 +9,7 @@
 
 <petclinic:layout pageName="tournaments">
 	<h2>Tournaments</h2>
-
+	<h3>Click on the name for more information</h3>
 	<table id="tournamentesTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -17,29 +17,22 @@
 				<th>Pet type</th>	
 				<th>Category </th>
 				<th>Location</th>				
-				<th>Applications date</th>
-				<th>Start date</th>	
-				<th>End Date</th>									
-				<th>Prize</th>	
-				<th>Update</th>			
+				<th>Applications available until</th>				
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${tournaments}" var="tournament">
 				<tr>
-					<td><c:out value="${tournament.name}" /></td>
+				 	<sec:authorize access="hasAuthority('admin')">
+					<td><a href="<c:url value="/tournaments/${tournament.id}/edit" />"><c:out value="${tournament.name}" /></a></td>
+					</sec:authorize>
+					<sec:authorize access="hasAnyAuthority('owner','judge','guide')">
+					<td><a href="<c:url value="/tournaments/${tournament.id}/show" />"><c:out value="${tournament.name}" /></a></td>
+					</sec:authorize>
 					<td><c:out value="${tournament.petType.name}" /></td>	
 					<td><c:out value="${tournament.category.name}" /></td>		
 					<td><c:out value="${tournament.location}" /></td>									
 					<td><petclinic:localDate date="${tournament.applyDate}" pattern="yyyy-MM-dd"/></td>
-					<td><petclinic:localDate date="${tournament.startDate}" pattern="yyyy-MM-dd"/></td>
-					<td><petclinic:localDate date="${tournament.endDate}" pattern="yyyy-MM-dd"/></td>							
-					<td><c:out value="${tournament.prize.amount} ${tournament.prize.currency}" /></td>
-					<sec:authorize access="hasAuthority('admin')">			
-					<td>
-						<a href="<c:url value="/tournaments/${tournament.id}/edit" />"> Edit  </a>
-                	</td>  
-                	</sec:authorize>
 				</tr>
 			</c:forEach>
 		</tbody>

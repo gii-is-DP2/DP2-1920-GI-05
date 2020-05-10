@@ -32,6 +32,16 @@
         <spring:param name="judgeId" value="${judge.id}"/>
     </spring:url>
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Judge</a>
+    
+    <spring:url value="{judgeId}/tournaments" var="tournaments">
+        <spring:param name="judgeId" value="${judge.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(tournaments)}" class="btn btn-default">My tournaments</a>
+
+    <spring:url value="{judgeId}/reports" var="reports">
+        <spring:param name="judgeId" value="${judge.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(reports)}" class="btn btn-default">My reports</a>
 
     <br/>
     <br/>

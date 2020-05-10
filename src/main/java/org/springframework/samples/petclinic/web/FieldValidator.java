@@ -1,8 +1,5 @@
 package org.springframework.samples.petclinic.web;
 
-import java.text.NumberFormat;
-import java.text.ParsePosition;
-
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.StringUtils;
@@ -17,83 +14,64 @@ public class FieldValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Field field = (Field) obj;
 		String name = field.getName();
+		
+		Double width = field.getWidth();
+		Double lenght = field.getLenght();
+		
 		// name validation
 		if (!StringUtils.hasLength(name) || name.length() > 50 || name.length() < 3) {
 			errors.rejectValue("name", REQUIRED + " and must be between 3 and 50 characters",
 					REQUIRED + " and must be between 3 and 50 characters");
 		}
 		
-		if (field.getBreadth().isEmpty()) {
-			errors.rejectValue("breadth", REQUIRED, REQUIRED);
+		//width not null
+		if (width ==null) {
+			errors.rejectValue("width", REQUIRED, REQUIRED);
 		}
-
-		if (!field.getBreadth().isEmpty() && isNumeric(field.getBreadth()) == true) {
-			if (countIntegers(field.getBreadth()) > 5) {
-				errors.rejectValue("breadth", "Must be less than 5 integers", "Must be less than 5 integers");
+		
+		//width 5 integers
+		if (width != null && countIntegers(width) > 5) {		
+				errors.rejectValue("width", "Must be less than 5 integers", "Must be less than 5 integers");
 			}
-		}
-
-		if (!field.getBreadth().isEmpty() && isNumeric(field.getBreadth()) == true) {
-			if (countFractions(field.getBreadth()) > 2) {
-				errors.rejectValue("breadth", "Must be less than  2 fractions", "Must be less than 2 fractions");
+		
+		//width 2 fractions
+		if (width != null && countFractions(width) > 2) {		
+				errors.rejectValue("width", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
-		}
 
-		if (!field.getBreadth().isEmpty() && isNumeric(field.getBreadth()) == true) {
-			if (Double.parseDouble(field.getBreadth()) <= 0) {
-				errors.rejectValue("breadth", "The breadth can not be negative or 0",
+		//width not negative
+		if (width != null && width <= 0) {		
+				errors.rejectValue("width", "The breadth can not be negative or 0",
 						"The breadth can not be negative or 0");
 			}
-		}
 		
-		if (!field.getBreadth().isEmpty()) {
-			if (isNumeric(field.getBreadth()) == false) {
-				errors.rejectValue("breadth", "Has to be numeric", "Has to be numeric");
-			}
-		}
-		
-		if (field.getBreadth().contains(",")) {			
-			errors.rejectValue("breadth", "Please use the sign '.' for decimal numbers no ',' ", "Please use the sign '.' for decimal numbers no ',' ");
-		}
-		
-		if (field.getLenght().isEmpty()) {
+		//lenght not null
+		if (lenght == null) {
 			errors.rejectValue("lenght", REQUIRED, REQUIRED);
-			}
-
-		if (!field.getLenght().isEmpty() && isNumeric(field.getLenght()) == true) {
-			if (countIntegers(field.getLenght()) > 5)
+		}
+		
+		//lenght not null
+		if (lenght != null && countIntegers(lenght) > 5) {		
 				errors.rejectValue("lenght", "Must be less than 5 integers", "Must be less than 5 integers");
 		}
 
-		if (!field.getLenght().isEmpty() && isNumeric(field.getLenght()) == true ) {
-			if (countFractions(field.getLenght()) > 2) {
+		//lenght 2 fractions
+		if (lenght != null && countFractions(lenght) > 2) {		
 				errors.rejectValue("lenght", "Must be less than  2 fractions", "Must be less than 2 fractions");
 			}
-		}
 
-		if (!field.getLenght().isEmpty() && isNumeric(field.getLenght()) == true ) {
-			if (Double.parseDouble(field.getLenght()) <= 0) {
+		//lenght not negative
+		if (lenght != null && lenght <= 0) {		
 				errors.rejectValue("lenght", "The lenght can not be negative or 0",
 						"The lenght can not be negative or 0");
 			}
-		}
-				
 		
-		if (!field.getLenght().isEmpty()) {
-			if (isNumeric(field.getLenght()) == false) {
-				errors.rejectValue("lenght", "Has to be numeric", "Has to be numeric");
-			}
-		}
-		
-		if (field.getLenght().contains(",")) {			
-				errors.rejectValue("lenght", "Please use the sign '.' for decimal numbers no ',' ", "Please use the sign '.' for decimal numbers no ',' ");
-			}
-		
-
+	  //photo not null
 		if (field.getPhotoURL().isEmpty()) {
 			errors.rejectValue("photoURL", REQUIRED, REQUIRED);
 		}
 
+    //photo is url
 		if (!UrlUtils.isAbsoluteUrl(field.getPhotoURL())) {
 			errors.rejectValue("photoURL", "Must be an url", "Must be an url");
 		}
@@ -106,39 +84,23 @@ public class FieldValidator implements Validator {
 		return Field.class.isAssignableFrom(clazz);
 	}
 
-	public static int countIntegers(String s) {
-		int count = 0;
-		String r = s;
-		if (s.contains("-")) {
-			r = s.substring(1);
-		}
-		Double d = Double.parseDouble(r);
-		Integer i = d.intValue();
-		count = i.toString().length();
-
-		return count;
-	}
-
-	public int countFractions(String s) {
-		int count = 0;		
-			int integerPlaces = 0;
-			if(s.contains(".")) {
-			integerPlaces = s.indexOf('.');
-			}
-			if(s.contains(",")) {
-			integerPlaces = s.indexOf(',');
-			}
-			count = s.length() - integerPlaces - 1;
+	public int countIntegers(Double d) {
+		Integer intValue = d.intValue();		
+		int count = intValue.toString().length();
 		
-		return count;
+		return count;		
 	}
 
-	public static boolean isNumeric(String str) {
-		  NumberFormat formatter = NumberFormat.getInstance();
-		  ParsePosition pos = new ParsePosition(0);
-		  formatter.parse(str, pos);
-		  return str.length() == pos.getIndex();
-		}
+	
+	public int countFractions(Double d) {
+		
+		String text = Double.toString(Math.abs(d));
+		int integerPlaces = text.indexOf('.');
+		int count = text.length() - integerPlaces - 1;		
+		return count;		
+	}
+
+
 	
 
 }

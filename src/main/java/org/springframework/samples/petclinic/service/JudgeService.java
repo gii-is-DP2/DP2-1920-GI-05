@@ -35,7 +35,7 @@ public class JudgeService {
 	
 	@Transactional
 	public void saveJudge(Judge judge) throws DataAccessException {
-		//creating owner
+		//creating judge
 		judgeRepository.save(judge);		
 		//creating user
 		userService.saveUser(judge.getUser());

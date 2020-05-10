@@ -23,6 +23,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -46,7 +47,7 @@ import lombok.Setter;
 @Table(name = "owners")
 public class Owner extends Person {
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<Pet> pets;
 
 	protected Set<Pet> getPetsInternal() {

@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -25,10 +26,11 @@ public class Field extends NamedEntity {
 
 	@Digits(fraction = 2, integer = 5)
 	@Min(0)
-	private String lenght;
+	private Double lenght;
 
 	@Digits(fraction = 2, integer = 5)
 	@Min(0)
-	private String breadth;
+	@Column(name = "width")
+	private Double width;
 
 }

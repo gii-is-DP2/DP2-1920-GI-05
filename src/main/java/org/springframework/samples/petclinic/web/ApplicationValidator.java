@@ -14,21 +14,22 @@ public class ApplicationValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Application application = (Application) obj;		
 
-		  if (application.isNew() && application.getPet() == null) {
+		  if (application.getPet() == null) {
 		  errors.rejectValue("pet", REQUIRED, REQUIRED); }
 		  
-		  if (application.isNew() && application.getTournament() == null) {
+		  if (application.getTournament() == null) {
 		  errors.rejectValue("tournament", REQUIRED, REQUIRED); }	 	
 		  
-		  if (application.isNew() && application.getOwner() == null) {
+		  if (application.getOwner() == null) {
 			  errors.rejectValue("owner", REQUIRED, REQUIRED); }	 	
 
-		  if (application.isNew() && application.getStatus().isEmpty()){
+		  if (application.getStatus().isEmpty()){
 		  errors.rejectValue("status", REQUIRED, REQUIRED); }	 	
-		  
-		  if (!application.getStatus().isEmpty() && !validateStatus(application.getStatus())) {
-		  errors.rejectValue("status", "Status has to be rejected, pending or accepted", "Status has to be rejected, pending or accepted"); 
-		  }	 	
+		  		
+		  if (!application.getStatus().isEmpty() && validateStatus(application.getStatus()) == false) { 			  
+			  errors.rejectValue("status", "Status has to be rejected, pending or accepted", "Status has to be rejected, pending or accepted"); 
+			  }
+		 
  
 	
 
@@ -36,10 +37,8 @@ public class ApplicationValidator implements Validator {
 	}
 	
 	public boolean validateStatus(String s) {
-		boolean res = false;
-		if(s=="REJECTED" || s =="ACCEPTED" || s == "PENDING") {
-			res = true;
-		}
+		boolean res;
+		res = s.equals("REJECTED")  || s.equals("ACCEPTED") || s.equals("PENDING");					
 		return res;
 	}
 

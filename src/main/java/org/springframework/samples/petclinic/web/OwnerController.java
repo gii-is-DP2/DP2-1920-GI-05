@@ -85,38 +85,13 @@ public class OwnerController {
 	@GetMapping(value = "/owners/find")
 	public String initFindForm(Map<String, Object> model) {
 		
-		if(this.jugdeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.jugdeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
-		
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}else {		
 			model.put("owner", new Owner());	
-		}
-		
-		
+						
 		return "owners/findOwners";
 	}
 
 	@GetMapping(value = "/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
-
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}
-		
-		if(this.jugdeService.findJudgeByUserName()!=null)	{
-			model.put("judge", this.jugdeService.findJudgeByUserName());
-		}
-		
-		if(this.guideService.findGuideByUserName()!=null)	{
-			model.put("guide", this.guideService.findGuideByUserName());
-		}
 		
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName() == null) {
@@ -158,7 +133,7 @@ public class OwnerController {
 		else {
 			owner.setId(ownerId);
 			this.ownerService.saveOwner(owner);
-			return "redirect:/owners/{ownerId}";
+			return "redirect:/owners/details";
 		}
 	}
 
@@ -167,11 +142,18 @@ public class OwnerController {
 	 * @param ownerId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
-	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
+	@GetMapping("/owners/details")
+	public ModelAndView showOwner() {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		mav.addObject(this.ownerService.findOwnerById(ownerId));
+		mav.addObject(this.ownerService.findOwnerByUserName());
 		return mav;
+	}
+	
+	@GetMapping(value = "/owners/{ownerId}/show")
+	public String showFinderOwner(@PathVariable("ownerId") int ownerId, Model model) {
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		model.addAttribute(owner);
+		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
 }

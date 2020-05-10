@@ -1,15 +1,17 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Guide;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Judges;
+import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.JudgeService;
+import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +29,12 @@ public class JudgeController {
 	private static final String VIEWS_JUDGE_CREATE_OR_UPDATE_FORM = "judges/createOrUpdateJudgeForm";
 
 	private final JudgeService judgeService;
+	private final TournamentService tournamentService;
 
 	@Autowired
-	public JudgeController(JudgeService judgeService, UserService userService, AuthoritiesService authoritiesService) {
-		this.judgeService = judgeService;		
+	public JudgeController(TournamentService tournamentService,JudgeService judgeService, UserService userService, AuthoritiesService authoritiesService) {
+		this.judgeService = judgeService;	
+		this.tournamentService = tournamentService;
 	}
 	
 	@InitBinder
@@ -58,10 +62,10 @@ public class JudgeController {
 		if (result.hasErrors()) {
 			return "judges/createOrUpdateJudgeForm";
 		} else {
-			// creating owner, user and authorities
+			// creating judge, user and authorities
 			this.judgeService.saveJudge(judge);
 
-			return "redirect:/judges/" + judge.getId();
+			return "welcome";
 		}
 	}
 
@@ -80,15 +84,24 @@ public class JudgeController {
 		} else {
 			judge.setId(judgeId);
 			this.judgeService.saveJudge(judge);
-			return "welcome";
+			return "redirect:/judges/details";
 		}
 	}
 
-	@GetMapping("/judges/{judgeId}")
-	public ModelAndView showJudge(@PathVariable("judgeId") int judgeId) {
+	@GetMapping("/judges/details")
+	public ModelAndView showJudge() {
 		ModelAndView mav = new ModelAndView("judges/judgeDetails");
-		mav.addObject(this.judgeService.findJudgeById(judgeId));
+		mav.addObject(this.judgeService.findJudgeByUserName());
 		return mav;
+	}
+	
+	@GetMapping(value = "/judges/{judgeId}/tournaments")
+	public String initTournaments4Judge(@PathVariable("judgeId") int judgeId, Map<String, Object> model) {
+		
+		Collection<Tournament> tournaments = tournamentService.findTournamentByJudgeId(judgeId);
+		model.put("tournaments",tournaments);
+		model.put("judge", judgeService.findJudgeById(judgeId));
+		return "judges/tournaments";
 	}
 
 }

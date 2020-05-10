@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -23,6 +25,7 @@ public class Report extends BaseEntity {
 	private Integer points;
 
 	@Length(max = 500)
+	@NotBlank
 	private String comments;
 
 	public Integer getPoints() {
@@ -36,5 +39,10 @@ public class Report extends BaseEntity {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
+	
+	@Valid
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "pet")
+	private Pet pet;
 
 }

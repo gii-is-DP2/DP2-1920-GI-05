@@ -15,7 +15,7 @@
             <petclinic:inputField label="Name" name="name"/>
             <petclinic:inputField label="Photo (URL)" name="photoURL"/>
             <petclinic:inputField label="Lenght (in meters, 2 fractions)" name="lenght"/>
-            <petclinic:inputField label="Breadth (in meters, 2 fractions)" name="breadth"/>
+            <petclinic:inputField label="Width (in meters, 2 fractions)" name="width"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
