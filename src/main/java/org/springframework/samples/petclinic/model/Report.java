@@ -44,5 +44,7 @@ public class Report extends BaseEntity {
 	@ManyToOne(optional=false)
 	@JoinColumn(name = "pet")
 	private Pet pet;
+	
+	
 
 }
