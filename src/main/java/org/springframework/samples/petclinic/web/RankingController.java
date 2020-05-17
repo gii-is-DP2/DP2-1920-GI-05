@@ -65,26 +65,6 @@ public class RankingController {
 		dataBinder.setValidator(new RankingValidator());
 	} 
 
-	@GetMapping(value = "/rankings/new")
-	public String initCreationForm(Tournament tournament, ModelMap model) {
-		Ranking ranking = new Ranking();
-		model.put("ranking", ranking);
-		return "rankings/create";
-	}
 
-	@PostMapping(value = "/rankings/new")
-	public String processCreationForm(Tournament tournament,
-	 @Valid Ranking ranking, BindingResult result, ModelMap model) {		
-		if (result.hasErrors()) {
-			model.put("ranking", ranking);
-			return "rankings/create";
-		}
-		else {
-        
-            this.rankingService.saveRanking(ranking);
-	
-            return "/judges/{judgeId}/tournaments";
-		}
-	}
 
 }

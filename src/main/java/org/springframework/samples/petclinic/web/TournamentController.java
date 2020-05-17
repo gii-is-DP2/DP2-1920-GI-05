@@ -195,18 +195,16 @@ public class TournamentController {
 	// Make a Ranking for a tournament
 
 	@PostMapping(value = { "/tournaments/endedList" })
-	public String makeRankingForm(Tournament tournament,
-	/* @Valid Ranking ranking, */ BindingResult result, ModelMap model) {		
-	   if (result.hasErrors()) {
+	public String makeRankingForm(Tournament tournament, ModelMap model) {
+	  
+		Ranking ranking = this.rankingService.makeRanking(tournament);
 
-			return "tournaments/endedList";
-	   }
-	   else {
-		
-		   	this.rankingService.saveRanking(this.rankingService.makeRanking(tournament));
+		this.rankingService.saveRanking(ranking);
+		Collection<Tournament> endedTournaments = this.tournamentService.findEndedTournaments();
+		model.put("tournaments", endedTournaments);
    
-		   return "tournaments/endedList";
-	   }
+		return "tournaments/endedList";
+	   
    }
 
 }

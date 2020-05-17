@@ -42,7 +42,6 @@ public class RankingService {
 		return this.rankingRepository.findAllRanking();
 	}
 
-	@Transactional(rollbackFor = DuplicatedPetNameException.class)
 	public void saveRanking(Ranking ranking) throws DataAccessException {
 		rankingRepository.save(ranking);                
 	}
@@ -57,8 +56,7 @@ public class RankingService {
 		List<Report> reports = this.reportRepository.findAll().stream().collect(Collectors.toList());
 		reports.stream().filter(r -> r.getTournament().equals(tournament));
 
-		HashMap<Pet, Integer> mapa = new HashMap<Pet, Integer>();
-		List<Pet> podium = new ArrayList<Pet>();
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 
 		/* Creamos el ranking que vamos a devolver, junto con varias variables más
 		para ayudarnos; La lista de los report del torneo entrante, el podio de las pets 
@@ -67,10 +65,10 @@ public class RankingService {
 		*/
 
 		for(Report r: reports){
-			if(!(mapa.containsKey(r.getPet()))){
-				mapa.put(r.getPet(), r.getPoints());
+			if(!(mapa.containsKey(r.getPet().getName()))){
+				mapa.put(r.getPet().getName(), r.getPoints());
 			} else {
-				mapa.replace(r.getPet(), mapa.get(r.getPet()) + r.getPoints());
+				mapa.replace(r.getPet().getName(), mapa.get(r.getPet().getName()) + r.getPoints());
 			}
 		}
 
@@ -80,18 +78,16 @@ public class RankingService {
 
 		mapa.entrySet().stream().sorted(Collections.reverseOrder());
 
-		// Ordenamos el mapa de manera inversa al orden natural, los Integer más grandes primero.
-
-		podium.addAll(mapa.keySet());
-
 		// Añadimos las pet al podium, entran ordenadas empezando por la que tiene más puntos
 
+	
+
 		ranking.setTournament(tournament);
-		ranking.setPodium(podium);
+		ranking.setPodium(mapa); 
 
 		/* Por último asignamos los atributos al ranking, y lo devolvemos
 		PD: No sé si habría que añadirle la id de forma manual */
-		
+	
 		return ranking;
 	}
 

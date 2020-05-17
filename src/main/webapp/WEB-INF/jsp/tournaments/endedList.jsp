@@ -6,6 +6,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <petclinic:layout pageName="tournaments">
 	<h2>Tournaments</h2>
@@ -32,7 +33,17 @@
 					<td><c:out value="${tournament.petType.name}" /></td>	
 					<td><c:out value="${tournament.category.name}" /></td>		
 					<td><c:out value="${tournament.location}" /></td>
-					<td><button class="btn btn-default" type="submit">Add Ranking</button></td>
+					<td>
+						<form:form id="makeForm" action="/tournaments/endedList"
+						class="form-horizontal">
+
+							<input type="hidden" name="tournament"value="${tournament}" />
+							
+							<input class="btn btn-default" type="submit"
+								value="Add ranking">
+
+						</form:form>
+					</td>
 															
 				</tr>
 			</c:forEach>
