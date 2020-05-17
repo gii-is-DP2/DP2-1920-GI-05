@@ -158,17 +158,17 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
 --REPORTS--
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet)  -- Report from judge 1, tournament 1, pet 1 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 1, tournament 1, pet 1 --
 VALUES (1, 20, 'Sin comentarios', 1, 1, 1);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet) -- Report from judge 1, tournament 2, pet 3 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 1, tournament 2, pet 3 --
 VALUES (2, 30, 'Sin comentarios', 1, 2, 3);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet) -- Report from judge 1, tournament 10, pet 5 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 1, tournament 10, pet 5 --
 VALUES (3, 60, 'Sin comentarios', 1, 10, 5);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet)  -- Report from judge 2, tournament 1, pet 1 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 1 --
 VALUES (4, 40, 'Sin comentarios', 2, 1, 1);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet)  -- Report from judge 2, tournament 1, pet 3 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 3 --
 VALUES (5, 70, 'Sin comentarios', 2, 2, 3);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet)  -- Report from judge 2, tournament 1, pet 5 --
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 5 --
 VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
 
 

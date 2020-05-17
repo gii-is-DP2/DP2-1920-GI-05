@@ -1,16 +1,18 @@
 package org.springframework.samples.petclinic.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Category;
+import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.model.Tournament;
+import org.springframework.samples.petclinic.repository.RankingRepository;
 import org.springframework.samples.petclinic.repository.TournamentRepository;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
-import org.springframework.samples.petclinic.service.exceptions.WrongDateException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -19,10 +21,13 @@ import org.springframework.util.StringUtils;
 public class TournamentService {
 
 	private TournamentRepository tournamentRepository;
+	private RankingRepository rankingRepository;
 
 	@Autowired
-	public TournamentService(TournamentRepository tournamentRepository) {
+	public TournamentService(TournamentRepository tournamentRepository,
+		RankingRepository rankingRepository) {
 		this.tournamentRepository = tournamentRepository;
+		this.rankingRepository = rankingRepository;
 	}
 
 	@Transactional(rollbackFor = DuplicateTournamentNameException.class)
@@ -48,7 +53,7 @@ public class TournamentService {
 		return tournamentRepository.findAllTournament();
 	}
 
-	 @Transactional
+	@Transactional
 	public Collection<Tournament> findActiveTournaments() throws DataAccessException {
 		return tournamentRepository.findActiveTournaments();
 	}
@@ -57,6 +62,23 @@ public class TournamentService {
 	 public Collection<Tournament> findTournamentByJudgeId(int judgeId) throws DataAccessException {
 			return tournamentRepository.findTournamentByJudgeId(judgeId);
 		}
+
+	public Collection<Tournament> findEndedTournaments() throws DataAccessException {
+		
+		List<Tournament> allTournaments = (List<Tournament>) this.tournamentRepository.findAllTournament();
+		
+		return allTournaments.stream().filter(
+			t -> t.getEndDate().isBefore(LocalDate.now()) && TournamentDontHaveRanking(t))
+			.collect(Collectors.toList());
+	}
+
+	private Boolean TournamentDontHaveRanking(Tournament t) throws DataAccessException {
+		
+		List<Ranking> allRankings = this.rankingRepository.findAllRanking();
+
+		return allRankings.stream().noneMatch(r -> r.getTournament().equals(t));
+	}
+	
 
 
 }

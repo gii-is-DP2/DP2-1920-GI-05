@@ -60,6 +60,6 @@ public class Tournament extends NamedEntity {
 	@JoinColumn(name = "petType_id")
 	private PetType petType;
 
-
+	
 
 }
