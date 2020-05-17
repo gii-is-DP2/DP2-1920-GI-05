@@ -10,6 +10,9 @@ import org.springframework.samples.petclinic.repository.RankingRepository;
 
 public interface SpringDataRankingRepository extends RankingRepository, Repository<Ranking, Integer> {
 	
+	@Query("SELECT  r FROM Ranking r")
+	public List<Ranking> findAllRanking();
+
 	@Query("SELECT ranking FROM Ranking ranking WHERE ranking.tournament.id =:tournamentId")
 	public List<Ranking> findByTournamentId(@Param("tournamentId") int tournamentId);
 

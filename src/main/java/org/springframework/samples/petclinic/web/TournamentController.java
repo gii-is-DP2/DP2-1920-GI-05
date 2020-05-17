@@ -12,6 +12,7 @@ import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
@@ -20,6 +21,7 @@ import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.stereotype.Controller;
@@ -45,10 +47,13 @@ public class TournamentController {
 	private final GuideService  guideService;
 	private final OwnerService ownerService;
 	private final ApplicationService applicationService;
+	private final RankingService rankingService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService, GuideService  guideService, ApplicationService applicationService) {
+			CategoryService categoryService, FieldService fieldService, 
+			 JudgeService  judgeService, OwnerService ownerService, GuideService  guideService, 
+			 ApplicationService applicationService, RankingService rankingService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
@@ -57,6 +62,7 @@ public class TournamentController {
 		this.ownerService = ownerService;
 		this.guideService = guideService;
 		this.applicationService = applicationService;
+		this.rankingService = rankingService;
 	}
 
 	@ModelAttribute("categories")
@@ -175,5 +181,32 @@ public class TournamentController {
 		 model.put("tournament", tournament);
 		return "tournaments/showTournament";
 	}
+
+	// Ended Tournaments without Ranking
+
+	@GetMapping(value = { "/tournaments/endedList" })
+	public String listEndedTournaments(Map<String, Object> model) {
+	
+		Collection<Tournament> endedTournaments = this.tournamentService.findEndedTournaments();
+		model.put("tournaments", endedTournaments);
+		return "tournaments/endedList";
+	}
+
+	// Make a Ranking for a tournament
+
+	@PostMapping(value = { "/tournaments/endedList" })
+	public String makeRankingForm(Tournament tournament,
+	/* @Valid Ranking ranking, */ BindingResult result, ModelMap model) {		
+	   if (result.hasErrors()) {
+
+			return "tournaments/endedList";
+	   }
+	   else {
+		
+		   	this.rankingService.saveRanking(this.rankingService.makeRanking(tournament));
+   
+		   return "tournaments/endedList";
+	   }
+   }
 
 }

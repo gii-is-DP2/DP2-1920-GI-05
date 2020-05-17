@@ -14,16 +14,9 @@
             <input type="hidden" name="id" value="${ranking.id}"/>
             <input type="hidden" name="tournament" value="${ranking.tournament}"/>
             <div class="form-group has-feedback">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Owner</label>
-                    <div class="col-sm-10">
-                        <c:out value="${pet.owner.firstName} ${pet.owner.lastName}"/>
-                    </div>
-                </div>
-                <petclinic:inputField label="Name" name="name"/>
-                <petclinic:inputField label="Birth Date" name="birthDate"/>
+                
                 <div class="control-group">
-                    <petclinic:selectField name="type" label="Type " names="${types}" size="5"/>
+                    <petclinic:selectField name="pet" label="Type " names="${types}" size="5"/>
                 </div>
                  <div class="control-group">
                 <petclinic:selectField label="Select guide" name="guide" names="${guides}" size="${guides.size()}"/>

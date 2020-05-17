@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/tournaments/{tournamentId}/show").hasAnyAuthority("admin, owner, guide, judge")
 				.antMatchers("/tournaments/all").hasAnyAuthority("admin")				
 				.antMatchers("/tournaments/active").authenticated()
-
+				.antMatchers("/tournaments/endedList").hasAnyAuthority("admin, judge")
 				.antMatchers("/categories/**").hasAnyAuthority("admin")
 				
 				.antMatchers("/application/list").hasAnyAuthority("admin")
