@@ -33,5 +33,4 @@ public class Ranking extends BaseEntity{
 	//
 	
 
-
 }
