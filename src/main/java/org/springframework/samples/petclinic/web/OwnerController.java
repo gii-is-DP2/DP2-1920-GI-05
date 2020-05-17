@@ -15,24 +15,30 @@
  */
 package org.springframework.samples.petclinic.web;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
-import org.springframework.samples.petclinic.service.VetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -49,12 +55,14 @@ public class OwnerController {
 	private final OwnerService ownerService;
 	private final JudgeService  jugdeService;
 	private final GuideService guideService;
+	private final RankingService rankingService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService,  JudgeService  jugdeService, GuideService guideService) {
+	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService,  JudgeService  jugdeService, GuideService guideService, RankingService rankingService) {
 		this.ownerService = ownerService;
 		this.jugdeService = jugdeService;
-		this.guideService = guideService;	
+		this.guideService = guideService;
+		this.rankingService = rankingService;
 	}
 
 	@InitBinder
@@ -154,6 +162,22 @@ public class OwnerController {
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+	}
+	
+	@GetMapping(value = "/rankings/all")
+	public String showAllRankings(Map<String, Object> model) {
+				
+		Collection<Ranking> allRankings = this.rankingService.findAll();
+		model.put("rankings", allRankings);
+		return "rankings/list";
+	}
+	
+	@GetMapping(value =  "/rankings/{rankingId}/show" )
+	public String showRanking(@PathVariable("rankingId") int rankingId, Map<String, Object> model) {
+				
+		Ranking ranking = this.rankingService.findRankingById(rankingId);
+		model.put("ranking", ranking);
+		return "rankings/show";
 	}
 
 }

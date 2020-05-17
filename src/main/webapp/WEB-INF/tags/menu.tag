@@ -39,6 +39,13 @@
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
 				
+				<sec:authorize access="isAuthenticated()">
+				<petclinic:menuItem active="${name eq 'Rankings'}" url="/rankings/all"
+					title="veterinarians">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Rankings</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 
 				<sec:authorize access="isAuthenticated()">
