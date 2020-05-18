@@ -171,4 +171,7 @@ VALUES (5, 70, 'Sin comentarios', 2, 2, 3);
 INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 5 --
 VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
 
+--RANKINGS--
+INSERT INTO rankings(id, podium, tournament_id)  -- Report from tournament 1
+VALUES (1, map('Hola',1,'Adios',2), 1);
 

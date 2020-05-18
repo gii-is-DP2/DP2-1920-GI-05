@@ -69,16 +69,16 @@ public class GuideControllerTest {
 		guide.setId(2);
 		guide.setLastName("Cesar");
 		
-    Pet pet = new Pet();
+    	Pet pet = new Pet();
 		pet.setId(TEST_PET_ID);
 		pet.setName("Leo");
 
 		given(this.petService.findPetByGuideId(TEST_PET_ID)).willReturn(Lists.newArrayList(pet));
 
 
-		Pet pet = new Pet();
+/* 		Pet pet = new Pet();
 		pet.setId(10);
-		given(this.petService.findPetByGuideId(TEST_GUIDE_ID)).willReturn(Lists.newArrayList(pet));
+		given(this.petService.findPetByGuideId(TEST_GUIDE_ID)).willReturn(Lists.newArrayList(pet)); */
 		
 	}
 	
