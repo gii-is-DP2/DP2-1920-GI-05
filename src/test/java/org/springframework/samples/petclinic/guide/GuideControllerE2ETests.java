@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +26,7 @@ import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.web.GuideController;
 import org.springframework.samples.petclinic.web.JudgeController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -74,9 +74,13 @@ public class GuideControllerE2ETests {
 		mockMvc.perform(get("/guides/{guideId}/pets", TEST_GUIDE_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("pets")).andExpect(view().name("guides/pets"));
 	}
-	
-	
-	
-	
+		
+	@WithMockUser(username = "guide1", authorities = {"guide"})
+	@Test
+	void testListGuideReports() throws Exception {
+		mockMvc.perform(get("/guides/{guideId}/reports", TEST_GUIDE_ID)).andExpect(status().isOk())
+				.andExpect(model().attributeExists("reports")).andExpect(view().name("guides/reports"));
+	}
+
 
 }

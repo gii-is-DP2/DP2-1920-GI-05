@@ -1,10 +1,14 @@
 package org.springframework.samples.petclinic.user_interface.guide;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
 import java.util.concurrent.TimeUnit;
-
+import static org.assertj.core.api.Assertions.not;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import java.util.concurrent.TimeUnit;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,17 +46,32 @@ public class GuideUITests {
 
 	}
 	
-	
+
 	@Test
 	@Transactional
 	public void testGuidePets() throws Exception {
 		as("guide1").whenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
 	}
 
+	//Reports list
+	@Test
+	public void testGuideReportsPos() throws Exception {
+		as("guide1").whenIamLoggedIntheSystem1().thenISeeMyUsernameInTheMenuBar();
+	}
+	
+	/*
+	//Creating a report
+	@Test
+	public void testGuideReportsNeg() throws Exception {
+		as("guide1").negativeWhenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
+	}*/
+
+
 	private void thenISeeMyUsernameInTheMenuBar() {
 		assertEquals(username.toUpperCase(),
 				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
 	}
+
 
 	private GuideUITests whenIamLoggedIntheSystem() {		
 		driver.get("http://localhost:"+port);
@@ -66,6 +85,26 @@ public class GuideUITests {
 		return this;
 	}
 
+	// positive case find 
+	private GuideUITests whenIamLoggedIntheSystem1() {		
+		driver.get("http://localhost:"+port);
+	    driver.findElement(By.cssSelector(".dropdown:nth-child(5) > .dropdown-toggle")).click();
+	    driver.findElement(By.cssSelector(".open > .dropdown-menu a")).click();
+	    driver.findElement(By.linkText("My reports")).click();
+	    Assert.assertEquals("30",driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
+		return this;
+	}
+	
+	/*
+	// negative case find 
+	private GuideUITests negativeWhenIamLoggedIntheSystem() {		
+		driver.get("http://localhost:"+port);
+	    driver.findElement(By.cssSelector(".dropdown:nth-child(5) > .dropdown-toggle")).click();
+	    driver.findElement(By.cssSelector(".open > .dropdown-menu a")).click();
+	    driver.findElement(By.linkText("My reports")).click();
+	    Assert.assertEquals((not("30")),driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
+		return this;
+	}*/
 	
 
 

@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${pets}" var="pets">
+			<c:forEach items="${pets}" var="pet">
 				<tr>
 					<td><c:out value="${pet.name} " /></td>
 					<td><c:out value="${pet.birthDate} " /></td>

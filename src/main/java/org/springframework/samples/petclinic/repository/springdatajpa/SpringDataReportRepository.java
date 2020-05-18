@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +14,6 @@ public interface SpringDataReportRepository extends ReportRepository, Repository
 	@Override
 	@Query("SELECT r FROM Report r WHERE r.pet.id =:id")
 	public List<Report> findByPetId(@Param("id") int id);
+	
 
 }
