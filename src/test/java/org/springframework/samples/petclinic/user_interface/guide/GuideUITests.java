@@ -1,10 +1,13 @@
 package org.springframework.samples.petclinic.user_interface.guide;
 
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,10 +46,17 @@ public class GuideUITests {
 
 	}
 	
-	//Creating a report
+
+	@Test
+	@Transactional
+	public void testGuidePets() throws Exception {
+		as("guide1").whenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
+	}
+
+	//Reports list
 	@Test
 	public void testGuideReportsPos() throws Exception {
-		as("guide1").whenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
+		as("guide1").whenIamLoggedIntheSystem1().thenISeeMyUsernameInTheMenuBar();
 	}
 	
 	/*
@@ -56,13 +66,27 @@ public class GuideUITests {
 		as("guide1").negativeWhenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
 	}*/
 
+
 	private void thenISeeMyUsernameInTheMenuBar() {
 		assertEquals(username.toUpperCase(),
 				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
 	}
 
-	// positive case find 
+
 	private GuideUITests whenIamLoggedIntheSystem() {		
+		driver.get("http://localhost:"+port);
+	    driver.findElement(By.xpath("//a[@id='guidebar']/strong")).click();
+	    driver.findElement(By.xpath("//a[@id='profile']")).click();
+	    driver.findElement(By.linkText("My pets")).click();
+	    driver.findElement(By.xpath("//a[contains(@href, '/guides/1/pets/1')]")).click();
+	    new Select(driver.findElement(By.id("pet"))).selectByVisibleText("Lucky");
+	    driver.findElement(By.xpath("//option[@value='Lucky']")).click();
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+		return this;
+	}
+
+	// positive case find 
+	private GuideUITests whenIamLoggedIntheSystem1() {		
 		driver.get("http://localhost:"+port);
 	    driver.findElement(By.cssSelector(".dropdown:nth-child(5) > .dropdown-toggle")).click();
 	    driver.findElement(By.cssSelector(".open > .dropdown-menu a")).click();
@@ -81,7 +105,6 @@ public class GuideUITests {
 	    Assert.assertEquals((not("30")),driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
 		return this;
 	}*/
-
 	
 
 
