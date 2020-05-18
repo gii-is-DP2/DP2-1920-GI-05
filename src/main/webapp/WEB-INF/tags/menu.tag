@@ -111,11 +111,11 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasAuthority('guide')">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a id="guidebar" href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><strong>Guide</strong> <span
 							class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/guides/details" />">Edit my
+							<li><a id="profile" href="<c:url value="/guides/details" />">Edit my
 									profile </a></li>
 
 						</ul></li>

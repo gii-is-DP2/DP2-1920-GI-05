@@ -15,23 +15,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
-
 import org.springframework.samples.petclinic.model.Guide;
-import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.GuideService;
-import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.TournamentService;
+import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.web.GuideController;
-import org.springframework.samples.petclinic.web.JudgeController;
-import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.web.PetFormatter;
 import org.springframework.samples.petclinic.web.ReportFormatter;
-
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -56,6 +49,9 @@ public class GuideControllerTest {
 	private GuideService guideService;
 	
 	@MockBean
+	private ReportService reportService;
+	
+	@MockBean
 	private AuthoritiesService authoritiesService;
 	
 	@Autowired
@@ -76,9 +72,9 @@ public class GuideControllerTest {
 		given(this.petService.findPetByGuideId(TEST_PET_ID)).willReturn(Lists.newArrayList(pet));
 
 
-		Pet pet = new Pet();
-		pet.setId(10);
-		given(this.petService.findPetByGuideId(TEST_GUIDE_ID)).willReturn(Lists.newArrayList(pet));
+		Pet pet1 = new Pet();
+		pet1.setId(10);
+		given(this.petService.findPetByGuideId(TEST_GUIDE_ID)).willReturn(Lists.newArrayList(pet1));
 		
 	}
 	

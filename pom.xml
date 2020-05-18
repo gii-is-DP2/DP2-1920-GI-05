@@ -277,6 +277,7 @@
 						<exclude>**/*AdminUITests.java</exclude>
 						<exclude>**/*OwnerUITests.java</exclude>
 						<exclude>**/*JudgeUITests.java</exclude>
+						<exclude>**/*GuideUITests.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

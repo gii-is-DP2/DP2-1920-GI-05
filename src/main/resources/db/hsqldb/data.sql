@@ -37,7 +37,7 @@ INSERT INTO owners(id,first_name,last_name,address,city,telephone,username) VALU
 INSERT INTO owners(id,first_name,last_name,address,city,telephone,username) VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner10');
 
 --GUIDES--
-INSERT INTO users(username,password,enabled) VALUES ('guide1','guid3',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('guide1','gu1d3',TRUE);
 INSERT INTO authorities VALUES ('guide1','guide');
 
 INSERT INTO guides(id,first_name,last_name,address,city,telephone,username)  VALUES (1, 'Carmelo', 'Justice', '89 W. Wings St.', 'Sky City', '6081251012', 'guide1');

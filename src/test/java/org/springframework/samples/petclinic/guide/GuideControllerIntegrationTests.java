@@ -95,7 +95,7 @@ public class GuideControllerIntegrationTests {
     	String view= this.guideController.processCreationForm(g, bindingResult);
  
 		Collection<Guide> all = this.guideService.findAllGuides();
-		assertThat(all.size()).isEqualTo(3);
+		assertThat(all.size()).isEqualTo(2);
 		assertEquals(view,"welcome");				
 	}
     
