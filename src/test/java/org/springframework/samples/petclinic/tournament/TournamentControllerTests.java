@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.time.LocalDate;
-
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,6 @@ import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
-import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
@@ -32,8 +29,8 @@ import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.TournamentService;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.web.CategoryFormatter;
 import org.springframework.samples.petclinic.web.FieldFormatter;
 import org.springframework.samples.petclinic.web.JudgeFormatter;
@@ -85,6 +82,9 @@ class TournamentControllerTests {
 
 	@MockBean
 	private TournamentService tournamentService;
+	
+	@MockBean
+	private RankingService rankingService;
 	
 	@MockBean
 	private ApplicationService applicationService;

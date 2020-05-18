@@ -40,9 +40,8 @@ public class Report extends BaseEntity {
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 	
-	@Valid
 	@ManyToOne(optional=false)
-	@JoinColumn(name = "pet")
+	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	
 	

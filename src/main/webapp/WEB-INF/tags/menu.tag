@@ -39,6 +39,14 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
+			
+				<sec:authorize access="isAuthenticated()">
+				<petclinic:menuItem active="${name eq 'Rankings'}" url="/rankings/all"
+					title="veterinarians">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Rankings</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 
 
@@ -47,9 +55,11 @@
 						class="dropdown-toggle" data-toggle="dropdown"><strong>Authenticated</strong>
 							<span class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a id="activeapp"
-								href="<c:url value="/tournaments/active" />">Active
-									tournaments </a></li>
+
+							<li>
+							<a id="activeapp" href="<c:url value="/tournaments/active" />">Active tournaments </a>
+							</li>
+
 						</ul></li>
 				</sec:authorize>
 
@@ -58,16 +68,14 @@
 						class="dropdown-toggle" data-toggle="dropdown"><strong>Admin</strong>
 							<span class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a id="allTournaments"
-								href="<c:url value="/tournaments/all" />">All tournaments</a></li>
-							<li><a id="allCategories"
-								href="<c:url value="/categories/all" />"> All categories</a></li>
-							<li><a id="allFields" href="<c:url value="/fields/all" />">
-									All fields</a></li>
-							<li><a id="allApplications"
-								href="<c:url value="/applications/all" />"> All applications</a></li>
-							<li><a id="newJudge" href="<c:url value="/judges/new" />">Register
-									a Judge </a></li>
+
+							<li><a id="allTournaments" href="<c:url value="/tournaments/all" />">All tournaments</a></li>
+							<li><a id="allCategories" href="<c:url value="/categories/all" />"> All categories</a></li>
+							<li><a id="allFields" href="<c:url value="/fields/all" />"> All fields</a></li>
+							<li><a id="allApplications" href="<c:url value="/applications/all" />"> All applications</a></li>
+							<li><a id="newJudge" href="<c:url value="/judges/new" />">Register a Judge	</a></li>
+							<li><a id="endedTournaments" href="<c:url value="/tournaments/endedList" />">Ended tournaments</a></li>
+
 						</ul></li>
 				</sec:authorize>
 
@@ -92,8 +100,13 @@
 						class="dropdown-toggle" data-toggle="dropdown"><strong>Judge</strong>
 							<span class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a id="profile" href="<c:url value="/judges/details" />">My
-									profile </a></li>
+
+						<li><a id="profile" href="<c:url value="/judges/details" />">My profile
+									</a></li>		
+						<li>
+						<a id="endedTournaments" href="<c:url value="/tournaments/endedList" />">Ended tournaments </a>
+						</li>
+
 						</ul></li>
 				</sec:authorize>
 

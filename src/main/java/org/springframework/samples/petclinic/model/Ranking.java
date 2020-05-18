@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,19 +18,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "rankings")
-public class Ranking extends NamedEntity{
+public class Ranking extends BaseEntity{
 	
-	@NotEmpty
+ 	@NotEmpty
 	@Column(name = "podium") 
-	@ElementCollection(targetClass=Pet.class)
-	private List<Pet> podium;
-	
+	@ElementCollection
+	private Map<String, Integer> podium;  
+
+
 	//
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 	//
 	
-
 
 }
