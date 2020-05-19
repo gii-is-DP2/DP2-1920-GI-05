@@ -70,14 +70,14 @@ public class OwnerController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@GetMapping(value = "/owners/new")
+	@GetMapping(value = "/owner/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Owner owner = new Owner();
 		model.put("owner", owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
-	@PostMapping(value = "/owners/new")
+	@PostMapping(value = "/owner/new")
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;

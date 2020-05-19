@@ -67,14 +67,14 @@ public class GuideController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@GetMapping(value = "/guides/new")
+	@GetMapping(value = "/guide/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Guide guide = new Guide();
 		model.put("guide", guide);
 		return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;
 	}
 
-	@PostMapping(value = "/guides/new")
+	@PostMapping(value = "/guide/new")
 	public String processCreationForm(@Valid Guide guide, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;

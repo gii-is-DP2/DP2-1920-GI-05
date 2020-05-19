@@ -31,18 +31,19 @@ public class OwnerControllerE2ETest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	//302
+	
 	@Test
 	void testInitCreationForm() throws Exception {
-		mockMvc.perform(get("/users/new")).andExpect(status().isOk()).andExpect(model().attributeExists("owner"))
-				.andExpect(view().name("users/createOwnerForm"));
+		mockMvc.perform(get("/owner/new")).andExpect(status().isOk()).andExpect(model().attributeExists("owner"))
+				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
 	}
 
 	
 	@Test	
 	void testProcessCreationFormSuccess() throws Exception {
-		mockMvc.perform(post("/owners/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
-				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638"))
+		mockMvc.perform(post("/owner/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
+				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638")
+				.param("user.username", "joebloggs").param("user.password", "contrasena"))
 				.andExpect(status().is3xxRedirection());
 	}
 

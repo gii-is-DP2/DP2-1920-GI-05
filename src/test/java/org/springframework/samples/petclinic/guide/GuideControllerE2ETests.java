@@ -50,7 +50,7 @@ public class GuideControllerE2ETests {
 	@WithMockUser(username="admin1",authorities= {"admin"})
 	@Test	
 	void testInitCreateJudge() throws Exception {
-		mockMvc.perform(get("/guides/new")).andExpect(status().isOk())
+		mockMvc.perform(get("/guide/new")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("guide")).andExpect(view().name("guides/createOrUpdateGuideForm"));
 	}
 	
@@ -63,7 +63,7 @@ public class GuideControllerE2ETests {
 	
 	@WithMockUser(username="guide1",authorities= {"guide"})
 	@Test	
-	void testInitEditJudge() throws Exception {
+	void testInitEditGuide() throws Exception {
 		mockMvc.perform(get("/guides/{guideId}/edit", TEST_GUIDE_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("guide")).andExpect(view().name("guides/createOrUpdateGuideForm"));
 	}

@@ -50,13 +50,13 @@ public class GuideUITests {
 	@Test
 	@Transactional
 	public void testGuidePets() throws Exception {
-		as("guide1").whenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
+		as("guide1").guidePetsList().thenISeeMyUsernameInTheMenuBar();
 	}
 
 	//Reports list
 	@Test
-	public void testGuideReportsPos() throws Exception {
-		as("guide1").whenIamLoggedIntheSystem1().thenISeeMyUsernameInTheMenuBar();
+	public void testGuideReports() throws Exception {
+		as("guide1").guideReportsList().thenISeeMyUsernameInTheMenuBar();
 	}
 	
 	/*
@@ -73,23 +73,19 @@ public class GuideUITests {
 	}
 
 
-	private GuideUITests whenIamLoggedIntheSystem() {		
+	private GuideUITests guidePetsList() {		
 		driver.get("http://localhost:"+port);
 	    driver.findElement(By.xpath("//a[@id='guidebar']/strong")).click();
 	    driver.findElement(By.xpath("//a[@id='profile']")).click();
-	    driver.findElement(By.linkText("My pets")).click();
-	    driver.findElement(By.xpath("//a[contains(@href, '/guides/1/pets/1')]")).click();
-	    new Select(driver.findElement(By.id("pet"))).selectByVisibleText("Lucky");
-	    driver.findElement(By.xpath("//option[@value='Lucky']")).click();
-	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.linkText("My pets assigned")).click();
 		return this;
 	}
 
 	// positive case find 
-	private GuideUITests whenIamLoggedIntheSystem1() {		
+	private GuideUITests guideReportsList() {		
 		driver.get("http://localhost:"+port);
-	    driver.findElement(By.cssSelector(".dropdown:nth-child(5) > .dropdown-toggle")).click();
-	    driver.findElement(By.cssSelector(".open > .dropdown-menu a")).click();
+	    driver.findElement(By.xpath("//a[@id='guidebar']/strong")).click();
+	    driver.findElement(By.xpath("//a[@id='profile']")).click();
 	    driver.findElement(By.linkText("My reports")).click();
 	    Assert.assertEquals("30",driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
 		return this;
@@ -121,7 +117,7 @@ public class GuideUITests {
 	}
 	
 	private CharSequence passwordOf(String username) {
-		return "guid3";
+		return "gu1d3";
 	}
 	
 	@AfterEach
