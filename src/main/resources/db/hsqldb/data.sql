@@ -172,6 +172,8 @@ INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- R
 VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
 
 --RANKINGS--
-INSERT INTO rankings(id, podium, tournament_id)  -- Report from tournament 1
-VALUES (1, map('Hola',1,'Adios',2), 1);
-
+INSERT INTO rankings(id, tournament_id) VALUES (1,  2);  -- Ranking from tournament 2                
+INSERT INTO ranking_podium VALUES (1, 30, 3);
+--INSERT INTO ranking_podium VALUES (1, 40, 1);
+--INSERT INTO ranking_podium VALUES (1, 70, 3);
+--INSERT INTO ranking_podium VALUES (1, 90, 5);

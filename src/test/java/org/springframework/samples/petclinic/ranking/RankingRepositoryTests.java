@@ -27,26 +27,26 @@ public class RankingRepositoryTests {
 	@Test
 	public void shouldReturnRankingsByTournament() throws Exception {
 				
-		List<Ranking> rankings = this.rankingRepository.findByTournamentId(1);
+		List<Ranking> rankings = this.rankingRepository.findByTournamentId(2);
 		
 		assertThat(rankings.size()).isEqualTo(1);
 	}
 	
-/* 	@Test
-	public void shouldReturnAllPets() throws Exception {
+ 	@Test
+	public void shouldReturnAllRankings() throws Exception {
 				
-		List<Pet> pets = this.petRepository.findAllPets();
+		List<Ranking> rankings = this.rankingRepository.findAllRanking();
 		
-		assertThat(pets.size()).isEqualTo(15);
+		assertThat(rankings.size()).isEqualTo(1);
 	}
 	
 	@Test
-	public void shouldReturnPetsByGuide() throws Exception {
+	public void shouldReturnRankingsById() throws Exception {
 				
-		Collection<Pet> pets = this.petRepository.findPetByGuideId(1);
+		Ranking ranking = this.rankingRepository.findById(1);
 		
-		assertThat(pets.size()).isEqualTo(2);
-	} */
+		assertThat(ranking.getId().equals(1));
+	} 
 	
 
 }
