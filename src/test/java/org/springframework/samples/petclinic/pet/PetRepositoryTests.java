@@ -49,7 +49,7 @@ public class PetRepositoryTests {
 				
 		List<Pet> pets = this.petRepository.findAllPets();
 		
-		assertThat(pets.size()).isEqualTo(15);
+		assertThat(pets.size()).isEqualTo(18);
 	}
 	
 	@Test

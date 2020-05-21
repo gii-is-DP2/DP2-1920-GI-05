@@ -96,38 +96,77 @@ VALUES (8, 'Horses speed contest 2020', '2020-11-10', '2020-12-01',  '2020-12-03
 INSERT INTO tournaments(id, name, apply_date, start_date, end_date, location, amount, currency , category_id, pet_type_id, field_id, judge_id) 
 VALUES (9, 'Lovebirds speed contest  2020', '2020-11-10', '2020-12-01',  '2020-12-03',  'Sevilla', 100.00, '€', 2, 5, null, null); -- speed birds tournament --
 INSERT INTO tournaments(id, name, apply_date, start_date, end_date, location, amount, currency , category_id, pet_type_id, field_id, judge_id) 
-VALUES (10, 'Lizards  speed contest 2020', '2020-11-10', '2020-12-01',  '2020-12-03',  'Sevilla', 100.00, '€', 2, 3, null, null); -- speed lizards tournament --
+VALUES (10, 'Lizards  speed contest 2020', '2020-11-10', '2020-12-01',  '2020-12-03',  'Sevilla', 100.00, '€', 2, 3, null, 2); -- speed lizards tournament --
 
 --PETS--
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);  -- cat from owner1 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 1); -- hamster from owner1 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (1, 'Leo', '2010-09-07', 1, 1,null);  -- cat from owner1 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (2, 'Basil', '2012-08-06', 6, 1,null); -- hamster from owner1 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (3, 'Rosy', '2011-04-17', 2, 2, 1); -- dog from owner2 with guide assigned--
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (4, 'Jewel', '2010-03-07', 5, 2); -- bird from owner2 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (5, 'Iggy', '2010-11-30', 3, 3); -- lizard from owner3 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (6, 'George', '2010-01-20', 4, 3); -- snake from owner3 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (7, 'Samantha', '2012-09-04', 4, 4); -- snake from owner4 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (4, 'Jewel', '2010-03-07', 5, 2,null); -- bird from owner2 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (5, 'Iggy', '2010-11-30', 3, 3,null); -- lizard from owner3 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (6, 'George', '2010-01-20', 4, 3,null); -- snake from owner3 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (7, 'Samantha', '2012-09-04', 4, 4,null); -- snake from owner4 --
 INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (8, 'Max', '2012-09-04', 2, 4,1); -- dog from owner4  with guide assigned--
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (9, 'Garp', '2011-08-06', 5, 5); -- bird from owner5 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (10, 'Mulligan', '2007-02-24', 3, 5); -- snake from owner5 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (11, 'Freddy', '2010-03-09', 6, 6); -- hamster from owner6 -- 
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (12, 'Lucky', '2010-06-24', 1, 6); -- cat from owner6 -- 
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (13, 'Sly', '2012-06-08', 2, 7); -- dog from owner 7 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'Drummond', '2015-09-04', 7, 8); -- horse from owner8 --
-INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (15, 'JoJo', '2017-06-12', 7, 9); -- horse from owner9 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (9, 'Garp', '2011-08-06', 5, 5,null); -- bird from owner5 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (10, 'Mulligan', '2007-02-24', 3, 5,null); -- snake from owner5 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (11, 'Freddy', '2010-03-09', 6, 6,null); -- hamster from owner6 -- 
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (12, 'Lucky', '2010-06-24', 1, 6,null); -- cat from owner6 -- 
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (13, 'Sly', '2012-06-08', 2, 7,null); -- dog from owner 7 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (14, 'Drummond', '2015-09-04', 7, 8,null); -- horse from owner8 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (15, 'Joes', '2017-06-12', 7, 9,null); -- horse from owner9 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (16, 'Levert', '2011-04-07', 1, 10,null);  -- cat from owner10 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (17, 'Magik', '2009-07-06', 6, 9,null); -- dog from owner9 --
+INSERT INTO pets(id,name,birth_date,type_id,owner_id,guide_id) VALUES (18, 'Jaima', '2012-01-30', 3, 8,null); -- lizard from owner8 --
 
 --APPLICATIONS--
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) -- old cat accepted pplication from owner1 --
+
+-- accepted application of old cat tournament 1  from owner1 and pet 1 --
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
 VALUES (1,'ACCEPTED', '2019-09-22', '352571631239294', 1, 1, 1);
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) -- old dog accepted application from owner2 --
+-- accepted application of old dog tournament 2 from owner2 and pet 3--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
 VALUES (2,'ACCEPTED', '2019-09-18', '363017956100486', 2, 3, 2);
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new hamster pending application from owner1 --
+ -- pending application of hamster tournament 5 from owner8 and pet 2--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
 VALUES (3,'PENDING', '2020-11-01', '352571631239294', 1, 2, 5);
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new bird pending application from owner 2 --
+-- pending application of bird tournament 9 from owner 2 and pet 4--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  
 VALUES (4,'PENDING', '2020-11-02', '363017956100486', 2, 4, 9);
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new lizard rejected application from owner3 -- 
-VALUES (5,'REJECTED', '2020-11-03', '379254492621186', 3, 5, 10);
-INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id)  -- new cat accepted application from owwer6 -- 
+ -- rejected application of lizard tournament 10 from owner3 and pet 5-- 
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
+VALUES (5,'ACCEPTED', '2020-11-03', '379254492621186', 3, 5, 10);
+ -- accepted application of horse  tournament 12 from owner6 and pet 12-- 
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
 VALUES (6,'ACCEPTED', '2019-09-20', '379254492621186', 6, 12, 1);
+-- accepted application of old cat tournament 1  from owner10 and pet 16--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
+VALUES (7,'ACCEPTED', '2019-09-22', '352571631239294', 10, 16, 1);
+-- accepted application of old dog tournament 2  from owner9 and pet 17--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
+VALUES (8,'ACCEPTED', '2019-09-22', '352571631239294', 9, 17, 2);
+-- accepted application of lizard tournament 10  from owner9 and pet 18--
+INSERT INTO applications(id, application_status, moment, credit_card, owner_id, pet_id, tournament_id) 
+VALUES (9,'ACCEPTED', '2019-09-22', '352571631239294', 8, 18, 10);
+
+
+--REPORTS--
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 1, tournament 1, pet 1 --
+VALUES (1, 20, 'Sin comentarios', 1, 1, 1);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 1, tournament 2, pet 3 --
+VALUES (2, 30, 'Sin comentarios', 1, 2, 3);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 2, tournament 10, pet 5 --
+VALUES (3, 60, 'Sin comentarios', 2, 10, 5);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 1, tournament 1, pet 16 --
+VALUES (4, 40, 'Sin comentarios', 1, 1, 1);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 1, tournament 2, pet 17 --
+VALUES (5, 70, 'Sin comentarios', 1, 2, 3);
+INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 10, pet 18 --
+VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
+
+INSERT INTO rankings VALUES(1, 1);
+
+INSERT INTO ranking_podium VALUES (1, 11, 'Toby');
+INSERT INTO ranking_podium VALUES (1, 12, 'Eli');
 
 --VETS--
 INSERT INTO users(username,password,enabled) VALUES ('vet1','ve3t1',FALSE);
@@ -156,19 +195,5 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
-
---REPORTS--
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 1, tournament 1, pet 1 --
-VALUES (1, 20, 'Sin comentarios', 1, 1, 1);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 1, tournament 2, pet 3 --
-VALUES (2, 30, 'Sin comentarios', 1, 2, 3);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id) -- Report from judge 1, tournament 10, pet 5 --
-VALUES (3, 60, 'Sin comentarios', 1, 10, 5);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 1 --
-VALUES (4, 40, 'Sin comentarios', 2, 1, 1);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 3 --
-VALUES (5, 70, 'Sin comentarios', 2, 2, 3);
-INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 1, pet 5 --
-VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
 
 

@@ -47,7 +47,7 @@ public class ReportServiceTests {
 	@Transactional
 	void shouldFindJudgeReports() {
 		Collection<Report> judgeReports = this.reportService.findReportByJudgeId(1);
-		assertThat(judgeReports.size()).isEqualTo(3);
+		assertThat(judgeReports.size()).isEqualTo(4);
 	}
 	
 	//  Service test: List reports by pet

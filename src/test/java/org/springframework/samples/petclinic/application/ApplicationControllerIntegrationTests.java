@@ -128,7 +128,7 @@ public class ApplicationControllerIntegrationTests {
     	String view= this.applicationController.processCreateForm(ap, bindingResult, TEST_TOURNAMENT_ID, model);
  
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(6);
+		assertThat(apps.size()).isEqualTo(9);
 		assertEquals(view,"applications/createApplicationForm");				
 	}
     
