@@ -140,6 +140,13 @@ class TournamentControllerTests {
 
 	@WithMockUser(value = "spring")
 	@Test
+	void testListEnded() throws Exception {
+		mockMvc.perform(get("/tournaments/endedList")).andExpect(status().isOk())
+				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/endedList"));
+	}
+
+	@WithMockUser(value = "spring")
+	@Test
 	void testGetNewTournaments() throws Exception {
 		mockMvc.perform(get("/tournaments/new")).andExpect(status().isOk())
 		.andExpect(model().attributeExists("tournament")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
