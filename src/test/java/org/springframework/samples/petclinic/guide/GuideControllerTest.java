@@ -65,7 +65,7 @@ public class GuideControllerTest {
 		guide.setId(2);
 		guide.setLastName("Cesar");
 		
-    Pet pet = new Pet();
+    	Pet pet = new Pet();
 		pet.setId(TEST_PET_ID);
 		pet.setName("Leo");
 
@@ -75,6 +75,7 @@ public class GuideControllerTest {
 		Pet pet1 = new Pet();
 		pet1.setId(10);
 		given(this.petService.findPetByGuideId(TEST_GUIDE_ID)).willReturn(Lists.newArrayList(pet1));
+
 		
 	}
 	

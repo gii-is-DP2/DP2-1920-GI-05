@@ -56,7 +56,7 @@ public class RankingService {
 		List<Report> reports = this.reportRepository.findAll().stream().collect(Collectors.toList());
 		reports.stream().filter(r -> r.getTournament().equals(tournament));
 
-		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
+		HashMap<Integer, Integer> mapa = new HashMap<Integer, Integer>();
 
 		/* Creamos el ranking que vamos a devolver, junto con varias variables más
 		para ayudarnos; La lista de los report del torneo entrante, el podio de las pets 
@@ -65,10 +65,10 @@ public class RankingService {
 		*/
 
 		for(Report r: reports){
-			if(!(mapa.containsKey(r.getPet().getName()))){
-				mapa.put(r.getPet().getName(), r.getPoints());
+			if(!(mapa.containsKey(r.getPet().getId()))){
+				mapa.put(r.getPet().getId(), r.getPoints());
 			} else {
-				mapa.replace(r.getPet().getName(), mapa.get(r.getPet().getName()) + r.getPoints());
+				mapa.replace(r.getPet().getId(), mapa.get(r.getPet().getId()) + r.getPoints());
 			}
 		}
 
@@ -80,7 +80,7 @@ public class RankingService {
 
 		// Añadimos las pet al podium, entran ordenadas empezando por la que tiene más puntos
 
-	
+		
 
 		ranking.setTournament(tournament);
 		ranking.setPodium(mapa); 

@@ -163,10 +163,12 @@ VALUES (5, 70, 'Sin comentarios', 1, 2, 3);
 INSERT INTO reports(id, points, comments, judge_id, tournament_id, pet_id)  -- Report from judge 2, tournament 10, pet 18 --
 VALUES (6, 90, 'Sin comentarios', 2, 10, 5);
 
-INSERT INTO rankings VALUES(1, 1);
-
-INSERT INTO ranking_podium VALUES (1, 11, 'Toby');
-INSERT INTO ranking_podium VALUES (1, 12, 'Eli');
+--RANKINGS--
+INSERT INTO rankings(id, tournament_id) VALUES (1,  2);  -- Ranking from tournament 2                
+INSERT INTO ranking_podium VALUES (1, 30, 3);
+--INSERT INTO ranking_podium VALUES (1, 40, 1);
+--INSERT INTO ranking_podium VALUES (1, 70, 3);
+--INSERT INTO ranking_podium VALUES (1, 90, 5);
 
 --VETS--
 INSERT INTO users(username,password,enabled) VALUES ('vet1','ve3t1',FALSE);

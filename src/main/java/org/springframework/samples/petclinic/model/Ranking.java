@@ -23,14 +23,12 @@ public class Ranking extends BaseEntity{
  	@NotEmpty
 	@Column(name = "podium") 
 	@ElementCollection
-	private Map<String, Integer> podium;  
+	private Map<Integer, Integer> podium;	// Key -> PetId, Value -> Sum of Report Points
 
-
-	//
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
-	//
+	
 	
 
 }
