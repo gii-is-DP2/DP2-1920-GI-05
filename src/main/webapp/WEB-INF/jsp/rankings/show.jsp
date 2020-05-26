@@ -14,15 +14,19 @@
 		<thead>
 			<tr>
 				<th>Name</th>	
-				<th>Score </th>				
+				<th>Score </th>
+				<th>Owner name </th>
+				<th>Owner surname </th>		
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ranking.podium}" var="podium">
+			<c:forEach items="${results}" var="result">
 				
 				<tr>
-					<td><c:out value="${podium.key}" /></td>
-					<td><c:out value="${podium.value}" /></td>	
+					<td><c:out value="${result.key.name}" /></td>
+					<td><c:out value="${result.value}" /></td>
+					<td><c:out value="${result.key.owner.firstName}" /></td>
+					<td><c:out value="${result.key.owner.lastName}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

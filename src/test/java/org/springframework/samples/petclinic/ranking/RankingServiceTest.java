@@ -61,5 +61,14 @@ class RankingServiceTest {
 		assertThat(rankings.size()).isEqualTo(2);
 	}
 	
+	// Get score from a pet in a ranking
+	@Test
+	@Transactional
+	void testFindScoreByPetIdAndRanking() throws DataAccessException {
+		
+		Integer integer = this.rankingService.findScoreByPetIdAndRanking(this.rankingService.findRankingById(1), 3);
+		assertThat(integer.equals(30));
+	}
+	
 
 }
