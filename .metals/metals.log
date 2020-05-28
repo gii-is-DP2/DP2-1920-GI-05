@@ -1,0 +1,393 @@
+2020.05.24 19:06:54 INFO  started: Metals version 0.9.0 in workspace 'C:\Users\GalacticKoala\Desktop\puto repo de los cojones de dp\DP2-1920-GI-05'
+2020.05.24 19:06:56 INFO  time: initialize in 1.96s
+2020.05.24 19:06:57 INFO  no build target: using presentation compiler with only scala-library
+2020.05.24 19:07:02 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:07:36 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:36 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:56 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:56 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:56 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:07:57 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:08:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:08:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:08:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:17:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:17:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:17:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:17:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:17:19 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:23:38 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:23:42 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:23:42 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:23:42 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:23:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:07 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:20 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:20 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:25:21 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:25:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:07 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:20 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:40 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:26:55 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:28:57 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:30:00 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:30:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:30:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:30:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:30:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.24 19:31:05 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:31:50 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.24 19:31:53 INFO  shutting down Metals
+2020.05.25 17:36:36 INFO  started: Metals version 0.9.0 in workspace 'C:\Users\GalacticKoala\Desktop\puto repo de los cojones de dp\DP2-1920-GI-05'
+2020.05.25 17:36:38 INFO  time: initialize in 1.92s
+2020.05.25 17:36:40 INFO  skipping build import with status 'Requested'
+2020.05.25 17:36:40 INFO  no build target: using presentation compiler with only scala-library
+2020.05.25 17:36:43 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 17:36:43 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+may. 25, 2020 5:36:43 P. M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+may. 25, 2020 5:36:43 P. M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 5
+2020.05.25 17:38:03 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:38:30 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+may. 25, 2020 5:38:43 P. M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 129
+2020.05.25 17:38:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:38:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:38:58 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:38:58 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:38:58 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:39:24 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:40:56 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:04 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:04 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:04 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:04 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:05 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:24 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:24 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:41:37 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:04 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:10 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:10 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:42:58 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 17:43:23 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:43:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:32 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:32 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:32 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:32 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:33 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:34 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:34 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:44:35 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:45:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:45:33 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:45:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:45:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:45:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:31 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:31 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:33 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:33 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:34 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:34 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:37 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 17:46:40 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 17:47:10 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.25 17:50:35 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 17:50:58 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 20:00:38 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:00:50 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 20:01:20 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:01:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:01:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:01:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:01:46 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:01:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:02:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:22 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:26 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:29 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:03:56 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:01 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:01 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:10 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:04:10 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:17 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:17 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:22 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:04:58 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:05:36 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:05:40 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.25 20:05:51 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:06:01 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:07:40 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:07:48 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:10:31 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.25 20:10:46 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.25 20:17:19 INFO  shutting down Metals
+2020.05.28 12:33:13 INFO  started: Metals version 0.9.0 in workspace 'C:\Users\GalacticKoala\Desktop\puto repo de los cojones de dp\DP2-1920-GI-05'
+2020.05.28 12:33:14 INFO  time: initialize in 1.59s
+2020.05.28 12:33:15 INFO  skipping build import with status 'Requested'
+2020.05.28 12:33:15 INFO  no build target: using presentation compiler with only scala-library
+2020.05.28 12:33:18 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:34:54 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:41:22 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:41:29 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 12:42:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:42:40 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:42:42 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 12:42:55 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:03 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:06 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:06 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:20 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:22 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:22 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:42 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:43:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:25 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:26 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:27 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:44:57 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:10 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:10 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:17 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:45:38 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 12:45:58 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:46:24 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:46:38 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:47:39 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:47:48 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:47:57 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:48:03 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:48:05 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:48:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 12:48:53 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 12:53:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:53:12 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:53:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:53:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:53:22 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:53:24 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:57:41 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:57:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:29 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:58:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:44 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:53 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:58:57 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 12:59:06 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:59:06 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 12:59:08 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 13:00:55 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 13:08:24 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 13:08:35 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 13:11:22 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 13:11:24 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 13:11:26 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 13:14:20 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:15:36 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:37 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:48 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:50 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:15:52 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+Exception in thread "pool-4-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:27)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$onCompilerJobQueue$1(CompilerAccess.scala:183)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:101)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)2020.05.28 13:16:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2020.05.28 13:16:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:18 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:40 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:16:49 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:08 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:12 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:14 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:17:49 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:18:16 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:18:19 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:35:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:35:43 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:35:47 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:35:58 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:36:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:36:02 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 13:36:02 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:40:16 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:44:43 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:54:13 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:54:30 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 13:57:09 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 14:01:56 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala
+2020.05.28 14:10:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 14:10:07 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 14:10:13 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 14:10:36 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 14:13:52 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala
+2020.05.28 14:22:09 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 14:22:21 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:26:32 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:31:52 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:32:13 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 14:32:13 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:40:33 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:48:24 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:55:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 14:55:51 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory13.scala' because it doesn't belong to a build target.
+2020.05.28 14:56:00 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 14:56:00 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:56:31 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:56:40 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:56:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 14:56:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 14:56:59 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:57:34 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:57:35 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:57:35 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 14:57:35 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala
+2020.05.28 15:24:11 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 15:24:24 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:24:29 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:24:39 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 15:24:39 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 15:24:39 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:40:18 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:42:23 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:49:02 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:54:36 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory16.scala' because it doesn't belong to a build target.
+2020.05.28 15:54:44 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 15:55:14 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 16:03:48 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 16:10:42 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 16:10:45 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 16:17:59 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala' because it doesn't belong to a build target.
+2020.05.28 16:17:59 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory18.scala
+2020.05.28 17:53:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 17:53:21 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory3.scala' because it doesn't belong to a build target.
+2020.05.28 17:53:27 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 17:53:41 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 17:53:41 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 17:57:27 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 18:03:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.28 18:03:19 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 18:03:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
+2020.05.28 18:03:45 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
+2020.05.28 18:15:59 INFO  shutting down Metals
