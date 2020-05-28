@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -54,6 +55,29 @@ public class OwnerUITests {
 	public void testCreatePet() throws Exception {
 		as("owner1").createPet().thenISeeMyUsernameInTheMenuBar();
 	}
+	
+	//Accessing Rankings
+	@Test
+	public void testAccessRanking() throws Exception {
+		as("owner1").testRanking().thenISeeMyUsernameInTheMenuBar();
+	}
+
+ 
+
+ 	 public OwnerUITests testRanking() {
+    	driver.get("http://localhost/");
+  		driver.manage().window().setSize(new Dimension(1276, 1038));
+  		driver.findElement(By.id("login")).click();
+   		driver.findElement(By.id("username")).click();
+   		driver.findElement(By.id("username")).sendKeys("owner1");
+   		driver.findElement(By.id("password")).click();
+    	driver.findElement(By.id("password")).sendKeys("0wn3r");
+    	driver.findElement(By.cssSelector(".btn")).click();
+   		driver.findElement(By.id("ownerbar")).click();
+    	driver.findElement(By.cssSelector("li:nth-child(4) > a")).click();
+   		driver.findElement(By.linkText("Dogs obedience contest 2019")).click();
+   		return this;
+ 	 }
 	
 	//Throwing a application
 	@Test

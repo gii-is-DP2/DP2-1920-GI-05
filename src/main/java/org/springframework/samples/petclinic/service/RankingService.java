@@ -90,5 +90,8 @@ public class RankingService {
 	
 		return ranking;
 	}
+	public Integer findScoreByPetIdAndRanking(Ranking ranking, int petId) {
+		return ranking.getPodium().get(petId);
+	}
 
 }
