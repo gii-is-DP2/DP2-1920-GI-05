@@ -24,6 +24,7 @@ import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.web.OwnerController;
@@ -47,6 +48,9 @@ class OwnerControllerTests {
 
 	@MockBean
 	private OwnerService clinicService;
+	
+	@MockBean
+	private PetService petService;
 	
 	@MockBean
 	private GuideService guideService;
