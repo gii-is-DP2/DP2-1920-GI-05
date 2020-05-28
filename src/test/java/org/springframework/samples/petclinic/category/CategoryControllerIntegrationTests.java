@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Category;
@@ -23,7 +22,6 @@ import org.springframework.validation.MapBindingResult;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Transactional
 public class CategoryControllerIntegrationTests {
 
 
@@ -60,6 +58,7 @@ public class CategoryControllerIntegrationTests {
     
 
     @Test
+    @Transactional
 	void testProcessCreationFormSuccess()  throws Exception {
     	Category c= new Category();
     	ModelMap model=new ModelMap();		
@@ -74,7 +73,7 @@ public class CategoryControllerIntegrationTests {
 		assertEquals(view,"redirect:/categories/all");				
 	}
     
-    @Test
+    @Test    
 	void testProcessCreationFormHasErrorsBlankName()  throws Exception {
     	Category c= new Category();
     	ModelMap model=new ModelMap();		

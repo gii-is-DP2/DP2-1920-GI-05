@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.user_interface.guide;
+package org.springframework.samples.petclinic.guide;
 
 
 import static org.junit.Assert.assertEquals;
@@ -59,13 +59,6 @@ public class GuideUITests {
 		as("guide1").guideReportsList().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	/*
-	//Creating a report
-	@Test
-	public void testGuideReportsNeg() throws Exception {
-		as("guide1").negativeWhenIamLoggedIntheSystem().thenISeeMyUsernameInTheMenuBar();
-	}*/
-
 
 	private void thenISeeMyUsernameInTheMenuBar() {
 		assertEquals(username.toUpperCase(),
@@ -91,18 +84,6 @@ public class GuideUITests {
 		return this;
 	}
 	
-	/*
-	// negative case find 
-	private GuideUITests negativeWhenIamLoggedIntheSystem() {		
-		driver.get("http://localhost:"+port);
-	    driver.findElement(By.cssSelector(".dropdown:nth-child(5) > .dropdown-toggle")).click();
-	    driver.findElement(By.cssSelector(".open > .dropdown-menu a")).click();
-	    driver.findElement(By.linkText("My reports")).click();
-	    Assert.assertEquals((not("30")),driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
-		return this;
-	}*/
-	
-
 
 	private GuideUITests  as(String username)throws Exception {
 		this.username = username;
