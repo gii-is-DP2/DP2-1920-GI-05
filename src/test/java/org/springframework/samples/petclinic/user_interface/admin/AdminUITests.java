@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.transaction.Transactional;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -122,7 +123,7 @@ public class AdminUITests {
 	    new Select(driver.findElement(By.id("field"))).selectByVisibleText("Map 10");
 	    driver.findElement(By.xpath("//option[@value='Map 10']")).click();
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    
+	    Assert.assertEquals("Cats tournament 2020",driver.findElement(By.cssSelector("tr:nth-child(11) a")).getText());	
 	    return this;
 		
 	}
@@ -135,7 +136,7 @@ public class AdminUITests {
 	    driver.findElement(By.id("name")).clear();
 	    driver.findElement(By.id("name")).sendKeys("Dogde");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    
+	    Assert.assertEquals("Dogde",driver.findElement(By.cssSelector("tr:nth-child(4) td")).getText());	
 		return this;
 	}
 	
@@ -178,6 +179,7 @@ public class AdminUITests {
 	    driver.findElement(By.id("password")).sendKeys("justice");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 		username = "michael";
+		Assert.assertEquals("MICHAEL",driver.findElement(By.cssSelector("strong:nth-child(2)")).getText());	
 		return this;
 	}
 	
@@ -198,6 +200,7 @@ public class AdminUITests {
 	    driver.findElement(By.id("width")).clear();
 	    driver.findElement(By.id("width")).sendKeys("24.00");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    Assert.assertEquals("Dogde map",driver.findElement(By.cssSelector("tr:nth-child(1) td")).getText());	
 	    
 	    return this;
 		

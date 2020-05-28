@@ -56,33 +56,17 @@ public class OwnerUITests {
 		as("owner1").createPet().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	//Accessing Rankings
-	@Test
-	public void testAccessRanking() throws Exception {
-		as("owner1").testRanking().thenISeeMyUsernameInTheMenuBar();
-	}
-
- 
-
- 	 public OwnerUITests testRanking() {
-    	driver.get("http://localhost/");
-  		driver.manage().window().setSize(new Dimension(1276, 1038));
-  		driver.findElement(By.id("login")).click();
-   		driver.findElement(By.id("username")).click();
-   		driver.findElement(By.id("username")).sendKeys("owner1");
-   		driver.findElement(By.id("password")).click();
-    	driver.findElement(By.id("password")).sendKeys("0wn3r");
-    	driver.findElement(By.cssSelector(".btn")).click();
-   		driver.findElement(By.id("ownerbar")).click();
-    	driver.findElement(By.cssSelector("li:nth-child(4) > a")).click();
-   		driver.findElement(By.linkText("Dogs obedience contest 2019")).click();
-   		return this;
- 	 }
 	
 	//Throwing a application
 	@Test
 	public void testThrowApplication() throws Exception {
 		as("owner2").throwApplication().thenISeeMyUsernameInTheMenuBar();
+	}
+	
+	 //Showing a tournament ranking
+	@Test
+	public void testAccessRanking() throws Exception {
+		as("owner1").testRanking().thenISeeMyUsernameInTheMenuBar();
 	}
 
 	private void thenISeeMyUsernameInTheMenuBar() {		
@@ -172,6 +156,13 @@ public class OwnerUITests {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 		return this;
 	}
+	
+	 public OwnerUITests testRanking() {
+	   		driver.findElement(By.id("ownerbar")).click();
+	    	driver.findElement(By.cssSelector("li:nth-child(4) > a")).click();
+	   		driver.findElement(By.linkText("Dogs obedience contest 2019")).click();
+	   		return this;
+	 	 }
 		
 	private CharSequence passwordOf(String username) {
 		return "0wn3r";
