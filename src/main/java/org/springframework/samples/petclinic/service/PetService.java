@@ -27,6 +27,7 @@ import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.samples.petclinic.util.Utils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -38,7 +39,7 @@ import org.springframework.util.StringUtils;
  * @author Michael Isvy
  */
 @Service
-public class PetService {
+public class PetService extends Utils {
 
 	private PetRepository petRepository;
 	
@@ -69,8 +70,9 @@ public class PetService {
 
 	@Transactional(rollbackFor = DuplicatedPetNameException.class)
 	public void savePet(Pet pet) throws DataAccessException, DuplicatedPetNameException {
-			Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
-            if (StringUtils.hasLength(pet.getName()) &&  (otherPet!= null && otherPet.getId()!=pet.getId())) {            	
+			
+		Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
+            if (checkDuplicated(otherPet, pet)) {            	
             	throw new DuplicatedPetNameException();
             }else
                 petRepository.save(pet);                
