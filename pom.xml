@@ -34,10 +34,7 @@
 		<cucumber.version>5.5.0</cucumber.version>
 
 
-		<sonar.projectKey>gii-is-DP2_DP2-1920-GI-05</sonar.projectKey>
-		<sonar.organization>gii-is-dp2</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.login>026e254f5a2bdc7a4ca81a3a9b5eafe20547f5d1</sonar.login>
+
 
 
 	</properties>
