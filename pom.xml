@@ -32,6 +32,14 @@
 		<rest-assured.version>4.2.0</rest-assured.version>
 		<selenium.version>3.141.59</selenium.version>
 		<cucumber.version>5.5.0</cucumber.version>
+
+
+		<sonar.projectKey>gii-is-DP2_DP2-1920-GI-05</sonar.projectKey>
+		<sonar.organization>gii-is-dp2</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>026e254f5a2bdc7a4ca81a3a9b5eafe20547f5d1</sonar.login>
+
+
 	</properties>
 
 	<dependencies>
@@ -169,6 +177,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 	</dependencies>
 
 	<build>
