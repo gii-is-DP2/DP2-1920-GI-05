@@ -8,7 +8,6 @@ import org.springframework.validation.Validator;
 public class ApplicationValidator implements Validator {
 
 	private static final String REQUIRED = "required";
-	private static final String DATE = "typeMismatch.date";
 
 	@Override
 	public void validate(Object obj, Errors errors) {
@@ -29,11 +28,6 @@ public class ApplicationValidator implements Validator {
 		  if (!application.getStatus().isEmpty() && validateStatus(application.getStatus()) == false) { 			  
 			  errors.rejectValue("status", "Status has to be rejected, pending or accepted", "Status has to be rejected, pending or accepted"); 
 			  }
-		 
- 
-	
-
-
 	}
 	
 	public boolean validateStatus(String s) {
@@ -41,7 +35,6 @@ public class ApplicationValidator implements Validator {
 		res = s.equals("REJECTED")  || s.equals("ACCEPTED") || s.equals("PENDING");					
 		return res;
 	}
-
 
 	@Override
 	public boolean supports(Class<?> clazz) {

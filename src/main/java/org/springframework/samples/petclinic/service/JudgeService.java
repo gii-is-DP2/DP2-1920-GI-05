@@ -4,9 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Guide;
 import org.springframework.samples.petclinic.model.Judge;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.JudgeRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -45,7 +43,6 @@ public class JudgeService {
 	
 	@Transactional(readOnly = true)
 	public Judge findJudgeById(int id) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return this.judgeRepository.findById(id);
 	}	
 	

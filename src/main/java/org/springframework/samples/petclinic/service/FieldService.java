@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.repository.FieldRepository;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateFieldNameException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

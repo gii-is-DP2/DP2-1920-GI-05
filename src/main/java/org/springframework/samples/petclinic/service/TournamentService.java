@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,6 @@ import org.springframework.samples.petclinic.service.exceptions.DuplicateTournam
 import org.springframework.samples.petclinic.util.Utils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 @Service
 public class TournamentService extends Utils {

@@ -1,25 +1,8 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -28,8 +11,6 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
-import org.springframework.samples.petclinic.service.GuideService;
-import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.RankingService;
@@ -56,16 +37,13 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
 	private final OwnerService ownerService;
-	private final JudgeService  jugdeService;
-	private final GuideService guideService;
 	private final RankingService rankingService;
 	private final PetService petService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService,  JudgeService  jugdeService, GuideService guideService, RankingService rankingService, PetService petService) {
+	public OwnerController(OwnerService ownerService, UserService userService,
+	AuthoritiesService authoritiesService,  RankingService rankingService, PetService petService) {
 		this.ownerService = ownerService;
-		this.jugdeService = jugdeService;
-		this.guideService = guideService;
 		this.rankingService = rankingService;
 		this.petService = petService;
 	}
@@ -150,11 +128,6 @@ public class OwnerController {
 		}
 	}
 
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
 	@GetMapping("/owners/details")
 	public ModelAndView showOwner() {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");

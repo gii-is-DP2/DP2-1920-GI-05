@@ -7,8 +7,6 @@ import org.springframework.validation.Validator;
 
 public class CategoryValidator implements Validator {
 
-	private static final String REQUIRED = "required";
-
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Category category = (Category) obj;
@@ -18,12 +16,6 @@ public class CategoryValidator implements Validator {
 			errors.rejectValue("name", "The name must be between 3 and 50 characters",
 					"The name must be between 3 and 50 characters");
 		}
-
-		/* type validation
-		if (category.getName() == null) {
-			errors.rejectValue("name", REQUIRED, REQUIRED);
-		}*/
-
 	}
 
 	/**

@@ -391,3 +391,7 @@ Exception in thread "pool-4-thread-1" java.lang.InterruptedException
 2020.05.28 18:03:19 WARN  code navigation does not work for the file 'C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala' because it doesn't belong to a build target.
 2020.05.28 18:03:45 WARN  no build target for: C:\GatlingDP2\gatling-charts-highcharts-bundle-3.3.1\user-files\simulations\dp2\UserStory19.scala
 2020.05.28 18:15:59 INFO  shutting down Metals
+2020.05.30 17:25:39 INFO  started: Metals version 0.9.0 in workspace 'C:\Users\GalacticKoala\Desktop\puto repo de los cojones de dp\DP2-1920-GI-05'
+2020.05.30 17:25:42 INFO  time: initialize in 2.94s
+2020.05.30 17:25:44 INFO  skipping build import with status 'Requested'
+2020.05.30 18:39:59 INFO  shutting down Metals
