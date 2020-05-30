@@ -57,13 +57,13 @@ public class OwnerUITests {
 	}
 	
 	
-	//Throwing a application
+	//Throwing a application - User story 12
 	@Test
 	public void testThrowApplication() throws Exception {
 		as("owner2").throwApplication().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	 //Showing a tournament ranking
+	 //Showing a tournament ranking - User story 22
 	@Test
 	public void testAccessRanking() throws Exception {
 		as("owner1").testRanking().thenISeeMyUsernameInTheMenuBar();

@@ -42,7 +42,7 @@ public class JudgeUITests {
 
 	}
 	
-	//Creating a report
+	//Creating a report - User story 18
 	@Test
 	@Transactional
 	public void testJudgeReports() throws Exception {

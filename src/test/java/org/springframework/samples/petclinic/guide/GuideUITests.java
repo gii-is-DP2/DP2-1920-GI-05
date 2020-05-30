@@ -47,13 +47,14 @@ public class GuideUITests {
 	}
 	
 
+	// Guide pets list - User story 20
 	@Test
 	@Transactional
 	public void testGuidePets() throws Exception {
 		as("guide1").guidePetsList().thenISeeMyUsernameInTheMenuBar();
 	}
 
-	//Reports list
+	//Guide reports list - User story 21
 	@Test
 	public void testGuideReports() throws Exception {
 		as("guide1").guideReportsList().thenISeeMyUsernameInTheMenuBar();
