@@ -1,10 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
-import java.time.LocalDate;
-
 import org.springframework.samples.petclinic.model.Report;
-import org.springframework.samples.petclinic.model.Tournament;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

@@ -1,23 +1,18 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.model.Report;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.repository.RankingRepository;
 import org.springframework.samples.petclinic.repository.ReportRepository;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,6 +59,23 @@ public class RankingService {
 		a las pet y luego meterlas en el podio
 		*/
 
+		addPets(mapa, reports);
+
+		ranking.setTournament(tournament);
+		ranking.setPodium(mapa); 
+
+		/* Por último asignamos los atributos al ranking, y lo devolvemos
+		PD: No sé si habría que añadirle la id de forma manual */
+	
+		return ranking;
+	}
+
+	public Integer findScoreByPetIdAndRanking(Ranking ranking, int petId) {
+		return ranking.getPodium().get(petId);
+	}
+
+	private HashMap<Integer, Integer> addPets(HashMap<Integer, Integer> mapa, List<Report> reports){
+
 		for(Report r: reports){
 			if(!(mapa.containsKey(r.getPet().getId()))){
 				mapa.put(r.getPet().getId(), r.getPoints());
@@ -80,18 +92,7 @@ public class RankingService {
 
 		// Añadimos las pet al podium, entran ordenadas empezando por la que tiene más puntos
 
-		
-
-		ranking.setTournament(tournament);
-		ranking.setPodium(mapa); 
-
-		/* Por último asignamos los atributos al ranking, y lo devolvemos
-		PD: No sé si habría que añadirle la id de forma manual */
-	
-		return ranking;
-	}
-	public Integer findScoreByPetIdAndRanking(Ranking ranking, int petId) {
-		return ranking.getPodium().get(petId);
+		return mapa;
 	}
 
 }

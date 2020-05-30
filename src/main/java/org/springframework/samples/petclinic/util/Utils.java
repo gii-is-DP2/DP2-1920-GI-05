@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.util;
 
 import org.springframework.samples.petclinic.model.NamedEntity;
-import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.util.StringUtils;
 
 public class Utils {
