@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${selections}" var="judge">
+        <c:forEach items="${judges}" var="judge">
             <tr>
                 <td>
                     <spring:url value="/judges/{judgeId}" var="judgeUrl">

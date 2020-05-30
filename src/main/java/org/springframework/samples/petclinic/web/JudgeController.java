@@ -2,12 +2,9 @@ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Judge;
-import org.springframework.samples.petclinic.model.Judges;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.JudgeService;
@@ -44,9 +41,9 @@ public class JudgeController {
 
 	@GetMapping(value = { "/judges" })
 	public String showJugdeList(Map<String, Object> model) {
-		Judges jugdes = new Judges();
-		jugdes.getJugdeList().addAll(this.judgeService.findAllJudges());
-		model.put("jugdes", jugdes);
+		Collection<Judge> judges = (this.judgeService.findAllJudges());
+		model.put("judges", judges);
+		System.out.println(judges);
 		return "judges/list";
 	}
 
