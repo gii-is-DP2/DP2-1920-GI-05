@@ -35,12 +35,10 @@ import java.util.Map;
 public class VetController {
 
 	private final VetService vetService;	
-	private OwnerService ownerService;
 
 	@Autowired
 	public VetController(VetService clinicService, OwnerService ownerService) {
 		this.vetService = clinicService;
-		this.ownerService = ownerService;
 	}
 
 	@GetMapping(value = { "/vets" })
@@ -48,10 +46,7 @@ public class VetController {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet
 		// objects
 		// so it is simpler for Object-Xml mapping
-		
-		if(this.ownerService.findOwnerByUserName()!=null)	{
-			model.put("owner", this.ownerService.findOwnerByUserName());
-		}
+	
 		
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());

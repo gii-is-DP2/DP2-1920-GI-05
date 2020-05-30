@@ -44,6 +44,7 @@ public class PetControllerE2ETest {
 	@Autowired
 	private MockMvc mockMvc;	
 
+	// Get create form
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testInitCreationForm() throws Exception {
@@ -51,6 +52,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm")).andExpect(model().attributeExists("pet"));
 	}
 
+	//Post create pet
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormSuccess() throws Exception {
@@ -63,6 +65,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("redirect:/owners/details"));
 	}
 
+	//Post a pet without type
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors() throws Exception {
@@ -76,6 +79,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
 	
+	//Post a pet with duplicated name
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors2() throws Exception {
@@ -89,6 +93,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
 
+	//Post a pet without name
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors3() throws Exception {
@@ -101,7 +106,23 @@ public class PetControllerE2ETest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
+	
+	//Post a pet with a future birth date
+	@WithMockUser(username="owner1",authorities= {"owner"})
+    @Test
+	void testProcessCreationFormHasErrors4() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
+							.with(csrf())
+							.param("name", "Betty")
+							.param("birthDate", "2022/02/12")
+							.param("type", "Hamster"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
 
+	
 	@WithMockUser(username="owner1",authorities= {"owner"})
 	@Test
 	void testInitUpdateForm() throws Exception {
