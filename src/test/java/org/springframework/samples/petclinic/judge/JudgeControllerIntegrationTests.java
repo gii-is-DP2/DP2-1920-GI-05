@@ -81,7 +81,7 @@ public class JudgeControllerIntegrationTests {
     	j.setUser(u);
 
     	BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
-    	String view= this.judgeController.processCreationForm(j, bindingResult);
+    	String view= this.judgeController.processCreationForm(j, bindingResult, model);
  
 		Collection<Judge> all = this.judgeService.findAllJudges();
 		assertThat(all.size()).isEqualTo(3);
