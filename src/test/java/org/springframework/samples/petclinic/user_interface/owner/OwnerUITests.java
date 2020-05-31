@@ -51,11 +51,7 @@ public class OwnerUITests {
 		createOwner().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	//Creating a owner user Negative
-		@Test
-		public void testCreateOwnerNegative() throws Exception {
-			createOwnerNegative().thenISeeMyUsernameInTheMenuBar();
-		}
+	
 	
 	//Creating a  pet 
 	@Test
