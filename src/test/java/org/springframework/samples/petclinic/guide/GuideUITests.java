@@ -72,6 +72,7 @@ public class GuideUITests {
 	    driver.findElement(By.xpath("//a[@id='guidebar']/strong")).click();
 	    driver.findElement(By.xpath("//a[@id='profile']")).click();
 	    driver.findElement(By.linkText("My pets assigned")).click();
+	    Assert.assertEquals("Rosy",driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
 		return this;
 	}
 

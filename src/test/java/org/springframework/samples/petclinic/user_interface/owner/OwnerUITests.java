@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,11 +51,19 @@ public class OwnerUITests {
 		createOwner().thenISeeMyUsernameInTheMenuBar();
 	}
 	
+	
+	
 	//Creating a  pet 
 	@Test
 	public void testCreatePet() throws Exception {
 		as("owner1").createPet().thenISeeMyUsernameInTheMenuBar();
 	}
+	
+	//Creating a  pet Negative
+		@Test
+		public void testCreatePetNegative() throws Exception {
+			as("owner1").createPetNegative().thenISeeMyUsernameInTheMenuBar();
+		}
 	
 	
 	//Throwing a application - User story 12
@@ -123,6 +132,45 @@ public class OwnerUITests {
 	    return this;		
 	}
 	
+	public OwnerUITests createOwnerNegative() throws Exception {		
+		driver.get("http://localhost:"+port);
+		driver.findElement(By.xpath("//a[@id='signinbar']/strong")).click();
+		driver.findElement(By.xpath("//a[@id='signowner']")).click();
+	    driver.findElement(By.id("firstName")).click();
+	    driver.findElement(By.id("firstName")).clear();
+	    driver.findElement(By.id("firstName")).sendKeys("Shane");
+	    driver.findElement(By.id("lastName")).click();
+	    driver.findElement(By.id("lastName")).clear();
+	    driver.findElement(By.id("lastName")).sendKeys("Battier");
+	    driver.findElement(By.id("address")).click();
+	    driver.findElement(By.id("address")).click();	  
+	    driver.findElement(By.id("address")).clear();
+	    driver.findElement(By.id("address")).sendKeys("Loius St");
+	    driver.findElement(By.id("city")).click();
+	    driver.findElement(By.id("city")).clear();
+	    driver.findElement(By.id("city")).sendKeys("St Marie Du Mont");
+	    driver.findElement(By.id("telephone")).click();
+	    driver.findElement(By.id("telephone")).clear();
+	    driver.findElement(By.id("telephone")).sendKeys("942124786");
+	    driver.findElement(By.id("user.username")).click();
+	    driver.findElement(By.id("user.username")).clear();
+	    driver.findElement(By.id("user.username")).sendKeys("owner1");
+	    driver.findElement(By.id("user.password")).click();
+	    driver.findElement(By.id("user.password")).clear();
+	    driver.findElement(By.id("user.password")).sendKeys("battier");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.id("login")).click();
+	    driver.findElement(By.id("username")).clear();
+	    driver.findElement(By.id("username")).sendKeys("shane");
+	    driver.findElement(By.id("password")).click();
+	    driver.findElement(By.id("password")).clear();
+	    driver.findElement(By.id("password")).sendKeys("battier");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    this.username = "shane";
+	    Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
+		return this;		
+	}
+	
 	public OwnerUITests createPet() throws Exception {		
 	    driver.findElement(By.xpath("//a[@id='ownerbar']/strong")).click();
 	    driver.findElement(By.xpath("//a[@id='profile']")).click();
@@ -137,7 +185,26 @@ public class OwnerUITests {
 	    new Select(driver.findElement(By.id("type"))).selectByVisibleText("Bird");
 	    driver.findElement(By.xpath("//option[@value='Bird']")).click();
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-		return this;
+	    Assert.assertEquals("Pat",driver.findElement(By.cssSelector("tr:nth-child(3) dd:nth-child(2)")).getText());
+	    return this;
+	}
+	
+	public OwnerUITests createPetNegative() throws Exception {		
+	    driver.findElement(By.xpath("//a[@id='ownerbar']/strong")).click();
+	    driver.findElement(By.xpath("//a[@id='profile']")).click();
+	    driver.findElement(By.linkText("Add New Pet")).click();
+	    driver.findElement(By.id("name")).click();
+	    driver.findElement(By.id("name")).clear();
+	    driver.findElement(By.id("name")).sendKeys("Basil");
+	    driver.findElement(By.id("birthDate")).click();
+	    driver.findElement(By.id("birthDate")).click();	   
+	    driver.findElement(By.id("birthDate")).clear();
+	    driver.findElement(By.id("birthDate")).sendKeys("2012/12/20");
+	    new Select(driver.findElement(By.id("type"))).selectByVisibleText("Bird");
+	    driver.findElement(By.xpath("//option[@value='Bird']")).click();
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
+	    return this;
 	}
 	
 	public OwnerUITests throwApplication() throws Exception {		
@@ -151,6 +218,22 @@ public class OwnerUITests {
 	    driver.findElement(By.id("creditCard")).clear();
 	    driver.findElement(By.id("creditCard")).sendKeys("363017956100486");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    Assert.assertEquals("Dog puller tournament 2020",driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(1)")).getText());
+	    return this;
+	}
+	
+	public OwnerUITests throwApplicationNegative() throws Exception {		
+	    driver.findElement(By.xpath("//a[@id='authenticatedbar']/strong")).click();
+	    driver.findElement(By.xpath("//a[@id='activeapp']")).click();
+	    driver.findElement(By.xpath("//a[contains(text(),'Cats agility tournament 2020')]")).click();
+	    driver.findElement(By.linkText("Apply for this tournament")).click();
+	    new Select(driver.findElement(By.id("pet"))).selectByVisibleText("Rosy");
+	    driver.findElement(By.xpath("//option[@value='Rosy']")).click();
+	    driver.findElement(By.id("creditCard")).click();
+	    driver.findElement(By.id("creditCard")).clear();
+	    driver.findElement(By.id("creditCard")).sendKeys("363017956100486");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    Assert.assertEquals("You can not apply to this tournament with that pet type", driver.findElement(By.cssSelector(".help-inline")).getText());
 		return this;
 	}
 	
@@ -163,7 +246,8 @@ public class OwnerUITests {
 	   		driver.findElement(By.id("ownerbar")).click();
 	    	driver.findElement(By.cssSelector("li:nth-child(4) > a")).click();
 	   		driver.findElement(By.linkText("Dogs obedience contest 2019")).click();
-	   		return this;
+	   		Assert.assertEquals("Rosy",driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).getText());
+		    return this;
 	 	 }
 		
 	private CharSequence passwordOf(String username) {

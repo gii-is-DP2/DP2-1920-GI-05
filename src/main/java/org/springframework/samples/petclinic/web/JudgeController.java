@@ -12,6 +12,7 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,15 @@ public class JudgeController {
 
 	private final JudgeService judgeService;
 	private final TournamentService tournamentService;
+	private final UserService userService;
 
 	@Autowired
 	public JudgeController(TournamentService tournamentService,JudgeService judgeService, UserService userService, AuthoritiesService authoritiesService) {
 		this.judgeService = judgeService;	
 		this.tournamentService = tournamentService;
+		this.userService = userService;
 	}
+	
 	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -55,8 +59,15 @@ public class JudgeController {
 	}
 
 	@PostMapping(value = "/judges/new")
-	public String processCreationForm(@Valid Judge judge, BindingResult result) {
-		if (result.hasErrors()) {
+	public String processCreationForm(@Valid Judge judge, BindingResult result, ModelMap model) {
+		
+		if (this.userService.isUsernameTaken(judge.getUser().getUsername())) {
+			model.put("judge", judge);
+			model.put("usernameTakenError", "username taken");
+			return "judges/createOrUpdateJudgeForm";
+		}
+		
+		else if (result.hasErrors()) {
 			return "judges/createOrUpdateJudgeForm";
 		} else {
 			// creating judge, user and authorities

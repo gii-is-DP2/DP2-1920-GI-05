@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,7 +70,8 @@ public class JudgeUITests {
 	    new Select(driver.findElement(By.id("pet"))).selectByVisibleText("Lucky");
 	    driver.findElement(By.xpath("//option[@value='Lucky']")).click();
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-		return this;
+	    Assert.assertEquals("Poor performance",driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText());	
+	    return this;
 	}
 
 	
