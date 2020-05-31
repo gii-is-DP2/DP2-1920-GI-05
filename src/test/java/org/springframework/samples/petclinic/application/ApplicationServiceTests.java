@@ -118,9 +118,9 @@ public class ApplicationServiceTests {
 
 		Application application = new Application();	
 		
-		Owner owner = this.ownerService.findOwnerById(4); //  owner3
+		Owner owner = this.ownerService.findOwnerById(4); //  owner4
 		Tournament tournament = this.tournamentService.findTournamentById(10); // lizard tournament
-		Pet pet = this.petService.findPetById(7); // snake from owner3
+		Pet pet = this.petService.findPetById(7); // snake from owner4
 		
 		application.setId(6);
 		application.setCreditCard("4065972557141631");
