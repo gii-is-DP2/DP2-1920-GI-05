@@ -60,7 +60,7 @@ class VisitControllerTests {
 							.with(csrf())
 							.param("description", "Visit Description"))                                
                 .andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/owners/{ownerId}"));
+				.andExpect(view().name("redirect:/owners/details"));
 	}
 
 	@WithMockUser(value = "spring")
