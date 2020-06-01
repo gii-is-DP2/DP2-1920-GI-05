@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,10 +19,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Application;
-import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Report;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.ApplicationService;
@@ -57,10 +53,7 @@ public class ReportControllerTests {
 	private static final int TEST_TOURNAMENT_ID = 1;
 	
 
-	
-	@Autowired
-	private ReportController reportController;
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 	

@@ -12,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Report;
-import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.JudgeService;
-import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.ReportController;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -45,14 +42,6 @@ public class ReportControllerIntegrationTests {
 	@Autowired
 	private  TournamentService tournamentService;
 	
-	@Autowired
-	private  ReportService reportService;
-	
-	@Autowired
-	private  OwnerService ownerService;
-	
-	@Autowired
-	private  ApplicationService applicationService;
 	
 	@Autowired
 	private  PetService petService;

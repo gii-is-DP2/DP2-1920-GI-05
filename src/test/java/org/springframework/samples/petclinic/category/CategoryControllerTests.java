@@ -33,9 +33,6 @@ classes = WebSecurityConfigurer.class),
 excludeAutoConfiguration = SecurityConfiguration.class)
 class CategoryControllerTests {
 
-	@Autowired
-	private CategoryController categoryController;
-
 	@MockBean
 	private CategoryService categoryService;
 

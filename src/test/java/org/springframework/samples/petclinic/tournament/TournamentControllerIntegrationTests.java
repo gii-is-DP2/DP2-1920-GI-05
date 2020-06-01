@@ -14,14 +14,8 @@ import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Money;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
-import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
-import org.springframework.samples.petclinic.service.FieldService;
-import org.springframework.samples.petclinic.service.GuideService;
-import org.springframework.samples.petclinic.service.JudgeService;
-import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.TournamentController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,30 +34,11 @@ public class TournamentControllerIntegrationTests {
 	private TournamentController tournamentController;
 	
 	@Autowired
-	private  TournamentService tournamentService;
-	
-	@Autowired
 	private  CategoryService categoryService;
 	
 	@Autowired
 	private  PetService petService;
 	
-	@Autowired
-	private  FieldService fieldService;
-	
-	@Autowired
-	private  JudgeService  judgeService;
-	
-	@Autowired
-	private  GuideService  guideService;
-	
-	@Autowired
-	private  OwnerService ownerService;
-	
-	@Autowired
-	private  ApplicationService applicationService;
-
-
 	
 	@Test
 	void testAllTournaments() throws Exception {

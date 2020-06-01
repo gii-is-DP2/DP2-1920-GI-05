@@ -7,10 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,12 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Application;
 import org.springframework.samples.petclinic.model.ApplicationPOJO;
-import org.springframework.samples.petclinic.model.Category;
+
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.ApplicationService;
-import org.springframework.samples.petclinic.service.OwnerService;
+
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.TournamentService;
+
 import org.springframework.samples.petclinic.web.ApplicationController;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -31,15 +28,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import com.mysql.cj.xdevapi.Result;
+
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationControllerIntegrationTests {
 
-	private static final int TEST_OWNER_ID = 1;
 	private static final int TEST_TOURNAMENT_ID = 6;
 	private static final int TEST_APPLICATION_ID = 3;
 	private static final int TEST_PET_ID_1 = 1;
@@ -53,11 +48,6 @@ public class ApplicationControllerIntegrationTests {
 	@Autowired
 	private PetService petService;
 
-	@Autowired
-	private OwnerService ownerService;
-
-	@Autowired
-	private TournamentService tournamentService;
 	
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
@@ -123,6 +113,8 @@ public class ApplicationControllerIntegrationTests {
     	ap.setCreditCard("1234");
     	ap.setPet(p);
 
+    	//HashMap <Object, Object> m = new HashMap <Object, Object> ();
+    	
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
     	bindingResult.reject("creditCard", "Required!");
     	String view= this.applicationController.processCreateForm(ap, bindingResult, TEST_TOURNAMENT_ID, model);
@@ -161,7 +153,7 @@ public class ApplicationControllerIntegrationTests {
     	ModelMap model=new ModelMap();		
 
     	ap.setStatus("negative");
-
+    	
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
     	bindingResult.reject("status", "Required!");
     	String view=applicationController.processUpdateForm(ap, bindingResult, TEST_APPLICATION_ID, model);

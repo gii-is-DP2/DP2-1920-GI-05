@@ -59,8 +59,6 @@ class TournamentControllerTests {
 	
 	private static final int TEST_JUDGE_ID = 1;
 
-	@Autowired
-	private TournamentController tournamentController;
 
 	@MockBean
 	private PetService petService;

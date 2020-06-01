@@ -11,7 +11,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Field;
-import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.web.FieldController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +25,6 @@ public class FieldControllerIntegrationTests {
 	@Autowired
 	private FieldController fieldController;
 	
-	@Autowired
-	private FieldService fieldService;
 	
     @Test
 	void testListAllField() throws Exception {

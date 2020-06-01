@@ -48,10 +48,7 @@ public class JudgeControllerTest {
 	
 	@MockBean
 	private AuthoritiesService authoritiesService;
-	
-	@Autowired
-	private JudgeController judgeController;
-	
+
 	
 	@BeforeEach
 	void setup() {
