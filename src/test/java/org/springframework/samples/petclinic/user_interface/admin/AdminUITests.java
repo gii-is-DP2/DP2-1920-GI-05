@@ -68,20 +68,15 @@ public class AdminUITests {
 	@Test
 	public void testCreateCategory() throws Exception {
 		as("admin1").testProbandoCreateCategory().thenISeeMyUsernameInTheMenuBar();
-		;
+		
 	}
 
 	// Creating a category User Story 2 Negative
 	@Test
 	public void testCreateCategoryNegative() throws Exception {
 		as("admin1").testProbandoCreateCategoryNegative().thenISeeMyUsernameInTheMenuBar();
-	
-
-	@Transactional
-	public void testCreateCategory() throws Exception {		
-		as("admin1").testProbandoCreateCategory().thenISeeMyUsernameInTheMenuBar();
-
 	}
+
 
 	// Creating a field User Story 4
 	@Test
