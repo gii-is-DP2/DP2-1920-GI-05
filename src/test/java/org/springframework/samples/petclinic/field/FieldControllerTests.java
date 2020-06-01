@@ -32,9 +32,7 @@ excludeAutoConfiguration = SecurityConfiguration.class)
 class FieldControllerTests {
 
 
-	@Autowired
-	private FieldController FieldController;
-	
+
 	@MockBean
 	private FieldService fieldService;
 	

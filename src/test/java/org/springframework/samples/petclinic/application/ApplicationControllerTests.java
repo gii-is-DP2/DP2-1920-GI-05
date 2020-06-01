@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -34,7 +33,6 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.ApplicationController;
 import org.springframework.samples.petclinic.web.OwnerFormatter;
 import org.springframework.samples.petclinic.web.PetFormatter;
-import org.springframework.samples.petclinic.web.PetTypeFormatter;
 import org.springframework.samples.petclinic.web.TournamentFormatter;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -48,12 +46,9 @@ excludeAutoConfiguration = SecurityConfiguration.class)
 class ApplicationControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
-	private static final int TEST_PET_ID = 2;
 	private static final int TEST_TOURNAMENT_ID = 6;
 	private static final int TEST_APPLICATION_ID = 1;
 
-	@Autowired
-	private ApplicationController applicationController;
 
 	@MockBean
 	private ApplicationService applicationService;

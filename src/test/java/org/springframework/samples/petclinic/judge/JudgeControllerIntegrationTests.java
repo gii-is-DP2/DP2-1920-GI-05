@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.service.JudgeService;
-import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.JudgeController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,11 +31,6 @@ public class JudgeControllerIntegrationTests {
 	
 	@Autowired
 	private  JudgeService judgeService;
-	
-	@Autowired
-	private  TournamentService tournamentService;
-
-
 	
 	@Test	
 	void testTournamentJudgeList() throws Exception {

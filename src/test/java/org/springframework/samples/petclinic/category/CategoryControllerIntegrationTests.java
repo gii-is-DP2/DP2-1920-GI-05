@@ -3,7 +3,7 @@ package org.springframework.samples.petclinic.category;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Category;
-import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.web.CategoryController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +27,6 @@ public class CategoryControllerIntegrationTests {
 	
 	@Autowired
 	private CategoryController categoryController;
-	
-	@Autowired
-	private CategoryService categoryService;
-	
-
 
 	
     @Test
@@ -68,7 +62,6 @@ public class CategoryControllerIntegrationTests {
     	BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
     	String view=categoryController.processCreationForm(c, bindingResult, model);
  
-		Collection<Category> all = this.categoryService.findAllCategories();
 		//assertThat(apps.size()).isEqualTo(7);
 		assertEquals(view,"redirect:/categories/all");				
 	}
@@ -79,12 +72,13 @@ public class CategoryControllerIntegrationTests {
     	ModelMap model=new ModelMap();		
 
     	c.setName("");
-
+    	
+    	//HashMap <Object, Object> m = new HashMap <Object, Object> ();
+    	
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
     	bindingResult.reject("name", "Requied!");
     	String view=categoryController.processCreationForm(c, bindingResult, model);
  
-		Collection<Category> all = this.categoryService.findAllCategories();
 		//assertThat(apps.size()).isEqualTo(7);
 		assertEquals(view,"categories/createOrUpdateCategoryForm");				
 	}
@@ -95,12 +89,13 @@ public class CategoryControllerIntegrationTests {
     	ModelMap model=new ModelMap();		
 
     	c.setName("Agility");
-
+    	
+    	//HashMap <Object, Object> m = new HashMap <Object, Object> ();
+    	
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
     	bindingResult.reject("name", "Requied!");
     	String view=categoryController.processCreationForm(c, bindingResult, model);
  
-		Collection<Category> all = this.categoryService.findAllCategories();
 		//assertThat(apps.size()).isEqualTo(7);
 		assertEquals(view,"categories/createOrUpdateCategoryForm");				
 	}
