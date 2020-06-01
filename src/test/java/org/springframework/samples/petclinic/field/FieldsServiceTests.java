@@ -43,6 +43,7 @@ class FieldsServiceTests {
 
     // List all Fields Postive Case
 	@Test
+	@Transactional
 	void shouldFindAllFields() {
 		Collection<Field> fields = this.fieldsService.findAllFields();
 		assertThat(fields.size()).isEqualTo(2);
@@ -50,6 +51,7 @@ class FieldsServiceTests {
 
 	// 
 	@Test
+	@Transactional
 	void shouldFindNewFields() throws DataAccessException, DuplicateFieldNameException {
 		
 		Field field = new Field();

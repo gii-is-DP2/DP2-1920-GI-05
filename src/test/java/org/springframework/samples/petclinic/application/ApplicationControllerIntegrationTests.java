@@ -124,7 +124,7 @@ public class ApplicationControllerIntegrationTests {
     	ap.setPet(p);
 
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
-    	bindingResult.reject("creditCard", "Requied!");
+    	bindingResult.reject("creditCard", "Required!");
     	String view= this.applicationController.processCreateForm(ap, bindingResult, TEST_TOURNAMENT_ID, model);
  
 		Collection<Application> apps = this.applicationService.findAllApplications();
@@ -163,7 +163,7 @@ public class ApplicationControllerIntegrationTests {
     	ap.setStatus("negative");
 
     	BindingResult bindingResult=new MapBindingResult(new HashMap(),"");
-    	bindingResult.reject("status", "Requied!");
+    	bindingResult.reject("status", "Required!");
     	String view=applicationController.processUpdateForm(ap, bindingResult, TEST_APPLICATION_ID, model);
  
 		assertEquals(view,"applications/updateApplicationForm");				

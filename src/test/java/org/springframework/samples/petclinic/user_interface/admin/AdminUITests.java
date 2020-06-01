@@ -45,6 +45,7 @@ public class AdminUITests {
 
 	// Creating a tournament - User Story 1
 	@Test
+	@Transactional
 	public void testCreateTournament() throws Exception {
 		as("admin1").testProbandoCreateTournament().thenISeeMyUsernameInTheMenuBar();
 	}
@@ -74,14 +75,20 @@ public class AdminUITests {
 	@Test
 	public void testCreateCategoryNegative() throws Exception {
 		as("admin1").testProbandoCreateCategoryNegative().thenISeeMyUsernameInTheMenuBar();
-		;
+	
+
+	@Transactional
+	public void testCreateCategory() throws Exception {		
+		as("admin1").testProbandoCreateCategory().thenISeeMyUsernameInTheMenuBar();
+
 	}
 
 	// Creating a field User Story 4
 	@Test
-	public void testCreateField() throws Exception {
+	@Transactional
+	public void testCreateField() throws Exception {		
 		as("admin1").testProbandoCreateField().thenISeeMyUsernameInTheMenuBar();
-		;
+
 	}
 
 	private AdminUITests as(String username) {

@@ -78,10 +78,7 @@ public class OwnerUITests {
 		as("owner1").testRanking().thenISeeMyUsernameInTheMenuBar();
 	}
 
-	private void thenISeeMyUsernameInTheMenuBar() {		
-		assertEquals(username.toUpperCase(),
-				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
-	}
+
 
 	private OwnerUITests  as(String username)throws Exception {
 		this.username = username;
@@ -238,6 +235,11 @@ public class OwnerUITests {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	    Assert.assertEquals("You can not apply to this tournament with that pet type", driver.findElement(By.cssSelector(".help-inline")).getText());
 		return this;
+	}
+	
+	private void thenISeeMyUsernameInTheMenuBar() {		
+		assertEquals(username.toUpperCase(),
+				driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
 	}
 	
 	 public OwnerUITests testRanking() {
