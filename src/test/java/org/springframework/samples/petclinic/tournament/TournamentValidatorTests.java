@@ -195,6 +195,46 @@ public class TournamentValidatorTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	// Create new tournament Negative Case: invalid apply Date input, can´t be after 
+		// end or start date
+		@Test
+		void shouldNotValidateApplyDateB4Today() {
+
+			LocaleContextHolder.setLocale(Locale.ENGLISH);
+			Tournament tournament = new Tournament();
+
+			tournament.setApplyDate(LocalDate.of(2018, 10, 01));
+
+			Category category = new Category();
+			category.setName("Agility");
+
+			tournament.setCategory(category);
+			tournament.setEndDate(LocalDate.of(2020, 12, 12)); // tournament.setField(); //tournament.setJugde();
+			tournament.setLocation("Seville");
+
+			PetType petType = new PetType();
+			petType.setName("Mouse");
+			tournament.setPetType(petType);
+
+			Money money = new Money();
+			money.setAmount(100.00);
+			money.setCurrency("$");
+
+			tournament.setPrize(money);
+			tournament.setName("Kendal 5 tournament");
+			tournament.setStartDate(LocalDate.of(2020, 12, 10));
+
+			TournamentValidator validator = new TournamentValidator();
+
+			Errors errors = new BeanPropertyBindingResult(tournament, "tournament");
+			validator.validate(tournament, errors);
+
+			assertThat(errors.getErrorCount()).isEqualTo(2);
+			assertThat(errors.hasFieldErrors("applyDate")).isEqualTo(true);
+			assertThat(errors.hasFieldErrors("startDate")).isEqualTo(false);
+			assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
+		}
+	
 	// Create new tournament Negative Case: invalid start Date input, can´t be after end date 
 	@Test
 	void shouldNotValidateStartDate() {
@@ -234,6 +274,8 @@ public class TournamentValidatorTests {
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(false);	
 	}
 	
+	
+	
 	// Create new tournament Negative Case: invalid end Date input, can´t be before start or apply Date	
 	@Test
 	void shouldNotValidateEndDate() {
@@ -272,6 +314,8 @@ public class TournamentValidatorTests {
 		assertThat(errors.hasFieldErrors("startDate")).isEqualTo(true);
 		assertThat(errors.hasFieldErrors("endDate")).isEqualTo(true);		
 	}
+	
+	
 	
 	// Create new tournament Negative Case: Invalid money currency 
 	@Test
