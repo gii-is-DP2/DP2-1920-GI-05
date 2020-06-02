@@ -77,6 +77,13 @@ public class AdminUITests {
 		as("admin1").testProbandoCreateCategoryNegative().thenISeeMyUsernameInTheMenuBar();
 	}
 
+	// Listing all the categories User Story 3
+	@Test
+	public void testListCategory() throws Exception {
+		as("admin1").testProbandoListCategory().thenISeeMyUsernameInTheMenuBar();
+		
+	}
+
 
 	// Creating a field User Story 4
 	@Test
@@ -199,6 +206,13 @@ public class AdminUITests {
 		driver.findElement(By.id("name")).sendKeys("Beauty");
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
+		return this;
+	}
+
+		private AdminUITests testProbandoListCategory() {
+		driver.findElement(By.id("adminbar")).click();
+		driver.findElement(By.id("allCategories")).click();
+		assertEquals("Agility", driver.findElement(By.xpath("//table[@id='categoriesTable']/tbody/tr/td")).getText());
 		return this;
 	}
 
