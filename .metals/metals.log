@@ -395,3 +395,7 @@ Exception in thread "pool-4-thread-1" java.lang.InterruptedException
 2020.05.30 17:25:42 INFO  time: initialize in 2.94s
 2020.05.30 17:25:44 INFO  skipping build import with status 'Requested'
 2020.05.30 18:39:59 INFO  shutting down Metals
+2020.06.02 11:36:36 INFO  started: Metals version 0.9.0 in workspace 'C:\Users\GalacticKoala\Desktop\puto repo de los cojones de dp\DP2-1920-GI-05'
+2020.06.02 11:36:40 INFO  time: initialize in 4.61s
+2020.06.02 11:36:43 INFO  skipping build import with status 'Requested'
+2020.06.02 12:26:05 INFO  shutting down Metals
