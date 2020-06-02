@@ -50,5 +50,19 @@ public class TournamentRepositoryTests {
 		assertThat(judgeTournaments.size()).isEqualTo(2);
 		assertThat(judgeTournaments.contains(t1));
 	}
+	
+
+	// Repository test: Return tournaments by tournament name
+	@Test
+	public void shouldReturnNameTournaments() throws Exception {
+				
+		Tournament nameTournaments = this.tournamentRepository.findByName("Cats beauty contest 2019");
+				
+		assertThat(nameTournaments).isNotNull();
+		
+	}
+	
+	
+	
 
 }
