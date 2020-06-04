@@ -94,15 +94,18 @@ class OwnerControllerTests {
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/owner/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
-				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638"))
+				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638")
+				.param("user.username", "joebloggs").param("user.password", "contrasena"))
 				.andExpect(status().is2xxSuccessful()).andExpect(view().name("welcome"));
 	}
 
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormHasErrors() throws Exception {
-		mockMvc.perform(post("/owner/new").with(csrf()).param("firstName", "Joe").param("lastName", "Bloggs")
-				.param("city", "London")).andExpect(status().isOk()).andExpect(model().attributeHasErrors("owner"))
+		mockMvc.perform(post("/owner/new").with(csrf())
+				.param("firstName", "Joe").param("lastName", "Bloggs").param("city", "London")
+				.param("user.username", "joebloggs").param("user.password", "contrasena"))
+				.andExpect(status().isOk()).andExpect(model().attributeHasErrors("owner"))
 				.andExpect(model().attributeHasFieldErrors("owner", "address"))
 				.andExpect(model().attributeHasFieldErrors("owner", "telephone"))
 				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
