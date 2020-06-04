@@ -32,6 +32,7 @@ import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,12 +55,14 @@ public class GuideController {
 	private final GuideService guideService;
 	private final PetService petService;
 	private final ReportService reportService;
+	private final UserService userService;
 
 	@Autowired
 	public GuideController(ReportService reportService,GuideService guideService, PetService petService, UserService userService, AuthoritiesService authoritiesService) {
 		this.guideService = guideService;
 		this.petService =  petService;
 		this.reportService = reportService;
+		this.userService = userService;
 	}
 
 	@InitBinder
@@ -75,8 +78,15 @@ public class GuideController {
 	}
 
 	@PostMapping(value = "/guide/new")
-	public String processCreationForm(@Valid Guide guide, BindingResult result) {
-		if (result.hasErrors()) {
+	public String processCreationForm(@Valid Guide guide, BindingResult result, ModelMap model) {
+		
+		if (this.userService.isUsernameTaken(guide.getUser().getUsername())) {
+			model.put("guide", guide);
+			result.rejectValue("user.username", "duplicate", "already exists");
+			return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;
+		}
+
+		else if (result.hasErrors()) {
 			return VIEWS_GUIDE_CREATE_OR_UPDATE_FORM;
 		} else {
 			// creating guide, user and authorities
