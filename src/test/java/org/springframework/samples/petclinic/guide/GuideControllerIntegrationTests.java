@@ -77,7 +77,7 @@ public class GuideControllerIntegrationTests {
     	g.setUser(u);
 
     	BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
-    	String view= this.guideController.processCreationForm(g, bindingResult);
+    	String view= this.guideController.processCreationForm(g, bindingResult, model);
  
 		Collection<Guide> all = this.guideService.findAllGuides();
 		assertThat(all.size()).isEqualTo(2);

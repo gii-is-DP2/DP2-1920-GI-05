@@ -54,7 +54,7 @@ public class OwnerUITests {
 	//Creating a  owner negative case
 	@Test
 	public void testCreateOwnerNegative() throws Exception {
-		createOwnerNegative().thenISeeMyUsernameInTheMenuBar();
+		createOwnerNegative();
 	}
 	
 	//Creating a  pet 
@@ -64,6 +64,7 @@ public class OwnerUITests {
 	}
 	
 	//Creating a  pet Negative	
+	@Test
 	public void testCreatePetNegative() throws Exception {
 			as("owner1").createPetNegative().thenISeeMyUsernameInTheMenuBar();
 	}
@@ -163,8 +164,10 @@ public class OwnerUITests {
 	    driver.findElement(By.id("user.password")).clear();
 	    driver.findElement(By.id("user.password")).sendKeys("battier");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
-		return this;		
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    return this;		
 	}
 	
 	public OwnerUITests createPet() throws Exception {		
@@ -199,6 +202,7 @@ public class OwnerUITests {
 	    new Select(driver.findElement(By.id("type"))).selectByVisibleText("Bird");
 	    driver.findElement(By.xpath("//option[@value='Bird']")).click();
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
 	    return this;
 	}

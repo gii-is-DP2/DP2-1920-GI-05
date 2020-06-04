@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
@@ -17,6 +18,7 @@ import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,13 +41,15 @@ public class OwnerController {
 	private final OwnerService ownerService;
 	private final RankingService rankingService;
 	private final PetService petService;
+	private final UserService userService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService,
-	AuthoritiesService authoritiesService,  RankingService rankingService, PetService petService) {
+	public OwnerController(UserService userservice, OwnerService ownerService, UserService userService,
+			AuthoritiesService authoritiesService, RankingService rankingService, PetService petService) {
 		this.ownerService = ownerService;
 		this.rankingService = rankingService;
 		this.petService = petService;
+		this.userService = userService;
 	}
 
 	@InitBinder
@@ -61,29 +65,37 @@ public class OwnerController {
 	}
 
 	@PostMapping(value = "/owner/new")
-	public String processCreationForm(@Valid Owner owner, BindingResult result) {
-		if (result.hasErrors()) {
+	public String processCreationForm(@Valid Owner owner, BindingResult result, ModelMap model) {
+
+		if (this.userService.isUsernameTaken(owner.getUser().getUsername())) {
+			model.put("owner", owner);
+			result.rejectValue("user.username", "duplicate", "already exists");
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
-		else {
-			//creating owner, user and authorities
+
+		else if (result.hasErrors()) {
+
+			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+		} else {
+			// creating owner, user and authorities
+
 			this.ownerService.saveOwner(owner);
-			
+
 			return "welcome";
 		}
 	}
 
 	@GetMapping(value = "/owners/find")
 	public String initFindForm(Map<String, Object> model) {
-		
-			model.put("owner", new Owner());	
-						
+
+		model.put("owner", new Owner());
+
 		return "owners/findOwners";
 	}
 
 	@GetMapping(value = "/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
-		
+
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName() == null) {
 			owner.setLastName(""); // empty string signifies broadest possible search
@@ -95,13 +107,11 @@ public class OwnerController {
 			// no owners found
 			result.rejectValue("lastName", "notFound", "not found");
 			return "owners/findOwners";
-		}
-		else if (results.size() == 1) {
+		} else if (results.size() == 1) {
 			// 1 owner found
 			owner = results.iterator().next();
 			return "redirect:/owners/" + owner.getId();
-		}
-		else {
+		} else {
 			// multiple owners found
 			model.put("selections", results);
 			return "owners/ownersList";
@@ -120,8 +130,7 @@ public class OwnerController {
 			@PathVariable("ownerId") int ownerId) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-		}
-		else {
+		} else {
 			owner.setId(ownerId);
 			this.ownerService.saveOwner(owner);
 			return "redirect:/owners/details";
@@ -134,28 +143,28 @@ public class OwnerController {
 		mav.addObject(this.ownerService.findOwnerByUserName());
 		return mav;
 	}
-	
+
 	@GetMapping(value = "/owners/{ownerId}/show")
 	public String showFinderOwner(@PathVariable("ownerId") int ownerId, Model model) {
 		Owner owner = this.ownerService.findOwnerById(ownerId);
 		model.addAttribute(owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
-	
+
 	@GetMapping(value = "/rankings/all")
 	public String showAllRankings(Map<String, Object> model) {
-				
+
 		Collection<Ranking> allRankings = this.rankingService.findAll();
 		model.put("rankings", allRankings);
 		return "rankings/list";
 	}
-	
-	@GetMapping(value =  "/rankings/{rankingId}/show" )
+
+	@GetMapping(value = "/rankings/{rankingId}/show")
 	public String showRanking(@PathVariable("rankingId") int rankingId, Map<String, Object> model) {
-				
+
 		Ranking ranking = this.rankingService.findRankingById(rankingId);
 		model.put("ranking", ranking);
-		Map<Pet,Integer> results = new HashMap<Pet,Integer>();
+		Map<Pet, Integer> results = new HashMap<Pet, Integer>();
 		for (Integer i : ranking.getPodium().keySet()) {
 			results.put(this.petService.findPetById(i), this.rankingService.findScoreByPetIdAndRanking(ranking, i));
 		}
