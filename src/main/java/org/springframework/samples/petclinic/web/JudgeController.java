@@ -63,7 +63,7 @@ public class JudgeController {
 		
 		if (this.userService.isUsernameTaken(judge.getUser().getUsername())) {
 			model.put("judge", judge);
-			model.put("usernameTakenError", "username taken");
+			result.rejectValue("user.username", "duplicate", "already exists");
 			return "judges/createOrUpdateJudgeForm";
 		}
 		
