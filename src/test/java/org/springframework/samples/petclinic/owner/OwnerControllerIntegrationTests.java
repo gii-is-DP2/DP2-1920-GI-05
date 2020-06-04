@@ -45,7 +45,7 @@ public class OwnerControllerIntegrationTests {
 
 		String view= this.ownerController.processCreationForm(
 			ownerService.findOwnerById(1), bindingResult);
-		assertEquals(view,"redirect:/owners/1");	
+		assertEquals(view,"welcome");	
 	}
 
 

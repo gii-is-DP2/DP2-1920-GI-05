@@ -95,7 +95,7 @@ class OwnerControllerTests {
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/owner/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
 				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638"))
-				.andExpect(status().is3xxRedirection());
+				.andExpect(status().is2xxSuccessful()).andExpect(view().name("welcome"));
 	}
 
 	@WithMockUser(value = "spring")

@@ -132,9 +132,9 @@
 						class="dropdown-toggle" data-toggle="dropdown"><strong>Sign
 								in</strong> <span class="glyphicon glyphicon-chevron-down"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a id="signowner" href="<c:url value="/users/new" />">As
+							<li><a id="signowner" href="<c:url value="/owner/new" />">As
 									Owner </a></li>
-							<li><a id="signguide" href="<c:url value="/guides/new" />">As
+							<li><a id="signguide" href="<c:url value="/guide/new" />">As
 									Guide </a></li>
 						</ul></li>
 				</sec:authorize>

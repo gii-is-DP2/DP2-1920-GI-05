@@ -43,7 +43,7 @@ public class OwnerControllerE2ETest {
 		mockMvc.perform(post("/owner/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
 				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638")
 				.param("user.username", "joebloggs").param("user.password", "contrasena"))
-				.andExpect(status().is3xxRedirection());
+				.andExpect(status().is2xxSuccessful()).andExpect(view().name("welcome"));
 	}
 
 	

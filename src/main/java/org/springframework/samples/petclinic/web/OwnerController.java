@@ -69,7 +69,7 @@ public class OwnerController {
 			//creating owner, user and authorities
 			this.ownerService.saveOwner(owner);
 			
-			return "redirect:/owners/" + owner.getId();
+			return "welcome";
 		}
 	}
 

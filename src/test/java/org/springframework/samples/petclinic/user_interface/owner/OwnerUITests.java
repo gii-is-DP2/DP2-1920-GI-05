@@ -51,7 +51,11 @@ public class OwnerUITests {
 		createOwner().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	
+	//Creating a  owner negative case
+	@Test
+	public void testCreateOwnerNegative() throws Exception {
+		createOwnerNegative().thenISeeMyUsernameInTheMenuBar();
+	}
 	
 	//Creating a  pet 
 	@Test
@@ -59,11 +63,10 @@ public class OwnerUITests {
 		as("owner1").createPet().thenISeeMyUsernameInTheMenuBar();
 	}
 	
-	//Creating a  pet Negative
-		@Test
-		public void testCreatePetNegative() throws Exception {
+	//Creating a  pet Negative	
+	public void testCreatePetNegative() throws Exception {
 			as("owner1").createPetNegative().thenISeeMyUsernameInTheMenuBar();
-		}
+	}
 	
 	
 	//Throwing a application - User story 12
@@ -122,7 +125,8 @@ public class OwnerUITests {
 	    driver.findElement(By.id("user.password")).sendKeys("battier");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	    driver.findElement(By.id("login")).click();
-	    driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).click();
+		driver.findElement(By.id("username")).clear();
 	    driver.findElement(By.id("username")).sendKeys("shane");
 	    driver.findElement(By.id("password")).click();
 	    driver.findElement(By.id("password")).clear();
@@ -159,14 +163,6 @@ public class OwnerUITests {
 	    driver.findElement(By.id("user.password")).clear();
 	    driver.findElement(By.id("user.password")).sendKeys("battier");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    driver.findElement(By.id("login")).click();
-	    driver.findElement(By.id("username")).clear();
-	    driver.findElement(By.id("username")).sendKeys("shane");
-	    driver.findElement(By.id("password")).click();
-	    driver.findElement(By.id("password")).clear();
-	    driver.findElement(By.id("password")).sendKeys("battier");
-	    driver.findElement(By.xpath("//button[@type='submit']")).click();
-	    this.username = "shane";
 	    Assert.assertEquals("is already in use", driver.findElement(By.cssSelector(".help-inline")).getText());
 		return this;		
 	}
