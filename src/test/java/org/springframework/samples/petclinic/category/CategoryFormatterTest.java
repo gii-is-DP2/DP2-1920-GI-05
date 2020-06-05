@@ -35,23 +35,23 @@ public class CategoryFormatterTest {
 	@Test
 	void testPrint() {
 		Category category = new Category();
-		category.setName("Hamster");
+		category.setName("Sample category 1");
 		String categoryName = categoryFormatter.print(category, Locale.ENGLISH);
-		assertEquals("Hamster", categoryName);
+		assertEquals("Sample category 1", categoryName);
 	}
 
 	@Test
 	void shouldParse() throws ParseException {
 		Mockito.when(categoryService.findAllCategories()).thenReturn(makeCategories());
-		Category category= categoryFormatter.parse("Bird", Locale.ENGLISH);
-		assertEquals("Bird", category.getName());
+		Category category= categoryFormatter.parse("Agility", Locale.ENGLISH);
+		assertEquals("Agility", category.getName());
 	}
 
 		@Test
 	void shouldThrowParseException() throws ParseException {
 		Mockito.when(categoryService.findAllCategories()).thenReturn(makeCategories());
 		Assertions.assertThrows(ParseException.class, () -> {
-			categoryFormatter.parse("Fish", Locale.ENGLISH);
+			categoryFormatter.parse("Sample category 3", Locale.ENGLISH);
 		});
 	}
 	
@@ -64,12 +64,12 @@ public class CategoryFormatterTest {
 		Collection<Category> categories = new ArrayList<>();
 		categories.add(new Category() {
 			{
-				setName("Dog");
+				setName("Sample category 4");
 			}
 		});
 		categories.add(new Category() {
 			{
-				setName("Bird");
+				setName("Agility");
 			}
 		});
 		return categories;
