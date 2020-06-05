@@ -17,7 +17,7 @@ public interface ReportRepository {
 	Collection<Report> findAll()  throws DataAccessException;
 	
 	List<Report> findByPetId(int id);
-	
-	
+
+
 
 }

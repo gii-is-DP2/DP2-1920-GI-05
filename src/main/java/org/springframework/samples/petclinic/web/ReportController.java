@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.web;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
-import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.ReportService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.stereotype.Controller;

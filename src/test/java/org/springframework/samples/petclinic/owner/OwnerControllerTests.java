@@ -24,6 +24,8 @@ import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.web.OwnerController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -41,11 +43,11 @@ class OwnerControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
 
-	@Autowired
-	private OwnerController ownerController;
-
 	@MockBean
 	private OwnerService clinicService;
+	
+	@MockBean
+	private PetService petService;
 	
 	@MockBean
 	private GuideService guideService;
@@ -58,6 +60,9 @@ class OwnerControllerTests {
 
 	@MockBean
 	private AuthoritiesService authoritiesService;
+	
+	@MockBean
+	private RankingService rankingService;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -81,25 +86,41 @@ class OwnerControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitCreationForm() throws Exception {
-		mockMvc.perform(get("/owners/new")).andExpect(status().isOk()).andExpect(model().attributeExists("owner"))
+		mockMvc.perform(get("/owner/new")).andExpect(status().isOk()).andExpect(model().attributeExists("owner"))
 				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
 	}
 
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormSuccess() throws Exception {
-		mockMvc.perform(post("/owners/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
-				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638"))
-				.andExpect(status().is3xxRedirection());
+		mockMvc.perform(post("/owner/new").param("firstName", "Joe").param("lastName", "Bloggs").with(csrf())
+				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638")
+				.param("user.username", "joebloggs").param("user.password", "contrasena"))
+				.andExpect(status().is2xxSuccessful()).andExpect(view().name("welcome"));
 	}
 
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormHasErrors() throws Exception {
-		mockMvc.perform(post("/owners/new").with(csrf()).param("firstName", "Joe").param("lastName", "Bloggs")
-				.param("city", "London")).andExpect(status().isOk()).andExpect(model().attributeHasErrors("owner"))
+		mockMvc.perform(post("/owner/new").with(csrf())
+				.param("firstName", "Joe").param("lastName", "Bloggs").param("city", "London")
+				.param("user.username", "joebloggs").param("user.password", "contrasena"))
+				.andExpect(status().isOk()).andExpect(model().attributeHasErrors("owner"))
 				.andExpect(model().attributeHasFieldErrors("owner", "address"))
 				.andExpect(model().attributeHasFieldErrors("owner", "telephone"))
+				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
+	}
+	
+	//Create negative test Create Owner with duplicated usesrname
+	@WithMockUser(value = "spring")
+	@Test
+	void testProcessCreationFormHasErrorsDuplicatedUsername() throws Exception {
+		mockMvc.perform(post("/owner/new").with(csrf())
+				.param("firstName", "Joe").param("lastName", "Bloggs").param("city", "London")
+				.param("user.username", "joebloggs").param("user.password", "contrasena")
+				.param("city", "London").param("telephone", "01316761638"))
+				.andExpect(status().isOk()).andExpect(model().attributeHasErrors("owner"))
+				//.andExpect(model().attributeHasFieldErrors("owner", "user.username"))
 				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
 	}
 

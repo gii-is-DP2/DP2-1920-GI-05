@@ -2,12 +2,9 @@ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Judge;
-import org.springframework.samples.petclinic.model.Judges;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.JudgeService;
@@ -15,6 +12,7 @@ import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +28,15 @@ public class JudgeController {
 
 	private final JudgeService judgeService;
 	private final TournamentService tournamentService;
+	private final UserService userService;
 
 	@Autowired
 	public JudgeController(TournamentService tournamentService,JudgeService judgeService, UserService userService, AuthoritiesService authoritiesService) {
 		this.judgeService = judgeService;	
 		this.tournamentService = tournamentService;
+		this.userService = userService;
 	}
+	
 	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -44,9 +45,9 @@ public class JudgeController {
 
 	@GetMapping(value = { "/judges" })
 	public String showJugdeList(Map<String, Object> model) {
-		Judges jugdes = new Judges();
-		jugdes.getJugdeList().addAll(this.judgeService.findAllJudges());
-		model.put("jugdes", jugdes);
+		Collection<Judge> judges = (this.judgeService.findAllJudges());
+		model.put("judges", judges);
+		System.out.println(judges);
 		return "judges/list";
 	}
 
@@ -58,8 +59,15 @@ public class JudgeController {
 	}
 
 	@PostMapping(value = "/judges/new")
-	public String processCreationForm(@Valid Judge judge, BindingResult result) {
-		if (result.hasErrors()) {
+	public String processCreationForm(@Valid Judge judge, BindingResult result, ModelMap model) {
+		
+		if (this.userService.isUsernameTaken(judge.getUser().getUsername())) {
+			model.put("judge", judge);
+			result.rejectValue("user.username", "duplicate", "already exists");
+			return "judges/createOrUpdateJudgeForm";
+		}
+		
+		else if (result.hasErrors()) {
 			return "judges/createOrUpdateJudgeForm";
 		} else {
 			// creating judge, user and authorities

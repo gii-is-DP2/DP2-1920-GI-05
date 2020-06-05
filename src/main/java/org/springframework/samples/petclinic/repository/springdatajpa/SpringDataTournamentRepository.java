@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.repository.TournamentRepository;
 
-public interface SpringDataTournamentRepository extends TournamentRepository, Repository<Tournament, String>{
+public interface SpringDataTournamentRepository extends TournamentRepository, Repository<Tournament, Integer>{
 
 	@Override
 	@Query("SELECT  t FROM Tournament t")

@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -44,4 +46,20 @@ public class UserService {
 		user.setEnabled(true);
 		userRepository.save(user);
 	}
+
+	public Boolean isUsernameTaken(String username) {
+		Boolean res = false;
+		for (User u : this.findAll()) {
+			if (u.getUsername().equals(username)) {
+				res = true;
+				break;
+			}
+		}
+		return res;
+	}
+
+	public List<User> findAll() {
+		return new ArrayList<User>(this.userRepository.findAllUsers());
+	}
+
 }

@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.pet;
 
-import static org.mockito.BDDMockito.given;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -8,23 +8,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import org.assertj.core.util.Lists;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.samples.petclinic.PetclinicApplication;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.service.OwnerService;
-import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.web.PetController;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +33,7 @@ public class PetControllerE2ETest {
 	@Autowired
 	private MockMvc mockMvc;	
 
+	// Get create form
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testInitCreationForm() throws Exception {
@@ -51,6 +41,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm")).andExpect(model().attributeExists("pet"));
 	}
 
+	//Post create pet
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormSuccess() throws Exception {
@@ -63,6 +54,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("redirect:/owners/details"));
 	}
 
+	//Post a pet without type
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors() throws Exception {
@@ -76,6 +68,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
 	
+	//Post a pet with duplicated name
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors2() throws Exception {
@@ -89,6 +82,7 @@ public class PetControllerE2ETest {
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
 
+	//Post a pet without name
 	@WithMockUser(username="owner1",authorities= {"owner"})
     @Test
 	void testProcessCreationFormHasErrors3() throws Exception {
@@ -101,7 +95,23 @@ public class PetControllerE2ETest {
 				.andExpect(status().isOk())
 				.andExpect(view().name("pets/createOrUpdatePetForm"));
 	}
+	
+	//Post a pet with a future birth date
+	@WithMockUser(username="owner1",authorities= {"owner"})
+    @Test
+	void testProcessCreationFormHasErrors4() throws Exception {
+		mockMvc.perform(post("/owners/{ownerId}/pets/new", TEST_OWNER_ID)
+							.with(csrf())
+							.param("name", "Betty")
+							.param("birthDate", "2022/02/12")
+							.param("type", "Hamster"))
+				.andExpect(model().attributeHasNoErrors("owner"))
+				.andExpect(model().attributeHasErrors("pet"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("pets/createOrUpdatePetForm"));
+	}
 
+	
 	@WithMockUser(username="owner1",authorities= {"owner"})
 	@Test
 	void testInitUpdateForm() throws Exception {

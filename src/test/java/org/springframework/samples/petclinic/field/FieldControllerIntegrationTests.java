@@ -11,9 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Field;
-import org.springframework.samples.petclinic.service.FieldService;
 import org.springframework.samples.petclinic.web.FieldController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
@@ -25,8 +25,6 @@ public class FieldControllerIntegrationTests {
 	@Autowired
 	private FieldController fieldController;
 	
-	@Autowired
-	private FieldService fieldService;
 	
     @Test
 	void testListAllField() throws Exception {
@@ -49,6 +47,7 @@ public class FieldControllerIntegrationTests {
 	}
     
     @Test
+    @Transactional
 	void testProcessCreationForm() throws Exception {
 
 		ModelMap model=new ModelMap();		
@@ -83,7 +82,7 @@ public class FieldControllerIntegrationTests {
   	}
     
     @Test
- 	void testShouldNotProcessCreationBreadth1() throws Exception {
+ 	void testShouldNotProcessCreationWidth1() throws Exception {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
@@ -93,12 +92,14 @@ public class FieldControllerIntegrationTests {
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
  		
+		bindingResult.reject("width", "Required!");
+ 		
  		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
  		assertEquals(view,"fields/createOrUpdateFieldForm");
  	}
     
     @Test
- 	void testShouldNotProcessCreationBreadth2() throws Exception {
+ 	void testShouldNotProcessCreationWidth2() throws Exception {
 
  		ModelMap model=new ModelMap();		
  		Field field = new Field();
@@ -107,6 +108,8 @@ public class FieldControllerIntegrationTests {
  		field.setLenght(200.00);
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
+ 		
+ 		bindingResult.reject("width", "Required!");
  		
  		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
  		assertEquals(view,"fields/createOrUpdateFieldForm");
@@ -123,6 +126,8 @@ public class FieldControllerIntegrationTests {
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
  		
+ 		bindingResult.reject("length", "Required!");
+ 		
  		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
  		assertEquals(view,"fields/createOrUpdateFieldForm");
  	}
@@ -138,6 +143,8 @@ public class FieldControllerIntegrationTests {
  		field.setName("Test field");
  		field.setPhotoURL("https://www.youtube.com/watch?v=Q6aRJgQ9s6Q");
  		
+ 		bindingResult.reject("length", "Required!");
+ 		
  		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
  		assertEquals(view,"fields/createOrUpdateFieldForm");
  	}
@@ -152,6 +159,8 @@ public class FieldControllerIntegrationTests {
 		field.setLenght(200.00);
 		field.setName("Test field");
 		field.setPhotoURL("NotURL");
+		
+		bindingResult.reject("photoUrl", "Required!");
 		
 		String view= this.fieldController.processCreationForm(field, bindingResult, model);		
 		assertEquals(view,"fields/createOrUpdateFieldForm");

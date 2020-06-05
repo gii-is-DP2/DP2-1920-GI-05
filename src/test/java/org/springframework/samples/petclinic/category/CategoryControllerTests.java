@@ -14,9 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.service.CategoryService;
-import org.springframework.samples.petclinic.service.FieldService;
-import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.TournamentService;
+
 import org.springframework.samples.petclinic.web.CategoryController;
 import org.springframework.samples.petclinic.web.OwnerController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -34,9 +32,6 @@ excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
 classes = WebSecurityConfigurer.class), 
 excludeAutoConfiguration = SecurityConfiguration.class)
 class CategoryControllerTests {
-
-	@Autowired
-	private CategoryController categoryController;
 
 	@MockBean
 	private CategoryService categoryService;

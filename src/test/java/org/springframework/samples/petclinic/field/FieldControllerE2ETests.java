@@ -47,7 +47,7 @@ public class FieldControllerE2ETests {
 	// Create Fields Negative Case: Duplicated Name
 	@WithMockUser(username="admin1",authorities= {"admin"})
     @Test
-void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameException {
+    void testProcessCreationFormSuccess() throws Exception, DuplicateFieldNameException {
 	mockMvc.perform(post("/fields/new")
 						.with(csrf())
 						.param("name", "Map 5")

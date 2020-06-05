@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Application;
-import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Tournament;
@@ -23,7 +22,6 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateApplicationException;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateCategoryNameException;
 import org.springframework.samples.petclinic.service.exceptions.InactiveTournamentException;
 import org.springframework.samples.petclinic.service.exceptions.InvalidPetTypeException;
 import org.springframework.stereotype.Service;
@@ -50,7 +48,7 @@ public class ApplicationServiceTests {
 	@Test
 	void shouldFindAllApplications() {
 		Collection<Application> applications = this.applicationService.findAllApplications();
-		assertThat(applications.size()).isEqualTo(6);
+		assertThat(applications.size()).isEqualTo(9);
 	}
 	
 	//  Service test: List applications by owner
@@ -80,7 +78,7 @@ public class ApplicationServiceTests {
 		
 		this.applicationService.saveApplication(application);
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(7);
+		assertThat(apps.size()).isEqualTo(10);
 	}
 	
 
@@ -118,9 +116,9 @@ public class ApplicationServiceTests {
 
 		Application application = new Application();	
 		
-		Owner owner = this.ownerService.findOwnerById(4); //  owner3
+		Owner owner = this.ownerService.findOwnerById(4); //  owner4
 		Tournament tournament = this.tournamentService.findTournamentById(10); // lizard tournament
-		Pet pet = this.petService.findPetById(7); // snake from owner3
+		Pet pet = this.petService.findPetById(7); // snake from owner4
 		
 		application.setId(6);
 		application.setCreditCard("4065972557141631");
@@ -170,7 +168,7 @@ public class ApplicationServiceTests {
 		
 		this.applicationService.updateApplication(application);
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(6);
+		assertThat(apps.size()).isEqualTo(9);
 	}
 	
     // Service test: Update applications Negative Case: Inactive tournament
@@ -184,7 +182,7 @@ public class ApplicationServiceTests {
 		applicationService.updateApplication(application);});		
 		
 		Collection<Application> apps = this.applicationService.findAllApplications();
-		assertThat(apps.size()).isEqualTo(6);
+		assertThat(apps.size()).isEqualTo(9);
 	}
 	
 }

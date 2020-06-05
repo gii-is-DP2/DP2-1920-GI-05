@@ -36,8 +36,7 @@ public class ApplicationValidatorTests {
 
 		pet = new Pet();
 		pet.setName("Goomba");
-		;
-
+		
 	}
 
 	private Validator createValidator() {
@@ -92,6 +91,7 @@ public class ApplicationValidatorTests {
 
 		assertThat(errors.getErrorCount()).isEqualTo(1);
 		assertThat(errors.hasFieldErrors("status")).isEqualTo(true);
+		
 
 	}
 

@@ -12,9 +12,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.sun.istack.NotNull;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,6 +57,6 @@ public class Tournament extends NamedEntity {
 	@JoinColumn(name = "petType_id")
 	private PetType petType;
 
-
+	
 
 }

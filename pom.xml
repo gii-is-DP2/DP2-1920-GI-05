@@ -32,6 +32,11 @@
 		<rest-assured.version>4.2.0</rest-assured.version>
 		<selenium.version>3.141.59</selenium.version>
 		<cucumber.version>5.5.0</cucumber.version>
+
+
+
+
+
 	</properties>
 
 	<dependencies>
@@ -169,6 +174,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -277,6 +283,7 @@
 						<exclude>**/*AdminUITests.java</exclude>
 						<exclude>**/*OwnerUITests.java</exclude>
 						<exclude>**/*JudgeUITests.java</exclude>
+						<exclude>**/*GuideUITests.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

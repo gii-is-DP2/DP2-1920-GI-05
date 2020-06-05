@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.time.LocalDate;
-
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,6 @@ import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Tournament;
-import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
@@ -32,8 +29,8 @@ import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.TournamentService;
-import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.samples.petclinic.web.CategoryFormatter;
 import org.springframework.samples.petclinic.web.FieldFormatter;
 import org.springframework.samples.petclinic.web.JudgeFormatter;
@@ -62,8 +59,6 @@ class TournamentControllerTests {
 	
 	private static final int TEST_JUDGE_ID = 1;
 
-	@Autowired
-	private TournamentController tournamentController;
 
 	@MockBean
 	private PetService petService;
@@ -85,6 +80,9 @@ class TournamentControllerTests {
 
 	@MockBean
 	private TournamentService tournamentService;
+	
+	@MockBean
+	private RankingService rankingService;
 	
 	@MockBean
 	private ApplicationService applicationService;
@@ -140,6 +138,13 @@ class TournamentControllerTests {
 
 	@WithMockUser(value = "spring")
 	@Test
+	void testListEnded() throws Exception {
+		mockMvc.perform(get("/tournaments/endedList")).andExpect(status().isOk())
+				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("tournaments/endedList"));
+	}
+
+	@WithMockUser(value = "spring")
+	@Test
 	void testGetNewTournaments() throws Exception {
 		mockMvc.perform(get("/tournaments/new")).andExpect(status().isOk())
 		.andExpect(model().attributeExists("tournament")).andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
@@ -162,6 +167,61 @@ class TournamentControllerTests {
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/tournaments/all"));
 	}
+	
+	// Create Tournament Negative case invalid inputs: ApplyDate before today
+		@WithMockUser(value = "spring")
+		@Test
+		void testShouldNotCreateTournamentApplyDateB4Today() throws Exception {		
+			mockMvc.perform(post("/tournaments/new").with(csrf())
+					.param("name", "Betty tornament")
+					.param("location", "Seville")
+					.param("petType", "hamster")				
+					.param("category","Agility")
+					.param("applyDate", "2018/12/10")
+					.param("startDate", "2020/12/11")
+					.param("endDate", "2020/12/12")
+					.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+			.andExpect(model().attributeHasErrors("tournament"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+		}
+		
+		// Create Tournament Negative case invalid inputs: ApplyDate before today
+				@WithMockUser(value = "spring")
+				@Test
+				void testShouldNotCreateTournamentStartDateB4Today() throws Exception {		
+					mockMvc.perform(post("/tournaments/new").with(csrf())
+							.param("name", "Betty tornament")
+							.param("location", "Seville")
+							.param("petType", "hamster")				
+							.param("category","Agility")
+							.param("applyDate", "2020/12/10")
+							.param("startDate", "2018/12/11")
+							.param("endDate", "2020/12/12")
+							.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+					.andExpect(model().attributeHasErrors("tournament"))
+					.andExpect(status().isOk())
+					.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+				}
+				
+				// Create Tournament Negative case invalid inputs: ApplyDate before today
+				@WithMockUser(value = "spring")
+				@Test
+				void testShouldNotCreateTournamentEndDateB4Today() throws Exception {		
+					mockMvc.perform(post("/tournaments/new").with(csrf())
+							.param("name", "Betty tornament")
+							.param("location", "Seville")
+							.param("petType", "hamster")				
+							.param("category","Agility")
+							.param("applyDate", "2020/12/10")
+							.param("startDate", "2020/12/11")
+							.param("endDate", "2018/12/12")
+							.param("prize.amount", "500.00").param("prize.currency", "EUR"))
+					.andExpect(model().attributeHasErrors("tournament"))
+					.andExpect(status().isOk())
+					.andExpect(view().name("tournaments/createOrUpdateTournamentForm"));
+				}
+	
 	
 	// Create tournament Negative Case: Missed name input
 	@WithMockUser(value = "spring")

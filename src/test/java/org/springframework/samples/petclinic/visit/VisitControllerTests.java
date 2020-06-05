@@ -34,8 +34,6 @@ class VisitControllerTests {
 
 	private static final int TEST_PET_ID = 1;
 
-	@Autowired
-	private VisitController visitController;
 
 	@MockBean
 	private PetService clinicService;
@@ -62,7 +60,7 @@ class VisitControllerTests {
 							.with(csrf())
 							.param("description", "Visit Description"))                                
                 .andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/owners/{ownerId}"));
+				.andExpect(view().name("redirect:/owners/details"));
 	}
 
 	@WithMockUser(value = "spring")

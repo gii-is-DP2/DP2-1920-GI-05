@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -40,9 +39,10 @@ public class Report extends BaseEntity {
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 	
-	@Valid
 	@ManyToOne(optional=false)
-	@JoinColumn(name = "pet")
+	@JoinColumn(name = "pet_id")
 	private Pet pet;
+	
+	
 
 }

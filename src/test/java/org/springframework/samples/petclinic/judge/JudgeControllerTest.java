@@ -48,10 +48,7 @@ public class JudgeControllerTest {
 	
 	@MockBean
 	private AuthoritiesService authoritiesService;
-	
-	@Autowired
-	private JudgeController judgeController;
-	
+
 	
 	@BeforeEach
 	void setup() {
@@ -73,6 +70,9 @@ public class JudgeControllerTest {
 		mockMvc.perform(get("/judges/{judgeId}/tournaments", TEST_JUDGE_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("tournaments")).andExpect(view().name("judges/tournaments"));
 	}
+	
+	
+	
 	
 	
 	

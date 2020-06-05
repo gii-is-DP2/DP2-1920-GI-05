@@ -34,9 +34,14 @@
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Guide</a>
 	
 	 <spring:url value="{guideId}/pets" var="pets">
-        <spring:param name="guideId" value="${guideId.id}"/>
+        <spring:param name="guideId" value="${guide.id}"/>
     </spring:url>
     <a href="${fn:escapeXml(pets)}" class="btn btn-default">My pets assigned</a>
+    
+    <spring:url value="{guideId}/reports" var="reports">
+        <spring:param name="guideId" value="${guide.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(reports)}" class="btn btn-default">My reports</a>
 	
     <br/>
     <br/>

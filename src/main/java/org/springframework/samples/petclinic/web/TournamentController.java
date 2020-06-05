@@ -12,14 +12,15 @@ import org.springframework.samples.petclinic.model.Field;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Ranking;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.service.ApplicationService;
 import org.springframework.samples.petclinic.service.CategoryService;
 import org.springframework.samples.petclinic.service.FieldService;
-import org.springframework.samples.petclinic.service.GuideService;
 import org.springframework.samples.petclinic.service.JudgeService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.RankingService;
 import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicateTournamentNameException;
 import org.springframework.stereotype.Controller;
@@ -42,21 +43,23 @@ public class TournamentController {
 	private final PetService petService;
 	private final FieldService fieldService;
 	private final JudgeService  judgeService;
-	private final GuideService  guideService;
 	private final OwnerService ownerService;
 	private final ApplicationService applicationService;
+	private final RankingService rankingService;
 
 	@Autowired
 	public TournamentController(TournamentService tournamentService, PetService petService,
-			CategoryService categoryService, FieldService fieldService,  JudgeService  judgeService, OwnerService ownerService, GuideService  guideService, ApplicationService applicationService) {
+			CategoryService categoryService, FieldService fieldService, 
+			JudgeService  judgeService, OwnerService ownerService, 
+			ApplicationService applicationService, RankingService rankingService) {
 		this.categoryService = categoryService;
 		this.tournamentService = tournamentService;
 		this.petService = petService;
 		this.fieldService = fieldService;
 		this.judgeService = judgeService;
 		this.ownerService = ownerService;
-		this.guideService = guideService;
 		this.applicationService = applicationService;
+		this.rankingService = rankingService;
 	}
 
 	@ModelAttribute("categories")
@@ -79,11 +82,12 @@ public class TournamentController {
 		return this.judgeService.findAllJudges();
 	}
 	
-		
 	@InitBinder("tournament")
 	public void initTournamentBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new TournamentValidator());
 	}
+
+	// Create
 
 	@GetMapping(value = "/tournaments/new")
 	public String initCreationForm(ModelMap model) {
@@ -96,6 +100,7 @@ public class TournamentController {
 	public String processCreationForm(@Valid Tournament tournament, BindingResult result, ModelMap model) 
 			throws DataAccessException, DuplicateTournamentNameException {
 		if (result.hasErrors()) {
+
 			model.put("tournament", tournament);
 			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		} else {
@@ -110,6 +115,8 @@ public class TournamentController {
 			return "redirect:/tournaments/all";
 		}
 	}
+
+	// List All
 	
 	@GetMapping(value = { "/tournaments/all" })
 	public String showAllTournaments(Map<String, Object> model) {
@@ -119,6 +126,8 @@ public class TournamentController {
 		return "tournaments/list";
 	}
 	
+	// List Active
+
 	@GetMapping(value = { "/tournaments/active" })
 	public String showActiveTournaments(Map<String, Object> model) {
 	
@@ -126,6 +135,8 @@ public class TournamentController {
 		model.put("tournaments", activeTournaments);
 		return "tournaments/list";
 	}
+
+	// Edit
 	
 	@GetMapping(value = "/tournaments/{tournamentId}/edit")
 	public String initUpdateTournamentForm(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
@@ -135,11 +146,10 @@ public class TournamentController {
 		return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 	}
 
-	
-
 	@PostMapping(value = "/tournaments/{tournamentId}/edit")
 	public String processUpdateTournamentForm(@Valid Tournament tournament, BindingResult result,
-			@PathVariable("tournamentId") int tournamentId) throws DataAccessException, DuplicateTournamentNameException {
+			@PathVariable("tournamentId") int tournamentId) throws DataAccessException,
+			 DuplicateTournamentNameException {
 		if (result.hasErrors()) {
 			return VIEWS_TOURNAMENTS_CREATE_OR_UPDATE_FORM;
 		}
@@ -157,23 +167,59 @@ public class TournamentController {
 		}
 	}
 	
+	// Show
+
 	@GetMapping(value = "/tournaments/{tournamentId}/show")
 	public String initShowTournament(@PathVariable("tournamentId") int tournamentId, ModelMap model) {
 		Tournament tournament = this.tournamentService.findTournamentById(tournamentId);
 		
+		checkApplication(tournament, model);
+
+		 model.put("tournament", tournament);
+		return "tournaments/showTournament";
+	}
+
+	private ModelMap checkApplication(Tournament tournament, ModelMap model){
+		
+		Boolean hasApplication = false;
+		Owner owner = this.ownerService.findOwnerByUserName();
+
 		if(this.ownerService.findOwnerByUserName()!=null)	{
-			Owner owner = this.ownerService.findOwnerByUserName();
-			Boolean hasApplication = false;
-			int ownerId = owner.getId();
-			if(this.applicationService.findApplicationsByOwnerTournament(ownerId, tournamentId) != null) {
+			
+			if(this.applicationService.findApplicationsByOwnerTournament(
+				owner.getId(), tournament.getId()) != null) {
 				hasApplication=true;
 			}
 			model.put("hasApplication", hasApplication);	
 			model.put("owner", owner);			
 		}
-		
-		 model.put("tournament", tournament);
-		return "tournaments/showTournament";
+
+		return model;
 	}
+
+	// Ended Tournaments without Ranking
+
+	@GetMapping(value = { "/tournaments/endedList" })
+	public String listEndedTournaments(Map<String, Object> model) {
+	
+		Collection<Tournament> endedTournaments = this.tournamentService.findEndedTournaments();
+		model.put("tournaments", endedTournaments);
+		return "tournaments/endedList";
+	}
+
+	// Make a Ranking for a tournament
+
+	@PostMapping(value = { "/tournaments/endedList" })
+	public String makeRankingForm(Tournament tournament, ModelMap model) {
+	  
+		Ranking ranking = this.rankingService.makeRanking(tournament);
+
+		this.rankingService.saveRanking(ranking);
+		Collection<Tournament> endedTournaments = this.tournamentService.findEndedTournaments();
+		model.put("tournaments", endedTournaments);
+   
+		return "tournaments/endedList";
+	   
+   }
 
 }

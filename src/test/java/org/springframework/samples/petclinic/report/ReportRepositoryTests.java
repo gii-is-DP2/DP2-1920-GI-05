@@ -30,7 +30,7 @@ public class ReportRepositoryTests {
 				
 		Collection<Report> judgeReports = this.reportRepository.findByJudgeId(1);
 		
-		assertThat(judgeReports.size()).isEqualTo(3);	
+		assertThat(judgeReports.size()).isEqualTo(4);	
 	}	
 	
 	// Repository test: Return reports by pet

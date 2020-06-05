@@ -14,10 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Tournament;
 import org.springframework.samples.petclinic.repository.TournamentRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.test.annotation.Rollback;
+
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class))
@@ -50,5 +48,19 @@ public class TournamentRepositoryTests {
 		assertThat(judgeTournaments.size()).isEqualTo(2);
 		assertThat(judgeTournaments.contains(t1));
 	}
+	
+
+	// Repository test: Return tournaments by tournament name
+	@Test
+	public void shouldReturnNameTournaments() throws Exception {
+				
+		Tournament nameTournaments = this.tournamentRepository.findByName("Cats beauty contest 2019");
+				
+		assertThat(nameTournaments).isNotNull();
+		
+	}
+	
+	
+	
 
 }

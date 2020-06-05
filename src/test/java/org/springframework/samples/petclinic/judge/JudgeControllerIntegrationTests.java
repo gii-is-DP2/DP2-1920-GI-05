@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.judge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,17 +10,10 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.samples.petclinic.model.Category;
 import org.springframework.samples.petclinic.model.Judge;
 import org.springframework.samples.petclinic.service.JudgeService;
-import org.springframework.samples.petclinic.service.TournamentService;
 import org.springframework.samples.petclinic.web.JudgeController;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -39,11 +31,6 @@ public class JudgeControllerIntegrationTests {
 	
 	@Autowired
 	private  JudgeService judgeService;
-	
-	@Autowired
-	private  TournamentService tournamentService;
-
-
 	
 	@Test	
 	void testTournamentJudgeList() throws Exception {
@@ -88,7 +75,7 @@ public class JudgeControllerIntegrationTests {
     	j.setUser(u);
 
     	BindingResult bindingResult=new MapBindingResult(Collections.emptyMap(),"");
-    	String view= this.judgeController.processCreationForm(j, bindingResult);
+    	String view= this.judgeController.processCreationForm(j, bindingResult, model);
  
 		Collection<Judge> all = this.judgeService.findAllJudges();
 		assertThat(all.size()).isEqualTo(3);

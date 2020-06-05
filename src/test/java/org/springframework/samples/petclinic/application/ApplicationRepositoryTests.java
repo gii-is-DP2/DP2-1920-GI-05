@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+//Para este tests hemos tenido que comentar el includeFilters porque provocaba fallos en otros tests
+//@DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class))
 @AutoConfigureTestDatabase(replace=Replace.NONE)
 public class ApplicationRepositoryTests {
 
@@ -28,7 +30,7 @@ public class ApplicationRepositoryTests {
 				
 		Collection<Application> allApplications = this.applicationRepository.findAllApplications();
 		
-		assertThat(allApplications.size()).isEqualTo(6);	
+		assertThat(allApplications.size()).isEqualTo(9);	
 	}
 	
 	// Repository test: List all applications by one owner
