@@ -6,7 +6,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class UserStory10 extends Simulation {
+class UserStory11 extends Simulation {
 
 	val httpProtocol = http
 		.baseUrl("http://www.dp2.com")
@@ -36,22 +36,8 @@ class UserStory10 extends Simulation {
 		.pause(8)
 	}
 
-	object LoginAdmin {
-		val login1 = exec(http("Login")
-			.get("/login")
-			.headers(headers_0)
-		).pause(12)
-		.exec(http("Logged")
-			.post("/login")
-			.headers(headers_3)
-			.formParam("username", "admin1")
-			.formParam("password", "4dm1n")
-			.formParam("_csrf", "dda05094-3fbd-4827-b380-557d9e1cadbe"))
-		.pause(5)
-	}
-
-	object LoginOwner {
-		val login2 = exec(http("Login")
+	object Login {
+		val login = exec(http("Login")
 			.get("/login")
 			.headers(headers_0)
 		).pause(12)
@@ -62,31 +48,31 @@ class UserStory10 extends Simulation {
 			.formParam("password", "0wn3r")
 			.formParam("_csrf", "dda05094-3fbd-4827-b380-557d9e1cadbe"))
 		.pause(5)
-	}		  
+	}		
   
 	object ListTournaments {
 		val listTournaments = exec(http("ListTournaments")
-			.get("/tournaments/all")
+			.get("/tournaments/active")
 			.headers(headers_0))
 		.pause(7)
 	}  
 
-	val positiveScn = scenario("AdminAllTournaments").exec(Home.home, 	
-													LoginAdmin.login1, 
-													ListTournaments.listTournaments)
+	val positiveScn = scenario("OwnerActiveTournaments").exec(Home.home, 
+														Login.login, 
+														ListTournaments.listTournaments)
 	
-	val negativeScn = scenario("OwnerAllTournaments").exec(Home.home, 
-													LoginOwner.login2,
-													ListTournaments.listTournaments)	
+	val negativeScn = scenario("AnonymousActiveTournaments").exec(Home.home, 
+														ListTournaments.listTournaments)	
 
 
 
 	setUp(
-		positiveScn.inject(rampUsers(10000) during (100 seconds)), 
-		negativeScn.inject(rampUsers(10000) during (100 seconds))
+		positiveScn.inject(rampUsers(17000) during (100 seconds)), 
+		negativeScn.inject(rampUsers(17000) during (100 seconds))
 		).protocols(httpProtocol).assertions(
         global.responseTime.max.lt(5000),    
         global.responseTime.mean.lt(1000),
         global.successfulRequests.percent.gt(95)
      )
+
 }

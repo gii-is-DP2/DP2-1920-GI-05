@@ -82,8 +82,8 @@ class UserStory10 extends Simulation {
 
 
 	setUp(
-		positiveScn.inject(rampUsers(10000) during (100 seconds)), 
-		negativeScn.inject(rampUsers(10000) during (100 seconds))
+		positiveScn.inject(rampUsers(14000) during (100 seconds)), 
+		negativeScn.inject(rampUsers(14000) during (100 seconds))
 		).protocols(httpProtocol).assertions(
         global.responseTime.max.lt(5000),    
         global.responseTime.mean.lt(1000),
