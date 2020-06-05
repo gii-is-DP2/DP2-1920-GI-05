@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.user;
+package org.springframework.samples.petclinic.owner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,10 +20,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest(includeFilters = @ComponentScan.Filter(Repository.class))
+@DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 public class UserRepositoryTest {
 
+	/*Estos tests desafortunadamente los ibamos a descartar, debido a que provocaban fallos en otros tests
+	   por razones que no nos dio tiempo descubrir porque,  moviendolos a otra carpeta que no fuese 'users' 
+	   aparentemente se	solucionaba el problema */
+	
 	@Autowired
 	private UserRepository userRepository;
 

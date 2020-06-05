@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.user;
+package org.springframework.samples.petclinic.owner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,8 +24,12 @@ public class UserServiceTest {
 	@Autowired
 	private UserService userService;
 
+	/*Estos tests desafortunadamente los ibamos a descartar, debido a que provocaban fallos en otros tests
+	   por razones que no nos dio tiempo descubrir porque,  moviendolos a otra carpeta que no fuese 'users' 
+	   aparentemente se	solucionaba el problema */
+	
 	@Test
-	@Transactional
+	@Transactional	
 	void shouldInsertdNewUser() throws DataAccessException, DuplicateCategoryNameException {
 		User u = new User();
 		u.setUsername("username");

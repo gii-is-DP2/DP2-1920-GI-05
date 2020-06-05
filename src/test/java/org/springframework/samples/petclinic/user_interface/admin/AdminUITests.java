@@ -50,7 +50,7 @@ public class AdminUITests {
 		as("admin1").testProbandoCreateTournament().thenISeeMyUsernameInTheMenuBar();
 	}
 
-	// Creating a tournament Negatove - User Story 1
+	// Creating a tournament Negative - User Story 1
 	@Test
 	public void testCreateTournamentNegative() throws Exception {
 		as("admin1").testProbandoCreateTournamentNegative().thenISeeMyUsernameInTheMenuBar();

@@ -15,6 +15,7 @@ import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.web.OwnerController;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
@@ -41,6 +42,7 @@ public class OwnerControllerIntegrationTests {
 	}
 
 	@Test
+	@Transactional
 	void testProcessCreationForm() throws Exception {
 
 		BindingResult bindingResult = new MapBindingResult(Collections.emptyMap(), "");

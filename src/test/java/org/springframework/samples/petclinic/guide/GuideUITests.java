@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class GuideUITests {
 	
+	/*Estos tests no tienen su propia carpeta como el resto de tests de interfaz de usuario debido a que guardarlos en su
+	carpeta 'guide' daba error en otros tests*/
+	
+	
 	@LocalServerPort
 	private int port;
 
